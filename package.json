@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

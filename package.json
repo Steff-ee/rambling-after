@@ -4,6 +4,11 @@
 	"description": "Personal website",
 	"main": "index.js",
 	"scripts": {
+		"build": "gatsby build",
+		"deploy": "gatsby build --prefix-paths",
+		"dev": "gatsby develop",
+		"start": "npm run develop",
+		"serve": "gatsby serve",
 		"lint": "tslint --project tsconfig.json",
 		"tslint-check": "tslint-config-prettier-check ./tslint.json",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +29,7 @@
 		"@types/history": "4.7.3",
 		"@types/lodash": "4.14.137",
 		"@types/jest": "24.0.18",
+		"@types/node": "12.7.2",
 		"@types/react": "^16.9.2",
 		"@types/react-dom": "^16.9.0",
 		"@types/react-router": "5.0.3",
@@ -40,6 +46,8 @@
 	"dependencies": {
 		"enzyme": "3.10.0",
 		"enzyme-to-json": "3.4.0",
+		"gatsby": "^2.13.73",
+		"gatsby-plugin-typescript": "2.1.5",
 		"history": "4.9.0",
 		"immutable": "4.0.0-rc.12",
 		"lodash": "4.17.15",

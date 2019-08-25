@@ -1,7 +1,9 @@
 import * as React from 'react'
 
-export const Root: React.FunctionComponent = (props: {}) => {
+const Root: React.FunctionComponent = (props: {}) => {
 	console.log('props', props)
 
 	return <>Hello World</>
 }
+
+export default Root

@@ -27,8 +27,6 @@
 		"no-conditional-assignment": true,
 		"no-console": false,
 		"no-construct": true,
-		"no-default-export": true,
-		"no-default-import": true,
 		"no-duplicate-imports": true,
 		"no-duplicate-super": true,
 		"no-duplicate-switch-case": true,

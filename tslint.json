@@ -41,7 +41,10 @@
 		"no-inferrable-types": [true, "ignore-params", "ignore-properties"],
 		"no-invalid-template-strings": true,
 		"no-invalid-this": true,
-		"no-magic-numbers": [true, { "ignore-jsx": true }],
+		"no-magic-numbers": [
+			true,
+			{ "allowed-numbers": [-1, 0, 1], "ignore-jsx": true }
+		],
 		"no-misused-new": true,
 		"no-null-keyword": true,
 		"no-object-literal-type-assertion": true,
@@ -110,7 +113,8 @@
 			"call-signature",
 			"parameter",
 			"property-declaration",
-			"variable-declaration"
+			"arrow-call-signature",
+			"arrow-paramater"
 		],
 		"typeof-compare": true,
 		"unified-signatures": true,

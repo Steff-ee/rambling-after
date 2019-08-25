@@ -1,6 +1,5 @@
 {
     "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
-    "rulesDirectory": ["./lib/lint-rules"],
     "rules": {
       "adjacent-overload-signatures": true,
       "align": [true, "parameters", "arguments", "statements", "members", "elements"],
@@ -62,7 +61,7 @@
       "no-magic-numbers": [true, {"ignore-jsx": true}],
       "no-misused-new": true,
       "no-null-keyword": true,
-      "no-object-literal-type-assertion": [true, { "allow-arguments": true }],
+      "no-object-literal-type-assertion": true,
       "no-promise-as-boolean": true,
       "no-reference-import": true,
       "no-return-await": true,
@@ -162,7 +161,7 @@
       "unnecessary-else": [true, {"allow-else-if": true}],
       "use-default-type-parameter": true,
       "use-isnan": true,
-      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],,
+      "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
       "whitespace": [
         true,
         "check-branch",

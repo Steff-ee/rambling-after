@@ -4,6 +4,7 @@
   "description": "Personal website",
   "main": "index.js",
   "scripts": {
+    "lint": "tslint --project tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,6 +24,8 @@
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.0.4",
     "tslint": "^5.19.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-react": "3.6.0",
     "typescript": "^3.5.3",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"

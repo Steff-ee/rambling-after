@@ -1,5 +1,6 @@
 import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useState } from 'react'
+import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
 // (TODO) add documentation
@@ -67,6 +68,9 @@ export const usePivots = (
 	} else {
 		titles = titlePhrases.map((phrase, index) => phrase[index])
 	}
+
+	const bypassIfNoHover = !hoverPivotTitle
+	titles = useTextMorph(titles, bypassIfNoHover)
 
 	const pivots: IPivotItemProps[] = titles.map((title) => ({
 		onRenderItemLink,

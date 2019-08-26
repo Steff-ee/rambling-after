@@ -46,7 +46,7 @@
 	"dependencies": {
 		"enzyme": "3.10.0",
 		"enzyme-to-json": "3.4.0",
-		"gatsby": "^2.13.73",
+		"gatsby": "^2.13.83",
 		"gatsby-plugin-typescript": "2.1.5",
 		"history": "4.9.0",
 		"immutable": "4.0.0-rc.12",

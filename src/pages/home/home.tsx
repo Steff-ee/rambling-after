@@ -7,18 +7,18 @@ import {
 } from '../../shared/presentational/hooks/usePivots'
 
 export enum HomePivots {
-	About = 'About',
-	Blog = 'Blog',
-	Latest = 'Latest Post',
+	About = 'about',
+	Blog = 'blog',
+	Recent = 'recent',
 }
 
 export const homePivotTitlePhrases: IPivotTitlePhrases = [
 	// about this site
-	[HomePivots.About, 'This', 'Site'],
+	[HomePivots.About, 'this', 'site'],
 	// all blog posts
-	['All', HomePivots.Blog, 'Posts'],
-	// just the latest post
-	['Just', 'The', HomePivots.Latest],
+	['all', HomePivots.Blog, 'posts'],
+	// only most recent
+	['only', 'most', HomePivots.Recent],
 ]
 
 const titleMap = makeTitleMap(homePivotTitlePhrases)
@@ -54,7 +54,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		case HomePivots.Blog:
 			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
 			break
-		case HomePivots.Latest:
+		case HomePivots.Recent:
 			pageContent = <>BLOG POST ONE</>
 	}
 

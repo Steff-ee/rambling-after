@@ -1,30 +1,38 @@
-import { IPivotItemProps, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
+import { Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
-import { usePivotKey } from '../../shared/presentational/hooks/usePivotKey'
+import {
+	IPivotTitlePhrases,
+	makeTitleMap,
+	usePivots,
+} from '../../shared/presentational/hooks/usePivots'
 
-// also double as keys, so keep these unique
-export enum HomePivotNames {
+export enum HomePivots {
+	About = 'About',
 	Blog = 'Blog',
-	About = 'About Page',
+	Latest = 'Latest Post',
 }
 
-export const homePivots: IPivotItemProps[] = [
-	{
-		headerText: HomePivotNames.Blog,
-		itemKey: HomePivotNames.Blog,
-	},
-	{
-		headerText: HomePivotNames.About,
-		itemKey: HomePivotNames.About,
-	},
+export const homePivotTitlePhrases: IPivotTitlePhrases = [
+	// about this site
+	[HomePivots.About, 'This', 'Site'],
+	// all blog posts
+	['All', HomePivots.Blog, 'Posts'],
+	// just the latest post
+	['Just', 'The', HomePivots.Latest],
 ]
 
+const titleMap = makeTitleMap(homePivotTitlePhrases)
+
 export const Home: React.FunctionComponent = (): JSX.Element => {
-	const { pivotKey, setPivot } = usePivotKey<HomePivotNames>(HomePivotNames.Blog)
+	const { pivotName, pivots, setPivot } = usePivots(
+		homePivotTitlePhrases,
+		HomePivots.Blog,
+		titleMap
+	)
 
 	return (
-		<Pivot selectedKey={pivotKey} onLinkClick={setPivot}>
-			{homePivots.map((pivotProps) => (
+		<Pivot selectedKey={pivotName} onLinkClick={setPivot}>
+			{pivots.map((pivotProps) => (
 				<PivotItem {...pivotProps} />
 			))}
 		</Pivot>

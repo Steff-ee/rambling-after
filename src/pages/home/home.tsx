@@ -38,11 +38,30 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 
-	return (
+	const pivotHeader = (
 		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
 			{pivots.map((pivotProps) => (
 				<PivotItem {...pivotProps} />
 			))}
 		</Pivot>
+	)
+
+	let pageContent
+	switch (pivotName) {
+		case HomePivots.About:
+			pageContent = <>This is Steffee's website</>
+			break
+		case HomePivots.Blog:
+			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
+			break
+		case HomePivots.Latest:
+			pageContent = <>BLOG POST ONE</>
+	}
+
+	return (
+		<>
+			{pivotHeader}
+			{pageContent}
+		</>
 	)
 }

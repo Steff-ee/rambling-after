@@ -63,7 +63,7 @@ export const usePivots = (
 	let titles: string[]
 	if (hoverPivotTitle) {
 		const titlePhraseIndex = titleMap[hoverPivotTitle]
-		titles = titlePhrases[titlePhraseIndex]
+		titles = titlePhrases[titlePhraseIndex].map((title) => title.toLowerCase())
 	} else {
 		titles = titlePhrases.map((phrase, index) => phrase[index])
 	}

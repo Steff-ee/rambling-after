@@ -32,18 +32,19 @@ const randomMorph = (text: string, prevText: string): string => {
 }
 
 // precondition: texts.length is static
-export const useTextMorph = (texts: string[], bypass = false): string[] => {
-	const [prevTexts, setTexts] = useState<string[]>(texts)
+export const useTextMorph = (
+	baseTexts: string[],
+	texts: string[],
+	freshStart: boolean
+): string[] => {
+	const [prevTexts, setTexts] = useState<string[]>(baseTexts)
+	const [shouldRestart, setShouldRestart] = useState<boolean>(true)
 
-	if (bypass) {
-		return texts
-	}
-
-	const isMorphNeeded = texts.some((text, index) => text !== prevTexts[index])
+	const isMorphNeeded = !prevTexts || texts.some((text, index) => text !== prevTexts[index])
 
 	if (isMorphNeeded) {
 		const newTexts = texts.map((text, index) => {
-			const prevText = prevTexts[index]
+			const prevText = shouldRestart ? baseTexts[index] : prevTexts[index]
 			if (text !== prevText) {
 				return randomMorph(text, prevText)
 			}
@@ -51,7 +52,10 @@ export const useTextMorph = (texts: string[], bypass = false): string[] => {
 			return text
 		})
 
-		setTimeout(() => setTexts(newTexts), morphDelay)
+		setTimeout(() => {
+			setTexts(newTexts)
+			setShouldRestart(freshStart)
+		}, morphDelay)
 	}
 
 	return prevTexts

@@ -17,8 +17,12 @@ export interface IUsePivotKeyReturns {
 // 		the ith string will be used as the title, where i is the index of IPivotTitle among other IPivotTitles
 export type IPivotTitlePhrases = string[][]
 
-export const makeTitleMap = (phrases: IPivotTitlePhrases): { [title: string]: number } => {
-	const titleMap: { [title: string]: number } = {}
+interface ITitleMap {
+	[title: string]: number | undefined
+}
+
+export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
+	const titleMap: ITitleMap = {}
 	phrases.forEach((phrase, index) => {
 		const title = phrase[index]
 		titleMap[title] = index
@@ -30,7 +34,7 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): { [title: string]: nu
 export const usePivots = (
 	titlePhrases: IPivotTitlePhrases,
 	defaultTitle: string,
-	titleMap: { [title: string]: number }
+	titleMap: ITitleMap
 ): IUsePivotKeyReturns => {
 	const [selectedPivotTitle, setSelectedPivotTitle] = useState<string | undefined>(defaultTitle)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
@@ -61,16 +65,17 @@ export const usePivots = (
 		)
 	}
 
-	let titles: string[]
-	if (hoverPivotTitle) {
+	const baseTitles = titlePhrases.map((phrase, index) => phrase[index])
+	let titles = baseTitles
+	if (hoverPivotTitle !== undefined) {
 		const titlePhraseIndex = titleMap[hoverPivotTitle]
-		titles = titlePhrases[titlePhraseIndex].map((title) => title.toLowerCase())
-	} else {
-		titles = titlePhrases.map((phrase, index) => phrase[index])
+		if (titlePhraseIndex !== undefined) {
+			titles = titlePhrases[titlePhraseIndex].map((title) => title.toLowerCase())
+		}
 	}
 
 	const bypassIfNoHover = !hoverPivotTitle
-	titles = useTextMorph(titles, bypassIfNoHover)
+	titles = useTextMorph(baseTitles, titles, bypassIfNoHover)
 
 	const pivots: IPivotItemProps[] = titles.map((title) => ({
 		onRenderItemLink,

@@ -1,4 +1,4 @@
-import { Pivot, PivotItem } from 'office-ui-fabric-react/lib'
+import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
 import {
 	IPivotTitlePhrases,
@@ -23,6 +23,14 @@ export const homePivotTitlePhrases: IPivotTitlePhrases = [
 
 const titleMap = makeTitleMap(homePivotTitlePhrases)
 
+const styles: Partial<IPivotStyles> = {
+	text: [
+		{
+			width: '96px',
+		},
+	],
+}
+
 export const Home: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots, setPivot } = usePivots(
 		homePivotTitlePhrases,
@@ -31,7 +39,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 	)
 
 	return (
-		<Pivot selectedKey={pivotName} onLinkClick={setPivot}>
+		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
 			{pivots.map((pivotProps) => (
 				<PivotItem {...pivotProps} />
 			))}

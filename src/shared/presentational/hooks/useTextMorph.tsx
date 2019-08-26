@@ -1,4 +1,4 @@
-import { random } from 'lodash'
+import { debounce, random } from 'lodash'
 import { useState } from 'react'
 
 const morphDelay = 128
@@ -31,6 +31,8 @@ const randomMorph = (text: string, prevText: string): string => {
 	return prevTextArray.join('').trim()
 }
 
+const debounced = debounce((callback: () => void) => callback(), morphDelay)
+
 // precondition: texts.length is static
 export const useTextMorph = (
 	baseTexts: string[],
@@ -52,10 +54,10 @@ export const useTextMorph = (
 			return text
 		})
 
-		setTimeout(() => {
+		debounced(() => {
 			setTexts(newTexts)
 			setShouldRestart(freshStart)
-		}, morphDelay)
+		})
 	}
 
 	return prevTexts

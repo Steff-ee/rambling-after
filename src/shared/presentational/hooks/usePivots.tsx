@@ -75,13 +75,13 @@ export const usePivots = (
 	}
 
 	const bypassIfNoHover = !hoverPivotTitle
-	titles = useTextMorph(baseTitles, titles, bypassIfNoHover)
+	const morphedTitles = useTextMorph(baseTitles, titles, bypassIfNoHover)
 
-	const pivots: IPivotItemProps[] = titles.map((title) => ({
+	const pivots: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
 		onRenderItemLink,
-		headerText: title,
-		itemKey: title,
-		key: title,
+		headerText: morphedTitles[index],
+		itemKey: baseTitle,
+		key: baseTitle,
 	}))
 
 	return { pivotName: selectedPivotTitle, pivots, setPivot }

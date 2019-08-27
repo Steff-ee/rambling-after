@@ -4,26 +4,26 @@ import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+} from '../shared/presentational/hooks/usePivots'
 
-export const gamesTitle = 'games'
+export const storiesTitle = 'stories'
 
-export enum GamePivots {
+export enum StoryPivots {
 	Posts = 'posts',
-	Games = 'games',
+	Stories = 'stories',
 	Links = 'links',
 }
 
-export const gamePivotTitlePhrases: IPivotTitlePhrases = [
-	// posts about games
-	[GamePivots.Posts, 'about', gamesTitle],
-	// my games made
-	['my', GamePivots.Games, 'made'],
+export const storyPivotTitlePhrases: IPivotTitlePhrases = [
+	// posts about stories
+	[StoryPivots.Posts, 'about', storiesTitle],
+	// my stories written
+	['my', StoryPivots.Stories, 'written'],
 	// some interesting links
-	['some', 'interesting', GamePivots.Links],
+	['some', 'interesting', StoryPivots.Links],
 ]
 
-const titleMap = makeTitleMap(gamePivotTitlePhrases)
+const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
 const styles: Partial<IPivotStyles> = {
 	text: [
@@ -33,10 +33,10 @@ const styles: Partial<IPivotStyles> = {
 	],
 }
 
-export const Games: React.FunctionComponent = (): JSX.Element => {
+const Stories: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots, setPivot } = usePivots(
-		gamePivotTitlePhrases,
-		GamePivots.Posts,
+		storyPivotTitlePhrases,
+		StoryPivots.Posts,
 		titleMap
 	)
 
@@ -48,18 +48,18 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{gamesTitle}</h2>
+	const header = <h2>{storiesTitle}</h2>
 
 	let pageContent
 	switch (pivotName) {
-		case GamePivots.Posts:
+		case StoryPivots.Posts:
 			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
 			break
-		case GamePivots.Games:
-			pageContent = <>Penultima</>
+		case StoryPivots.Stories:
+			pageContent = <>Rambling After comic</>
 			break
-		case GamePivots.Links:
-			pageContent = <>GDC</>
+		case StoryPivots.Links:
+			pageContent = <>Big Ideas</>
 	}
 
 	return (
@@ -70,3 +70,5 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		</>
 	)
 }
+
+export default Stories

@@ -4,7 +4,7 @@ import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+} from '../shared/presentational/hooks/usePivots'
 
 export const mathScienceTitle = 'math & science'
 
@@ -33,7 +33,7 @@ const styles: Partial<IPivotStyles> = {
 	],
 }
 
-export const MathScience: React.FunctionComponent = (): JSX.Element => {
+const MathScience: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots, setPivot } = usePivots(
 		mathSciencePivotTitlePhrases,
 		MathSciencePivots.Posts,
@@ -70,3 +70,5 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 		</>
 	)
 }
+
+export default MathScience

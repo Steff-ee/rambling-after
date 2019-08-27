@@ -4,7 +4,7 @@ import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+} from '../shared/presentational/hooks/usePivots'
 
 export const homeTitle = 'home'
 
@@ -33,7 +33,7 @@ const styles: Partial<IPivotStyles> = {
 	],
 }
 
-export const Home: React.FunctionComponent = (): JSX.Element => {
+const Home: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots, setPivot } = usePivots(
 		homePivotTitlePhrases,
 		HomePivots.Blog,
@@ -70,3 +70,5 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		</>
 	)
 }
+
+export default Home

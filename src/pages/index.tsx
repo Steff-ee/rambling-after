@@ -1,24 +1,24 @@
 import * as React from 'react'
-import { Games } from './games/games'
-import { Home } from './home/home'
-import { MathScience } from './mathScience/mathScience'
-import { Stories } from './stories/stories'
+import { BrowserRouter, Redirect, Switch } from 'react-router-dom'
 
 export enum PageRoutes {
-	Home = 'home',
-	Stories = 'stories',
-	Games = 'games',
-	MathScience = 'math-science',
+	Home = '/home',
+	Stories = '/stories',
+	Games = '/games',
+	MathScience = '/math-science',
 }
 
 const Root: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<>
-			<Home />
-			<Stories />
-			<Games />
-			<MathScience />
-		</>
+		<BrowserRouter>
+			<Switch>
+				<Redirect exact={true} from="/" to={PageRoutes.Home} />
+				{/* <Route path={PageRoutes.Home} component={Home} />
+				<Route path={PageRoutes.Stories} component={Stories} />
+				<Route path={PageRoutes.Games} component={Games} />
+				<Route path={PageRoutes.MathScience} component={MathScience} /> */}
+			</Switch>
+		</BrowserRouter>
 	)
 }
 

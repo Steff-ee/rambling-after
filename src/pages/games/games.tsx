@@ -6,24 +6,24 @@ import {
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
 
-export const homeTitle = 'home'
+export const gamesTitle = 'games'
 
-export enum HomePivots {
-	About = 'about',
-	Blog = 'blog',
-	Recent = 'recent',
+export enum GamePivots {
+	Posts = 'posts',
+	Games = 'games',
+	Links = 'links',
 }
 
-export const homePivotTitlePhrases: IPivotTitlePhrases = [
-	// about this site
-	[HomePivots.About, 'this', 'site'],
-	// all blog posts
-	['all', HomePivots.Blog, 'posts'],
-	// only most recent
-	['only', 'most', HomePivots.Recent],
+export const gamePivotTitlePhrases: IPivotTitlePhrases = [
+	// posts about games
+	[GamePivots.Posts, 'about', gamesTitle],
+	// my games made
+	['my', GamePivots.Games, 'made'],
+	// some interesting links
+	['some', 'interesting', GamePivots.Links],
 ]
 
-const titleMap = makeTitleMap(homePivotTitlePhrases)
+const titleMap = makeTitleMap(gamePivotTitlePhrases)
 
 const styles: Partial<IPivotStyles> = {
 	text: [
@@ -33,10 +33,10 @@ const styles: Partial<IPivotStyles> = {
 	],
 }
 
-export const Home: React.FunctionComponent = (): JSX.Element => {
+export const Games: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots, setPivot } = usePivots(
-		homePivotTitlePhrases,
-		HomePivots.Blog,
+		gamePivotTitlePhrases,
+		GamePivots.Posts,
 		titleMap
 	)
 
@@ -48,18 +48,18 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{homeTitle}</h2>
+	const header = <h2>{gamesTitle}</h2>
 
 	let pageContent
 	switch (pivotName) {
-		case HomePivots.About:
-			pageContent = <>This is Steffee's website</>
-			break
-		case HomePivots.Blog:
+		case GamePivots.Posts:
 			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
 			break
-		case HomePivots.Recent:
-			pageContent = <>BLOG POST ONE</>
+		case GamePivots.Games:
+			pageContent = <>Penultima</>
+			break
+		case GamePivots.Links:
+			pageContent = <>GDC</>
 	}
 
 	return (

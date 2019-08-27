@@ -1,7 +1,21 @@
 import * as React from 'react'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { Home } from '../components/home/home'
 
-export const Root: React.FunctionComponent = (props: {}) => {
-	console.log('props', props)
+export enum PageRoutes {
+	Home = '/home',
+	Stories = '/stories',
+	Games = '/games',
+	MathScience = '/math-science',
+}
 
-	return <>Hello World</>
+export const Root: React.FunctionComponent = (): JSX.Element => {
+	return (
+		<BrowserRouter>
+			<Switch>
+				<Redirect exact={true} from="/" to={PageRoutes.Home} />
+				<Route path={PageRoutes.Home} component={Home} />
+			</Switch>
+		</BrowserRouter>
+	)
 }

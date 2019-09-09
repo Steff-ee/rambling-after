@@ -4,7 +4,7 @@ import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
-} from '../shared/presentational/hooks/usePivots'
+} from '../../shared/presentational/hooks/usePivots'
 
 export const homeTitle = 'home'
 

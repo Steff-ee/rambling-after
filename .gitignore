@@ -61,5 +61,5 @@ typings/
 .next
 
 # misc
-public
 .cache
+public/page-data

@@ -15,6 +15,7 @@
 		"interface-name": [true, "always-prefix"],
 		"interface-over-type-literal": false,
 		"invalid-void": true,
+		"jsx-no-lambda": false,
 		"label-position": true,
 		"member-access": [true, "no-public"],
 		"member-ordering": [true, { "order": "fields-first" }],
@@ -69,12 +70,7 @@
 		"no-var-keyword": true,
 		"no-void-expression": [true, "ignore-arrow-function-shorthand"],
 		"object-literal-shorthand": true,
-		"object-literal-sort-keys": [
-			true,
-			"ignore-case",
-			"shorthand-first",
-			"match-declaration-order"
-		],
+		"object-literal-sort-keys": [true, "match-declaration-order-only"],
 		"only-arrow-functions": true,
 		"ordered-imports": [
 			true,

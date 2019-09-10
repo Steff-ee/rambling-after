@@ -1,3 +1,4 @@
+import { initializeIcons } from '@uifabric/icons'
 import * as React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { PageRoutes } from '../shared/helpers/routes'
@@ -7,7 +8,10 @@ import { Home } from './home/home'
 import { MathScience } from './mathScience/mathScience'
 import { Stories } from './stories/stories'
 
+initializeIcons()
+
 export const Root: React.FunctionComponent = (): JSX.Element => {
+	// (TODO) center content + put navbar to the left of content
 	return (
 		<>
 			<NavBar />

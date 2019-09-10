@@ -7,6 +7,7 @@ import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
 import { storiesTitle } from '../../../pages/stories/stories'
 import { PageRoutes } from '../../helpers/routes'
 
+// (TODO) find better icons
 const navGroups: INavProps['groups'] = [
 	{
 		links: [
@@ -15,6 +16,7 @@ const navGroups: INavProps['groups'] = [
 				url: PageRoutes.Home,
 			},
 			{
+				iconProps: { iconName: 'ReadingMode' },
 				name: storiesTitle,
 				url: PageRoutes.Stories,
 			},
@@ -31,7 +33,13 @@ const navGroups: INavProps['groups'] = [
 ]
 
 export const NavBar: React.FunctionComponent = (): JSX.Element => {
-	const [showOnlyIcons] = useState<boolean>(true)
+	const [showIconsOnly, setShowIconsOnly] = useState<boolean>(true)
 
-	return <IconNav showOnlyIcons={showOnlyIcons} groups={navGroups} />
+	return (
+		<IconNav
+			showIconsOnly={showIconsOnly}
+			toggleShowIconsOnly={(): void => setShowIconsOnly(!showIconsOnly)}
+			groups={navGroups}
+		/>
+	)
 }

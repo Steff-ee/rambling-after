@@ -71,7 +71,6 @@
 		"no-void-expression": [true, "ignore-arrow-function-shorthand"],
 		"object-literal-shorthand": true,
 		"object-literal-sort-keys": [true, "match-declaration-order-only"],
-		"only-arrow-functions": true,
 		"ordered-imports": [
 			true,
 			{

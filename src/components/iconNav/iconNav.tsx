@@ -18,59 +18,52 @@ const onRenderLink = (showIconsOnly: boolean): INavProps['onRenderLink'] => (
 	return <>{props.name}</>
 }
 
-export const IconNav: React.FunctionComponent<IIconNavProps> = (
-	props: IIconNavProps
-): JSX.Element => {
-	let {
-		showIconsOnly,
-		toggleShowIconsOnly,
-		iconsOnlyToggleNavLink,
-		groups,
-		styles,
-		...remainingProps
-	} = props
+/**
+ * Implemented as a HOC to allow composition with other Fabric Nav variants.
+ */
+export function withIconNavBehavior(
+	InnerComponent: typeof Nav
+): React.FunctionComponent<IIconNavProps> {
+	return (props: IIconNavProps): JSX.Element => {
+		let {
+			showIconsOnly,
+			toggleShowIconsOnly,
+			iconsOnlyToggleNavLink,
+			styles,
+			...remainingProps
+		} = props
 
-	if (!groups) {
-		return <></>
-	}
-
-	if (!iconsOnlyToggleNavLink) {
-		iconsOnlyToggleNavLink = {
-			iconProps: { iconName: 'GlobalNavButton' },
-			name: '',
-			onClick: toggleShowIconsOnly,
-			url: '',
+		if (!iconsOnlyToggleNavLink) {
+			iconsOnlyToggleNavLink = {
+				iconProps: { iconName: 'GlobalNavButton' },
+				name: '',
+				onClick: toggleShowIconsOnly,
+				url: '',
+			}
 		}
+
+		// (TODO) don't over write styles
+		styles = {
+			root: {
+				border: '1px solid #eee',
+				width: showIconsOnly ? '50px' : '300px',
+			},
+		}
+
+		return (
+			<>
+				<ActionButton
+					iconProps={{ iconName: 'GlobalNavButton' }}
+					onClick={toggleShowIconsOnly}
+				/>
+				<InnerComponent
+					{...remainingProps}
+					styles={styles}
+					onRenderLink={onRenderLink(showIconsOnly)}
+				/>
+			</>
+		)
 	}
-
-	// (TODO) don't over write styles
-	styles = {
-		root: {
-			border: '1px solid #eee',
-			width: showIconsOnly ? '50px' : '300px',
-		},
-	}
-
-	// (TODO) Decide whether to add button into list of links or make it a separate ActionButton
-	const newGroups = [...groups]
-	const newGroup = { ...groups[0] }
-	const newLinks = [...groups[0].links]
-	newLinks.unshift(iconsOnlyToggleNavLink)
-	newGroups[0] = newGroup
-	newGroup.links = newLinks
-
-	return (
-		<>
-			<ActionButton
-				iconProps={{ iconName: 'GlobalNavButton' }}
-				onClick={toggleShowIconsOnly}
-			/>
-			<Nav
-				{...remainingProps}
-				groups={newGroups}
-				styles={styles}
-				onRenderLink={onRenderLink(showIconsOnly)}
-			/>
-		</>
-	)
 }
+
+export const IconNav = withIconNavBehavior(Nav)

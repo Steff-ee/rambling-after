@@ -46,7 +46,10 @@ export function withIconNavBehavior(
 		styles = {
 			root: {
 				border: '1px solid #eee',
-				width: showIconsOnly ? '50px' : '300px',
+				width: showIconsOnly ? '60px' : '300px',
+			},
+			link: {
+				height: '60px',
 			},
 		}
 

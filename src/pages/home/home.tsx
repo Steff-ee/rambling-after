@@ -53,7 +53,13 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 	let pageContent
 	switch (pivotName) {
 		case HomePivots.About:
-			pageContent = <>This is Steffee's website</>
+			pageContent = (
+				<>
+					Dice icon used in the Nav bar courtesy of <i>my name is mud</i>. Book icon
+					courtesy of <i>catyline_Icon</i>. Tea mug icon courstey of <i>y. onaldi</i>. All
+					icons taken from the Noun Project.
+				</>
+			)
 			break
 		case HomePivots.Blog:
 			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>

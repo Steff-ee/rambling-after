@@ -1,3 +1,4 @@
+import { LocationDescriptorObject } from 'history'
 import { INavProps } from 'office-ui-fabric-react/lib'
 import React, { useState } from 'react'
 import { IconNav } from '../../../components/iconNav/iconNav'
@@ -8,36 +9,44 @@ import { storiesTitle } from '../../../pages/stories/stories'
 import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../../helpers/icons'
 import { PageRoutes } from '../../helpers/routes'
 
-// (TODO) find better icons
-const navGroups: INavProps['groups'] = [
-	{
-		links: [
-			{
-				iconProps: { iconName: iconTeaName },
-				name: homeTitle,
-				url: PageRoutes.Home,
-			},
-			{
-				iconProps: { iconName: iconBooksName },
-				name: storiesTitle,
-				url: PageRoutes.Stories,
-			},
-			{
-				iconProps: { iconName: iconDieName },
-				name: gamesTitle,
-				url: PageRoutes.Games,
-			},
-			{
-				iconProps: { iconName: iconTorusKnotName },
-				name: mathScienceTitle,
-				url: PageRoutes.MathScience,
-			},
-		],
-	},
-]
+export interface INavBarProps {
+	navigate: (destination: LocationDescriptorObject) => void
+}
 
-export const NavBar: React.FunctionComponent = (): JSX.Element => {
+export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
+	const { navigate } = props
 	const [showIconsOnly, setShowIconsOnly] = useState<boolean>(true)
+
+	const navGroups: INavProps['groups'] = [
+		{
+			links: [
+				{
+					iconProps: { iconName: iconTeaName },
+					name: homeTitle,
+					onClick: (): void => navigate({ pathname: PageRoutes.Home }),
+					url: '',
+				},
+				{
+					iconProps: { iconName: iconBooksName },
+					name: storiesTitle,
+					onClick: (): void => navigate({ pathname: PageRoutes.Stories }),
+					url: '',
+				},
+				{
+					iconProps: { iconName: iconDieName },
+					name: gamesTitle,
+					onClick: (): void => navigate({ pathname: PageRoutes.Games }),
+					url: '',
+				},
+				{
+					iconProps: { iconName: iconTorusKnotName },
+					name: mathScienceTitle,
+					onClick: (): void => navigate({ pathname: PageRoutes.MathScience }),
+					url: '',
+				},
+			],
+		},
+	]
 
 	return (
 		<IconNav

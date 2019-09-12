@@ -1,6 +1,6 @@
 import { LocationDescriptorObject } from 'history'
 import { INavProps } from 'office-ui-fabric-react/lib'
-import React, { useState } from 'react'
+import React from 'react'
 import { IconNav } from '../../../components/iconNav/iconNav'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
@@ -15,7 +15,6 @@ export interface INavBarProps {
 
 export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
 	const { navigate } = props
-	const [showIconsOnly, setShowIconsOnly] = useState<boolean>(true)
 
 	const navGroups: INavProps['groups'] = [
 		{
@@ -48,11 +47,5 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 		},
 	]
 
-	return (
-		<IconNav
-			showIconsOnly={showIconsOnly}
-			toggleShowIconsOnly={(): void => setShowIconsOnly(!showIconsOnly)}
-			groups={navGroups}
-		/>
-	)
+	return <IconNav showIconsOnly={true} isShowIconsOnlyControlled={false} groups={navGroups} />
 }

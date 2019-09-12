@@ -1,10 +1,15 @@
 import { ActionButton, INavLink, INavProps, Nav } from 'office-ui-fabric-react/lib'
 import React from 'react'
+import { useToggle } from '../../shared/helpers/useToggle'
 
 // (TODO) add opening/closing animation
 export interface IIconNavProps extends INavProps {
+	// if isShowIconsOnlyControlled is true, controls whether to display the Nav as icons-only or not
+	// if isShowIconsOnlyControlled is false, sets the initial state of the display
 	showIconsOnly: boolean
-	toggleShowIconsOnly: () => void
+	isShowIconsOnlyControlled: boolean
+	onIconsMenuIconClick?: () => void
+	// optionally override the nav link to toggle whether to show icons only
 	iconsOnlyToggleNavLink?: INavLink
 }
 
@@ -26,21 +31,18 @@ export function withIconNavBehavior(
 ): React.FunctionComponent<IIconNavProps> {
 	return (props: IIconNavProps): JSX.Element => {
 		let {
-			showIconsOnly,
-			toggleShowIconsOnly,
+			showIconsOnly: showIconsOnlyProp,
+			isShowIconsOnlyControlled,
+			onIconsMenuIconClick,
 			iconsOnlyToggleNavLink,
 			styles,
 			...remainingProps
 		} = props
-
-		if (!iconsOnlyToggleNavLink) {
-			iconsOnlyToggleNavLink = {
-				iconProps: { iconName: 'GlobalNavButton' },
-				name: '',
-				onClick: toggleShowIconsOnly,
-				url: '',
-			}
-		}
+		const { value: showIconsOnlyState, toggleValue: toggleShowIconsOnlyState } = useToggle(
+			showIconsOnlyProp
+		)
+		// if not being controlled by the prop, use the state instead
+		const showIconsOnly = isShowIconsOnlyControlled ? showIconsOnlyProp : showIconsOnlyState
 
 		// (TODO) don't over write styles
 		styles = {
@@ -57,7 +59,16 @@ export function withIconNavBehavior(
 			<>
 				<ActionButton
 					iconProps={{ iconName: 'GlobalNavButton' }}
-					onClick={toggleShowIconsOnly}
+					onClick={(): void => {
+						// only call if uncontrolled
+						if (!isShowIconsOnlyControlled) {
+							toggleShowIconsOnlyState()
+						}
+						// always call
+						if (onIconsMenuIconClick) {
+							onIconsMenuIconClick()
+						}
+					}}
 				/>
 				<InnerComponent
 					{...remainingProps}

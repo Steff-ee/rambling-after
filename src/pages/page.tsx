@@ -12,6 +12,8 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 	const { Header, Pivots, Content } = props
 	const { primary, secondary, accent } = useContext(ColorsContext)
 
+	// (TODO) fix spacing/layout
+
 	return (
 		<div style={{ height: '100%', backgroundColor: primary }}>
 			<NavBarContainer />

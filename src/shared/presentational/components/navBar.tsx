@@ -8,6 +8,7 @@ import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
 import { storiesTitle } from '../../../pages/stories/stories'
 import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../../helpers/icons'
 import { PageRoutes } from '../../helpers/routes'
+import { ColorPicker } from './colorPicker'
 
 export interface INavBarProps {
 	navigate: (destination: LocationDescriptorObject) => void
@@ -47,5 +48,12 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 		},
 	]
 
-	return <IconNav showIconsOnly={true} isShowIconsOnlyControlled={false} groups={navGroups} />
+	return (
+		<IconNav
+			showIconsOnly={true}
+			isShowIconsOnlyControlled={false}
+			groups={navGroups}
+			onRenderBelowContent={(): JSX.Element => <ColorPicker />}
+		/>
+	)
 }

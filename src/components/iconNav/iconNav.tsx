@@ -11,6 +11,8 @@ export interface IIconNavProps extends INavProps {
 	onIconsMenuIconClick?: () => void
 	// optionally override the nav link to toggle whether to show icons only
 	iconsOnlyToggleNavLink?: INavLink
+	// content to show below the tabs only when showIconsOnly is false
+	onRenderBelowContent?: () => JSX.Element
 }
 
 const onRenderLink = (showIconsOnly: boolean): INavProps['onRenderLink'] => (
@@ -36,6 +38,7 @@ export function withIconNavBehavior(
 			onIconsMenuIconClick,
 			iconsOnlyToggleNavLink,
 			styles,
+			onRenderBelowContent,
 			...remainingProps
 		} = props
 		const { value: showIconsOnlyState, toggleValue: toggleShowIconsOnlyState } = useToggle(
@@ -54,6 +57,8 @@ export function withIconNavBehavior(
 				height: '60px',
 			},
 		}
+
+		// (TODO) fix below content (or move to a different component!)
 
 		return (
 			<>
@@ -75,6 +80,7 @@ export function withIconNavBehavior(
 					styles={styles}
 					onRenderLink={onRenderLink(showIconsOnly)}
 				/>
+				{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
 			</>
 		)
 	}

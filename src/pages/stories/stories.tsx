@@ -5,6 +5,7 @@ import {
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { Page } from '../page'
 
 export const storiesTitle = 'stories'
 
@@ -59,14 +60,9 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>Rambling After comic</>
 			break
 		case StoryPivots.Links:
+		default:
 			pageContent = <>Big Ideas</>
 	}
 
-	return (
-		<>
-			{header}
-			{pivotHeader}
-			{pageContent}
-		</>
-	)
+	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
 }

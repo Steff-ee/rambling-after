@@ -5,6 +5,7 @@ import {
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { Page } from '../page'
 
 export const mathScienceTitle = 'math & science'
 
@@ -59,14 +60,9 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>github, also check out TreeRing and PowerApps</>
 			break
 		case MathSciencePivots.Links:
+		default:
 			pageContent = <>538</>
 	}
 
-	return (
-		<>
-			{header}
-			{pivotHeader}
-			{pageContent}
-		</>
-	)
+	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
 }

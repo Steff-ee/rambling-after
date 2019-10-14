@@ -5,6 +5,7 @@ import {
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { Page } from '../page'
 
 export const gamesTitle = 'games'
 
@@ -59,14 +60,9 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>Penultima</>
 			break
 		case GamePivots.Links:
+		default:
 			pageContent = <>GDC</>
 	}
 
-	return (
-		<>
-			{header}
-			{pivotHeader}
-			{pageContent}
-		</>
-	)
+	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
 }

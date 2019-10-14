@@ -7,6 +7,7 @@ import {
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { Page } from '../page'
 
 export const homeTitle = 'home'
 
@@ -42,7 +43,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 
-	const colorsContext = useColors(Colors.Black, ColorRatios.Analogous)
+	const colorsContext = useColors(Colors.SeaFoam, ColorRatios.SplitComplementary)
 
 	const pivotHeader = (
 		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
@@ -69,14 +70,13 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
 			break
 		case HomePivots.Recent:
+		default:
 			pageContent = <>BLOG POST ONE</>
 	}
 
 	return (
 		<ColorsContext.Provider value={colorsContext}>
-			{header}
-			{pivotHeader}
-			{pageContent}
+			<Page Header={header} Pivots={pivotHeader} Content={pageContent} />
 		</ColorsContext.Provider>
 	)
 }

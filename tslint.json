@@ -42,7 +42,7 @@
 		"no-inferrable-types": [true, "ignore-params", "ignore-properties"],
 		"no-invalid-template-strings": true,
 		"no-invalid-this": true,
-		"no-magic-numbers": [true, { "allowed-numbers": [-1, 0, 1], "ignore-jsx": true }],
+		"no-magic-numbers": [true, { "allowed-numbers": [-1, 0, 1, 2], "ignore-jsx": true }],
 		"no-misused-new": true,
 		"no-null-keyword": true,
 		"no-object-literal-type-assertion": true,
@@ -70,7 +70,6 @@
 		"no-var-keyword": true,
 		"no-void-expression": [true, "ignore-arrow-function-shorthand"],
 		"object-literal-shorthand": true,
-		"object-literal-sort-keys": [true, "match-declaration-order-only"],
 		"ordered-imports": [
 			true,
 			{

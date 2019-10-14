@@ -1,4 +1,6 @@
+import Color from 'color-js'
 import React, { useState } from 'react'
+import { Colors } from '../../helpers/constants'
 
 interface IColors {
 	primary: string
@@ -14,45 +16,63 @@ export interface IColorsContext extends IColors {
 }
 
 export enum ColorRatios {
-	Analogous,
-	Complementary,
+	SplitComplementary,
+	SplitComplementaryCW,
+	SplitComplementaryCCW,
 	Triadic,
-	Compound,
 }
 
-const deriveAnalagousColors = (primary: string): IColors => {
-	return { primary, secondary: '', accent: '' }
+const deriveSplitComplementaryColors = (primary: string): IColors => {
+	const scheme = Color(primary).splitComplementaryScheme()
+
+	return { primary, secondary: scheme[1].toCSS(), accent: scheme[2].toCSS() }
 }
 
-const deriveComplementaryColors = (primary: string): IColors => {
-	return { primary, secondary: '', accent: '' }
+const deriveSplitComplementaryCWColors = (primary: string): IColors => {
+	const scheme = Color(primary).splitComplementaryCWScheme()
+
+	return { primary, secondary: scheme[1].toCSS(), accent: scheme[2].toCSS() }
+}
+
+const deriveSplitComplementaryCCWColors = (primary: string): IColors => {
+	const scheme = Color(primary).splitComplementaryCCWScheme()
+
+	return { primary, secondary: scheme[1].toCSS(), accent: scheme[2].toCSS() }
 }
 
 const deriveTriadicColors = (primary: string): IColors => {
-	return { primary, secondary: '', accent: '' }
-}
+	const scheme = Color(primary).triadicScheme()
 
-const deriveCompoundColors = (primary: string): IColors => {
-	return { primary, secondary: '', accent: '' }
+	return { primary, secondary: scheme[1].toCSS(), accent: scheme[2].toCSS() }
 }
 
 const deriveColors = (primary: string, ratio: ColorRatios): IColors => {
 	switch (ratio) {
-		case ColorRatios.Analogous:
-			return deriveAnalagousColors(primary)
+		case ColorRatios.SplitComplementary:
+			return deriveSplitComplementaryColors(primary)
 
-		case ColorRatios.Complementary:
-			return deriveComplementaryColors(primary)
+		case ColorRatios.SplitComplementaryCW:
+			return deriveSplitComplementaryCWColors(primary)
+		case ColorRatios.SplitComplementaryCCW:
+			return deriveSplitComplementaryCCWColors(primary)
 
 		case ColorRatios.Triadic:
 			return deriveTriadicColors(primary)
-
-		case ColorRatios.Compound:
-			return deriveCompoundColors(primary)
 	}
 }
 
-export const ColorsContext = React.createContext<IColorsContext | undefined>(undefined)
+export const ColorsContext = React.createContext<IColorsContext>({
+	primary: Colors.Black,
+	secondary: Colors.Black,
+	accent: Colors.Black,
+	ratio: ColorRatios.SplitComplementary,
+	setPrimary: (primary: string): void => {
+		return
+	},
+	setRatio: (ratio: ColorRatios): void => {
+		return
+	},
+})
 
 export const useColors = (defaultPrimary: string, defaultRatio: ColorRatios): IColorsContext => {
 	const [primary, setPrimary] = useState<string>(defaultPrimary)

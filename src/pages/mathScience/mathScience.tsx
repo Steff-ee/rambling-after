@@ -49,8 +49,6 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{mathScienceTitle}</h2>
-
 	let pageContent
 	switch (pivotName) {
 		case MathSciencePivots.Posts:
@@ -64,5 +62,5 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>538</>
 	}
 
-	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
+	return <Page titleText={mathScienceTitle} Pivots={pivotHeader} Content={pageContent} />
 }

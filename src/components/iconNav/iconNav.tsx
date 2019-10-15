@@ -47,21 +47,21 @@ export function withIconNavBehavior(
 		// if not being controlled by the prop, use the state instead
 		const showIconsOnly = isShowIconsOnlyControlled ? showIconsOnlyProp : showIconsOnlyState
 
-		// (TODO) don't over write styles
+		const width = showIconsOnly ? '60px' : '300px'
+
+		// (TODO) don't over write styles; handle div style in Fabric way
 		styles = {
 			root: {
 				border: '1px solid #eee',
-				width: showIconsOnly ? '60px' : '300px',
+				width,
 			},
 			link: {
 				height: '60px',
 			},
 		}
 
-		// (TODO) fix below content (or move to a different component!)
-
 		return (
-			<>
+			<div style={{ width }}>
 				<ActionButton
 					iconProps={{ iconName: 'GlobalNavButton' }}
 					onClick={(): void => {
@@ -81,7 +81,7 @@ export function withIconNavBehavior(
 					onRenderLink={onRenderLink(showIconsOnly)}
 				/>
 				{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
-			</>
+			</div>
 		)
 	}
 }

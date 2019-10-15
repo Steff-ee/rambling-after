@@ -49,8 +49,6 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{gamesTitle}</h2>
-
 	let pageContent
 	switch (pivotName) {
 		case GamePivots.Posts:
@@ -64,5 +62,5 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>GDC</>
 	}
 
-	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
+	return <Page titleText={gamesTitle} Pivots={pivotHeader} Content={pageContent} />
 }

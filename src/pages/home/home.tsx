@@ -53,8 +53,6 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{homeTitle}</h2>
-
 	let pageContent
 	switch (pivotName) {
 		case HomePivots.About:
@@ -67,7 +65,17 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			)
 			break
 		case HomePivots.Blog:
-			pageContent = <>BLOG POST ONE and TWO and THREE and FOUR</>
+			pageContent = (
+				<>
+					<p>BLOG POST ONE</p>
+					<p>and</p>
+					<p>TWO</p>
+					<p>and</p>
+					<p>THREE</p>
+					<p>and</p>
+					<p>FOUR</p>
+				</>
+			)
 			break
 		case HomePivots.Recent:
 		default:
@@ -76,7 +84,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 
 	return (
 		<ColorsContext.Provider value={colorsContext}>
-			<Page Header={header} Pivots={pivotHeader} Content={pageContent} />
+			<Page titleText={homeTitle} Pivots={pivotHeader} Content={pageContent} />
 		</ColorsContext.Provider>
 	)
 }

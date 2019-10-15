@@ -49,8 +49,6 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		</Pivot>
 	)
 
-	const header = <h2>{storiesTitle}</h2>
-
 	let pageContent
 	switch (pivotName) {
 		case StoryPivots.Posts:
@@ -64,5 +62,5 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>Big Ideas</>
 	}
 
-	return <Page Header={header} Pivots={pivotHeader} Content={pageContent} />
+	return <Page titleText={storiesTitle} Pivots={pivotHeader} Content={pageContent} />
 }

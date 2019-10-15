@@ -1,7 +1,7 @@
 import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
 import { Colors } from '../../shared/helpers/constants'
-import { ColorRatios, ColorsContext, useColors } from '../../shared/presentational/hooks/useColors'
+import { ColorsContext, useColors } from '../../shared/presentational/hooks/useColors'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -43,7 +43,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 
-	const colorsContext = useColors(Colors.SeaFoam, ColorRatios.SplitComplementary)
+	const colorsContext = useColors(Colors.SeaFoam, 15)
 
 	const pivotHeader = (
 		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>

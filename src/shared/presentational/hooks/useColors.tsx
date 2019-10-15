@@ -4,19 +4,25 @@ import { Colors } from '../../helpers/constants'
 
 interface IColors {
 	primary: string
-	/* All colors other than primary are derived from the primary and the hue distance */
+	/* All colors other than primary are derived from the primary and the hue distances */
 	secondary: string
 	accent: string
 }
 
 export interface IColorsContext extends IColors {
-	hueDistance: number
+	secondHueDistance: number
+	thirdHueDistance: number
 	setPrimary: (primary: string) => void
-	setHueDistance: (distance: number) => void
+	setSecondHueDistance: (distance: number) => void
+	setThirdHueDistance: (distance: number) => void
 }
 
-const deriveColors = (primary: string, hueDistance: number): IColors => {
-	const scheme = Color(primary).schemeFromDegrees([hueDistance, hueDistance * 2])
+const deriveColors = (
+	primary: string,
+	secondHueDistance: number,
+	thirdHueDistance: number
+): IColors => {
+	const scheme = Color(primary).schemeFromDegrees([secondHueDistance, thirdHueDistance])
 
 	return { primary, secondary: scheme[0].toCSS(), accent: scheme[1].toCSS() }
 }
@@ -25,20 +31,36 @@ export const ColorsContext = React.createContext<IColorsContext>({
 	primary: Colors.Black,
 	secondary: Colors.Black,
 	accent: Colors.Black,
-	hueDistance: 15,
+	secondHueDistance: 0,
+	thirdHueDistance: 0,
 	setPrimary: (primary: string): void => {
 		return
 	},
-	setHueDistance: (distance: number): void => {
+	setSecondHueDistance: (distance: number): void => {
+		return
+	},
+	setThirdHueDistance: (distance: number): void => {
 		return
 	},
 })
 
-export const useColors = (defaultPrimary: string, defaultHueDistance: number): IColorsContext => {
+export const useColors = (
+	defaultPrimary: string,
+	defaultSecondHueDistance: number,
+	defaultThirdHueDistance: number
+): IColorsContext => {
 	const [primary, setPrimary] = useState<string>(defaultPrimary)
-	const [hueDistance, setHueDistance] = useState<number>(defaultHueDistance)
+	const [secondHueDistance, setSecondHueDistance] = useState<number>(defaultSecondHueDistance)
+	const [thirdHueDistance, setThirdHueDistance] = useState<number>(defaultThirdHueDistance)
 
-	const colors = deriveColors(primary, hueDistance)
+	const colors = deriveColors(primary, secondHueDistance, thirdHueDistance)
 
-	return { ...colors, hueDistance, setPrimary, setHueDistance }
+	return {
+		...colors,
+		setPrimary,
+		secondHueDistance,
+		thirdHueDistance,
+		setSecondHueDistance,
+		setThirdHueDistance,
+	}
 }

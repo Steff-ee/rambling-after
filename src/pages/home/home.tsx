@@ -43,7 +43,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 
-	const colorsContext = useColors(Colors.SeaFoam, 15)
+	const colorsContext = useColors(Colors.SeaFoam, 15, 60)
 
 	const pivotHeader = (
 		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>

@@ -13,7 +13,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<>
 			<link
-				href="https://fonts.googleapis.com/css?family=Comfortaa|Spinnaker&display=swap"
+				href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa&display=swap"
 				rel="stylesheet"
 			/>
 			<BrowserRouter>

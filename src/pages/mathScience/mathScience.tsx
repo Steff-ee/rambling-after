@@ -1,4 +1,3 @@
-import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
 import {
 	IPivotTitlePhrases,
@@ -26,27 +25,11 @@ export const mathSciencePivotTitlePhrases: IPivotTitlePhrases = [
 
 const titleMap = makeTitleMap(mathSciencePivotTitlePhrases)
 
-const styles: Partial<IPivotStyles> = {
-	text: [
-		{
-			width: '96px',
-		},
-	],
-}
-
 export const MathScience: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots, setPivot } = usePivots(
+	const { pivotName, pivots } = usePivots(
 		mathSciencePivotTitlePhrases,
 		MathSciencePivots.Posts,
 		titleMap
-	)
-
-	const pivotHeader = (
-		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
-			{pivots.map((pivotProps) => (
-				<PivotItem {...pivotProps} />
-			))}
-		</Pivot>
 	)
 
 	let pageContent
@@ -62,5 +45,5 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>538</>
 	}
 
-	return <Page titleText={mathScienceTitle} Pivots={pivotHeader} Content={pageContent} />
+	return <Page titleText={mathScienceTitle} Pivots={pivots} Content={pageContent} />
 }

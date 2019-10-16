@@ -1,4 +1,3 @@
-import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
 import { Colors } from '../../shared/helpers/constants'
 import { ColorsContext, useColors } from '../../shared/presentational/hooks/useColors'
@@ -28,30 +27,9 @@ export const homePivotTitlePhrases: IPivotTitlePhrases = [
 
 const titleMap = makeTitleMap(homePivotTitlePhrases)
 
-const styles: Partial<IPivotStyles> = {
-	text: [
-		{
-			width: '96px',
-		},
-	],
-}
-
 export const Home: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots, setPivot } = usePivots(
-		homePivotTitlePhrases,
-		HomePivots.Blog,
-		titleMap
-	)
-
 	const colorsContext = useColors(Colors.WarmSand, 330, 20)
-
-	const pivotHeader = (
-		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
-			{pivots.map((pivotProps) => (
-				<PivotItem {...pivotProps} />
-			))}
-		</Pivot>
-	)
+	const { pivotName, pivots } = usePivots(homePivotTitlePhrases, HomePivots.Blog, titleMap)
 
 	let pageContent
 	switch (pivotName) {
@@ -125,7 +103,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 
 	return (
 		<ColorsContext.Provider value={colorsContext}>
-			<Page titleText={homeTitle} Pivots={pivotHeader} Content={pageContent} />
+			<Page titleText={homeTitle} Pivots={pivots} Content={pageContent} />
 		</ColorsContext.Provider>
 	)
 }

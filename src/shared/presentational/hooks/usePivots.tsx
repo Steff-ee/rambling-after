@@ -1,4 +1,11 @@
-import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
+import {
+	IPivotItemProps,
+	IPivotProps,
+	IPivotStyles,
+	Pivot,
+	PivotItem,
+	PivotLinkSize,
+} from 'office-ui-fabric-react/lib'
 import React, { useState } from 'react'
 import { useTextMorph } from './useTextMorph'
 
@@ -7,7 +14,7 @@ import { useTextMorph } from './useTextMorph'
 
 export interface IUsePivotKeyReturns {
 	pivotName: string | undefined
-	pivots: IPivotItemProps[]
+	pivots: JSX.Element
 	setPivot: IPivotProps['onLinkClick']
 }
 
@@ -29,6 +36,15 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
 	})
 
 	return titleMap
+}
+
+const styles: Partial<IPivotStyles> = {
+	text: [
+		{
+			fontFamily: 'Comfortaa',
+			width: '96px',
+		},
+	],
 }
 
 export const usePivots = (
@@ -77,12 +93,25 @@ export const usePivots = (
 	const bypassIfNoHover = !hoverPivotTitle
 	const morphedTitles = useTextMorph(baseTitles, titles, bypassIfNoHover)
 
-	const pivots: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
+	const pivotsItems: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
 		onRenderItemLink,
 		headerText: morphedTitles[index],
 		itemKey: baseTitle,
 		key: baseTitle,
 	}))
+
+	const pivots = (
+		<Pivot
+			selectedKey={selectedPivotTitle}
+			onLinkClick={setPivot}
+			styles={styles}
+			linkSize={PivotLinkSize.large}
+		>
+			{pivotsItems.map((pivotProps) => (
+				<PivotItem {...pivotProps} />
+			))}
+		</Pivot>
+	)
 
 	return { pivotName: selectedPivotTitle, pivots, setPivot }
 }

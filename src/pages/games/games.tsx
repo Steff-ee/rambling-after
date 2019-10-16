@@ -1,4 +1,3 @@
-import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react/lib'
 import React from 'react'
 import {
 	IPivotTitlePhrases,
@@ -26,28 +25,8 @@ export const gamePivotTitlePhrases: IPivotTitlePhrases = [
 
 const titleMap = makeTitleMap(gamePivotTitlePhrases)
 
-const styles: Partial<IPivotStyles> = {
-	text: [
-		{
-			width: '96px',
-		},
-	],
-}
-
 export const Games: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots, setPivot } = usePivots(
-		gamePivotTitlePhrases,
-		GamePivots.Posts,
-		titleMap
-	)
-
-	const pivotHeader = (
-		<Pivot selectedKey={pivotName} onLinkClick={setPivot} styles={styles}>
-			{pivots.map((pivotProps) => (
-				<PivotItem {...pivotProps} />
-			))}
-		</Pivot>
-	)
+	const { pivotName, pivots } = usePivots(gamePivotTitlePhrases, GamePivots.Posts, titleMap)
 
 	let pageContent
 	switch (pivotName) {
@@ -62,5 +41,5 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>GDC</>
 	}
 
-	return <Page titleText={gamesTitle} Pivots={pivotHeader} Content={pageContent} />
+	return <Page titleText={gamesTitle} Pivots={pivots} Content={pageContent} />
 }

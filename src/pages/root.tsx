@@ -10,16 +10,21 @@ import { Stories } from './stories/stories'
 initializeIcons()
 
 export const Root: React.FunctionComponent = (): JSX.Element => {
-	// (TODO) center content + put navbar to the left of content
 	return (
-		<BrowserRouter>
-			<Switch>
-				<Redirect exact={true} from="/" to={PageRoutes.Home} />
-				<Route path={PageRoutes.Home} component={Home} />
-				<Route path={PageRoutes.Stories} component={Stories} />
-				<Route path={PageRoutes.Games} component={Games} />
-				<Route path={PageRoutes.MathScience} component={MathScience} />
-			</Switch>
-		</BrowserRouter>
+		<>
+			<link
+				href="https://fonts.googleapis.com/css?family=Comfortaa|Spinnaker&display=swap"
+				rel="stylesheet"
+			/>
+			<BrowserRouter>
+				<Switch>
+					<Redirect exact={true} from="/" to={PageRoutes.Home} />
+					<Route path={PageRoutes.Home} component={Home} />
+					<Route path={PageRoutes.Stories} component={Stories} />
+					<Route path={PageRoutes.Games} component={Games} />
+					<Route path={PageRoutes.MathScience} component={MathScience} />
+				</Switch>
+			</BrowserRouter>
+		</>
 	)
 }

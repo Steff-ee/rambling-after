@@ -14,7 +14,9 @@ export const Header: React.FunctionComponent<IHeaderProps> = (props: IHeaderProp
 		<div
 			style={{
 				backgroundColor: secondary,
+				margin: '30px auto',
 				padding: '30px',
+				width: '200px',
 			}}
 		>
 			{titleText}
@@ -32,11 +34,26 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 	const { primary, accent } = useContext(ColorsContext)
 
 	return (
-		<div style={{ height: '100%', backgroundColor: primary, textAlign: 'center' }}>
+		<div
+			style={{
+				position: 'absolute',
+				top: 0,
+				left: 0,
+				right: 0,
+				backgroundAttachment: 'fixed',
+				backgroundImage: 'url(https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png)',
+				backgroundSize: 'cover',
+				minHeight: '100%',
+				textAlign: 'center',
+			}}
+		>
 			<Header titleText={titleText} />
-			<div style={{ backgroundColor: accent }}>{Pivots}</div>
+			<div style={{ backgroundColor: accent, margin: '30px auto', width: '500px' }}>
+				{Pivots}
+			</div>
 			<div
 				style={{
+					backgroundColor: accent,
 					position: 'absolute',
 				}}
 			>
@@ -44,6 +61,9 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 			</div>
 			<div
 				style={{
+					backgroundColor: primary,
+					margin: '0 auto',
+					maxWidth: '800px',
 					padding: '40px',
 				}}
 			>

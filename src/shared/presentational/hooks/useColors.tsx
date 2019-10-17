@@ -44,11 +44,17 @@ export const ColorsContext = React.createContext<IColorsContext>({
 	},
 })
 
-export const useColors = (
-	defaultPrimary: string,
-	defaultSecondHueDistance: number,
+export interface IUseColorProps {
+	defaultPrimary: string
+	defaultSecondHueDistance: number
 	defaultThirdHueDistance: number
-): IColorsContext => {
+}
+
+export const useColors = ({
+	defaultPrimary,
+	defaultSecondHueDistance,
+	defaultThirdHueDistance,
+}: IUseColorProps): IColorsContext => {
 	const [primary, setPrimary] = useState<string>(defaultPrimary)
 	const [secondHueDistance, setSecondHueDistance] = useState<number>(defaultSecondHueDistance)
 	const [thirdHueDistance, setThirdHueDistance] = useState<number>(defaultThirdHueDistance)

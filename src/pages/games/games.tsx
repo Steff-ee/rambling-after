@@ -4,6 +4,7 @@ import {
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { getNextSeason, SeasonsContext } from '../../shared/presentational/seasons/seasons'
 import { Page } from '../page'
 
 export const gamesTitle = 'games'
@@ -41,5 +42,9 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>GDC</>
 	}
 
-	return <Page titleText={gamesTitle} Pivots={pivots} Content={pageContent} />
+	return (
+		<SeasonsContext.Provider value={getNextSeason(2)}>
+			<Page titleText={gamesTitle} Pivots={pivots} Content={pageContent} />
+		</SeasonsContext.Provider>
+	)
 }

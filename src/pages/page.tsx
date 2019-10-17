@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { NavBarContainer } from '../shared/presentational/components/navBarContainer'
 import { ColorsContext } from '../shared/presentational/hooks/useColors'
+import { useSeasonColors } from '../shared/presentational/seasons/useSeasonColors'
 
 export interface IHeaderProps {
 	titleText: string
@@ -33,51 +34,54 @@ export interface IPageProps extends IHeaderProps {
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
 	const { titleText, Pivots, Content } = props
-	const { primary, accent } = useContext(ColorsContext)
+	const colorsContext = useSeasonColors()
+	const { primary, accent } = colorsContext
 
 	return (
-		<div
-			style={{
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				right: 0,
-				backgroundAttachment: 'fixed',
-				backgroundImage: 'url(https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png)',
-				backgroundSize: 'cover',
-				fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
-				minHeight: '100%',
-				textAlign: 'center',
-			}}
-		>
-			<Header titleText={titleText} />
+		<ColorsContext.Provider value={colorsContext}>
 			<div
 				style={{
-					backgroundColor: accent,
-					margin: '30px auto',
-					width: '500px',
-				}}
-			>
-				{Pivots}
-			</div>
-			<div
-				style={{
-					backgroundColor: accent,
 					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					backgroundAttachment: 'fixed',
+					backgroundImage: 'url(https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png)',
+					backgroundSize: 'cover',
+					fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
+					minHeight: '100%',
+					textAlign: 'center',
 				}}
 			>
-				<NavBarContainer />
+				<Header titleText={titleText} />
+				<div
+					style={{
+						backgroundColor: accent,
+						margin: '30px auto',
+						width: '500px',
+					}}
+				>
+					{Pivots}
+				</div>
+				<div
+					style={{
+						backgroundColor: accent,
+						position: 'absolute',
+					}}
+				>
+					<NavBarContainer />
+				</div>
+				<div
+					style={{
+						backgroundColor: primary,
+						margin: '0 auto',
+						maxWidth: '800px',
+						padding: '40px',
+					}}
+				>
+					{Content}
+				</div>
 			</div>
-			<div
-				style={{
-					backgroundColor: primary,
-					margin: '0 auto',
-					maxWidth: '800px',
-					padding: '40px',
-				}}
-			>
-				{Content}
-			</div>
-		</div>
+		</ColorsContext.Provider>
 	)
 }

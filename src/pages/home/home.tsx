@@ -1,11 +1,10 @@
 import React from 'react'
-import { Colors } from '../../shared/helpers/constants'
-import { ColorsContext, useColors } from '../../shared/presentational/hooks/useColors'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
+import { getNextSeason, SeasonsContext } from '../../shared/presentational/seasons/seasons'
 import { Page } from '../page'
 
 export const homeTitle = 'home'
@@ -28,7 +27,6 @@ export const homePivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(homePivotTitlePhrases)
 
 export const Home: React.FunctionComponent = (): JSX.Element => {
-	const colorsContext = useColors(Colors.WarmSand, 330, 20)
 	const { pivotName, pivots } = usePivots(homePivotTitlePhrases, HomePivots.Blog, titleMap)
 
 	let pageContent
@@ -102,9 +100,9 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 	}
 
 	return (
-		<ColorsContext.Provider value={colorsContext}>
+		<SeasonsContext.Provider value={getNextSeason(0)}>
 			<Page titleText={homeTitle} Pivots={pivots} Content={pageContent} />
-		</ColorsContext.Provider>
+		</SeasonsContext.Provider>
 	)
 }
 

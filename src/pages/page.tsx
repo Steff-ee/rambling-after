@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { NavBarContainer } from '../shared/presentational/components/navBarContainer'
+import { BackgroundsContext } from '../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../shared/presentational/hooks/useColors'
 
 export interface IHeaderProps {
@@ -34,6 +35,8 @@ export interface IPageProps extends IHeaderProps {
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
 	const { titleText, Pivots, Content } = props
 	const { primary, accent } = useContext(ColorsContext)
+	const { backgrounds, selectedIndex } = useContext(BackgroundsContext)
+	const background = backgrounds[selectedIndex]
 
 	return (
 		<div
@@ -43,7 +46,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				left: 0,
 				right: 0,
 				backgroundAttachment: 'fixed',
-				backgroundImage: 'url(https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png)',
+				backgroundImage: `url(${background})`,
 				backgroundSize: 'cover',
 				fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
 				minHeight: '100%',

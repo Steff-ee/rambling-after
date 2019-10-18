@@ -2,6 +2,7 @@ import { initializeIcons } from '@uifabric/icons'
 import * as React from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { PageRoutes } from '../shared/helpers/routes'
+import { SeasonsProvider } from '../shared/presentational/seasons/seasons'
 import { Games } from './games/games'
 import { Home } from './home/home'
 import { MathScience } from './mathScience/mathScience'
@@ -11,7 +12,7 @@ initializeIcons()
 
 export const Root: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<>
+		<SeasonsProvider>
 			<link
 				href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa&display=swap"
 				rel="stylesheet"
@@ -25,6 +26,6 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 					<Route path={PageRoutes.MathScience} component={MathScience} />
 				</Switch>
 			</BrowserRouter>
-		</>
+		</SeasonsProvider>
 	)
 }

@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
-import { getNextSeason, SeasonsContext } from '../../shared/presentational/seasons/seasons'
+import { SeasonsContext } from '../../shared/presentational/seasons/seasons'
+import { getNextSeason } from '../../shared/presentational/seasons/seasonsHelpers'
 import { Page } from '../page'
 
 export const mathScienceTitle = 'math & science'
@@ -32,6 +33,10 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 		MathSciencePivots.Posts,
 		titleMap
 	)
+	const { setSeason } = useContext(SeasonsContext)
+	useEffect(() => {
+		setSeason(getNextSeason(3))
+	}, [])
 
 	let pageContent
 	switch (pivotName) {
@@ -46,9 +51,5 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>538</>
 	}
 
-	return (
-		<SeasonsContext.Provider value={getNextSeason(3)}>
-			<Page titleText={mathScienceTitle} Pivots={pivots} Content={pageContent} />
-		</SeasonsContext.Provider>
-	)
+	return <Page titleText={mathScienceTitle} Pivots={pivots} Content={pageContent} />
 }

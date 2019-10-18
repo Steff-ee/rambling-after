@@ -1,77 +1,75 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Colors } from '../../helpers/constants'
+import { ColorsContext, IColorsContext, IUseColorProps, useColors } from '../hooks/useColors'
+import { getSeason, Seasons } from './seasonsHelpers'
 
-export enum Seasons {
-	Winter,
-	Spring,
-	Summer,
-	Autumn,
+const defaultSpringColors: IUseColorProps = {
+	defaultPrimary: '#BCBC66',
+	defaultSecondHueDistance: 15,
+	defaultThirdHueDistance: 15,
 }
 
-const enum Month {
-	January,
-	February,
-	March,
-	April,
-	May,
-	June,
-	July,
-	August,
-	September,
-	October,
-	November,
-	December,
+const defaultSummerColors: IUseColorProps = {
+	defaultPrimary: '#66BC66',
+	defaultSecondHueDistance: 15,
+	defaultThirdHueDistance: 15,
 }
 
-export const SeasonsContext = React.createContext<Seasons>(Seasons.Autumn)
+const defaultAutumnColors: IUseColorProps = {
+	defaultPrimary: Colors.WarmSand,
+	defaultSecondHueDistance: 330,
+	defaultThirdHueDistance: 20,
+}
 
-/**
- * Based on my own subjective experience of Washington weather
- * The cutoff points are 3/10, 5/20, 9/10, 11/20
- */
-export const getSeason = (date: Date): Seasons => {
-	const day = date.getDate()
-	const month = date.getMonth()
-	const earlyDayBoundary = 10
-	const lateDayBoundary = 20
+const defaultWinterColors: IUseColorProps = {
+	defaultPrimary: Colors.SeaFoam,
+	defaultSecondHueDistance: 15,
+	defaultThirdHueDistance: 15,
+}
 
-	if (month === Month.March) {
-		if (day >= earlyDayBoundary) {
-			return Seasons.Spring
-		}
-	} else if (month < Month.May) {
-		return Seasons.Spring
-	} else if (month === Month.May) {
-		if (day < lateDayBoundary) {
-			return Seasons.Spring
-		}
-	} else if (month < Month.September) {
-		return Seasons.Summer
-	} else if (month === Month.September) {
-		if (day <= earlyDayBoundary) {
-			return Seasons.Summer
-		}
-	} else if (month < Month.November) {
-		return Seasons.Autumn
-	} else if (month === Month.November) {
-		if (day < lateDayBoundary) {
-			return Seasons.Autumn
-		}
+interface ISeasonsContext {
+	season: Seasons
+	setSeason: (season: Seasons) => void
+}
+
+export const SeasonsContext = React.createContext<ISeasonsContext>({
+	season: Seasons.Autumn,
+	setSeason: (season: Seasons): void => {
+		return
+	},
+})
+
+export const SeasonsProvider: React.FunctionComponent = (
+	props: React.PropsWithChildren<{}>
+): JSX.Element => {
+	const { children } = props
+	const [season, setSeason] = useState<Seasons>(getSeason(new Date()))
+
+	/* Colors */
+	let colors: IColorsContext
+	const springColors = useColors(defaultSpringColors)
+	const summerColors = useColors(defaultSummerColors)
+	const autumnColors = useColors(defaultAutumnColors)
+	const winterColors = useColors(defaultWinterColors)
+
+	switch (season) {
+		case Seasons.Spring:
+			colors = springColors
+			break
+		case Seasons.Summer:
+			colors = summerColors
+			break
+		case Seasons.Autumn:
+			colors = autumnColors
+			break
+		case Seasons.Winter:
+		default:
+			colors = winterColors
 	}
 
-	return Seasons.Winter
-}
-
-// precondition: the Seasons enum goes in order of Winter to Autumn
-export const getNextSeason = (seasonsAhead: number = 1): Seasons => {
-	const currentSeason = getSeason(new Date())
-	const nextSeason = (currentSeason + seasonsAhead) % 4
-	if (nextSeason === 0) {
-		return Seasons.Winter
-	} else if (nextSeason === 1) {
-		return Seasons.Spring
-	} else if (nextSeason === 2) {
-		return Seasons.Summer
-	}
-
-	return Seasons.Autumn
+	return (
+		<SeasonsContext.Provider value={{ season, setSeason }}>
+			<ColorsContext.Provider value={colors}>{children}</ColorsContext.Provider>
+		</SeasonsContext.Provider>
+	)
 }

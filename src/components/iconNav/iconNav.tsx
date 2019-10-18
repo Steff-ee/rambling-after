@@ -4,7 +4,7 @@ import { useToggle } from '../../shared/helpers/useToggle'
 
 // (TODO) add opening/closing animation
 export interface IIconNavProps extends INavProps {
-	// if isShowIconsOnlyControlled is true, controls whether to display the Nav as icons-only or not
+	// if isShowIconsOnlyControlled is true, showIconsOnly controls whether to display the Nav as icons-only or not
 	// if isShowIconsOnlyControlled is false, sets the initial state of the display
 	showIconsOnly: boolean
 	isShowIconsOnlyControlled: boolean

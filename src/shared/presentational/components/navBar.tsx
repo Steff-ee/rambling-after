@@ -1,6 +1,6 @@
 import { LocationDescriptorObject } from 'history'
 import { INavProps } from 'office-ui-fabric-react/lib'
-import React from 'react'
+import React, { useContext } from 'react'
 import { IconNav } from '../../../components/iconNav/iconNav'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
@@ -10,6 +10,7 @@ import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../.
 import { PageRoutes } from '../../helpers/routes'
 import { BackgroundPicker } from './backgroundPicker'
 import { ColorPicker } from './colorPicker'
+import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface INavBarProps {
 	navigate: (destination: LocationDescriptorObject) => void
@@ -17,6 +18,7 @@ export interface INavBarProps {
 
 export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
 	const { navigate } = props
+	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 
 	const navGroups: INavProps['groups'] = [
 		{
@@ -51,8 +53,8 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 
 	return (
 		<IconNav
-			showIconsOnly={true}
-			isShowIconsOnlyControlled={false}
+			showIconsOnly={!isNavBarOpen}
+			isShowIconsOnlyControlled={true}
 			groups={navGroups}
 			onRenderBelowContent={(): JSX.Element => (
 				<>
@@ -60,6 +62,9 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 					<BackgroundPicker />
 				</>
 			)}
+			onIconsMenuIconClick={(): void => {
+				setIsNavBarOpen(!isNavBarOpen)
+			}}
 		/>
 	)
 }

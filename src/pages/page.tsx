@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Img } from 'react-progressive-loader'
 import { NavBarContainer } from '../shared/presentational/components/navBarContainer'
 import { BackgroundsContext } from '../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../shared/presentational/hooks/useColors'
@@ -41,18 +42,22 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 	return (
 		<div
 			style={{
-				position: 'absolute',
-				top: 0,
-				left: 0,
-				right: 0,
-				backgroundAttachment: 'fixed',
-				backgroundImage: `url(${background})`,
-				backgroundSize: 'cover',
 				fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
-				minHeight: '100%',
 				textAlign: 'center',
 			}}
 		>
+			<Img
+				bgColor={primary}
+				src={background}
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					minHeight: '100%',
+					zIndex: -1,
+				}}
+			/>
 			<Header titleText={titleText} />
 			<div
 				style={{

@@ -47,8 +47,8 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 			}}
 		>
 			<Img
-				bgColor={primary}
-				src={background}
+				bgColor={background.color}
+				src={background.src}
 				style={{
 					position: 'absolute',
 					top: 0,

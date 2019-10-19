@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
+import { Colors } from '../../helpers/constants'
+
+export interface IBackground {
+	src: string
+	color: string
+}
 
 export interface IBackgroundsContext {
-	backgrounds: string[]
+	backgrounds: IBackground[]
 	selectedIndex: number
 	setSelectedIndex: (index: number) => void
 }
 
 export const BackgroundsContext = React.createContext<IBackgroundsContext>({
-	backgrounds: [''],
+	backgrounds: [{ src: '', color: Colors.Black }],
 	selectedIndex: 0,
 	setSelectedIndex: (index: number): void => {
 		return
 	},
 })
 
-export const useBackgrounds = (backgrounds: string[]): IBackgroundsContext => {
+export const useBackgrounds = (backgrounds: IBackground[]): IBackgroundsContext => {
 	const [selectedIndex, setSelectedIndex] = useState<number>(0)
 
 	return {

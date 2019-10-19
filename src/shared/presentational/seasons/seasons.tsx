@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import { Colors } from '../../helpers/constants'
-import { BackgroundsContext, IBackgroundsContext, useBackgrounds } from '../hooks/useBackgrounds'
+import {
+	BackgroundsContext,
+	IBackground,
+	IBackgroundsContext,
+	useBackgrounds,
+} from '../hooks/useBackgrounds'
 import { ColorsContext, IColorsContext, IUseColorProps, useColors } from '../hooks/useColors'
 import { getSeason, Seasons } from './seasonsHelpers'
 
@@ -28,13 +33,20 @@ const defaultWinterColors: IUseColorProps = {
 	defaultThirdHueDistance: 15,
 }
 
-const springBackgrounds = ['https://w.wallhaven.cc/full/8x/wallhaven-8x3w8k.jpg']
-const summerBackgrounds = ['https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png']
-const autumnBackgrounds = ['https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png']
-const winterBackgrounds = [
-	'https://w.wallhaven.cc/full/4l/wallhaven-4llmp2.jpg',
-	'https://w.wallhaven.cc/full/4x/wallhaven-4xrl5l.jpg',
-	'https://w.wallhaven.cc/full/nk/wallhaven-nkdqp7.jpg',
+// (TODO) attribute: Elf Kingdom by Fan Ming
+const springBackgrounds: IBackground[] = [
+	{ src: 'https://w.wallhaven.cc/full/8x/wallhaven-8x3w8k.jpg', color: '#6a7b92' },
+]
+const summerBackgrounds: IBackground[] = [
+	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', color: '#344643' },
+]
+const autumnBackgrounds: IBackground[] = [
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png', color: '#e3c022' },
+]
+const winterBackgrounds: IBackground[] = [
+	{ src: 'https://w.wallhaven.cc/full/4l/wallhaven-4llmp2.jpg', color: '#daeaf2' },
+	{ src: 'https://w.wallhaven.cc/full/4x/wallhaven-4xrl5l.jpg', color: '#b5afad' },
+	{ src: 'https://w.wallhaven.cc/full/nk/wallhaven-nkdqp7.jpg', color: '#b5afad' },
 ]
 
 interface ISeasonsContext {

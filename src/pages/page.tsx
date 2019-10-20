@@ -40,52 +40,54 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 	const background = backgrounds[selectedIndex]
 
 	return (
-		<div
-			style={{
-				fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
-				textAlign: 'center',
-			}}
-		>
+		<>
 			<Img
-				bgColor={background.color}
+				bgColor={background.color || primary}
 				src={background.src}
 				style={{
-					position: 'absolute',
+					position: 'fixed',
 					top: 0,
 					left: 0,
 					right: 0,
-					minHeight: '100%',
 					zIndex: -1,
 				}}
 			/>
-			<Header titleText={titleText} />
 			<div
 				style={{
-					backgroundColor: accent,
-					margin: '30px auto',
-					width: '500px',
+					fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
+					marginBottom: '100vh',
+					textAlign: 'center',
 				}}
 			>
-				{Pivots}
+				<Header titleText={titleText} />
+				<div
+					style={{
+						backgroundColor: accent,
+						margin: '30px auto',
+						width: '500px',
+					}}
+				>
+					{Pivots}
+				</div>
+				<div
+					style={{
+						backgroundColor: accent,
+						position: 'absolute',
+					}}
+				>
+					<NavBarContainer />
+				</div>
+				<div
+					style={{
+						backgroundColor: primary,
+						margin: '0 auto',
+						maxWidth: '800px',
+						padding: '40px',
+					}}
+				>
+					{Content}
+				</div>
 			</div>
-			<div
-				style={{
-					backgroundColor: accent,
-					position: 'absolute',
-				}}
-			>
-				<NavBarContainer />
-			</div>
-			<div
-				style={{
-					backgroundColor: primary,
-					margin: '0 auto',
-					maxWidth: '800px',
-					padding: '40px',
-				}}
-			>
-				{Content}
-			</div>
-		</div>
+		</>
 	)
 }

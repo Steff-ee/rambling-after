@@ -10,9 +10,9 @@ import { ColorsContext, IColorsContext, IUseColorProps, useColors } from '../hoo
 import { getSeason, Seasons } from './seasonsHelpers'
 
 const defaultSpringColors: IUseColorProps = {
-	defaultPrimary: '#BCBC66',
-	defaultSecondHueDistance: 15,
-	defaultThirdHueDistance: 15,
+	defaultPrimary: Colors.Salmon,
+	defaultSecondHueDistance: 295,
+	defaultThirdHueDistance: 170,
 }
 
 const defaultSummerColors: IUseColorProps = {
@@ -33,20 +33,39 @@ const defaultWinterColors: IUseColorProps = {
 	defaultThirdHueDistance: 15,
 }
 
-// (TODO) attribute: Elf Kingdom by Fan Ming
+/**
+ * (TODO) add attributions to About page
+ *
+ * Sylvain Sarrailh is AMAZING!!!
+ * Check out their work at https://tohad.artstation.com/
+ *
+ * And Graham Gercken:
+ * https://graham-gercken.pixels.com/
+ */
+
+// to find the original link, grab XXXX from "wallhaven-XXXX.jpg" and insert into https://wallhaven.cc/w/XXXX
 const springBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/8x/wallhaven-8x3w8k.jpg', color: '#6a7b92' },
+	{ src: 'https://w.wallhaven.cc/full/md/wallhaven-mdo9o8.png', artist: 'Sylvain Sarrailh' },
+	{ src: 'https://w.wallhaven.cc/full/49/wallhaven-49p298.jpg', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8j3g3.jpg', artist: '' },
+	{ src: 'https://w.wallhaven.cc/full/4o/wallhaven-4opl79.jpg', artist: 'Graham Gercken' },
 ]
 const summerBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', color: '#344643' },
+	{ src: 'https://w.wallhaven.cc/full/96/wallhaven-96km7k.png', artist: 'Sylvain Sarrailh' },
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g817ve.png', artist: 'Sylvain Sarrailh' },
+	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/qd/wallhaven-qdy527.png', artist: 'TODO' },
 ]
 const autumnBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png', color: '#e3c022' },
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png', artist: 'Sylvain Sarrailh' },
+	{ src: 'https://w.wallhaven.cc/full/wy/wallhaven-wy3qwx.png', artist: 'Sylvain Sarrailh' },
+	{ src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', artist: 'Graham Gercken' },
 ]
 const winterBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/4l/wallhaven-4llmp2.jpg', color: '#daeaf2' },
-	{ src: 'https://w.wallhaven.cc/full/4x/wallhaven-4xrl5l.jpg', color: '#b5afad' },
-	{ src: 'https://w.wallhaven.cc/full/nk/wallhaven-nkdqp7.jpg', color: '#b5afad' },
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8ml1q.jpg', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4yyrwd.jpg', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/lq/wallhaven-lqdrdy.jpg', artist: 'TODO' },
 ]
 
 interface ISeasonsContext {

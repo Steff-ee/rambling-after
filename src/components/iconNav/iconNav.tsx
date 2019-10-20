@@ -13,6 +13,7 @@ export interface IIconNavProps extends INavProps {
 	iconsOnlyToggleNavLink?: INavLink
 	// content to show below the tabs only when showIconsOnly is false
 	onRenderBelowContent?: () => JSX.Element
+	rootStyle?: React.CSSProperties
 }
 
 const onRenderLink = (showIconsOnly: boolean): INavProps['onRenderLink'] => (
@@ -39,6 +40,7 @@ export function withIconNavBehavior(
 			iconsOnlyToggleNavLink,
 			styles,
 			onRenderBelowContent,
+			rootStyle,
 			...remainingProps
 		} = props
 		const { value: showIconsOnlyState, toggleValue: toggleShowIconsOnlyState } = useToggle(
@@ -47,40 +49,44 @@ export function withIconNavBehavior(
 		// if not being controlled by the prop, use the state instead
 		const showIconsOnly = isShowIconsOnlyControlled ? showIconsOnlyProp : showIconsOnlyState
 
-		const width = showIconsOnly ? '60px' : '300px'
+		const minWidth = '60px'
+		const width = showIconsOnly ? minWidth : '300px'
 
 		// (TODO) don't over write styles; handle div style in Fabric way
 		styles = {
 			root: {
-				border: '1px solid #eee',
 				width,
 			},
 			link: {
-				height: '60px',
+				height: minWidth,
 			},
 		}
 
 		return (
-			<div style={{ width }}>
-				<ActionButton
-					iconProps={{ iconName: 'GlobalNavButton' }}
-					onClick={(): void => {
-						// only call if uncontrolled
-						if (!isShowIconsOnlyControlled) {
-							toggleShowIconsOnlyState()
-						}
-						// always call
-						if (onIconsMenuIconClick) {
-							onIconsMenuIconClick()
-						}
-					}}
-				/>
-				<InnerComponent
-					{...remainingProps}
-					styles={styles}
-					onRenderLink={onRenderLink(showIconsOnly)}
-				/>
-				{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
+			<div style={{ ...rootStyle }}>
+				<div style={{ display: 'inline-block', width }}>
+					<div style={{ width: minWidth }}>
+						<ActionButton
+							iconProps={{ iconName: 'GlobalNavButton' }}
+							onClick={(): void => {
+								// only call if uncontrolled
+								if (!isShowIconsOnlyControlled) {
+									toggleShowIconsOnlyState()
+								}
+								// always call
+								if (onIconsMenuIconClick) {
+									onIconsMenuIconClick()
+								}
+							}}
+						/>
+					</div>
+					<InnerComponent
+						{...remainingProps}
+						styles={styles}
+						onRenderLink={onRenderLink(showIconsOnly)}
+					/>
+					{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
+				</div>
 			</div>
 		)
 	}

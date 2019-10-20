@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
-import { NavBarContainer } from '../shared/presentational/components/navBarContainer'
+// (TODO) fade-in is not hiding the loading bars
+import { Img } from 'react-progressive-loader'
+import { NavBar } from '../shared/presentational/components/navBar'
 import { BackgroundsContext } from '../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../shared/presentational/hooks/useColors'
 
@@ -32,6 +34,19 @@ export interface IPageProps extends IHeaderProps {
 	Content: JSX.Element
 }
 
+const backgroundImgStyle: React.CSSProperties = {
+	display: 'flex',
+	flex: '1 0 auto',
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	right: 0,
+	transformOrigin: '0 0',
+	transformStyle: 'preserve-3d',
+	transform: 'translateZ(-1px) scale(2)',
+	zIndex: -1,
+}
+
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
 	const { titleText, Pivots, Content } = props
 	const { primary, accent } = useContext(ColorsContext)
@@ -54,20 +69,9 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				transformStyle: 'preserve-3d',
 			}}
 		>
-			<img
-				src={background.src}
-				style={{
-					transformOrigin: '0 0',
-					transform: 'translateZ(-1px) scale(2)',
-					zIndex: -1,
-					display: 'flex',
-					flex: '1 0 auto',
-					position: 'absolute',
-					top: 0,
-					left: 0,
-					right: 0,
-				}}
-			/>
+			<div style={backgroundImgStyle}>
+				<Img src={background.src} style={backgroundImgStyle} />
+			</div>
 			<div
 				style={{
 					display: 'block',
@@ -78,6 +82,16 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 					textAlign: 'center',
 				}}
 			>
+				<div
+					style={{
+						backgroundColor: accent,
+						position: 'sticky',
+						top: '0px',
+						left: '0px',
+					}}
+				>
+					<NavBar rootStyle={{ backgroundColor: accent, position: 'absolute' }} />
+				</div>
 				<div>
 					<Header titleText={titleText} />
 					<div
@@ -88,14 +102,6 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 						}}
 					>
 						{Pivots}
-					</div>
-					<div
-						style={{
-							backgroundColor: accent,
-							position: 'fixed',
-						}}
-					>
-						<NavBarContainer />
 					</div>
 					<div
 						style={{

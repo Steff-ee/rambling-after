@@ -1,6 +1,6 @@
-import { LocationDescriptorObject } from 'history'
 import { INavProps } from 'office-ui-fabric-react/lib'
 import React, { useContext } from 'react'
+import { __RouterContext as RouterContext } from 'react-router'
 import { IconNav } from '../../../components/iconNav/iconNav'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
@@ -13,11 +13,12 @@ import { ColorPicker } from './colorPicker'
 import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface INavBarProps {
-	navigate: (destination: LocationDescriptorObject) => void
+	rootStyle?: React.CSSProperties
 }
 
 export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
-	const { navigate } = props
+	const { rootStyle } = props
+	const { history } = useContext(RouterContext)
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 
 	const navGroups: INavProps['groups'] = [
@@ -26,25 +27,25 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 				{
 					iconProps: { iconName: iconTeaName },
 					name: homeTitle,
-					onClick: (): void => navigate({ pathname: PageRoutes.Home }),
+					onClick: (): void => history.push({ pathname: PageRoutes.Home }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconBooksName },
 					name: storiesTitle,
-					onClick: (): void => navigate({ pathname: PageRoutes.Stories }),
+					onClick: (): void => history.push({ pathname: PageRoutes.Stories }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconDieName },
 					name: gamesTitle,
-					onClick: (): void => navigate({ pathname: PageRoutes.Games }),
+					onClick: (): void => history.push({ pathname: PageRoutes.Games }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconTorusKnotName },
 					name: mathScienceTitle,
-					onClick: (): void => navigate({ pathname: PageRoutes.MathScience }),
+					onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),
 					url: '',
 				},
 			],
@@ -53,6 +54,7 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 
 	return (
 		<IconNav
+			rootStyle={rootStyle}
 			showIconsOnly={!isNavBarOpen}
 			isShowIconsOnlyControlled={true}
 			groups={navGroups}

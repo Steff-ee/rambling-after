@@ -72,7 +72,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				<div
 					style={{
 						backgroundColor: accent,
-						position: 'absolute',
+						position: 'fixed',
 					}}
 				>
 					<NavBarContainer />

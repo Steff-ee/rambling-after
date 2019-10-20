@@ -18,7 +18,7 @@ export interface INavBarProps {
 
 export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
 	const { rootStyle } = props
-	const { history } = useContext(RouterContext)
+	const { history, location } = useContext(RouterContext)
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 
 	const navGroups: INavProps['groups'] = [
@@ -26,24 +26,28 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 			links: [
 				{
 					iconProps: { iconName: iconTeaName },
+					key: PageRoutes.Home,
 					name: homeTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Home }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconBooksName },
+					key: PageRoutes.Stories,
 					name: storiesTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Stories }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconDieName },
+					key: PageRoutes.Games,
 					name: gamesTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Games }),
 					url: '',
 				},
 				{
 					iconProps: { iconName: iconTorusKnotName },
+					key: PageRoutes.MathScience,
 					name: mathScienceTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),
 					url: '',
@@ -54,6 +58,7 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 
 	return (
 		<IconNav
+			selectedKey={location.pathname}
 			rootStyle={rootStyle}
 			showIconsOnly={!isNavBarOpen}
 			isShowIconsOnlyControlled={true}

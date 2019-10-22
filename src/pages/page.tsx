@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Fireflies } from '../shared/presentational/components/fireflies'
 // (TODO) fade-in is not hiding the loading bars
 // import { Img } from 'react-progressive-loader'
 import { NavBar } from '../shared/presentational/components/navBar'
@@ -70,13 +71,16 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				textAlign: 'center',
 			}}
 		>
+			<div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: -2 }}>
+				<Fireflies style={{ position: 'relative' }} />
+			</div>
 			<div
 				style={{
 					...parallaxGroupStyle,
 					...backgroundStyle,
 					transformOrigin: '0 0',
 					transform: 'translateZ(-7px) scale(8)',
-					zIndex: -2,
+					zIndex: -3,
 				}}
 			>
 				<img src={background.src} />

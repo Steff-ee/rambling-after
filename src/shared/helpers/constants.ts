@@ -5,4 +5,5 @@ export enum Colors {
 	CherryBlossom = '#fcccf0',
 	SkyBlue = '#bee4fa',
 	Salmon = '#fad4be',
+	Firefly = '#ffe364',
 }

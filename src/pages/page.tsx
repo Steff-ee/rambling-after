@@ -71,8 +71,8 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				textAlign: 'center',
 			}}
 		>
-			<div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}>
-				<Fireflies style={{ position: 'relative' }} />
+			<div style={{ position: 'absolute', width: '100%', height: '100%' }}>
+				<Fireflies style={{ position: 'relative', zIndex: 1 }} />
 			</div>
 			<div
 				style={{

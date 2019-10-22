@@ -1,19 +1,49 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Particles from 'react-particles-js'
 import { Colors } from '../../helpers/constants'
+import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface IFirefliesProps {
 	style?: React.CSSProperties
+}
+
+interface IHighlightProps {
+	maxSize: number
+	minSize: number
+	maxOpacity: number
+	minOpacity: number
+	interactionEnabled: boolean
 }
 
 export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 	props: IFirefliesProps
 ): JSX.Element => {
 	const { style } = props
+	const { isNavBarOpen } = useContext(IsNavBarOpenContext)
 	const count = 30
 	const animSpeed = 3
 	const moveSpeed = 2
-	const maxSize = 3
+	const interactionDistance = 200
+	const bubbleSize = 7
+
+	let options: IHighlightProps
+	if (isNavBarOpen) {
+		options = {
+			maxSize: 5,
+			minSize: 2,
+			maxOpacity: 1,
+			minOpacity: 0.8,
+			interactionEnabled: true,
+		}
+	} else {
+		options = {
+			maxSize: 3,
+			minSize: 1,
+			maxOpacity: 0.8,
+			minOpacity: 0.2,
+			interactionEnabled: false,
+		}
+	}
 
 	return (
 		<Particles
@@ -27,69 +57,62 @@ export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 						value: Colors.Firefly,
 					},
 					shape: {
-						type: 'circle',
+						type: 'circle' as const,
 					},
 					opacity: {
-						value: 0.8,
+						value: options.maxOpacity,
 						random: true,
 						anim: {
 							enable: true,
 							speed: animSpeed,
-							opacity_min: 0.2,
+							opacity_min: options.minOpacity,
 							sync: false,
 						},
 					},
 					size: {
-						value: maxSize,
+						value: options.maxSize,
 						random: true,
 						anim: {
 							enable: true,
 							speed: animSpeed,
-							size_min: 1,
+							size_min: options.minSize,
 							sync: false,
 						},
 					},
 					line_linked: {
 						enable: false,
+						color: Colors.Firefly,
+						width: 2,
 					},
 					move: {
 						enable: true,
 						speed: moveSpeed,
-						// direction: MoveDirection;
-						// random: boolean;
-						// straight: boolean;
-						out_mode: 'out',
+						random: true,
+						out_mode: 'out' as const,
 						bounce: false,
-						// attract: {
-						//     enable: boolean;
-						//     rotateX: number;
-						//     rotateY: number;
-						// };
 					},
 				},
 				interactivity: {
 					events: {
 						onhover: {
-							enable: true,
+							enable: options.interactionEnabled,
 							mode: 'grab',
 						},
 						onclick: {
-							enable: true,
+							enable: options.interactionEnabled,
 							mode: 'bubble',
 						},
 					},
 					modes: {
 						grab: {
-							distance: 120,
+							distance: interactionDistance,
 							line_linked: {
-								opacity: 0.5,
+								opacity: 1,
 							},
 						},
 						bubble: {
-							distance: 120,
-							size: maxSize,
-							duration: 1,
-							opacity: 1,
+							size: bubbleSize,
+							distance: interactionDistance,
 						},
 					},
 				},

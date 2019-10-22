@@ -52,7 +52,7 @@ const pivotsStyle: React.CSSProperties = {
 }
 
 const contentStyle: React.CSSProperties = {
-	margin: '0 auto',
+	margin: '40px',
 	maxWidth: '800px',
 	padding: '40px',
 }
@@ -113,16 +113,13 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 						...parallaxGroupStyle,
 						transformOrigin: '0px -190px',
 						transform: 'translateZ(-1px) scale(2)',
+						zIndex: 4,
 					}}
 				>
-					<div style={{ ...pivotsStyle, backgroundColor: accent, zIndex: 4 }}>
-						{Pivots}
-					</div>
+					<div style={{ ...pivotsStyle, backgroundColor: accent }}>{Pivots}</div>
 				</div>
-				<div style={{ ...parallaxGroupStyle }}>
-					<div style={{ ...contentStyle, backgroundColor: primary, zIndex: 3 }}>
-						{Content}
-					</div>
+				<div style={{ ...parallaxGroupStyle, display: 'inline-block', zIndex: 3 }}>
+					<div style={{ ...contentStyle, backgroundColor: primary }}>{Content}</div>
 				</div>
 			</div>
 		</div>

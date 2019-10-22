@@ -71,7 +71,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				textAlign: 'center',
 			}}
 		>
-			<div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: -2 }}>
+			<div style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}>
 				<Fireflies style={{ position: 'relative' }} />
 			</div>
 			<div
@@ -102,26 +102,29 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 						...parallaxGroupStyle,
 						transformOrigin: '0 -25px',
 						transform: 'translateZ(-4px) scale(5)',
-						zIndex: -1,
 					}}
 				>
-					<div style={{ ...titleStyle, backgroundColor: secondary }}>{titleText}</div>
+					<div style={{ ...titleStyle, backgroundColor: secondary, zIndex: 2 }}>
+						{titleText}
+					</div>
 				</div>
 				<div
 					style={{
 						...parallaxGroupStyle,
 						transformOrigin: '0px -190px',
 						transform: 'translateZ(-1px) scale(2)',
-						zIndex: 1,
 					}}
 				>
-					<div style={{ ...pivotsStyle, backgroundColor: accent }}>{Pivots}</div>
+					<div style={{ ...pivotsStyle, backgroundColor: accent, zIndex: 4 }}>
+						{Pivots}
+					</div>
 				</div>
-				<div style={parallaxGroupStyle}>
-					<div style={{ ...contentStyle, backgroundColor: primary }}>{Content}</div>
+				<div style={{ ...parallaxGroupStyle }}>
+					<div style={{ ...contentStyle, backgroundColor: primary, zIndex: 3 }}>
+						{Content}
+					</div>
 				</div>
 			</div>
-			{/* </div> */}
 		</div>
 	)
 }

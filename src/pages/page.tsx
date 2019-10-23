@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { CircadianMood, getCircadianMood } from '../shared/helpers/time'
 import { Fireflies } from '../shared/presentational/components/fireflies'
 // (TODO) fade-in is not hiding the loading bars
 // import { Img } from 'react-progressive-loader'
@@ -70,6 +71,16 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 	const { backgrounds, selectedIndex } = useContext(BackgroundsContext)
 	const background = backgrounds[selectedIndex]
 
+	const mood = getCircadianMood()
+	let brightness: string
+	if (mood === CircadianMood.Day) {
+		brightness = '100%'
+	} else if (mood === CircadianMood.Night) {
+		brightness = '50%'
+	} else {
+		brightness = '75%'
+	}
+
 	return (
 		<div
 			style={{
@@ -96,6 +107,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 					transformOrigin: '0 0',
 					transform: 'translateZ(-7px) scale(8)',
 					zIndex: -3,
+					filter: `brightness(${brightness})`,
 				}}
 			>
 				<img src={background.src} />

@@ -12,6 +12,8 @@ export interface IPageProps {
 	Content: JSX.Element
 }
 
+const transparentColor = 'rgba(10, 10, 10, 0.5)'
+
 const parallaxRootStyle: React.CSSProperties = {
 	overflowX: 'hidden',
 	overflowY: 'scroll',
@@ -51,10 +53,17 @@ const pivotsStyle: React.CSSProperties = {
 	width: '500px',
 }
 
-const contentStyle: React.CSSProperties = {
-	margin: '40px',
-	maxWidth: '800px',
-	padding: '40px',
+const contentFrameStyle: React.CSSProperties = {
+	backgroundColor: `${transparentColor}`,
+	border: '1px solid black',
+	padding: '5vh 5vw',
+	marginTop: '30px',
+}
+
+const contentTextStyle: React.CSSProperties = {
+	maxWidth: 600,
+	minWidth: 200,
+	padding: '6vh 6vw',
 }
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
@@ -119,7 +128,11 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 					<div style={{ ...pivotsStyle, backgroundColor: accent }}>{Pivots}</div>
 				</div>
 				<div style={{ ...parallaxGroupStyle, display: 'inline-block', zIndex: 3 }}>
-					<div style={{ ...contentStyle, backgroundColor: primary }}>{Content}</div>
+					<div style={{ ...contentFrameStyle, borderColor: primary }}>
+						<div style={{ backgroundColor: primary }}>
+							<div style={contentTextStyle}>{Content}</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

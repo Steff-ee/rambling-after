@@ -6,6 +6,8 @@ import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface IFirefliesProps {
 	style?: React.CSSProperties
+	width?: string
+	height?: string
 }
 
 interface IHighlightProps {
@@ -19,7 +21,7 @@ interface IHighlightProps {
 export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 	props: IFirefliesProps
 ): JSX.Element => {
-	const { style } = props
+	const { style, width, height } = props
 	const { isNavBarOpen } = useContext(IsNavBarOpenContext)
 	const mood = getCircadianMood()
 	const animSpeed = 3
@@ -29,11 +31,11 @@ export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 
 	let count
 	if (mood === CircadianMood.Night || isNavBarOpen) {
-		count = 30
+		count = 60
 	} else if (mood === CircadianMood.Day) {
 		count = 0
 	} else {
-		count = 10
+		count = 20
 	}
 
 	let options: IHighlightProps
@@ -58,6 +60,8 @@ export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 	return (
 		<Particles
 			style={style}
+			width={width}
+			height={height}
 			params={{
 				particles: {
 					number: {

@@ -14,17 +14,21 @@ export interface IPageProps {
 
 const transparentColor = 'rgba(10, 10, 10, 0.5)'
 
+const entirePageStyle: React.CSSProperties = {
+	top: 0,
+	left: 0,
+	right: 0,
+	width: '100vw',
+	height: '100vh',
+}
+
 const parallaxRootStyle: React.CSSProperties = {
+	...entirePageStyle,
 	overflowX: 'hidden',
 	overflowY: 'scroll',
 	perspective: '1px',
 	perspectiveOrigin: '0 0',
-	width: '100vw',
-	height: '100vh',
 	position: 'fixed',
-	top: 0,
-	left: 0,
-	right: 0,
 }
 
 const parallaxGroupStyle: React.CSSProperties = {
@@ -38,14 +42,6 @@ const titleStyle: React.CSSProperties = {
 	margin: '30px auto',
 	padding: '30px',
 	width: '200px',
-}
-
-const backgroundStyle: React.CSSProperties = {
-	position: 'absolute',
-	top: 0,
-	left: 0,
-	right: 0,
-	marginBottom: '120vh',
 }
 
 const pivotsStyle: React.CSSProperties = {
@@ -63,6 +59,8 @@ const contentFrameStyle: React.CSSProperties = {
 const contentTextStyle: React.CSSProperties = {
 	maxWidth: 600,
 	minWidth: 200,
+	maxHeight: 2800,
+	overflowY: 'auto',
 	padding: '6vh 6vw',
 }
 
@@ -80,13 +78,21 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				textAlign: 'center',
 			}}
 		>
-			<div style={{ position: 'absolute', width: '100%', height: '100%' }}>
-				<Fireflies style={{ position: 'relative', zIndex: 1 }} />
+			<div
+				style={{
+					...parallaxGroupStyle,
+					position: 'absolute',
+					transformOrigin: '0 0',
+					transform: 'translateZ(-4px) scale(5)',
+					zIndex: 1,
+				}}
+			>
+				<Fireflies width={'100vw'} height={'200vh'} />
 			</div>
 			<div
 				style={{
 					...parallaxGroupStyle,
-					...backgroundStyle,
+					position: 'absolute',
 					transformOrigin: '0 0',
 					transform: 'translateZ(-7px) scale(8)',
 					zIndex: -3,
@@ -127,7 +133,14 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 				>
 					<div style={{ ...pivotsStyle, backgroundColor: accent }}>{Pivots}</div>
 				</div>
-				<div style={{ ...parallaxGroupStyle, display: 'inline-block', zIndex: 3 }}>
+				<div
+					style={{
+						...parallaxGroupStyle,
+						display: 'inline-block',
+						zIndex: 3,
+						marginBottom: '100vh',
+					}}
+				>
 					<div style={{ ...contentFrameStyle, borderColor: primary }}>
 						<div style={{ backgroundColor: primary }}>
 							<div style={contentTextStyle}>{Content}</div>

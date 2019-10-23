@@ -49,42 +49,28 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			pageContent = (
 				<>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempus
-						metus ac tortor efficitur aliquam. Ut eu consequat lacus. Integer gravida
-						posuere elit. Sed convallis augue nunc, id dapibus nibh cursus et. Donec ut
-						congue erat. Integer fermentum, sapien a vestibulum mollis, ipsum sem
-						viverra tellus, quis vestibulum nibh nisl vitae metus. Aliquam ac
-						sollicitudin justo. Pellentesque pulvinar, justo at molestie porta, eros
-						tellus scelerisque dui, id semper mi enim a ante. Ut at accumsan dui. Proin
-						nibh felis, laoreet ullamcorper nunc id, efficitur accumsan leo. Ut molestie
-						bibendum metus, ut mollis mauris convallis gravida. Sed tristique porttitor
-						velit, at cursus sem pellentesque id. Nulla sodales eros aliquam sodales
-						pretium. Curabitur eu tristique tellus, sollicitudin hendrerit leo. Nulla
-						facilisi. Mauris eleifend est eget gravida lacinia.
+						Avengers: Infinity War left audiences with the greatest cliffhanger of
+						cinematic history, more shocking and far more interesting to speculate about
+						than even any of the twists in The Empire Strikes Back. The cliffhanger: How
+						could our heroes possibly undo the mass murder of half the universe? Now the
+						splendid Avengers: Endgame has been released and we’ve been given our
+						answers, but while some of these answers can be taken at face value, others
+						may be much more elaborate, and not at all obvious after a single viewing.
 					</p>
 					<p>
-						Vestibulum tristique sapien enim, id commodo ipsum ornare ac. Maecenas
-						bibendum laoreet leo, sed tempus metus. Ut nec hendrerit mi. Sed congue est
-						ut nulla pulvinar, ac euismod mi pretium. Curabitur varius orci ut cursus
-						egestas. Nunc bibendum id purus maximus facilisis. In vitae augue nec elit
-						suscipit sagittis nec non arcu.
+						(1) Why didn’t Dr. Strange see any futures where he, Tony, Peter, and the
+						Guardians managed to remove Thanos’s Infinity Gauntlet? Surely Strange could
+						have convinced Nebula to stop Quill from interfering, or simply convinced
+						her to never mention Gamora, and they could have removed the gauntlet while
+						Mantis had Thanos slumbering.
 					</p>
+					<p>(2) Were there really no futures where Thor aimed for the head?</p>
 					<p>
-						Donec ac ante id enim tempor dignissim. Curabitur nec libero ipsum. In a
-						scelerisque enim, nec elementum libero. Etiam vel dignissim tellus, ut
-						ornare mauris. Nullam eu lectus at ipsum euismod ultrices consequat varius
-						lacus. Nam eu nisl a risus fringilla elementum. Vestibulum porta sagittis
-						felis, in consectetur sem fermentum sollicitudin. Sed finibus nulla vitae
-						consequat mattis. Quisque interdum, risus pretium consectetur ullamcorper,
-						nulla arcu rhoncus lorem, ac vulputate felis nisi non metus.
-					</p>
-					<p>
-						Nam nunc dui, bibendum in sapien ac, placerat laoreet diam. Curabitur quis
-						finibus ex. Ut sed aliquam urna. Fusce ullamcorper magna erat, eget sodales
-						sapien tincidunt eget. Proin posuere, metus ut rutrum posuere, urna arcu
-						ullamcorper lorem, eu tempus augue mauris at enim. Curabitur faucibus sapien
-						quis arcu luctus, id auctor nisi aliquet. Integer lobortis posuere sapien,
-						ut aliquet nisi malesuada a.
+						(3) In the final confrontation on Earth, the Avengers had the combined might
+						of Iron Man, Thor with Stormbreaker, Captain America with Mjonir, Captain
+						Marvel, Wanda, all of Wakanda, and all of the Masters of the Mystic Arts.
+						Why didn’t Dr. Strange see any futures where the Avengers played hot potato
+						well enough to keep the Iron Gauntlet out of Thanos’s hands?
 					</p>
 					<p>
 						Curabitur tempus venenatis tortor. Ut rutrum enim elit, interdum ornare

@@ -18,7 +18,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 		<SeasonsProvider>
 			<IsNavBarOpenContext.Provider value={{ isNavBarOpen, setIsNavBarOpen }}>
 				<link
-					href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa&display=swap"
+					href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Muli&display=swap"
 					rel="stylesheet"
 				/>
 				<BrowserRouter>

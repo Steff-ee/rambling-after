@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Colors } from '../shared/helpers/constants'
 import { CircadianMood, getCircadianMood } from '../shared/helpers/time'
 import { Fireflies } from '../shared/presentational/components/fireflies'
 // (TODO) fade-in is not hiding the loading bars
@@ -14,6 +15,13 @@ export interface IPageProps {
 }
 
 const transparentColor = 'rgba(10, 10, 10, 0.5)'
+
+const defaultTextStyle: React.CSSProperties = {
+	fontFamily: 'Muli, Lato, sans-serif',
+	fontSize: '18px',
+	lineHeight: '29px',
+	textAlign: 'center',
+}
 
 const entirePageStyle: React.CSSProperties = {
 	top: 0,
@@ -63,6 +71,8 @@ const contentTextStyle: React.CSSProperties = {
 	maxHeight: 2800,
 	overflowY: 'auto',
 	margin: '6vh 6vw',
+	color: Colors.OffBlack,
+	textAlign: 'left',
 }
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
@@ -85,8 +95,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 		<div
 			style={{
 				...parallaxRootStyle,
-				fontFamily: 'Lucida Grande, Lucida Sans Unicode, Lucida Sans',
-				textAlign: 'center',
+				...defaultTextStyle,
 			}}
 		>
 			<div

@@ -1,5 +1,6 @@
 export enum Colors {
 	Black = '#000000',
+	OffBlack = '#242424',
 	SeaFoam = '#6ec9d4',
 	WarmSand = '#d4ad6e',
 	CherryBlossom = '#fcccf0',

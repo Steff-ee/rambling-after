@@ -62,7 +62,7 @@ const contentTextStyle: React.CSSProperties = {
 	minWidth: 200,
 	maxHeight: 2800,
 	overflowY: 'auto',
-	padding: '6vh 6vw',
+	margin: '6vh 6vw',
 }
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
@@ -154,7 +154,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 					}}
 				>
 					<div style={{ ...contentFrameStyle, borderColor: primary }}>
-						<div style={{ backgroundColor: primary }}>
+						<div style={{ display: 'inline-block', backgroundColor: primary }}>
 							<div style={contentTextStyle}>{Content}</div>
 						</div>
 					</div>

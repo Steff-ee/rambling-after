@@ -28,10 +28,10 @@ export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 	const bubbleSize = 7
 
 	let count
-	if (mood === CircadianMood.Day) {
-		count = 0
-	} else if (mood === CircadianMood.Night) {
+	if (mood === CircadianMood.Night || isNavBarOpen) {
 		count = 30
+	} else if (mood === CircadianMood.Day) {
+		count = 0
 	} else {
 		count = 10
 	}

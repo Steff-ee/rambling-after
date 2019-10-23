@@ -44,7 +44,10 @@
 		"no-invalid-this": true,
 		"no-magic-numbers": [
 			true,
-			{ "allowed-numbers": [-1, 0, 1, 2, 3, 4, 5, 90, 180, 270, 360], "ignore-jsx": true }
+			{
+				"allowed-numbers": [-1, 0, 1, 2, 3, 4, 5, 12, 24, 60, 90, 180, 270, 360, 365],
+				"ignore-jsx": true
+			}
 		],
 		"no-misused-new": true,
 		"no-null-keyword": true,

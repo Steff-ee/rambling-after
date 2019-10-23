@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import Particles from 'react-particles-js'
 import { Colors } from '../../helpers/constants'
+import { CircadianMood, getCircadianMood } from '../../helpers/time'
 import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface IFirefliesProps {
@@ -20,11 +21,20 @@ export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
 ): JSX.Element => {
 	const { style } = props
 	const { isNavBarOpen } = useContext(IsNavBarOpenContext)
-	const count = 30
+	const mood = getCircadianMood()
 	const animSpeed = 3
 	const moveSpeed = 2
 	const interactionDistance = 200
 	const bubbleSize = 7
+
+	let count
+	if (mood === CircadianMood.Day) {
+		count = 0
+	} else if (mood === CircadianMood.Night) {
+		count = 30
+	} else {
+		count = 10
+	}
 
 	let options: IHighlightProps
 	if (isNavBarOpen) {

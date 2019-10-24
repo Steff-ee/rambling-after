@@ -21,32 +21,34 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 	const { history, location } = useContext(RouterContext)
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 
+	const commonIconStyles = { root: { width: '44px', height: '44px' } }
+
 	const navGroups: INavProps['groups'] = [
 		{
 			links: [
 				{
-					iconProps: { iconName: iconTeaName },
+					iconProps: { iconName: iconTeaName, styles: commonIconStyles },
 					key: PageRoutes.Home,
 					name: homeTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Home }),
 					url: '',
 				},
 				{
-					iconProps: { iconName: iconBooksName },
+					iconProps: { iconName: iconBooksName, styles: commonIconStyles },
 					key: PageRoutes.Stories,
 					name: storiesTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Stories }),
 					url: '',
 				},
 				{
-					iconProps: { iconName: iconDieName },
+					iconProps: { iconName: iconDieName, styles: commonIconStyles },
 					key: PageRoutes.Games,
 					name: gamesTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.Games }),
 					url: '',
 				},
 				{
-					iconProps: { iconName: iconTorusKnotName },
+					iconProps: { iconName: iconTorusKnotName, styles: commonIconStyles },
 					key: PageRoutes.MathScience,
 					name: mathScienceTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),

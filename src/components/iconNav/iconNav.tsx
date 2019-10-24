@@ -1,5 +1,6 @@
 import { ActionButton, INavLink, INavProps, Nav } from 'office-ui-fabric-react/lib'
 import React from 'react'
+import Media from 'react-media'
 import { useToggle } from '../../shared/helpers/useToggle'
 
 // (TODO) add opening/closing animation
@@ -26,6 +27,42 @@ const onRenderLink = (showIconsOnly: boolean): INavProps['onRenderLink'] => (
 	return <>{props.name}</>
 }
 
+interface IHorizontalIconsProps {
+	icons: INavLink[]
+	style?: React.CSSProperties
+}
+
+const HorizontalIcons: React.FunctionComponent<IHorizontalIconsProps> = (
+	props: IHorizontalIconsProps
+): JSX.Element => {
+	const { style, icons } = props
+
+	return (
+		<div
+			style={{
+				...style,
+				position: 'fixed',
+				width: '100vw',
+				height: '44px',
+				top: '213px',
+				display: 'flex',
+				justifyContent: 'space-around',
+				alignItems: 'center',
+			}}
+		>
+			{icons.map(
+				(link: INavLink): JSX.Element => {
+					if (!link) {
+						return <></>
+					}
+
+					return <ActionButton {...link} onClick={link.onClick as any} key={link.key} />
+				}
+			)}
+		</div>
+	)
+}
+
 /**
  * Implemented as a HOC to allow composition with other Fabric Nav variants.
  */
@@ -41,6 +78,7 @@ export function withIconNavBehavior(
 			styles,
 			onRenderBelowContent,
 			rootStyle,
+			groups,
 			...remainingProps
 		} = props
 		const { value: showIconsOnlyState, toggleValue: toggleShowIconsOnlyState } = useToggle(
@@ -62,31 +100,52 @@ export function withIconNavBehavior(
 			},
 		}
 
+		const regularNav = (
+			<div style={{ display: 'inline-block', width }}>
+				<div style={{ width: minWidth }}>
+					<ActionButton
+						iconProps={{ iconName: 'GlobalNavButton' }}
+						onClick={(): void => {
+							// only call if uncontrolled
+							if (!isShowIconsOnlyControlled) {
+								toggleShowIconsOnlyState()
+							}
+							// always call
+							if (onIconsMenuIconClick) {
+								onIconsMenuIconClick()
+							}
+						}}
+					/>
+				</div>
+				<InnerComponent
+					{...remainingProps}
+					groups={groups}
+					styles={styles}
+					onRenderLink={onRenderLink(showIconsOnly)}
+				/>
+				{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
+			</div>
+		)
+
 		return (
 			<div style={{ ...rootStyle }}>
-				<div style={{ display: 'inline-block', width }}>
-					<div style={{ width: minWidth }}>
-						<ActionButton
-							iconProps={{ iconName: 'GlobalNavButton' }}
-							onClick={(): void => {
-								// only call if uncontrolled
-								if (!isShowIconsOnlyControlled) {
-									toggleShowIconsOnlyState()
-								}
-								// always call
-								if (onIconsMenuIconClick) {
-									onIconsMenuIconClick()
-								}
-							}}
-						/>
-					</div>
-					<InnerComponent
-						{...remainingProps}
-						styles={styles}
-						onRenderLink={onRenderLink(showIconsOnly)}
-					/>
-					{onRenderBelowContent && !showIconsOnly && onRenderBelowContent()}
-				</div>
+				<Media
+					queries={{
+						small: '(max-width: 599px)',
+						large: '(min-width: 600px)',
+					}}
+				>
+					{(matches): JSX.Element => {
+						if (matches.small && showIconsOnly && groups) {
+							// (TODO) handle multiple groups
+							const links = groups[0].links
+
+							return <HorizontalIcons style={rootStyle} icons={links} />
+						}
+
+						return regularNav
+					}}
+				</Media>
 			</div>
 		)
 	}

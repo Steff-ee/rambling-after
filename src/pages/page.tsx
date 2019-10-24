@@ -55,7 +55,7 @@ const titleStyle: React.CSSProperties = {
 
 const pivotsStyle: React.CSSProperties = {
 	margin: '30px auto',
-	width: '500px',
+	maxWidth: '500px',
 }
 
 const contentFrameStyle: React.CSSProperties = {
@@ -128,7 +128,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 						position: 'sticky',
 						top: '0px',
 						left: '0px',
-						zIndex: 2,
+						zIndex: 5,
 					}}
 				>
 					<NavBar rootStyle={{ backgroundColor: accent, position: 'absolute' }} />
@@ -160,6 +160,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 						display: 'inline-block',
 						zIndex: 3,
 						marginBottom: '100vh',
+						marginTop: '4px',
 					}}
 				>
 					<div style={{ ...contentFrameStyle, borderColor: primary }}>

@@ -75,6 +75,15 @@ const contentTextStyle: React.CSSProperties = {
 	textAlign: 'left',
 }
 
+const artistAttributionStyle: React.CSSProperties = {
+	position: 'relative',
+	width: '100vw',
+	maxWidth: '600px',
+	height: '32px',
+	padding: '6px',
+	margin: 'auto',
+}
+
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
 	const { titleText, Pivots, Content } = props
 	const { primary, secondary, accent } = useContext(ColorsContext)
@@ -168,6 +177,12 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 							<div style={contentTextStyle}>{Content}</div>
 						</div>
 					</div>
+				</div>
+				<div style={{ ...artistAttributionStyle, backgroundColor: accent, zIndex: 6 }}>
+					{`Art by `}
+					<a href={background.artistLink} target="_blank">
+						{background.artistName}
+					</a>
 				</div>
 			</div>
 		</div>

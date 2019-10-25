@@ -33,39 +33,60 @@ const defaultWinterColors: IUseColorProps = {
 	defaultThirdHueDistance: 15,
 }
 
-/**
- * (TODO) add attributions to About page
- *
- * Sylvain Sarrailh is AMAZING!!!
- * Check out their work at https://tohad.artstation.com/
- *
- * And Graham Gercken:
- * https://graham-gercken.pixels.com/
- */
+const Sarrailh = { artistName: 'Sylvain Sarrailh', artistLink: 'https://tohad.artstation.com/' }
+const Gercken = { artistName: 'Graham Gercken', artistLink: 'https://graham-gercken.pixels.com/' }
 
 // to find the original link, grab XXXX from "wallhaven-XXXX.jpg" and insert into https://wallhaven.cc/w/XXXX
 const springBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/md/wallhaven-mdo9o8.png', artist: 'Sylvain Sarrailh' },
-	{ src: 'https://w.wallhaven.cc/full/49/wallhaven-49p298.jpg', artist: 'TODO' },
-	{ src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8j3g3.jpg', artist: '' },
-	{ src: 'https://w.wallhaven.cc/full/4o/wallhaven-4opl79.jpg', artist: 'Graham Gercken' },
+	{ src: 'https://w.wallhaven.cc/full/md/wallhaven-mdo9o8.png', ...Sarrailh },
+	{
+		src: 'https://w.wallhaven.cc/full/49/wallhaven-49p298.jpg',
+		artistName: 'TODO',
+		artistLink: '',
+	},
+	{ src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8j3g3.jpg', artistName: '', artistLink: '' },
+	{ src: 'https://w.wallhaven.cc/full/4o/wallhaven-4opl79.jpg', ...Gercken },
 ]
 const summerBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/96/wallhaven-96km7k.png', artist: 'Sylvain Sarrailh' },
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g817ve.png', artist: 'Sylvain Sarrailh' },
-	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', artist: 'TODO' },
-	{ src: 'https://w.wallhaven.cc/full/qd/wallhaven-qdy527.png', artist: 'TODO' },
+	{ src: 'https://w.wallhaven.cc/full/96/wallhaven-96km7k.png', ...Sarrailh },
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g817ve.png', ...Sarrailh },
+	{
+		src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png',
+		artistName: 'TODO',
+		artistLink: '',
+	},
+	{
+		src: 'https://w.wallhaven.cc/full/qd/wallhaven-qdy527.png',
+		artistName: 'TODO',
+		artistLink: '',
+	},
 ]
 const autumnBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png', artist: 'Sylvain Sarrailh' },
-	{ src: 'https://w.wallhaven.cc/full/wy/wallhaven-wy3qwx.png', artist: 'Sylvain Sarrailh' },
-	{ src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg', artist: 'TODO' },
-	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', artist: 'Graham Gercken' },
+	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8171e.png', ...Sarrailh },
+	{ src: 'https://w.wallhaven.cc/full/wy/wallhaven-wy3qwx.png', ...Sarrailh },
+	{
+		src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg',
+		artistName: 'TODO',
+		artistLink: '',
+	},
+	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', ...Gercken },
 ]
 const winterBackgrounds: IBackground[] = [
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8ml1q.jpg', artist: 'TODO' },
-	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4yyrwd.jpg', artist: 'TODO' },
-	{ src: 'https://w.wallhaven.cc/full/lq/wallhaven-lqdrdy.jpg', artist: 'TODO' },
+	{
+		src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8ml1q.jpg',
+		artistName: 'TODO',
+		artistLink: '',
+	},
+	{
+		src: 'https://w.wallhaven.cc/full/4y/wallhaven-4yyrwd.jpg',
+		artistName: 'TODO',
+		artistLink: '',
+	},
+	{
+		src: 'https://w.wallhaven.cc/full/lq/wallhaven-lqdrdy.jpg',
+		artistName: 'TODO',
+		artistLink: '',
+	},
 ]
 
 interface ISeasonsContext {

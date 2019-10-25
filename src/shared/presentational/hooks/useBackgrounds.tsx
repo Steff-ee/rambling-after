@@ -3,7 +3,8 @@ import { Colors } from '../../helpers/constants'
 
 export interface IBackground {
 	src: string
-	artist: string
+	artistName: string
+	artistLink: string
 	color?: string
 }
 
@@ -14,7 +15,7 @@ export interface IBackgroundsContext {
 }
 
 export const BackgroundsContext = React.createContext<IBackgroundsContext>({
-	backgrounds: [{ src: '', color: Colors.Black, artist: '' }],
+	backgrounds: [{ src: '', color: Colors.Black, artistName: '', artistLink: '' }],
 	selectedIndex: 0,
 	setSelectedIndex: (index: number): void => {
 		return

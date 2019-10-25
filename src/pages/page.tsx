@@ -82,6 +82,7 @@ const artistAttributionStyle: React.CSSProperties = {
 	height: '32px',
 	padding: '6px',
 	margin: 'auto',
+	marginTop: '-44px',
 }
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {

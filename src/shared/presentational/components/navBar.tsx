@@ -8,6 +8,7 @@ import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
 import { storiesTitle } from '../../../pages/stories/stories'
 import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../../helpers/icons'
 import { PageRoutes } from '../../helpers/routes'
+import { Modes, ModesContext } from '../hooks/modeSwitcher'
 import { BackgroundPicker } from './backgroundPicker'
 import { ColorPicker } from './colorPicker'
 import { IsNavBarOpenContext } from './navBarHelpers'
@@ -20,6 +21,7 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 	const { rootStyle } = props
 	const { history, location } = useContext(RouterContext)
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
+	const { mode, setMode } = useContext(ModesContext)
 
 	const commonIconStyles = { root: { width: '44px', height: '44px' } }
 
@@ -52,6 +54,13 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 					key: PageRoutes.MathScience,
 					name: mathScienceTitle,
 					onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),
+					url: '',
+				},
+				{
+					iconProps: { iconName: 'Rotate', styles: commonIconStyles },
+					name: 'Mode Toggle',
+					onClick: (): void =>
+						setMode(mode === Modes.Classic ? Modes.Seasons : Modes.Classic),
 					url: '',
 				},
 			],

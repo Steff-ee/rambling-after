@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import { PageRoutes } from '../../shared/helpers/routes'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -102,5 +103,12 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>538</>
 	}
 
-	return <Page titleText={mathScienceTitle} Pivots={pivots} Content={pageContent} />
+	return (
+		<Page
+			pageRoute={PageRoutes.MathScience}
+			titleText={mathScienceTitle}
+			Pivots={pivots}
+			Content={pageContent}
+		/>
+	)
 }

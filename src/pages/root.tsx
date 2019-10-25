@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { PageRoutes } from '../shared/helpers/routes'
 import { IsNavBarOpenContext } from '../shared/presentational/components/navBarHelpers'
+import { Modes, ModesContext } from '../shared/presentational/hooks/modeSwitcher'
 import { SeasonsProvider } from '../shared/presentational/seasons/seasons'
 import { Games } from './games/games'
 import { Home } from './home/home'
@@ -13,24 +14,27 @@ initializeIcons()
 
 export const Root: React.FunctionComponent = (): JSX.Element => {
 	const [isNavBarOpen, setIsNavBarOpen] = useState<boolean>(false)
+	const [mode, setMode] = useState<Modes>(Modes.Classic)
 
 	return (
-		<SeasonsProvider>
-			<IsNavBarOpenContext.Provider value={{ isNavBarOpen, setIsNavBarOpen }}>
-				<link
-					href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Muli&display=swap"
-					rel="stylesheet"
-				/>
-				<BrowserRouter>
-					<Switch>
-						<Redirect exact={true} from="/" to={PageRoutes.Home} />
-						<Route path={PageRoutes.Home} component={Home} />
-						<Route path={PageRoutes.Stories} component={Stories} />
-						<Route path={PageRoutes.Games} component={Games} />
-						<Route path={PageRoutes.MathScience} component={MathScience} />
-					</Switch>
-				</BrowserRouter>
-			</IsNavBarOpenContext.Provider>
-		</SeasonsProvider>
+		<ModesContext.Provider value={{ mode, setMode }}>
+			<SeasonsProvider>
+				<IsNavBarOpenContext.Provider value={{ isNavBarOpen, setIsNavBarOpen }}>
+					<link
+						href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Muli|Montserrat&display=swap"
+						rel="stylesheet"
+					/>
+					<BrowserRouter>
+						<Switch>
+							<Redirect exact={true} from="/" to={PageRoutes.Home} />
+							<Route path={PageRoutes.Home} component={Home} />
+							<Route path={PageRoutes.Stories} component={Stories} />
+							<Route path={PageRoutes.Games} component={Games} />
+							<Route path={PageRoutes.MathScience} component={MathScience} />
+						</Switch>
+					</BrowserRouter>
+				</IsNavBarOpenContext.Provider>
+			</SeasonsProvider>
+		</ModesContext.Provider>
 	)
 }

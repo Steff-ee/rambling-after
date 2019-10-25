@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import { PageRoutes } from '../../shared/helpers/routes'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -98,5 +99,12 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>GDC</>
 	}
 
-	return <Page titleText={gamesTitle} Pivots={pivots} Content={pageContent} />
+	return (
+		<Page
+			pageRoute={PageRoutes.Games}
+			titleText={gamesTitle}
+			Pivots={pivots}
+			Content={pageContent}
+		/>
+	)
 }

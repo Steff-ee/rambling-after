@@ -1,12 +1,11 @@
 import React from 'react'
 import { Colors, websiteTitle } from '../shared/helpers/constants'
-import { PageRoutes } from '../shared/helpers/routes'
 import { defaultTextStyle, entirePageStyle, flexCenterStyle } from '../shared/helpers/styles'
 import { NavBar } from '../shared/presentational/components/navBar'
 
 export interface IPageProps {
-	pageRoute: PageRoutes
-	titleText: string
+	headerBackgroundImage: string
+	subtitleText: string
 	Pivots: JSX.Element
 	Content: JSX.Element
 }
@@ -14,38 +13,16 @@ export interface IPageProps {
 export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	props: IPageProps
 ): JSX.Element => {
-	const { titleText, Pivots, Content, pageRoute } = props
+	const { subtitleText, Pivots, Content, headerBackgroundImage } = props
 
-	// (TODO) upload these assets
-	let headerBackground: string
-	switch (pageRoute) {
-		case PageRoutes.Home:
-			// foggy trees
-			headerBackground = 'https://wallpaperaccess.com/full/109538.jpg'
-			break
-		case PageRoutes.Stories:
-			// books
-			headerBackground =
-				'https://ramblingafter.files.wordpress.com/2017/12/cropped-books-1835753_19201.jpg'
-			break
-		case PageRoutes.Games:
-			// lightbulbs
-			headerBackground =
-				'https://ramblingafter.files.wordpress.com/2017/12/cropped-photo-1491944799262-a5be522e23002.jpg'
-			break
-		case PageRoutes.MathScience:
-		default:
-			// bookshelf with lights
-			headerBackground =
-				'https://ramblingafter.files.wordpress.com/2017/10/cropped-bookshelf-with-lights.jpeg'
-	}
+	const subtitleFontSize = subtitleText.length > 12 ? 18 : 24
 
 	return (
 		<div style={{ ...defaultTextStyle, ...entirePageStyle, position: 'absolute' }}>
 			<div
 				style={{
 					...flexCenterStyle,
-					backgroundImage: `url(${headerBackground})`,
+					backgroundImage: `url(${headerBackgroundImage})`,
 					height: '400px',
 					width: '100vw',
 				}}
@@ -53,6 +30,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				<div
 					style={{
 						...flexCenterStyle,
+						flexDirection: 'column',
 						backgroundColor: Colors.OffBlack,
 						width: '600px',
 						height: '180px',
@@ -62,11 +40,14 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						style={{
 							fontSize: '32px',
 							fontFamily: 'Montserrat',
-							letterSpacing: '2px',
+							letterSpacing: '5px',
 							color: 'white',
 						}}
 					>
 						{websiteTitle}
+					</div>
+					<div style={{ color: 'lightgrey', fontSize: subtitleFontSize }}>
+						{subtitleText}
 					</div>
 				</div>
 			</div>

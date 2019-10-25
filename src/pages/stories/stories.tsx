@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import { PageRoutes } from '../../shared/helpers/routes'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -115,9 +114,13 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>Big Ideas</>
 	}
 
+	// books
+	const headerBackgroundImage =
+		'https://ramblingafter.files.wordpress.com/2017/12/cropped-books-1835753_19201.jpg'
+
 	return (
 		<Page
-			pageRoute={PageRoutes.Stories}
+			headerBackgroundImage={headerBackgroundImage}
 			titleText={storiesTitle}
 			Pivots={pivots}
 			Content={pageContent}

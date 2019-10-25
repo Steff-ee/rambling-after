@@ -10,3 +10,6 @@ export enum Colors {
 }
 
 export const websiteTitle = 'RAMBLING AFTER'
+
+export const websiteSlogan =
+	'Rambling thoughts pulse like lanterns, ambling after the yet unanswered'

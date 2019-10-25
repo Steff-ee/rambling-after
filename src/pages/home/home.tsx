@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { PageRoutes } from '../../shared/helpers/routes'
+import { websiteSlogan } from '../../shared/helpers/constants'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -91,10 +91,14 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>BLOG POST ONE</>
 	}
 
+	// foggy trees
+	const headerBackgroundImage = 'https://wallpaperaccess.com/full/109538.jpg'
+
 	return (
 		<Page
-			pageRoute={PageRoutes.Home}
+			headerBackgroundImage={headerBackgroundImage}
 			titleText={homeTitle}
+			subtitleText={websiteSlogan}
 			Pivots={pivots}
 			Content={pageContent}
 		/>

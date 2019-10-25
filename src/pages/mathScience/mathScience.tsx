@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-import { PageRoutes } from '../../shared/helpers/routes'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -103,9 +102,13 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>538</>
 	}
 
+	// bookshelf with lights
+	const headerBackgroundImage =
+		'https://ramblingafter.files.wordpress.com/2017/10/cropped-bookshelf-with-lights.jpeg'
+
 	return (
 		<Page
-			pageRoute={PageRoutes.MathScience}
+			headerBackgroundImage={headerBackgroundImage}
 			titleText={mathScienceTitle}
 			Pivots={pivots}
 			Content={pageContent}

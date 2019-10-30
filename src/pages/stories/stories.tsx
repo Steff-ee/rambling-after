@@ -7,6 +7,7 @@ import {
 import { SeasonsContext } from '../../shared/presentational/seasons/seasons'
 import { getNextSeason } from '../../shared/presentational/seasons/seasonsHelpers'
 import { Page } from '../page'
+import booksImg from 'Assets/images/books.jpg'
 
 export const storiesTitle = 'stories'
 
@@ -113,14 +114,10 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		default:
 			pageContent = <>Big Ideas</>
 	}
-
-	// books
-	const headerBackgroundImage =
-		'https://ramblingafter.files.wordpress.com/2017/12/cropped-books-1835753_19201.jpg'
-
+	
 	return (
 		<Page
-			headerBackgroundImage={headerBackgroundImage}
+			headerBackgroundImage={booksImg}
 			titleText={storiesTitle}
 			Pivots={pivots}
 			Content={pageContent}

@@ -39,7 +39,12 @@ module.exports = {
 			},
 		],
 	},
-	resolve: { extensions: ['*', '.js', '.jsx', '.ts', '.tsx'] },
+	resolve: {
+		alias: {
+			Assets: path.resolve(__dirname, 'assets/'),
+		},
+		extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+	},
 	output: {
 		path: path.resolve(__dirname, 'dist/'),
 		publicPath: '/',

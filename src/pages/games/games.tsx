@@ -1,3 +1,4 @@
+import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
 import {
 	IPivotTitlePhrases,
@@ -98,12 +99,9 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>GDC</>
 	}
 
-	const headerBackgroundImage =
-		'https://ramblingafter.files.wordpress.com/2017/12/cropped-photo-1491944799262-a5be522e23002.jpg'
-
 	return (
 		<Page
-			headerBackgroundImage={headerBackgroundImage}
+			headerBackgroundImage={lightbulbsImg}
 			titleText={gamesTitle}
 			Pivots={pivots}
 			Content={pageContent}

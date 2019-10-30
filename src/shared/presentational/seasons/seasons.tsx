@@ -1,6 +1,6 @@
+import sarrailhAutumnImg0 from 'Assets/images/sarrailh_autumn_0.png'
+import sarrailhAutumnImg1 from 'Assets/images/sarrailh_autumn_1.png'
 import React, { useState } from 'react'
-import sarrailhAutumn0 from '../../../../assets/images/sarrailh_autumn_0.png'
-import sarrailhAutumn1 from '../../../../assets/images/sarrailh_autumn_1.png'
 import { Colors } from '../../helpers/constants'
 import {
 	BackgroundsContext,
@@ -62,8 +62,8 @@ const summerBackgrounds: IBackground[] = [
 	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', ...Sarrailh },
 ]
 const autumnBackgrounds: IBackground[] = [
-	{ src: sarrailhAutumn0, ...Sarrailh },
-	{ src: sarrailhAutumn1, ...Sarrailh },
+	{ src: sarrailhAutumnImg0, ...Sarrailh },
+	{ src: sarrailhAutumnImg1, ...Sarrailh },
 	{ src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg', ...Grivet },
 	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', ...Gercken },
 ]

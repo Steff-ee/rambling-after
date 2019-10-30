@@ -1,3 +1,4 @@
+import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React from 'react'
 import { Colors, websiteTitle } from '../shared/helpers/constants'
 import { defaultTextStyle, entirePageStyle, flexCenterStyle } from '../shared/helpers/styles'
@@ -51,7 +52,15 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 					</div>
 				</div>
 			</div>
-			<NavBar rootStyle={{ backgroundColor: 'lightGrey', display: 'inline-block' }} />
+			<div
+				style={{
+					backgroundImage: `url(${backgroundTextureImg})`,
+					width: '100%',
+					height: '1005"',
+				}}
+			>
+				<NavBar rootStyle={{ backgroundColor: 'lightGrey', display: 'inline-block' }} />
+			</div>
 		</div>
 	)
 }

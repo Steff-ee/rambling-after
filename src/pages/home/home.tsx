@@ -1,3 +1,4 @@
+import foggyImg from 'Assets/images/foggy_mountains.jpg'
 import React, { useContext, useEffect } from 'react'
 import { websiteSlogan } from '../../shared/helpers/constants'
 import {
@@ -91,12 +92,9 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <>BLOG POST ONE</>
 	}
 
-	// foggy trees
-	const headerBackgroundImage = 'https://wallpaperaccess.com/full/109538.jpg'
-
 	return (
 		<Page
-			headerBackgroundImage={headerBackgroundImage}
+			headerBackgroundImage={foggyImg}
 			titleText={homeTitle}
 			subtitleText={websiteSlogan}
 			Pivots={pivots}

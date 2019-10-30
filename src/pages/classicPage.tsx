@@ -24,6 +24,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				style={{
 					...flexCenterStyle,
 					backgroundImage: `url(${headerBackgroundImage})`,
+					backgroundSize: 'cover',
 					height: '400px',
 					width: '100vw',
 				}}

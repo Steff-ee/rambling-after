@@ -1,4 +1,4 @@
-import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
+import cartographyImg from 'Assets/images/cartography.jpg'
 import React, { useContext, useEffect } from 'react'
 import {
 	IPivotTitlePhrases,
@@ -105,7 +105,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 
 	return (
 		<Page
-			headerBackgroundImage={bookshelfImg}
+			headerBackgroundImage={cartographyImg}
 			titleText={mathScienceTitle}
 			Pivots={pivots}
 			Content={pageContent}

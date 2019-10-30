@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --mode development",
+		"build": "webpack",
 		"lint": "tslint --project tsconfig.json",
 		"tslint-check": "tslint-config-prettier-check ./tslint.json",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -37,6 +38,7 @@
 		"@types/react-router-dom": "4.3.5",
 		"babel-loader": "^8.0.6",
 		"css-loader": "^1.0.1",
+		"file-loader": "^4.2.0",
 		"source-map-loader": "^0.2.4",
 		"style-loader": "^0.23.1",
 		"ts-loader": "^6.2.0",

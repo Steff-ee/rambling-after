@@ -63,3 +63,6 @@ typings/
 # misc
 .cache
 public/page-data
+
+# assets
+dist/assets

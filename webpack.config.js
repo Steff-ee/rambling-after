@@ -26,6 +26,17 @@ module.exports = {
 				test: /\.js$/,
 				loader: 'source-map-loader',
 			},
+			{
+				test: /\.(png|svg|jpg|gif)$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[path][name]-[hash:8].[ext]',
+						},
+					},
+				],
+			},
 		],
 	},
 	resolve: { extensions: ['*', '.js', '.jsx', '.ts', '.tsx'] },
@@ -35,7 +46,7 @@ module.exports = {
 		filename: 'bundle.js',
 	},
 	devServer: {
-		contentBase: path.join(__dirname, 'public/'),
+		contentBase: path.join(__dirname, 'dist/'),
 		port: 3000,
 		publicPath: 'http://localhost:3000/dist/',
 		hotOnly: true,

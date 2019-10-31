@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Colors } from '../shared/helpers/constants'
-import { defaultTextStyle, entirePageStyle } from '../shared/helpers/styles'
+import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle } from '../shared/helpers/styles'
 import { CircadianMood, getCircadianMood } from '../shared/helpers/time'
 import { Fireflies } from '../shared/presentational/components/fireflies'
 // (TODO) fade-in is not hiding the loading bars
@@ -16,20 +16,6 @@ export interface IPageProps {
 }
 
 const transparentColor = 'rgba(10, 10, 10, 0.5)'
-
-const parallaxRootStyle: React.CSSProperties = {
-	...entirePageStyle,
-	overflowX: 'hidden',
-	overflowY: 'scroll',
-	perspective: '1px',
-	perspectiveOrigin: '0 0',
-	position: 'fixed',
-}
-
-const parallaxGroupStyle: React.CSSProperties = {
-	position: 'relative',
-	transformStyle: 'preserve-3d',
-}
 
 const titleStyle: React.CSSProperties = {
 	fontFamily: 'Cabin Sketch',

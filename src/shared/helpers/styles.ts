@@ -18,3 +18,17 @@ export const flexCenterStyle: React.CSSProperties = {
 	justifyContent: 'center',
 	alignItems: 'center',
 }
+
+export const parallaxRootStyle: React.CSSProperties = {
+	...entirePageStyle,
+	overflowX: 'hidden',
+	overflowY: 'scroll',
+	perspective: '1px',
+	perspectiveOrigin: '0 0',
+	position: 'fixed',
+}
+
+export const parallaxGroupStyle: React.CSSProperties = {
+	position: 'relative',
+	transformStyle: 'preserve-3d',
+}

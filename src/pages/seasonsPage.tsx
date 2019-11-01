@@ -1,4 +1,6 @@
 import React, { useContext } from 'react'
+import Media from 'react-media'
+import { IconLayout } from '../components/iconNav/iconNav'
 import { Colors } from '../shared/helpers/constants'
 import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle } from '../shared/helpers/styles'
 import { CircadianMood, getCircadianMood } from '../shared/helpers/time'
@@ -115,7 +117,33 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 						zIndex: 5,
 					}}
 				>
-					<NavBar rootStyle={{ backgroundColor: accent, position: 'absolute' }} />
+					<Media
+						queries={{
+							small: '(max-width: 699px)',
+							large: '(min-width: 700px)',
+						}}
+					>
+						{(matches): JSX.Element => {
+							if (matches.small) {
+								return (
+									<NavBar
+										iconLayout={IconLayout.Horizontal}
+										rootStyle={{ backgroundColor: accent }}
+									/>
+								)
+							}
+
+							return (
+								<NavBar
+									iconLayout={IconLayout.Vertical}
+									rootStyle={{
+										backgroundColor: accent,
+										position: 'absolute',
+									}}
+								/>
+							)
+						}}
+					</Media>
 				</div>
 				<div
 					style={{

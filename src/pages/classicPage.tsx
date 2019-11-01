@@ -1,6 +1,7 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React from 'react'
 import Media from 'react-media'
+import { IconLayout } from '../components/iconNav/iconNav'
 import { Colors, websiteTitle } from '../shared/helpers/constants'
 import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle } from '../shared/helpers/styles'
 import { NavBar } from '../shared/presentational/components/navBar'
@@ -126,7 +127,9 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 								}}
 							>
 								<NavBar
+									iconLayout={IconLayout.Horizontal}
 									rootStyle={{
+										position: 'sticky',
 										backgroundColor: 'lightGrey',
 										display: 'inline-block',
 									}}

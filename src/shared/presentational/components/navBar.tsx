@@ -1,7 +1,7 @@
 import { INavProps } from 'office-ui-fabric-react/lib'
 import React, { useContext } from 'react'
 import { __RouterContext as RouterContext } from 'react-router'
-import { IconNav } from '../../../components/iconNav/iconNav'
+import { IconLayout, IconNav } from '../../../components/iconNav/iconNav'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
 import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
@@ -14,11 +14,12 @@ import { ColorPicker } from './colorPicker'
 import { IsNavBarOpenContext } from './navBarHelpers'
 
 export interface INavBarProps {
+	iconLayout: IconLayout
 	rootStyle?: React.CSSProperties
 }
 
 export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
-	const { rootStyle } = props
+	const { rootStyle, iconLayout } = props
 	const { history, location } = useContext(RouterContext)
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 	const { mode, setMode } = useContext(ModesContext)
@@ -69,6 +70,7 @@ export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProp
 
 	return (
 		<IconNav
+			iconLayout={iconLayout}
 			selectedKey={location.pathname}
 			rootStyle={rootStyle}
 			showIconsOnly={!isNavBarOpen}

@@ -1,15 +1,19 @@
 import React, { useContext } from 'react'
 import Media from 'react-media'
-import { IconLayout } from '../components/iconNav/iconNav'
-import { Colors } from '../shared/helpers/constants'
-import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle } from '../shared/helpers/styles'
-import { CircadianMood, getCircadianMood } from '../shared/helpers/time'
-import { Fireflies } from '../shared/presentational/components/fireflies'
+import { IconLayout } from '../../components/iconNav/iconNav'
+import { Colors } from '../../shared/helpers/constants'
+import {
+	defaultTextStyle,
+	parallaxGroupStyle,
+	parallaxRootStyle,
+} from '../../shared/helpers/styles'
+import { CircadianMood, getCircadianMood } from '../../shared/helpers/time'
+import { Fireflies } from '../../shared/presentational/components/fireflies'
 // (TODO) fade-in is not hiding the loading bars
 // import { Img } from 'react-progressive-loader'
-import { NavBar } from '../shared/presentational/components/navBar'
-import { BackgroundsContext } from '../shared/presentational/hooks/useBackgrounds'
-import { ColorsContext } from '../shared/presentational/hooks/useColors'
+import { NavBar } from '../../shared/presentational/components/navBar'
+import { BackgroundsContext } from '../../shared/presentational/hooks/useBackgrounds'
+import { ColorsContext } from '../../shared/presentational/hooks/useColors'
 
 export interface IPageProps {
 	titleText: string

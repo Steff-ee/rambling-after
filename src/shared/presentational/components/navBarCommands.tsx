@@ -1,13 +1,13 @@
 import { INavLink } from 'office-ui-fabric-react/lib'
 import { useContext } from 'react'
 import { __RouterContext as RouterContext } from 'react-router'
+import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
 import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
 import { storiesTitle } from '../../../pages/stories/stories'
 import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../../helpers/icons'
 import { PageRoutes } from '../../helpers/routes'
-import { Modes, ModesContext } from '../hooks/modeSwitcher'
 
 const commonIconStyles = { root: { width: '44px', height: '44px' } }
 

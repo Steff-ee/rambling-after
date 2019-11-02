@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { Modes, ModesContext } from '../shared/presentational/hooks/modeSwitcher'
-import { ClassicPage } from './classicPage'
-import { SeasonsPage } from './seasonsPage'
+import { ClassicPage } from '../modes/classic/classicPage'
+import { Modes, ModesContext } from '../modes/modeSwitcher'
+import { SeasonsPage } from '../modes/seasons/seasonsPage'
 
 export interface IPageProps {
 	headerBackgroundImage: string

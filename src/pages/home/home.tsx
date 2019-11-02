@@ -1,13 +1,13 @@
 import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
+import { SeasonsContext } from '../../modes/seasons/seasons'
+import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
 import { websiteSlogan } from '../../shared/helpers/constants'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
-import { SeasonsContext } from '../../shared/presentational/seasons/seasons'
-import { getNextSeason } from '../../shared/presentational/seasons/seasonsHelpers'
 import { Page } from '../page'
 
 export const homeTitle = 'home'

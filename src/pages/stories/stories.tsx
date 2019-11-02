@@ -1,13 +1,13 @@
+import booksImg from 'Assets/images/books.jpg'
 import React, { useContext, useEffect } from 'react'
+import { SeasonsContext } from '../../modes/seasons/seasons'
+import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
 	usePivots,
 } from '../../shared/presentational/hooks/usePivots'
-import { SeasonsContext } from '../../shared/presentational/seasons/seasons'
-import { getNextSeason } from '../../shared/presentational/seasons/seasonsHelpers'
 import { Page } from '../page'
-import booksImg from 'Assets/images/books.jpg'
 
 export const storiesTitle = 'stories'
 
@@ -114,7 +114,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		default:
 			pageContent = <>Big Ideas</>
 	}
-	
+
 	return (
 		<Page
 			headerBackgroundImage={booksImg}

@@ -1,14 +1,19 @@
 import sarrailhAutumnImg0 from 'Assets/images/sarrailh_autumn_0.png'
 import sarrailhAutumnImg1 from 'Assets/images/sarrailh_autumn_1.png'
 import React, { useState } from 'react'
-import { Colors } from '../../helpers/constants'
+import { Colors } from '../../shared/helpers/constants'
 import {
 	BackgroundsContext,
 	IBackground,
 	IBackgroundsContext,
 	useBackgrounds,
-} from '../hooks/useBackgrounds'
-import { ColorsContext, IColorsContext, IUseColorProps, useColors } from '../hooks/useColors'
+} from '../../shared/presentational/hooks/useBackgrounds'
+import {
+	ColorsContext,
+	IColorsContext,
+	IUseColorProps,
+	useColors,
+} from '../../shared/presentational/hooks/useColors'
 import { getSeason, Seasons } from './seasonsHelpers'
 
 const defaultSpringColors: IUseColorProps = {

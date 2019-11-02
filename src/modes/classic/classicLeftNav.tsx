@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router'
-import { IconLayout, IconNav } from '../../components/iconNav/iconNav'
+import { IconNav } from '../../components/iconNav/iconNav'
+import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
 
 export interface IClassicRightNavProps {
@@ -19,9 +20,7 @@ export const ClassicLeftNav: React.FunctionComponent<IClassicRightNavProps> = (
 			iconLayout={IconLayout.Horizontal}
 			selectedKey={location.pathname}
 			rootStyle={rootStyle}
-			showIconsOnly={true}
-			isShowIconsOnlyControlled={true}
-			groups={[{ links: [changeModeCommand] }]}
+			navItems={[changeModeCommand]}
 		/>
 	)
 }

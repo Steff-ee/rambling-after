@@ -1,7 +1,7 @@
-import { INavProps } from 'office-ui-fabric-react/lib'
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router'
-import { IconLayout, IconNav } from '../../components/iconNav/iconNav'
+import { IconNav } from '../../components/iconNav/iconNav'
+import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
 import { ColorPicker } from '../../shared/presentational/components/colorPicker'
 import {
@@ -24,20 +24,13 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 	const navigationLinks = useNavigationLinks()
 	const changeModeCommand = useChangeModeCommand()
 
-	const navGroups: INavProps['groups'] = [
-		{
-			links: [...navigationLinks, changeModeCommand],
-		},
-	]
-
 	return (
 		<IconNav
 			iconLayout={iconLayout}
 			selectedKey={location.pathname}
 			rootStyle={rootStyle}
-			showIconsOnly={!isNavBarOpen}
-			isShowIconsOnlyControlled={true}
-			groups={navGroups}
+			showIconLabels={isNavBarOpen}
+			navItems={[...navigationLinks, changeModeCommand]}
 			onRenderBelowContent={(): JSX.Element => (
 				<>
 					<ColorPicker />

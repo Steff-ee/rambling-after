@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import Media from 'react-media'
-import { IconLayout } from '../../components/iconNav/iconNav'
+import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,

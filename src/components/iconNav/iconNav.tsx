@@ -45,8 +45,7 @@ const HorizontalIcons: React.FunctionComponent<IHorizontalIconsProps> = (
 	return (
 		<div
 			style={{
-				position: 'fixed',
-				width: '100vw',
+				width: `${icons.length * 64}px`,
 				height: '44px',
 				top: '213px',
 				display: 'flex',

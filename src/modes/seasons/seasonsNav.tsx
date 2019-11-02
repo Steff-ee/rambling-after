@@ -1,20 +1,25 @@
 import { INavProps } from 'office-ui-fabric-react/lib'
 import React, { useContext } from 'react'
-import { __RouterContext as RouterContext } from 'react-router'
-import { IconLayout, IconNav } from '../../../components/iconNav/iconNav'
-import { BackgroundPicker } from './backgroundPicker'
-import { ColorPicker } from './colorPicker'
-import { useChangeModeCommand, useNavigationLinks } from './navBarCommands'
-import { IsNavBarOpenContext } from './navBarHelpers'
+import { useLocation } from 'react-router'
+import { IconLayout, IconNav } from '../../components/iconNav/iconNav'
+import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
+import { ColorPicker } from '../../shared/presentational/components/colorPicker'
+import {
+	useChangeModeCommand,
+	useNavigationLinks,
+} from '../../shared/presentational/components/navBarCommands'
+import { IsNavBarOpenContext } from '../../shared/presentational/components/navBarHelpers'
 
 export interface INavBarProps {
 	iconLayout: IconLayout
 	rootStyle?: React.CSSProperties
 }
 
-export const NavBar: React.FunctionComponent<INavBarProps> = (props: INavBarProps): JSX.Element => {
+export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
+	props: INavBarProps
+): JSX.Element => {
 	const { rootStyle, iconLayout } = props
-	const { location } = useContext(RouterContext)
+	const location = useLocation()
 	const { isNavBarOpen, setIsNavBarOpen } = useContext(IsNavBarOpenContext)
 	const navigationLinks = useNavigationLinks()
 	const changeModeCommand = useChangeModeCommand()

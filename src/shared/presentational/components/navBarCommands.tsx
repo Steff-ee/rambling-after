@@ -1,6 +1,6 @@
 import { INavLink } from 'office-ui-fabric-react/lib'
 import { useContext } from 'react'
-import { __RouterContext as RouterContext } from 'react-router'
+import { useHistory } from 'react-router'
 import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
@@ -12,7 +12,7 @@ import { PageRoutes } from '../../helpers/routes'
 const commonIconStyles = { root: { width: '44px', height: '44px' } }
 
 export const useNavigationLinks = (): INavLink[] => {
-	const { history } = useContext(RouterContext)
+	const history = useHistory()
 
 	return [
 		{

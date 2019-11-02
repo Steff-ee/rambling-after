@@ -1,14 +1,14 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React from 'react'
 import Media from 'react-media'
-import { IconLayout } from '../../components/iconNav/iconNav'
 import { Colors, websiteTitle } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
 } from '../../shared/helpers/styles'
-import { NavBar } from '../../shared/presentational/components/navBar'
+import { ClassicLeftNav } from './classicLeftNav'
+import { ClassicRightNav } from './classicRightNav'
 
 export interface IPageProps {
 	headerBackgroundImage: string
@@ -116,29 +116,28 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						<div>
 							<div
 								style={{
-									backgroundColor: Colors.OffBlack,
-									width: '100%',
-									height: '64px',
-									marginTop: '-1px',
-								}}
-							/>
-							<div
-								style={{
 									backgroundImage: `url(${backgroundTextureImg})`,
 									width: '100%',
 									height: '100%',
 									position: 'sticky',
 								}}
 							>
-								<NavBar
-									iconLayout={IconLayout.Horizontal}
-									rootStyle={{
+								<div
+									style={{
 										position: 'sticky',
-										backgroundColor: 'lightGrey',
-										display: 'inline-block',
+										top: 0,
+										backgroundColor: Colors.OffBlack,
+										width: '100%',
+										height: '64px',
+										marginTop: '-1px',
+										display: 'flex',
+										justifyContent: 'space-between',
 									}}
-								/>
-								{Content}
+								>
+									<ClassicRightNav rootStyle={{ backgroundColor: 'lightGrey' }} />
+									<ClassicLeftNav rootStyle={{ backgroundColor: 'lightGrey' }} />
+								</div>
+								<div style={{ maxWidth: '800px', margin: 'auto' }}>{Content}</div>
 							</div>
 						</div>
 					</div>

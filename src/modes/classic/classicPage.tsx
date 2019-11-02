@@ -104,7 +104,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 									fontWeight: 600,
 									fontFamily: 'Montserrat',
 									color: Colors.LightSand,
-									// filter: `drop-shadow(-1px 1px 1px ${Colors.MaroonMud})`,
+									filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 								}}
 							>
 								{websiteTitle}

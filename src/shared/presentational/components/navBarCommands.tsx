@@ -1,8 +1,8 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import {
-	faBurn,
 	faChessKnight,
 	faFeatherAlt,
+	faGlobeAmericas,
 	faPoll,
 	faToggleOff,
 	faToggleOn,
@@ -27,7 +27,7 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 
 	return [
 		{
-			icon: <FontAwesomeIcon icon={faBurn} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
 			onClick: (): void => history.push({ pathname: PageRoutes.Home }),

@@ -1,4 +1,4 @@
-import cartographyImg from 'Assets/images/cartography.jpg'
+import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
@@ -105,7 +105,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 
 	return (
 		<Page
-			headerBackgroundImage={cartographyImg}
+			headerBackgroundImage={bookshelfImg}
 			titleText={mathScienceTitle}
 			Pivots={pivots}
 			Content={pageContent}

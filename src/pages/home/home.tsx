@@ -1,4 +1,4 @@
-import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
+import cartographyImg from 'Assets/images/cartography.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
@@ -94,7 +94,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 
 	return (
 		<Page
-			headerBackgroundImage={bookshelfImg}
+			headerBackgroundImage={cartographyImg}
 			titleText={homeTitle}
 			subtitleText={websiteSlogan}
 			Pivots={pivots}

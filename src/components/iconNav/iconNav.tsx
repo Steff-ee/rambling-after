@@ -1,6 +1,6 @@
 import React from 'react'
 import { IconLayout, IIconNavProps, INavItem } from './iconNav.types'
-import { NavItem as DefaultNavItem, NavItemLabelPosition } from './navItem'
+import { INavItemProps, NavItem as DefaultNavItem, NavItemLabelPosition } from './navItem'
 
 // (TODO) add selected key
 
@@ -19,19 +19,29 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 		onRenderBelowContent,
 		rootStyle,
 		NavItem: InputNavItem,
+		iconWidth,
+		iconHeight,
+		labelWidth,
 	} = props
 	const NavItem = InputNavItem ? InputNavItem : DefaultNavItem
+	const commonIconProps: Pick<INavItemProps, 'width' | 'height' | 'labelWidth'> = {
+		width: iconWidth || '64px',
+		height: iconHeight || '64px',
+		labelWidth: labelWidth || '248px',
+	}
 
 	if (iconLayout === IconLayout.Horizontal) {
 		return (
 			<div
 				style={{
+					display: 'flex',
 					...rootStyle,
 				}}
 			>
 				{navItems.map(
 					(item: INavItem): JSX.Element => (
 						<NavItem
+							{...commonIconProps}
 							{...item}
 							labelPosition={NavItemLabelPosition.Hover}
 							key={item.id}
@@ -42,23 +52,25 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 		)
 	}
 
-	const minWidth = '60px'
-	const width = showIconLabels ? '300px' : minWidth
 	const labelPosition = showIconLabels ? NavItemLabelPosition.Right : NavItemLabelPosition.None
 
 	return (
 		<div style={rootStyle}>
-			<div style={{ display: 'inline-block', width }}>
-				<div style={{ width: minWidth }}>
-					<NavItem
-						labelPosition={NavItemLabelPosition.None}
-						iconProps={{ iconName: 'GlobalNavButton' }}
-						onClick={onIconsMenuIconClick}
-					/>
-				</div>
+			<div style={{ display: 'flex', flexDirection: 'column' }}>
+				<NavItem
+					{...commonIconProps}
+					labelPosition={NavItemLabelPosition.None}
+					iconProps={{ iconName: 'GlobalNavButton' }}
+					onClick={onIconsMenuIconClick}
+				/>
 				{navItems.map(
 					(item: INavItem): JSX.Element => (
-						<NavItem {...item} labelPosition={labelPosition} key={item.id} />
+						<NavItem
+							{...commonIconProps}
+							{...item}
+							labelPosition={labelPosition}
+							key={item.id}
+						/>
 					)
 				)}
 				{onRenderBelowContent && showIconLabels && onRenderBelowContent()}

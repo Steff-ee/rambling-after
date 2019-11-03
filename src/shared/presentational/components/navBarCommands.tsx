@@ -1,3 +1,4 @@
+import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import {
 	faBurn,
 	faChessKnight,
@@ -54,12 +55,20 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 export const useChangeModeCommand = (color: string): INavItem => {
 	const { mode, setMode } = useContext(ModesContext)
 
-	const icon = mode === Modes.Classic ? faToggleOff : faToggleOn
+	let icon: IconProp
+	let label: string
+	if (mode === Modes.Classic) {
+		icon = faToggleOff
+		label = 'seasons mode'
+	} else {
+		icon = faToggleOn
+		label = 'classic mode'
+	}
 
 	return {
 		icon: <FontAwesomeIcon icon={icon} {...commonIconProps} style={{ color }} />,
 		id: 'ModeToggleCommand',
-		label: 'Mode Toggle',
+		label,
 		onClick: (): void => setMode(mode === Modes.Classic ? Modes.Seasons : Modes.Classic),
 	}
 }

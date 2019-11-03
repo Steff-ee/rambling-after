@@ -1,5 +1,3 @@
-import { IIconProps } from 'office-ui-fabric-react/lib'
-
 export enum IconLayout {
 	Horizontal,
 	Vertical,
@@ -7,7 +5,7 @@ export enum IconLayout {
 
 export interface INavItem {
 	id: string
-	iconProps: IIconProps
+	icon: JSX.Element
 	onClick?: () => void
 	label?: string
 }

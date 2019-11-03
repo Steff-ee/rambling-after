@@ -134,8 +134,8 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 										justifyContent: 'space-between',
 									}}
 								>
-									<ClassicRightNav rootStyle={{ backgroundColor: 'lightGrey' }} />
-									<ClassicLeftNav rootStyle={{ backgroundColor: 'lightGrey' }} />
+									<ClassicRightNav />
+									<ClassicLeftNav />
 								</div>
 								<div style={{ maxWidth: '800px', margin: 'auto' }}>{Content}</div>
 							</div>

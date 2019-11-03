@@ -1,40 +1,49 @@
-import { useContext } from 'react'
+import {
+	faBurn,
+	faChessKnight,
+	faFeatherAlt,
+	faPoll,
+	faToggleOff,
+	faToggleOn,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
 import { INavItem } from '../../../components/iconNav/iconNav.types'
 import { Modes, ModesContext } from '../../../modes/modeSwitcher'
-import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
 import { mathScienceTitle } from '../../../pages/mathScience/mathScience'
 import { storiesTitle } from '../../../pages/stories/stories'
-import { iconBooksName, iconDieName, iconTeaName, iconTorusKnotName } from '../../helpers/icons'
 import { PageRoutes } from '../../helpers/routes'
 
-const commonIconStyles = { root: { width: '44px', height: '44px' } }
+export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
-export const useNavigationLinks = (): INavItem[] => {
+export const useNavigationLinks = (color: string): INavItem[] => {
 	const history = useHistory()
+
+	const commonProps = { ...commonIconProps, style: { color } }
 
 	return [
 		{
-			iconProps: { iconName: iconTeaName, styles: commonIconStyles },
+			icon: <FontAwesomeIcon icon={faBurn} {...commonProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
 			onClick: (): void => history.push({ pathname: PageRoutes.Home }),
 		},
 		{
-			iconProps: { iconName: iconBooksName, styles: commonIconStyles },
+			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonProps} />,
 			id: PageRoutes.Stories,
 			label: storiesTitle,
 			onClick: (): void => history.push({ pathname: PageRoutes.Stories }),
 		},
 		{
-			iconProps: { iconName: iconDieName, styles: commonIconStyles },
-			id: PageRoutes.Games,
-			label: gamesTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Games }),
+			icon: <FontAwesomeIcon icon={faChessKnight} {...commonProps} />,
+			id: PageRoutes.MathScience,
+			label: mathScienceTitle,
+			onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),
 		},
 		{
-			iconProps: { iconName: iconTorusKnotName, styles: commonIconStyles },
+			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
 			id: PageRoutes.MathScience,
 			label: mathScienceTitle,
 			onClick: (): void => history.push({ pathname: PageRoutes.MathScience }),
@@ -42,11 +51,13 @@ export const useNavigationLinks = (): INavItem[] => {
 	]
 }
 
-export const useChangeModeCommand = (): INavItem => {
+export const useChangeModeCommand = (color: string): INavItem => {
 	const { mode, setMode } = useContext(ModesContext)
 
+	const icon = mode === Modes.Classic ? faToggleOff : faToggleOn
+
 	return {
-		iconProps: { iconName: 'Rotate', styles: commonIconStyles },
+		icon: <FontAwesomeIcon icon={icon} {...commonIconProps} style={{ color }} />,
 		id: 'ModeToggleCommand',
 		label: 'Mode Toggle',
 		onClick: (): void => setMode(mode === Modes.Classic ? Modes.Seasons : Modes.Classic),

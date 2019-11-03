@@ -1,3 +1,5 @@
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import { IconLayout, IIconNavProps, INavItem } from './iconNav.types'
 import { INavItemProps, NavItem as DefaultNavItem, NavItemLabelPosition } from './navItem'
@@ -60,7 +62,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 				<NavItem
 					{...commonIconProps}
 					labelPosition={NavItemLabelPosition.None}
-					iconProps={{ iconName: 'GlobalNavButton' }}
+					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
 					onClick={onIconsMenuIconClick}
 				/>
 				{navItems.map(

@@ -2,24 +2,17 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import { IconNav } from '../../components/iconNav/iconNav'
 import { IconLayout } from '../../components/iconNav/iconNav.types'
+import { Colors } from '../../shared/helpers/constants'
 import { useNavigationLinks } from '../../shared/presentational/components/navBarCommands'
 
-export interface IClassicRightNavProps {
-	rootStyle?: React.CSSProperties
-}
-
-export const ClassicRightNav: React.FunctionComponent<IClassicRightNavProps> = (
-	props: IClassicRightNavProps
-): JSX.Element => {
-	const { rootStyle } = props
+export const ClassicRightNav: React.FunctionComponent = (): JSX.Element => {
 	const location = useLocation()
-	const links = useNavigationLinks()
+	const links = useNavigationLinks(Colors.LightSand)
 
 	return (
 		<IconNav
 			iconLayout={IconLayout.Horizontal}
 			selectedKey={location.pathname}
-			rootStyle={rootStyle}
 			navItems={links}
 		/>
 	)

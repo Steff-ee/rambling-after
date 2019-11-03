@@ -7,6 +7,7 @@ import {
 	parallaxGroupStyle,
 	parallaxRootStyle,
 } from '../../shared/helpers/styles'
+import { classicColors } from './classicConstants'
 import { ClassicLeftNav } from './classicLeftNav'
 import { ClassicRightNav } from './classicRightNav'
 
@@ -58,7 +59,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						>
 							<div
 								style={{
-									backgroundColor: Colors.OffBlack,
+									backgroundColor: classicColors.secondary,
 									width: '100%',
 									height: `${topBarHeight}px`,
 								}}
@@ -103,7 +104,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 									letterSpacing: titleLetterSpacing,
 									fontWeight: 600,
 									fontFamily: 'Montserrat',
-									color: Colors.LightSand,
+									color: classicColors.primary,
 									filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 								}}
 							>
@@ -126,7 +127,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 									style={{
 										position: 'sticky',
 										top: 0,
-										backgroundColor: Colors.OffBlack,
+										backgroundColor: classicColors.secondary,
 										width: '100%',
 										height: '64px',
 										marginTop: '-1px',

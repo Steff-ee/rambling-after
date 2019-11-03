@@ -3,6 +3,11 @@ export enum IconLayout {
 	Vertical,
 }
 
+export enum NavOrientation {
+	Left,
+	Right,
+}
+
 export interface INavItem {
 	id: string
 	icon: JSX.Element
@@ -19,6 +24,9 @@ export interface IIconNavProps {
 
 	/* Whether to show icons vertically or horizontally */
 	iconLayout: IconLayout
+
+	/* Whether the nav is on the left or right */
+	orientation: NavOrientation
 
 	/* In vertical mode, this controls whether or not to show the icon labels */
 	showIconLabels?: boolean

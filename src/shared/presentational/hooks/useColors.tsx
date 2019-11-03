@@ -27,7 +27,7 @@ const deriveColors = (
 	return { primary, secondary: scheme[0].toCSS(), accent: scheme[1].toCSS() }
 }
 
-export const ColorsContext = React.createContext<IColorsContext>({
+export const defaultColorsContext = {
 	primary: Colors.Black,
 	secondary: Colors.Black,
 	accent: Colors.Black,
@@ -42,7 +42,9 @@ export const ColorsContext = React.createContext<IColorsContext>({
 	setThirdHueDistance: (distance: number): void => {
 		return
 	},
-})
+}
+
+export const ColorsContext = React.createContext<IColorsContext>(defaultColorsContext)
 
 export interface IUseColorProps {
 	defaultPrimary: string

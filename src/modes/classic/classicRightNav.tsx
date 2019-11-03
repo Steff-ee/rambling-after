@@ -1,19 +1,20 @@
 import React from 'react'
 import { useLocation } from 'react-router'
 import { IconNav } from '../../components/iconNav/iconNav'
-import { IconLayout } from '../../components/iconNav/iconNav.types'
-import { Colors } from '../../shared/helpers/constants'
+import { IconLayout, NavOrientation } from '../../components/iconNav/iconNav.types'
 import { useNavigationLinks } from '../../shared/presentational/components/navBarCommands'
+import { classicColors } from './classicConstants'
 
 export const ClassicRightNav: React.FunctionComponent = (): JSX.Element => {
 	const location = useLocation()
-	const links = useNavigationLinks(Colors.LightSand)
+	const links = useNavigationLinks(classicColors.primary)
 
 	return (
 		<IconNav
 			iconLayout={IconLayout.Horizontal}
 			selectedKey={location.pathname}
 			navItems={links}
+			orientation={NavOrientation.Right}
 		/>
 	)
 }

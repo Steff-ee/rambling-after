@@ -9,7 +9,6 @@ import {
 	useBackgrounds,
 } from '../../shared/presentational/hooks/useBackgrounds'
 import {
-	ColorsContext,
 	IColorsContext,
 	IUseColorProps,
 	useColors,
@@ -90,8 +89,12 @@ export const SeasonsContext = React.createContext<ISeasonsContext>({
 	},
 })
 
-export const SeasonsProvider: React.FunctionComponent = (
-	props: React.PropsWithChildren<{}>
+interface ISeasonsProviderProps {
+	children: (colors: IColorsContext) => React.ReactNode
+}
+
+export const SeasonsProvider: React.FunctionComponent<ISeasonsProviderProps> = (
+	props: ISeasonsProviderProps
 ): JSX.Element => {
 	const { children } = props
 	const [season, setSeason] = useState<Seasons>(getSeason(new Date()))
@@ -131,11 +134,9 @@ export const SeasonsProvider: React.FunctionComponent = (
 
 	return (
 		<SeasonsContext.Provider value={{ season, setSeason }}>
-			<ColorsContext.Provider value={colors}>
-				<BackgroundsContext.Provider value={backgrounds}>
-					{children}
-				</BackgroundsContext.Provider>
-			</ColorsContext.Provider>
+			<BackgroundsContext.Provider value={backgrounds}>
+				{children(colors)}
+			</BackgroundsContext.Provider>
 		</SeasonsContext.Provider>
 	)
 }

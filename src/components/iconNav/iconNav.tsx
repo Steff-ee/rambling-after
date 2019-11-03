@@ -24,12 +24,17 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 		iconWidth,
 		iconHeight,
 		labelWidth,
+		orientation,
 	} = props
 	const NavItem = InputNavItem ? InputNavItem : DefaultNavItem
-	const commonIconProps: Pick<INavItemProps, 'width' | 'height' | 'labelWidth'> = {
+	const commonIconProps: Pick<
+		INavItemProps,
+		'width' | 'height' | 'labelWidth' | 'orientation'
+	> = {
 		width: iconWidth || '64px',
 		height: iconHeight || '64px',
 		labelWidth: labelWidth || '248px',
+		orientation,
 	}
 
 	if (iconLayout === IconLayout.Horizontal) {
@@ -41,7 +46,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 				}}
 			>
 				{navItems.map(
-					(item: INavItem): JSX.Element => (
+					(item: INavItem, key: number): JSX.Element => (
 						<NavItem
 							{...commonIconProps}
 							{...item}

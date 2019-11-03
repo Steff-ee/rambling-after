@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router'
 import { IconNav } from '../../components/iconNav/iconNav'
-import { IconLayout } from '../../components/iconNav/iconNav.types'
+import { IconLayout, NavOrientation } from '../../components/iconNav/iconNav.types'
 import { Colors } from '../../shared/helpers/constants'
 import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
 import { ColorPicker } from '../../shared/presentational/components/colorPicker'
@@ -41,6 +41,7 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 			onIconsMenuIconClick={(): void => {
 				setIsNavBarOpen(!isNavBarOpen)
 			}}
+			orientation={NavOrientation.Left}
 		/>
 	)
 }

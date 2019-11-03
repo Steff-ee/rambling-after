@@ -1,5 +1,6 @@
 import React from 'react'
 import { INavItem } from './iconNav.types'
+const ReactHoverObserver = require('react-hover-observer').default
 
 export enum NavItemLabelPosition {
 	Right,
@@ -20,18 +21,30 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 	const { labelPosition, icon, onClick, label, width, height, labelWidth } = props
 
 	const button = (
-		<div
-			style={{
-				width,
-				height,
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
+		<ReactHoverObserver>
+			{({ isHovering }: { isHovering: boolean }): JSX.Element => {
+				let filter = ''
+				if (isHovering) {
+					filter = 'invert(0.5)'
+				}
+
+				return (
+					<div
+						style={{
+							width,
+							height,
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							filter,
+						}}
+						onClick={onClick}
+					>
+						{icon}
+					</div>
+				)
 			}}
-			onClick={onClick}
-		>
-			{icon}
-		</div>
+		</ReactHoverObserver>
 	)
 
 	if (labelPosition === NavItemLabelPosition.Right) {

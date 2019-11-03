@@ -65,6 +65,7 @@
 		"react": "^16.10.2",
 		"react-dom": "^16.10.2",
 		"react-hot-loader": "4.12.12",
+		"react-hover-observer": "^2.1.1",
 		"react-media": "^1.10.0",
 		"react-particles-js": "^2.7.0",
 		"react-progressive-loader": "^0.4.1",

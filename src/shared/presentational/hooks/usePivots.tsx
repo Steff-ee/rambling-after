@@ -6,7 +6,9 @@ import {
 	PivotItem,
 	PivotLinkSize,
 } from 'office-ui-fabric-react/lib'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { classicColors } from '../../../modes/classic/classicConstants'
+import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
@@ -38,15 +40,6 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
 	return titleMap
 }
 
-const styles: Partial<IPivotStyles> = {
-	text: [
-		{
-			fontFamily: 'Comfortaa',
-			width: '96px',
-		},
-	],
-}
-
 export const usePivots = (
 	titlePhrases: IPivotTitlePhrases,
 	defaultTitle: string,
@@ -54,6 +47,7 @@ export const usePivots = (
 ): IUsePivotKeyReturns => {
 	const [selectedPivotTitle, setSelectedPivotTitle] = useState<string | undefined>(defaultTitle)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
+	const { mode } = useContext(ModesContext)
 
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
@@ -99,6 +93,33 @@ export const usePivots = (
 		itemKey: baseTitle,
 		key: baseTitle,
 	}))
+
+	let styles: Partial<IPivotStyles>
+	if (mode === Modes.Classic) {
+		styles = {
+			text: [
+				{
+					fontFamily: 'Comfortaa',
+					fontSize: '20px',
+					width: '108px',
+					mixBlendMode: 'exclusion',
+					color: classicColors.primary,
+				},
+			],
+			link: [{ height: '64px', margin: '0 44px' }],
+			linkIsSelected: [{ height: '64px', margin: '0 44px' }],
+		}
+	} else {
+		styles = {
+			text: [
+				{
+					fontFamily: 'Comfortaa',
+					fontSize: '20px',
+					width: '96px',
+				},
+			],
+		}
+	}
 
 	const pivots = (
 		<Pivot

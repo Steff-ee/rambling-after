@@ -47,7 +47,12 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 
 				return (
 					<div
-						style={{ ...defaultTextStyle, ...parallaxRootStyle, position: 'absolute' }}
+						style={{
+							...defaultTextStyle,
+							...parallaxRootStyle,
+							backgroundColor: classicColors.primary,
+							position: 'absolute',
+						}}
 					>
 						<div
 							style={{
@@ -138,6 +143,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 									<ClassicRightNav />
 									<ClassicLeftNav />
 								</div>
+								<div style={{ margin: '44px 0' }}>{Pivots}</div>
 								<div style={{ maxWidth: '800px', margin: 'auto' }}>{Content}</div>
 							</div>
 						</div>

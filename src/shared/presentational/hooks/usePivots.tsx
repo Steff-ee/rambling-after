@@ -106,8 +106,8 @@ export const usePivots = (
 					color: classicColors.primary,
 				},
 			],
-			link: [{ height: '64px', margin: '0 44px' }],
-			linkIsSelected: [{ height: '64px', margin: '0 44px' }],
+			link: [{ height: '64px', margin: '0 4%' }],
+			linkIsSelected: [{ height: '64px', margin: '0 4%' }],
 		}
 	} else {
 		styles = {

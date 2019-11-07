@@ -12,7 +12,7 @@ export const ClassicRightNav: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<IconNav
 			iconLayout={IconLayout.Horizontal}
-			selectedKey={location.pathname}
+			selectedId={location.pathname}
 			navItems={links}
 			orientation={NavOrientation.Right}
 		/>

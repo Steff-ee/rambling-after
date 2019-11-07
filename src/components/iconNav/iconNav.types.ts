@@ -20,7 +20,7 @@ export interface IIconNavProps {
 	navItems: INavItem[]
 
 	/* Indicates the currently selected navItem, so that it can be highlighted */
-	selectedKey: string
+	selectedId: string
 
 	/* Whether to show icons vertically or horizontally */
 	iconLayout: IconLayout

@@ -16,6 +16,7 @@ export type INavItemProps = Omit<INavItem, 'id'> & {
 	height: string
 	labelWidth: string
 	orientation: NavOrientation
+	isSelected?: boolean
 }
 
 export type IInnerNavItemProps = INavItemProps & {
@@ -35,6 +36,7 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 		labelWidth,
 		orientation,
 		isHovering,
+		isSelected,
 	} = props
 	const colors = useContext(ColorsContext)
 
@@ -42,6 +44,10 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 	let filter = ''
 	let labelElement: JSX.Element | undefined
 	isHovering = useChangeDelay(isHovering, hoverDelay)
+
+	if (isSelected) {
+		filter = 'invert(0.5)'
+	}
 
 	if (isHovering) {
 		filter = 'invert(0.5)'

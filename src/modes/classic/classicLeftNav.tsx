@@ -12,7 +12,7 @@ export const ClassicLeftNav: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<IconNav
 			iconLayout={IconLayout.Horizontal}
-			selectedKey={location.pathname}
+			selectedId={location.pathname}
 			navItems={[changeModeCommand]}
 			orientation={NavOrientation.Left}
 		/>

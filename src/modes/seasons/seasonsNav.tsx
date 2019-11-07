@@ -28,7 +28,7 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 	return (
 		<IconNav
 			iconLayout={iconLayout}
-			selectedKey={location.pathname}
+			selectedId={location.pathname}
 			rootStyle={rootStyle}
 			showIconLabels={isNavBarOpen}
 			navItems={[...navigationLinks, changeModeCommand]}

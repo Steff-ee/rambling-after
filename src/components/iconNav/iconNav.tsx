@@ -25,6 +25,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 		iconHeight,
 		labelWidth,
 		orientation,
+		selectedId,
 	} = props
 	const NavItem = InputNavItem ? InputNavItem : DefaultNavItem
 	const commonIconProps: Pick<
@@ -52,6 +53,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 							{...item}
 							labelPosition={NavItemLabelPosition.Hover}
 							key={item.id}
+							isSelected={item.id === selectedId}
 						/>
 					)
 				)}

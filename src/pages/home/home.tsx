@@ -2,7 +2,6 @@ import cartographyImg from 'Assets/images/cartography.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
-import { websiteSlogan } from '../../shared/helpers/constants'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -96,7 +95,6 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		<Page
 			headerBackgroundImage={cartographyImg}
 			titleText={homeTitle}
-			subtitleText={websiteSlogan}
 			Pivots={pivots}
 			Content={pageContent}
 		/>

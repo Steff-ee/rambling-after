@@ -1,19 +1,19 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React from 'react'
 import Media from 'react-media'
-import { Colors, websiteTitle } from '../../shared/helpers/constants'
+import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
 } from '../../shared/helpers/styles'
+import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicLeftNav } from './classicLeftNav'
 import { ClassicRightNav } from './classicRightNav'
 
 export interface IPageProps {
 	headerBackgroundImage: string
-	subtitleText: string
 	Pivots: JSX.Element
 	Content: JSX.Element
 }
@@ -21,9 +21,20 @@ export interface IPageProps {
 export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	props: IPageProps
 ): JSX.Element => {
-	const { subtitleText, Pivots, Content, headerBackgroundImage } = props
+	const { Pivots, Content, headerBackgroundImage } = props
 
-	const subtitleFontSize = subtitleText.length > 12 ? 18 : 24
+	const title = useTextMorphSequence([
+		{ texts: ['RAMBLING', 'AFTER'], wait: 2000 },
+		{ texts: ['RAMBLING', 'THOUGHTS'], wait: 2000 },
+		{ texts: ['PULSE', ''], wait: 750 },
+		{ texts: ['LIKE', ''], wait: 750 },
+		{ texts: ['LANTERNS', ''], wait: 2750 },
+		{ texts: ['AMBLING', ''], wait: 1000 },
+		{ texts: ['AFTER', ''], wait: 1250 },
+		{ texts: ['THE', ''], wait: 750 },
+		{ texts: ['YET', ''], wait: 2250 },
+		{ texts: ['UNANSWERED', ''], wait: 3000 },
+	])
 
 	const topBarHeight = 44
 	const bannerHeight = 480
@@ -113,12 +124,9 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 									filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 								}}
 							>
-								{websiteTitle}
+								{title}
 							</div>
 						</div>
-						{/* <div style={{ color: 'lightgrey', fontSize: subtitleFontSize }}>
-						{subtitleText}
-					</div> */}
 						<div>
 							<div
 								style={{

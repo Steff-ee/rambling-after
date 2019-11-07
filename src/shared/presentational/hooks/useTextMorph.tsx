@@ -1,7 +1,9 @@
 import { debounce, random } from 'lodash'
 import { useState } from 'react'
 
-const morphDelay = 128
+const morphDelay = 96
+
+// (TODO) improve the morphing algorithm when there is significant overlap not at index 0
 
 const randomMorph = (text: string, prevText: string): string => {
 	// construct space-filled arrays of same length to deal with length discrepancies
@@ -38,7 +40,7 @@ export const useTextMorph = (
 	baseTexts: string[],
 	texts: string[],
 	freshStart: boolean
-): string[] => {
+): { morphedTexts: string[]; isMorphFinished: boolean } => {
 	const [prevTexts, setTexts] = useState<string[]>(baseTexts)
 	const [shouldRestart, setShouldRestart] = useState<boolean>(true)
 
@@ -60,5 +62,5 @@ export const useTextMorph = (
 		})
 	}
 
-	return prevTexts
+	return { morphedTexts: prevTexts, isMorphFinished: !isMorphNeeded }
 }

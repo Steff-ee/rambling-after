@@ -85,7 +85,7 @@ export const usePivots = (
 	}
 
 	const bypassIfNoHover = !hoverPivotTitle
-	const morphedTitles = useTextMorph(baseTitles, titles, bypassIfNoHover)
+	const { morphedTexts: morphedTitles } = useTextMorph(baseTitles, titles, bypassIfNoHover)
 
 	const pivotsItems: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
 		onRenderItemLink,

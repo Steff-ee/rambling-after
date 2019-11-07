@@ -4,10 +4,6 @@ import React from 'react'
 import { IconLayout, IIconNavProps, INavItem } from './iconNav.types'
 import { INavItemProps, NavItem as DefaultNavItem, NavItemLabelPosition } from './navItem'
 
-// (TODO) add selected key
-
-// (TODO) add hover styling
-
 // (TODO) add opening/closing animation
 
 export const IconNav: React.FunctionComponent<IIconNavProps> = (

@@ -7,6 +7,7 @@ import {
 	PivotLinkSize,
 } from 'office-ui-fabric-react/lib'
 import React, { useContext, useState } from 'react'
+import { MediaContext, MediaSize } from '../../../components/mediaProvider'
 import { classicColors } from '../../../modes/classic/classicConstants'
 import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { useTextMorph } from './useTextMorph'
@@ -48,6 +49,8 @@ export const usePivots = (
 	const [selectedPivotTitle, setSelectedPivotTitle] = useState<string | undefined>(defaultTitle)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
 	const { mode } = useContext(ModesContext)
+	const mediaSize = useContext(MediaContext)
+	const skipMorph = mediaSize === MediaSize.Small
 
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
@@ -85,7 +88,12 @@ export const usePivots = (
 	}
 
 	const bypassIfNoHover = !hoverPivotTitle
-	const { morphedTexts: morphedTitles } = useTextMorph(baseTitles, titles, bypassIfNoHover)
+	const { morphedTexts: morphedTitles } = useTextMorph(
+		baseTitles,
+		titles,
+		bypassIfNoHover,
+		skipMorph
+	)
 
 	const pivotsItems: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
 		onRenderItemLink,

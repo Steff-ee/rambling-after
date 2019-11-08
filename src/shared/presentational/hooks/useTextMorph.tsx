@@ -47,12 +47,12 @@ export const useTextMorph = (
 	freshStart: boolean,
 	skip = false
 ): { morphedTexts: string[]; isMorphFinished: boolean } => {
+	const [prevTexts, setTexts] = useState<string[]>(baseTexts)
+	const [shouldRestart, setShouldRestart] = useState<boolean>(true)
+
 	if (skip) {
 		return { morphedTexts: baseTexts, isMorphFinished: true }
 	}
-
-	const [prevTexts, setTexts] = useState<string[]>(baseTexts)
-	const [shouldRestart, setShouldRestart] = useState<boolean>(true)
 
 	const isMorphNeeded = !prevTexts || texts.some((text, index) => text !== prevTexts[index])
 

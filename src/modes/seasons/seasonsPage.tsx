@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import Media from 'react-media'
 import { IconLayout } from '../../components/iconNav/iconNav.types'
+import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
@@ -69,6 +69,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 	const { titleText, Pivots, Content } = props
 	const { primary, secondary, accent } = useContext(ColorsContext)
 	const { backgrounds, selectedIndex } = useContext(BackgroundsContext)
+	const mediaSize = useContext(MediaContext)
 	const background = backgrounds[selectedIndex]
 
 	const mood = getCircadianMood()
@@ -79,6 +80,26 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 		brightness = '50%'
 	} else {
 		brightness = '75%'
+	}
+
+	let seasonsNav: JSX.Element
+	if (mediaSize === MediaSize.Small) {
+		seasonsNav = (
+			<SeasonsNav
+				iconLayout={IconLayout.Horizontal}
+				rootStyle={{ backgroundColor: accent }}
+			/>
+		)
+	} else {
+		seasonsNav = (
+			<SeasonsNav
+				iconLayout={IconLayout.Vertical}
+				rootStyle={{
+					backgroundColor: accent,
+					position: 'absolute',
+				}}
+			/>
+		)
 	}
 
 	return (
@@ -121,33 +142,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 						zIndex: 5,
 					}}
 				>
-					<Media
-						queries={{
-							small: '(max-width: 699px)',
-							large: '(min-width: 700px)',
-						}}
-					>
-						{(matches): JSX.Element => {
-							if (matches.small) {
-								return (
-									<SeasonsNav
-										iconLayout={IconLayout.Horizontal}
-										rootStyle={{ backgroundColor: accent }}
-									/>
-								)
-							}
-
-							return (
-								<SeasonsNav
-									iconLayout={IconLayout.Vertical}
-									rootStyle={{
-										backgroundColor: accent,
-										position: 'absolute',
-									}}
-								/>
-							)
-						}}
-					</Media>
+					{seasonsNav}
 				</div>
 				<div
 					style={{

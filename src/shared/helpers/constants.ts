@@ -15,13 +15,3 @@ export const websiteTitle = 'RAMBLING AFTER'
 
 export const websiteSlogan =
 	'Rambling thoughts pulse like lanterns, ambling after the yet unanswered'
-
-export enum MediaSize {
-	Small,
-	Large,
-}
-
-export const mediaSizes = {
-	Small: '(max-width: 699px)',
-	Large: '(min-width: 700px)',
-}

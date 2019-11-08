@@ -2,6 +2,7 @@ import { initializeIcons } from '@uifabric/icons'
 import { loadTheme } from '@uifabric/styling'
 import React, { useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { MediaProvider } from '../components/mediaProvider'
 import { classicColors } from '../modes/classic/classicConstants'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
 import { SeasonsProvider } from '../modes/seasons/seasons'
@@ -44,18 +45,20 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 									href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Muli|Montserrat&display=swap"
 									rel="stylesheet"
 								/>
-								<BrowserRouter>
-									<Switch>
-										<Redirect exact={true} from="/" to={PageRoutes.Home} />
-										<Route path={PageRoutes.Home} component={Home} />
-										<Route path={PageRoutes.Stories} component={Stories} />
-										<Route path={PageRoutes.Games} component={Games} />
-										<Route
-											path={PageRoutes.MathScience}
-											component={MathScience}
-										/>
-									</Switch>
-								</BrowserRouter>
+								<MediaProvider>
+									<BrowserRouter>
+										<Switch>
+											<Redirect exact={true} from="/" to={PageRoutes.Home} />
+											<Route path={PageRoutes.Home} component={Home} />
+											<Route path={PageRoutes.Stories} component={Stories} />
+											<Route path={PageRoutes.Games} component={Games} />
+											<Route
+												path={PageRoutes.MathScience}
+												component={MathScience}
+											/>
+										</Switch>
+									</BrowserRouter>
+								</MediaProvider>
 							</IsNavBarOpenContext.Provider>
 						</ColorsContext.Provider>
 					)

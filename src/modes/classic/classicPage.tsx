@@ -1,7 +1,7 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
-import React from 'react'
-import Media from 'react-media'
-import { Colors, MediaSize, mediaSizes } from '../../shared/helpers/constants'
+import React, { useContext } from 'react'
+import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
 	parallaxGroupStyle,
@@ -18,14 +18,11 @@ export interface IPageProps {
 	Content: JSX.Element
 }
 
-type IInnerPageProps = IPageProps & {
-	mediaSize: MediaSize
-}
-
-const InnerClassicPage: React.FunctionComponent<IInnerPageProps> = (
-	props: IInnerPageProps
+export const ClassicPage: React.FunctionComponent<IPageProps> = (
+	props: IPageProps
 ): JSX.Element => {
-	const { Pivots, Content, headerBackgroundImage, mediaSize } = props
+	const { Pivots, Content, headerBackgroundImage } = props
+	const mediaSize = useContext(MediaContext)
 
 	const skipMorph = mediaSize === MediaSize.Small
 
@@ -157,20 +154,5 @@ const InnerClassicPage: React.FunctionComponent<IInnerPageProps> = (
 				</div>
 			</div>
 		</div>
-	)
-}
-
-export const ClassicPage: React.FunctionComponent<IPageProps> = (
-	props: IPageProps
-): JSX.Element => {
-	return (
-		<Media queries={mediaSizes}>
-			{(matches): JSX.Element => (
-				<InnerClassicPage
-					{...props}
-					mediaSize={matches.Small ? MediaSize.Small : MediaSize.Large}
-				/>
-			)}
-		</Media>
 	)
 }

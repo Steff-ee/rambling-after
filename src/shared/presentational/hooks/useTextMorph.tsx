@@ -35,12 +35,22 @@ const randomMorph = (text: string, prevText: string): string => {
 
 const debounced = debounce((callback: () => void) => callback(), morphDelay)
 
-// precondition: texts.length is static
+/**
+ * slowly morphs baseTexts into texts
+ *
+ * @skip if true, this hook will do nothing except return the base texts
+ * precondition: texts.length is static
+ */
 export const useTextMorph = (
 	baseTexts: string[],
 	texts: string[],
-	freshStart: boolean
+	freshStart: boolean,
+	skip = false
 ): { morphedTexts: string[]; isMorphFinished: boolean } => {
+	if (skip) {
+		return { morphedTexts: baseTexts, isMorphFinished: true }
+	}
+
 	const [prevTexts, setTexts] = useState<string[]>(baseTexts)
 	const [shouldRestart, setShouldRestart] = useState<boolean>(true)
 

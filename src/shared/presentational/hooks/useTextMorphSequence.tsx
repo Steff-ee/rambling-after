@@ -12,8 +12,14 @@ export type ITextSequence = Array<{
  * morphs texts through the sequence provided, starting at index 0
  * will not begin morphing until having hovered for startTime milliseconds
  * will stop morphing when no longer hovering, though there is a delay
+ *
+ * @skip if true, this hook will do nothing except return the first texts in the sequence
  */
-export const useTextMorphSequence = (textSequence: ITextSequence): JSX.Element => {
+export const useTextMorphSequence = (textSequence: ITextSequence, skip = false): JSX.Element => {
+	if (skip) {
+		return <>{textSequence[0].texts.join(' ')}</>
+	}
+
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 	const [hasBeenHovering, setHasBeenHovering] = useState<boolean>(false)
 	const [isMorphing, setIsMorphing] = useState<boolean>(false)

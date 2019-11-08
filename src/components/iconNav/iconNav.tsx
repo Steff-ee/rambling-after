@@ -43,15 +43,18 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 				}}
 			>
 				{navItems.map(
-					(item: INavItem, key: number): JSX.Element => (
-						<NavItem
-							{...commonIconProps}
-							{...item}
-							labelPosition={NavItemLabelPosition.Hover}
-							key={item.id}
-							isSelected={item.id === selectedId}
-						/>
-					)
+					(item: INavItem, key: number): JSX.Element => {
+						console.log(item.id, selectedId, item.id === selectedId)
+						return (
+							<NavItem
+								{...commonIconProps}
+								{...item}
+								labelPosition={NavItemLabelPosition.Hover}
+								key={item.id}
+								isSelected={item.id === selectedId}
+							/>
+						)
+					}
 				)}
 			</div>
 		)
@@ -67,6 +70,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 					labelPosition={NavItemLabelPosition.None}
 					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
 					onClick={onIconsMenuIconClick}
+					isSelected={true}
 				/>
 				{navItems.map(
 					(item: INavItem): JSX.Element => (
@@ -75,6 +79,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 							{...item}
 							labelPosition={labelPosition}
 							key={item.id}
+							isSelected={item.id === selectedId}
 						/>
 					)
 				)}

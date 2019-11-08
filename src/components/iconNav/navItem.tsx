@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { useChangeDelay } from '../../shared/presentational/hooks/useChangeDelay'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import { getFade, IconButton } from '../iconButton'
 import { INavItem, NavOrientation } from './iconNav.types'
 const ReactHoverObserver = require('react-hover-observer').default
 
@@ -39,19 +40,15 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 		isSelected,
 	} = props
 	const colors = useContext(ColorsContext)
+	isSelected = isSelected || false
+	console.log(isSelected)
+	const { shouldFade, fadeFilter } = getFade({ isHovering, isSelected })
 
 	const hoverDelay = 150
-	let filter = ''
 	let labelElement: JSX.Element | undefined
 	isHovering = useChangeDelay(isHovering, hoverDelay)
 
-	if (isSelected) {
-		filter = 'invert(0.5)'
-	}
-
 	if (isHovering) {
-		filter = 'invert(0.5)'
-
 		if (labelPosition === NavItemLabelPosition.Hover) {
 			const labelStyle = orientation === NavOrientation.Left ? { right: 0 } : { left: 0 }
 			labelElement = (
@@ -77,33 +74,28 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 		labelElement = (
 			<div
 				style={{
-					margin: 'auto 0',
 					textAlign: 'left',
 					paddingLeft: '4%',
 					width: labelWidth,
-					filter,
+					filter: shouldFade ? fadeFilter : '',
+					cursor: 'pointer',
+					display: 'flex',
 				}}
 				onClick={onClick}
 			>
-				{label}
+				<div style={{ margin: 'auto 0' }}>{label}</div>
 			</div>
 		)
 	}
 
 	const button = (
-		<div
-			style={{
-				width,
-				height,
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				filter,
-			}}
+		<IconButton
+			icon={icon}
+			width={width}
+			height={height}
 			onClick={onClick}
-		>
-			{icon}
-		</div>
+			isFaded={shouldFade}
+		/>
 	)
 
 	if (labelElement) {

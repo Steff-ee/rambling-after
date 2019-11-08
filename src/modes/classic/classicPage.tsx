@@ -28,12 +28,12 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		{ texts: ['RAMBLING', 'THOUGHTS'], wait: 2000 },
 		{ texts: ['PULSE', ''], wait: 750 },
 		{ texts: ['LIKE', ''], wait: 750 },
-		{ texts: ['LANTERNS', ''], wait: 2750 },
-		{ texts: ['AMBLING', ''], wait: 1000 },
-		{ texts: ['AFTER', ''], wait: 1250 },
+		{ texts: ['LANTERNS', ''], wait: 2000 },
+		{ texts: ['AMBLING', ''], wait: 750 },
+		{ texts: ['AFTER', ''], wait: 750 },
 		{ texts: ['THE', ''], wait: 750 },
-		{ texts: ['YET', ''], wait: 2250 },
-		{ texts: ['UNANSWERED', ''], wait: 3000 },
+		{ texts: ['YET', ''], wait: 2000 },
+		{ texts: ['UNANSWERED', ''], wait: 8000 },
 	])
 
 	const topBarHeight = 44

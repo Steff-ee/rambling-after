@@ -11,8 +11,8 @@ export enum NavOrientation {
 export interface INavItem {
 	id: string
 	icon: JSX.Element
+	label: string
 	onClick?: () => void
-	label?: string
 }
 
 export interface IIconNavProps {

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useChangeDelay } from '../../shared/presentational/hooks/useChangeDelay'
 import { IconButton } from '../iconButton'
-import { NavOrientation } from './iconNav.types'
 import { getFade } from './navHelpers'
 import { NavLabel } from './navLabel'
 
@@ -10,21 +9,19 @@ import { NavLabel } from './navLabel'
 
 export enum LabelPosition {
 	Left,
-	Right, // (TODO)
-	Hide,
+	Right,
 }
 
-export type INavItemProps = {
+export interface INavItemProps {
 	icon: JSX.Element
-	onClick?: () => void
 	width: string
 	height: string
-	orientation?: NavOrientation // (TODO)
-	labelPosition: LabelPosition
-	label?: string
+	label: string
+	labelPosition?: LabelPosition
 	isSelected?: boolean
 	onMouseEnter?: (label: string) => void
 	onMouseLeave?: (label: string) => void
+	onClick?: () => void
 }
 
 export const NavItem: React.FunctionComponent<INavItemProps> = (
@@ -49,7 +46,7 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 	const filter = shouldFade ? fadeFilter : ''
 
 	let labelElement = <></>
-	if (labelPosition !== LabelPosition.Hide) {
+	if (labelPosition !== undefined) {
 		labelElement = (
 			<NavLabel
 				label={label}
@@ -76,6 +73,7 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 
 	return (
 		<div
+			aria-label={label}
 			style={{ display: 'flex' }}
 			onMouseEnter={(): void => {
 				setIsHovering(true)
@@ -90,8 +88,9 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 				}
 			}}
 		>
+			{labelPosition === LabelPosition.Left && labelElement}
 			{button}
-			{labelElement}
+			{labelPosition === LabelPosition.Right && labelElement}
 		</div>
 	)
 }

@@ -11,7 +11,6 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 ): JSX.Element => {
 	const {
 		navItems,
-		iconLayout,
 		showIconLabels,
 		onIconsMenuIconClick,
 		onRenderBelowContent,
@@ -19,19 +18,16 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 		iconWidth = '64px',
 		iconHeight = '64px',
 		labelWidth = '248px',
-		orientation,
 		selectedId,
 	} = props
-
-	// const labelPosition = showIconLabels ? NavItemLabelPosition.Right : NavItemLabelPosition.None
 
 	return (
 		<div style={rootStyle}>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<NavItem
+					label={'Open nav menu'}
 					width={iconWidth}
 					height={iconHeight}
-					orientation={orientation}
 					// labelWidth={labelWidth}
 					labelPosition={LabelPosition.Right}
 					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
@@ -44,7 +40,6 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 							{...item}
 							width={iconWidth}
 							height={iconHeight}
-							orientation={orientation}
 							// labelWidth={labelWidth}
 							labelPosition={LabelPosition.Right}
 							key={item.id}

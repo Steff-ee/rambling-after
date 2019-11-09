@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { IIconNavProps, INavItem, NavOrientation } from './iconNav.types'
-import { LabelPosition, NavItem } from './navItem'
+import { NavItem } from './navItem'
 import { NavLabel } from './navLabel'
-
-// (TODO) add opening/closing animation
 
 export type IHorizontalIconNavProps = Pick<
 	IIconNavProps,
@@ -47,16 +45,18 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		>
 			{navItems.map(
 				(item: INavItem): JSX.Element => {
+					const { id, icon, label } = item
+
 					return (
 						<NavItem
-							{...item}
+							icon={icon}
+							label={label}
 							width={iconWidth}
 							height={iconHeight}
-							key={item.id}
-							isSelected={item.id === selectedId}
+							key={id}
+							isSelected={id === selectedId}
 							onMouseEnter={setHoverLabel}
 							onMouseLeave={onMouseLeave}
-							labelPosition={LabelPosition.Hide}
 						/>
 					)
 				}

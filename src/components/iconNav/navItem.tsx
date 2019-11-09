@@ -1,90 +1,65 @@
-import React, { useContext } from 'react'
+import React, { useState } from 'react'
 import { useChangeDelay } from '../../shared/presentational/hooks/useChangeDelay'
-import { ColorsContext } from '../../shared/presentational/hooks/useColors'
-import { getFade, IconButton } from '../iconButton'
-import { INavItem, NavOrientation } from './iconNav.types'
-const ReactHoverObserver = require('react-hover-observer').default
+import { IconButton } from '../iconButton'
+import { NavOrientation } from './iconNav.types'
+import { getFade } from './navHelpers'
+import { NavLabel } from './navLabel'
 
-export enum NavItemLabelPosition {
-	Right,
-	Hover,
-	None,
+// (TODO) remove package
+// const ReactHoverObserver = require('react-hover-observer').default
+
+export enum LabelPosition {
+	Left,
+	Right, // (TODO)
+	Hide,
 }
 
-export type INavItemProps = Omit<INavItem, 'id'> & {
-	labelPosition: NavItemLabelPosition
+export type INavItemProps = {
+	icon: JSX.Element
+	onClick?: () => void
 	width: string
 	height: string
-	labelWidth: string
-	orientation: NavOrientation
+	orientation?: NavOrientation // (TODO)
+	labelPosition: LabelPosition
+	label?: string
 	isSelected?: boolean
+	onMouseEnter?: (label: string) => void
+	onMouseLeave?: (label: string) => void
 }
 
-export type IInnerNavItemProps = INavItemProps & {
-	isHovering: boolean
-}
-
-export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
-	props: IInnerNavItemProps
+export const NavItem: React.FunctionComponent<INavItemProps> = (
+	props: INavItemProps
 ): JSX.Element => {
 	let {
-		labelPosition,
 		icon,
 		onClick,
-		label,
+		label = '',
 		width,
 		height,
-		labelWidth,
-		orientation,
-		isHovering,
 		isSelected,
+		onMouseEnter,
+		onMouseLeave,
+		labelPosition,
 	} = props
-	const colors = useContext(ColorsContext)
+	const [isHovering, setIsHovering] = useState<boolean>(false)
 	isSelected = isSelected || false
-	console.log(isSelected)
-	const { shouldFade, fadeFilter } = getFade({ isHovering, isSelected })
-
-	const hoverDelay = 150
-	let labelElement: JSX.Element | undefined
+	const hoverDelay = 200
 	const wasHovering = useChangeDelay(isHovering, hoverDelay)
+	const { shouldFade, fadeFilter } = getFade({ isHovering: wasHovering, isSelected })
+	const filter = shouldFade ? fadeFilter : ''
 
-	if (wasHovering) {
-		if (labelPosition === NavItemLabelPosition.Hover) {
-			const labelStyle = orientation === NavOrientation.Left ? { right: 0 } : { left: 0 }
-			labelElement = (
-				<div
-					style={{
-						position: 'absolute',
-						display: 'flex',
-						height,
-						marginTop: height,
-						backgroundColor: colors.secondary,
-						color: colors.primary,
-						minWidth: '160px',
-						...labelStyle,
-					}}
-				>
-					<div style={{ margin: 'auto', padding: '0 16px' }}>{label}</div>
-				</div>
-			)
-		}
-	}
-
-	if (labelPosition === NavItemLabelPosition.Right) {
+	let labelElement = <></>
+	if (labelPosition !== LabelPosition.Hide) {
 		labelElement = (
-			<div
+			<NavLabel
+				label={label}
+				width={width}
+				height={height}
 				style={{
 					textAlign: 'left',
-					paddingLeft: '4%',
-					width: labelWidth,
-					filter: shouldFade ? fadeFilter : '',
-					cursor: 'pointer',
-					display: 'flex',
+					filter,
 				}}
-				onClick={onClick}
-			>
-				<div style={{ margin: 'auto 0' }}>{label}</div>
-			</div>
+			/>
 		)
 	}
 
@@ -99,26 +74,24 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 		/>
 	)
 
-	if (labelElement) {
-		return (
-			<div style={{ display: 'flex' }}>
-				{button}
-				{labelElement}
-			</div>
-		)
-	}
-
-	return button
-}
-
-export const NavItem: React.FunctionComponent<INavItemProps> = (
-	props: INavItemProps
-): JSX.Element => {
 	return (
-		<ReactHoverObserver>
-			{({ isHovering }: { isHovering: boolean }): JSX.Element => (
-				<InnerNavItem {...props} isHovering={isHovering} />
-			)}
-		</ReactHoverObserver>
+		<div
+			style={{ display: 'flex' }}
+			onMouseEnter={(): void => {
+				setIsHovering(true)
+				if (onMouseEnter) {
+					onMouseEnter(label)
+				}
+			}}
+			onMouseLeave={(): void => {
+				setIsHovering(false)
+				if (onMouseLeave) {
+					onMouseLeave(label)
+				}
+			}}
+		>
+			{button}
+			{labelElement}
+		</div>
 	)
 }

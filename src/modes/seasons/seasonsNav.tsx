@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router'
-import { IconNav } from '../../components/iconNav/iconNav'
 import { IconLayout, NavOrientation } from '../../components/iconNav/iconNav.types'
+import { VerticalIconNav } from '../../components/iconNav/verticalIconNav'
 import { Colors } from '../../shared/helpers/constants'
 import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
 import { ColorPicker } from '../../shared/presentational/components/colorPicker'
@@ -26,7 +26,7 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 	const changeModeCommand = useChangeModeCommand(Colors.OffBlack)
 
 	return (
-		<IconNav
+		<VerticalIconNav
 			iconLayout={iconLayout}
 			selectedId={location.pathname}
 			rootStyle={rootStyle}

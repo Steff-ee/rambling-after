@@ -1,4 +1,5 @@
 import React from 'react'
+import { fadeFilterValue } from './iconNav/navHelpers'
 
 export interface IIconButtonProps {
 	icon: JSX.Element
@@ -7,18 +8,6 @@ export interface IIconButtonProps {
 	applyFade: boolean
 	applyGrow: boolean
 	onClick?: () => void
-}
-
-const fadeFilterValue = 'invert(0.44)'
-
-export const getFade = (options: {
-	isHovering: boolean
-	isSelected: boolean
-}): { shouldFade: boolean; fadeFilter: string } => {
-	const { isHovering, isSelected } = options
-	const shouldFade = !isHovering && !isSelected
-
-	return { shouldFade, fadeFilter: fadeFilterValue }
 }
 
 const growStyleBase: React.CSSProperties = {

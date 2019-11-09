@@ -13,7 +13,6 @@ export const ColorPicker: React.FunctionComponent = (): JSX.Element => {
 	} = useContext(ColorsContext)
 
 	// (TODO) add a color wheel
-	console.log(primary, setPrimary)
 
 	const max = 345
 	const step = 5

@@ -40,9 +40,6 @@ export interface IIconNavProps {
 	/* Styling for the component as a whole */
 	rootStyle?: React.CSSProperties
 
-	/* Optionally override the default NavItem component */
-	NavItem?: React.ComponentType
-
 	/* STYLING */
 	iconWidth?: string
 	iconHeight?: string

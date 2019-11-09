@@ -1,11 +1,17 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
+import React, { useContext } from 'react'
+import { Colors } from '../../shared/helpers/constants'
+import { ColorsContext } from '../../shared/presentational/hooks/useColors'
 import { INavItem, IVerticalIconNavProps, LabelPosition, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 
 // (TODO) add opening/closing animation
 
+/**
+ * This is a macromolecular component:
+ * I haven't decided what that means yet.
+ */
 export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 	props: IVerticalIconNavProps
 ): JSX.Element => {
@@ -21,33 +27,47 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 		selectedId,
 		orientation,
 	} = props
+	const { accent } = useContext(ColorsContext)
 
-	const labelPosition: LabelPosition =
-		orientation === NavOrientation.Left ? LabelPosition.Right : LabelPosition.Left
+	const style: React.CSSProperties = {
+		backgroundColor: accent,
+		color: Colors.OffBlack,
+	}
+
+	let labelProps = {}
+	if (showIconLabels) {
+		labelProps = {
+			labelPosition:
+				orientation === NavOrientation.Left ? LabelPosition.Right : LabelPosition.Left,
+			labelWidth,
+		}
+	}
+
+	const useHoverDelay = !showIconLabels
 
 	return (
-		<div style={rootStyle}>
+		<div style={{ ...style, ...rootStyle }}>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
 				<NavItem
 					label={'Open nav menu'}
 					width={iconWidth}
 					height={iconHeight}
-					// labelWidth={labelWidth}
-					labelPosition={labelPosition}
 					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
 					onClick={onIconsMenuIconClick}
 					isSelected={true}
+					useHoverDelay={useHoverDelay}
 				/>
 				{navItems.map(
 					(item: INavItem): JSX.Element => (
 						<NavItem
 							{...item}
+							{...labelProps}
 							width={iconWidth}
 							height={iconHeight}
-							// labelWidth={labelWidth}
-							labelPosition={labelPosition}
 							key={item.id}
 							isSelected={item.id === selectedId}
+							labelTextStyle={{ margin: 'auto 0' }}
+							useHoverDelay={useHoverDelay}
 						/>
 					)
 				)}

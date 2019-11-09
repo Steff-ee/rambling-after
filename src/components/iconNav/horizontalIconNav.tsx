@@ -1,8 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ColorsContext } from '../../shared/presentational/hooks/useColors'
 import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 import { NavLabel } from './navLabel'
 
+/**
+ * This is a macromolecular component:
+ * I haven't decided what that means yet.
+ */
 export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps> = (
 	props: IHorizontalIconNavProps
 ): JSX.Element => {
@@ -16,6 +21,9 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		selectedId,
 	} = props
 	const [hoverLabel, setHoverLabel] = useState<string | undefined>(undefined)
+	const { primary, secondary } = useContext(ColorsContext)
+
+	const colorStyle = { backgroundColor: secondary, color: primary }
 
 	const onMouseLeave = (label: string): void => {
 		if (label === hoverLabel) {
@@ -42,6 +50,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 						isSelected={item.id === selectedId}
 						onMouseEnter={setHoverLabel}
 						onMouseLeave={onMouseLeave}
+						rootStyle={colorStyle}
 					/>
 				)
 			)}
@@ -50,7 +59,8 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 					label={hoverLabel}
 					height={iconHeight}
 					width={labelWidth}
-					style={{
+					rootStyle={{
+						...colorStyle,
 						...orientationStyle,
 						position: 'absolute',
 						marginTop: iconHeight,

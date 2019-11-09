@@ -7,16 +7,28 @@ import { NavLabel } from './navLabel'
 
 export interface INavItemProps {
 	icon: JSX.Element
-	width: string
-	height: string
 	label: string
-	onClick: () => void
 	labelPosition?: LabelPosition
 	isSelected?: boolean
+
+	/* Styling */
+	width: string
+	height: string
+	labelWidth?: string
+	rootStyle?: React.CSSProperties
+	labelTextStyle?: React.CSSProperties
+	useHoverDelay?: boolean
+
+	/* Callbacks */
+	onClick: () => void
 	onMouseEnter?: (label: string) => void
 	onMouseLeave?: (label: string) => void
 }
 
+/**
+ * This is a molecular component:
+ * It should avoid using Context but it can have behavior-specific props.
+ */
 export const NavItem: React.FunctionComponent<INavItemProps> = (
 	props: INavItemProps
 ): JSX.Element => {
@@ -30,11 +42,15 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 		onMouseEnter,
 		onMouseLeave,
 		labelPosition,
+		labelWidth,
+		rootStyle,
+		labelTextStyle,
+		useHoverDelay = true,
 	} = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 	isSelected = isSelected || false
 	const hoverDelay = 200
-	const wasHovering = useChangeDelay(isHovering, hoverDelay)
+	const wasHovering = useChangeDelay(isHovering, hoverDelay, !useHoverDelay)
 	const { shouldFade, fadeFilter } = getFade({ isHovering: wasHovering, isSelected })
 	const filter = shouldFade ? fadeFilter : ''
 
@@ -43,12 +59,13 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 		labelElement = (
 			<NavLabel
 				label={label}
-				width={width}
+				width={labelWidth || width}
 				height={height}
-				style={{
+				rootStyle={{
 					textAlign: 'left',
 					filter,
 				}}
+				textStyle={labelTextStyle}
 			/>
 		)
 	}
@@ -67,7 +84,7 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 	return (
 		<div
 			aria-label={label}
-			style={{ display: 'flex' }}
+			style={{ display: 'flex', ...rootStyle }}
 			onMouseEnter={(): void => {
 				setIsHovering(true)
 				if (onMouseEnter) {

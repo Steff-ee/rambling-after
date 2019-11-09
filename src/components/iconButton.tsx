@@ -23,6 +23,10 @@ const growStyleHover: React.CSSProperties = {
 	transform: 'scale(1.06)',
 }
 
+/**
+ * This is an atomic component:
+ * It should avoid using Context and avoid behavior-specific props.
+ */
 export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 	props: IIconButtonProps
 ): JSX.Element => {

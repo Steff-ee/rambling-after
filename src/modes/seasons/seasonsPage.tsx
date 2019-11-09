@@ -84,21 +84,10 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 
 	let seasonsNav: JSX.Element
 	if (mediaSize === MediaSize.Small) {
-		seasonsNav = (
-			<SeasonsNav
-				iconLayout={IconLayout.Horizontal}
-				rootStyle={{ backgroundColor: accent }}
-			/>
-		)
+		seasonsNav = <SeasonsNav iconLayout={IconLayout.Horizontal} />
 	} else {
 		seasonsNav = (
-			<SeasonsNav
-				iconLayout={IconLayout.Vertical}
-				rootStyle={{
-					backgroundColor: accent,
-					position: 'absolute',
-				}}
-			/>
+			<SeasonsNav iconLayout={IconLayout.Vertical} rootStyle={{ position: 'absolute' }} />
 		)
 	}
 

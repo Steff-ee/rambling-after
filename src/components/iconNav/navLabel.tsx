@@ -1,39 +1,56 @@
 import Fade from '@material-ui/core/Fade'
-import React, { useContext } from 'react'
-import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import React from 'react'
 
 export interface INavLabelProps {
 	label: string
+
+	/* Styling */
 	width: string
 	height: string
-	style: React.CSSProperties
+	rootStyle: React.CSSProperties
+	textStyle?: React.CSSProperties
+	applyTextFade?: boolean
+	applyRootFade?: boolean
+	fadeDelay?: number
+
+	/* Callbacks */
 	onClick?: () => void
 }
 
+/**
+ * This is an atomic component:
+ * It should avoid using Context and avoid behavior-specific props.
+ */
 export const NavLabel: React.FunctionComponent<INavLabelProps> = (
 	props: INavLabelProps
 ): JSX.Element => {
-	const { label, width, height, style, onClick } = props
-	const { primary: primaryColor, secondary: secondaryColor } = useContext(ColorsContext)
-	const fadeDelay = 250
+	const {
+		label,
+		width,
+		height,
+		rootStyle,
+		textStyle,
+		onClick,
+		applyTextFade = true,
+		applyRootFade = true,
+		fadeDelay = 250,
+	} = props
 
 	return (
-		<Fade in={true} timeout={fadeDelay}>
+		<Fade in={applyRootFade} timeout={fadeDelay}>
 			<div
 				style={{
 					display: 'flex',
 					width,
 					height,
-					backgroundColor: secondaryColor,
-					color: primaryColor,
 					minWidth: '160px',
 					cursor: 'pointer',
-					...style,
+					...rootStyle,
 				}}
 				onClick={onClick}
 			>
-				<Fade in={true} timeout={fadeDelay} key={label}>
-					<div style={{ margin: 'auto', padding: '0 16px' }}>{label}</div>
+				<Fade in={applyTextFade} timeout={fadeDelay} key={label}>
+					<div style={{ margin: 'auto', padding: '0 16px', ...textStyle }}>{label}</div>
 				</Fade>
 			</div>
 		</Fade>

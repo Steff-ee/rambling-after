@@ -1,13 +1,13 @@
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { IIconNavProps, INavItem } from './iconNav.types'
-import { LabelPosition, NavItem } from './navItem'
+import { INavItem, IVerticalIconNavProps, LabelPosition, NavOrientation } from './iconNav.types'
+import { NavItem } from './navItem'
 
 // (TODO) add opening/closing animation
 
-export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
-	props: IIconNavProps
+export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
+	props: IVerticalIconNavProps
 ): JSX.Element => {
 	const {
 		navItems,
@@ -19,7 +19,11 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 		iconHeight = '64px',
 		labelWidth = '248px',
 		selectedId,
+		orientation,
 	} = props
+
+	const labelPosition: LabelPosition =
+		orientation === NavOrientation.Left ? LabelPosition.Right : LabelPosition.Left
 
 	return (
 		<div style={rootStyle}>
@@ -29,7 +33,7 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 					width={iconWidth}
 					height={iconHeight}
 					// labelWidth={labelWidth}
-					labelPosition={LabelPosition.Right}
+					labelPosition={labelPosition}
 					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
 					onClick={onIconsMenuIconClick}
 					isSelected={true}
@@ -41,7 +45,7 @@ export const VerticalIconNav: React.FunctionComponent<IIconNavProps> = (
 							width={iconWidth}
 							height={iconHeight}
 							// labelWidth={labelWidth}
-							labelPosition={LabelPosition.Right}
+							labelPosition={labelPosition}
 							key={item.id}
 							isSelected={item.id === selectedId}
 						/>

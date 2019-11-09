@@ -1,6 +1,11 @@
 import React, { useContext } from 'react'
 import { useLocation } from 'react-router'
-import { IconLayout, NavOrientation } from '../../components/iconNav/iconNav.types'
+import { HorizontalIconNav } from '../../components/iconNav/horizontalIconNav'
+import {
+	ICommonIconNavProps,
+	IconLayout,
+	NavOrientation,
+} from '../../components/iconNav/iconNav.types'
 import { VerticalIconNav } from '../../components/iconNav/verticalIconNav'
 import { Colors } from '../../shared/helpers/constants'
 import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
@@ -25,13 +30,21 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 	const navigationLinks = useNavigationLinks(Colors.OffBlack)
 	const changeModeCommand = useChangeModeCommand(Colors.OffBlack)
 
+	const commonProps: ICommonIconNavProps = {
+		selectedId: location.pathname,
+		rootStyle,
+		navItems: [...navigationLinks, changeModeCommand],
+		orientation: NavOrientation.Left,
+	}
+
+	if (iconLayout === IconLayout.Horizontal) {
+		return <HorizontalIconNav {...commonProps} />
+	}
+
 	return (
 		<VerticalIconNav
-			iconLayout={iconLayout}
-			selectedId={location.pathname}
-			rootStyle={rootStyle}
+			{...commonProps}
 			showIconLabels={isNavBarOpen}
-			navItems={[...navigationLinks, changeModeCommand]}
 			onRenderBelowContent={(): JSX.Element => (
 				<>
 					<ColorPicker />
@@ -41,7 +54,6 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 			onIconsMenuIconClick={(): void => {
 				setIsNavBarOpen(!isNavBarOpen)
 			}}
-			orientation={NavOrientation.Left}
 		/>
 	)
 }

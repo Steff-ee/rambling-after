@@ -1,18 +1,7 @@
 import React, { useState } from 'react'
-import { IIconNavProps, INavItem, NavOrientation } from './iconNav.types'
+import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 import { NavLabel } from './navLabel'
-
-export type IHorizontalIconNavProps = Pick<
-	IIconNavProps,
-	| 'navItems'
-	| 'rootStyle'
-	| 'iconWidth'
-	| 'iconHeight'
-	| 'labelWidth'
-	| 'orientation'
-	| 'selectedId'
->
 
 export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps> = (
 	props: IHorizontalIconNavProps

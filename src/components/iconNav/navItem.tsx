@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import { useChangeDelay } from '../../shared/presentational/hooks/useChangeDelay'
 import { IconButton } from '../iconButton'
+import { LabelPosition } from './iconNav.types'
 import { getFade } from './navHelpers'
 import { NavLabel } from './navLabel'
-
-// (TODO) remove package
-// const ReactHoverObserver = require('react-hover-observer').default
-
-export enum LabelPosition {
-	Left,
-	Right,
-}
 
 export interface INavItemProps {
 	icon: JSX.Element

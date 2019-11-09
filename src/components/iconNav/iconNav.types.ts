@@ -17,7 +17,7 @@ export interface INavItem {
 	id: string
 	icon: JSX.Element
 	label: string
-	onClick?: () => void
+	onClick: () => void
 }
 
 export interface ICommonIconNavProps {
@@ -46,7 +46,7 @@ export interface IVerticalIconNavProps extends ICommonIconNavProps {
 	showIconLabels: boolean
 
 	/* This triggers on the clicking the menu icon, intended to open or close the icon labels */
-	onIconsMenuIconClick?: () => void
+	onIconsMenuIconClick: () => void
 
 	/* This content will show below opened icon labels */
 	onRenderBelowContent?: () => JSX.Element

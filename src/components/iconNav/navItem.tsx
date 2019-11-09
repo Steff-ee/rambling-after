@@ -10,11 +10,11 @@ export interface INavItemProps {
 	width: string
 	height: string
 	label: string
+	onClick: () => void
 	labelPosition?: LabelPosition
 	isSelected?: boolean
 	onMouseEnter?: (label: string) => void
 	onMouseLeave?: (label: string) => void
-	onClick?: () => void
 }
 
 export const NavItem: React.FunctionComponent<INavItemProps> = (

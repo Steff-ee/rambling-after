@@ -33,22 +33,17 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 			}}
 		>
 			{navItems.map(
-				(item: INavItem): JSX.Element => {
-					const { id, icon, label } = item
-
-					return (
-						<NavItem
-							icon={icon}
-							label={label}
-							width={iconWidth}
-							height={iconHeight}
-							key={id}
-							isSelected={id === selectedId}
-							onMouseEnter={setHoverLabel}
-							onMouseLeave={onMouseLeave}
-						/>
-					)
-				}
+				(item: INavItem): JSX.Element => (
+					<NavItem
+						{...item}
+						width={iconWidth}
+						height={iconHeight}
+						key={item.id}
+						isSelected={item.id === selectedId}
+						onMouseEnter={setHoverLabel}
+						onMouseLeave={onMouseLeave}
+					/>
+				)
 			)}
 			{hoverLabel && (
 				<NavLabel

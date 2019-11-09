@@ -28,7 +28,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 
 	const title = useTextMorphSequence(
 		[
-			{ texts: ['RAMBLING', 'AFTER'], wait: 2000 },
+			{ texts: ['RAMBLING', 'AFTER'], wait: 4000 },
 			{ texts: ['RAMBLING', 'THOUGHTS'], wait: 2000 },
 			{ texts: ['PULSE', ''], wait: 750 },
 			{ texts: ['LIKE', ''], wait: 750 },
@@ -120,6 +120,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						fontFamily: 'Montserrat',
 						color: classicColors.primary,
 						filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
+						cursor: 'pointer',
 					}}
 				>
 					{title}

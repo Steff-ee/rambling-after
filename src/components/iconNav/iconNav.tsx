@@ -43,8 +43,7 @@ export const IconNav: React.FunctionComponent<IIconNavProps> = (
 				}}
 			>
 				{navItems.map(
-					(item: INavItem, key: number): JSX.Element => {
-						console.log(item.id, selectedId, item.id === selectedId)
+					(item: INavItem): JSX.Element => {
 						return (
 							<NavItem
 								{...commonIconProps}

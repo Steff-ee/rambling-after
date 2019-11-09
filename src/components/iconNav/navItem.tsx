@@ -46,9 +46,9 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 
 	const hoverDelay = 150
 	let labelElement: JSX.Element | undefined
-	isHovering = useChangeDelay(isHovering, hoverDelay)
+	const wasHovering = useChangeDelay(isHovering, hoverDelay)
 
-	if (isHovering) {
+	if (wasHovering) {
 		if (labelPosition === NavItemLabelPosition.Hover) {
 			const labelStyle = orientation === NavOrientation.Left ? { right: 0 } : { left: 0 }
 			labelElement = (
@@ -94,7 +94,8 @@ export const InnerNavItem: React.FunctionComponent<IInnerNavItemProps> = (
 			width={width}
 			height={height}
 			onClick={onClick}
-			isFaded={shouldFade}
+			applyFade={shouldFade}
+			applyGrow={isHovering}
 		/>
 	)
 

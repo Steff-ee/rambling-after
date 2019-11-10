@@ -1,5 +1,5 @@
-import React from 'react'
-import { animated, useTransition } from 'react-spring'
+import React, { useState } from 'react'
+import { animated, useSpring } from 'react-spring'
 
 export interface INavListLabelProps {
 	labels: string[]
@@ -25,44 +25,61 @@ export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
 	props: INavListLabelProps
 ): JSX.Element => {
 	const { labels, currentLabelIndex, width, height, rootStyle, textStyle, onClick } = props
+	const [delayedIndex, setDelayedIndex] = useState<number>(currentLabelIndex)
+	const indexChanging = delayedIndex !== currentLabelIndex
+	const label = labels[delayedIndex]
+	console.log('curr: ', currentLabelIndex, ' del: ', delayedIndex, ' d(x): ', indexChanging)
 
-	const transitions = useTransition(currentLabelIndex, (label) => label, {
-		from: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
-		enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
-		leave: { opacity: 0, transform: 'translate3d(100%,0,0)' },
-	})
+	const [textSpring] = useSpring(() => ({
+		to: { opacity: 1 },
+		from: { opacity: 0 },
+		config: { duration: 250 },
+		onRest: (): void => {
+			if (delayedIndex !== currentLabelIndex) {
+				setDelayedIndex(currentLabelIndex)
+			}
+		},
+		reset: indexChanging,
+		reverse: indexChanging,
+	}))
+
+	// (TODO) how to nest animated divs
+
+	// const [rootSpring] = useSpring(() => ({
+	// 	to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
+	// 	from: { opacity: 0, transform: 'translate3d(0, -50%, 0)' },
+	// }))
 
 	return (
-		<>
-			{transitions.map(({ item, props: styleProps, key }) => {
-				const label = labels[item]
-
-				return (
-					<div
-						aria-label={label}
-						key={key}
-						style={{
-							display: 'flex',
-							width,
-							height,
-							minWidth: '160px',
-							cursor: 'pointer',
-							...rootStyle,
-						}}
-						onClick={(): void => {
-							if (onClick) {
-								onClick(label)
-							}
-						}}
-					>
-						<animated.div
-							style={{ margin: 'auto', padding: '16px', ...textStyle, ...styleProps }}
-						>
-							{label}
-						</animated.div>
-					</div>
-				)
-			})}
-		</>
+		<div
+			aria-label={label}
+			// @ts-ignore
+			style={{
+				display: 'flex',
+				width,
+				height,
+				minWidth: '160px',
+				cursor: 'pointer',
+				...rootStyle,
+				// ...rootSpring,
+			}}
+			onClick={(): void => {
+				if (onClick) {
+					onClick(label)
+				}
+			}}
+		>
+			<animated.div
+				// @ts-ignore
+				style={{
+					margin: 'auto',
+					padding: '16px',
+					...textStyle,
+					...textSpring,
+				}}
+			>
+				{label}
+			</animated.div>
+		</div>
 	)
 }

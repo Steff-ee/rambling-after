@@ -1,4 +1,5 @@
 import React from 'react'
+import { dateTimeFormatOptions } from '../helpers/time'
 import { IPost } from './post.types'
 
 export interface IPostProps {
@@ -13,7 +14,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 	return (
 		<>
 			<div>{title}</div>
-			<div>{createdDate.toString()}</div>
+			<div>{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions)}</div>
 			<div>{content}</div>
 		</>
 	)

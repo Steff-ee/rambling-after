@@ -5,7 +5,7 @@ import { IPost } from '../post.types'
 export const POST_00108: IPost = {
 	id: 108,
 	title: 'Writing code is like...',
-	createdTime: 1517054400,
+	createdTime: 1517054400000,
 	route: PageRoutes.MathScience,
 	content: (
 		<>

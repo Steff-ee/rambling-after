@@ -5,7 +5,7 @@ import { IPost } from '../post.types'
 export const POST_00100: IPost = {
 	id: 100,
 	title: 'What is Dungeons & Dragons?',
-	createdTime: 1508760000,
+	createdTime: 1508760000000,
 	route: PageRoutes.Games,
 	content: (
 		<>

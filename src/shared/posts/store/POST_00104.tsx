@@ -5,7 +5,7 @@ import { IPost } from '../post.types'
 export const POST_00104: IPost = {
 	id: 104,
 	title: 'The Atrium',
-	createdTime: 1512043200,
+	createdTime: 1512043200000,
 	route: PageRoutes.Stories,
 	content: (
 		<>

@@ -5,7 +5,7 @@ import { IPost } from '../post.types'
 export const POST_00106: IPost = {
 	id: 106,
 	title: 'There Are No “Best” Films',
-	createdTime: 1514116800,
+	createdTime: 1514116800000,
 	route: PageRoutes.Stories,
 	content: (
 		<>

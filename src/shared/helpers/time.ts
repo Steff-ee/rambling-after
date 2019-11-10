@@ -3,6 +3,12 @@ const { getSunrise, getSunset } = require('sunrise-sunset-js')
 export const latitude = 47.6696481
 export const longitude = -122.1995027
 
+export const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+}
+
 export const minutesOfDay = (date: Date): number => {
 	return date.getHours() * 60 + date.getSeconds()
 }

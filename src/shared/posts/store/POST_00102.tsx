@@ -5,7 +5,7 @@ import { IPost } from '../post.types'
 export const POST_00102: IPost = {
 	id: 102,
 	title: 'Which attributes best describe player characters?',
-	createdTime: 1509019200,
+	createdTime: 1509019200000,
 	route: PageRoutes.Games,
 	content: (
 		<>

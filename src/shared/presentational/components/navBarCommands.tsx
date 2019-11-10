@@ -1,5 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import {
+	faAngleDoubleLeft,
+	faAngleDoubleRight,
 	faAngleLeft,
 	faAngleRight,
 	faChessKnight,
@@ -98,6 +100,32 @@ export const useNextCommand = (color: string, onClick?: () => void): INavItem | 
 		icon: <FontAwesomeIcon icon={faAngleRight} {...commonIconProps} style={{ color }} />,
 		id: 'NextCommand',
 		label: 'Next',
+		onClick,
+	}
+}
+
+export const useFirstCommand = (color: string, onClick?: () => void): INavItem | undefined => {
+	if (onClick === undefined) {
+		return undefined
+	}
+
+	return {
+		icon: <FontAwesomeIcon icon={faAngleDoubleLeft} {...commonIconProps} style={{ color }} />,
+		id: 'FirstCommand',
+		label: 'First',
+		onClick,
+	}
+}
+
+export const useLatestCommand = (color: string, onClick?: () => void): INavItem | undefined => {
+	if (onClick === undefined) {
+		return undefined
+	}
+
+	return {
+		icon: <FontAwesomeIcon icon={faAngleDoubleRight} {...commonIconProps} style={{ color }} />,
+		id: 'LatestCommand',
+		label: 'Latest',
 		onClick,
 	}
 }

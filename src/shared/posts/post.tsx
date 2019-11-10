@@ -13,7 +13,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 	return (
 		<>
 			<div>{title}</div>
-			<div>{createdDate.getDate().toString()}</div>
+			<div>{createdDate.toString()}</div>
 			<div>{content}</div>
 		</>
 	)

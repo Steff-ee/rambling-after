@@ -8,20 +8,32 @@ export interface IPageProps {
 	titleText: string
 	Pivots: JSX.Element
 	Content: JSX.Element
+	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
+	latestClick?: () => void
 }
 
 export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JSX.Element => {
-	const { headerBackgroundImage, titleText, backClick, nextClick, ...remainingProps } = props
+	const {
+		headerBackgroundImage,
+		titleText,
+		firstClick,
+		backClick,
+		nextClick,
+		latestClick,
+		...remainingProps
+	} = props
 	const { mode } = useContext(ModesContext)
 
 	if (mode === Modes.Classic) {
 		return (
 			<ClassicPage
 				headerBackgroundImage={headerBackgroundImage}
+				firstClick={firstClick}
 				backClick={backClick}
 				nextClick={nextClick}
+				latestClick={latestClick}
 				{...remainingProps}
 			/>
 		)

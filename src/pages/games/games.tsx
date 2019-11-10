@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
 import { Post } from '../../shared/posts/post'
-import { gamesLatestPost } from '../../shared/posts/posts'
+import { gamesFirstPost, gamesLatestPost } from '../../shared/posts/posts'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import {
 	IPivotTitlePhrases,
@@ -34,8 +34,12 @@ const titleMap = makeTitleMap(gamePivotTitlePhrases)
 export const Games: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots } = usePivots(gamePivotTitlePhrases, GamePivots.Posts, titleMap)
 	const { setSeason } = useContext(SeasonsContext)
-	const { currentPost, backClick, nextClick } = usePostsNav(gamesLatestPost)
-	const showPostNavs = pivotName === GamePivots.Posts
+	const skipPostNavs = pivotName !== GamePivots.Posts
+	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
+		gamesFirstPost,
+		gamesLatestPost,
+		skipPostNavs
+	)
 
 	useEffect(() => {
 		setSeason(getNextSeason(2))
@@ -60,8 +64,10 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			titleText={gamesTitle}
 			Pivots={pivots}
 			Content={pageContent}
-			backClick={(showPostNavs && backClick) || undefined}
-			nextClick={(showPostNavs && nextClick) || undefined}
+			firstClick={firstClick}
+			backClick={backClick}
+			nextClick={nextClick}
+			latestClick={latestClick}
 		/>
 	)
 }

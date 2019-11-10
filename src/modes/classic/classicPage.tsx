@@ -16,14 +16,24 @@ export interface IPageProps {
 	headerBackgroundImage: string
 	Pivots: JSX.Element
 	Content: JSX.Element
+	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
+	latestClick?: () => void
 }
 
 export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	props: IPageProps
 ): JSX.Element => {
-	const { Pivots, Content, headerBackgroundImage, backClick, nextClick } = props
+	const {
+		Pivots,
+		Content,
+		headerBackgroundImage,
+		firstClick,
+		backClick,
+		nextClick,
+		latestClick,
+	} = props
 	const mediaSize = useContext(MediaContext)
 
 	const skipMorph = mediaSize === MediaSize.Small
@@ -150,7 +160,12 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						}}
 					>
 						<ClassicLeftNav />
-						<ClassicRightNav backClick={backClick} nextClick={nextClick} />
+						<ClassicRightNav
+							firstClick={firstClick}
+							backClick={backClick}
+							nextClick={nextClick}
+							latestClick={latestClick}
+						/>
 					</div>
 					<div style={{ margin: '44px 0' }}>{Pivots}</div>
 					<div style={{ maxWidth: '800px', margin: 'auto' }}>{Content}</div>

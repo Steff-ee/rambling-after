@@ -1,6 +1,6 @@
 import { initializeIcons } from '@uifabric/icons'
 import { loadTheme } from '@uifabric/styling'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { MediaProvider } from '../components/mediaProvider'
 import { classicColors } from '../modes/classic/classicConstants'
@@ -32,11 +32,13 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 						colors = { ...defaultColorsContext, ...classicColors }
 					}
 
-					loadTheme({
-						semanticColors: {
-							inputBackgroundChecked: colors.secondary,
-						},
-					})
+					useEffect(() => {
+						loadTheme({
+							semanticColors: {
+								inputBackgroundChecked: colors.secondary,
+							},
+						})
+					}, [])
 
 					return (
 						<ColorsContext.Provider value={colors}>

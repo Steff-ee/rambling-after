@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring, useTransition } from 'react-spring'
+import { NavOrientation } from './iconNav.types'
 
 export interface INavListLabelProps {
 	labels: string[]
 	currentLabelIndex: number
+	orientation: NavOrientation
 
 	/* Styling */
 	width: string
 	height: string
-	rootStyle: React.CSSProperties
+	rootStyle?: React.CSSProperties
 	textStyle?: React.CSSProperties
 
 	/* Callbacks */
@@ -24,16 +26,26 @@ export interface INavListLabelProps {
 export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
 	props: INavListLabelProps
 ): JSX.Element => {
-	const { labels, currentLabelIndex, width, height, rootStyle, textStyle, onClick } = props
+	const {
+		labels,
+		currentLabelIndex,
+		width,
+		height,
+		rootStyle,
+		textStyle,
+		onClick,
+		orientation,
+	} = props
 	const [delayedIndex, setDelayedIndex] = useState<number>(currentLabelIndex)
 	const indexChanging = delayedIndex !== currentLabelIndex
 	const label = labels[delayedIndex]
-	console.log('curr: ', currentLabelIndex, ' del: ', delayedIndex, ' d(x): ', indexChanging)
+	const isNavListLabelOpen = currentLabelIndex > -1
+	const textSpringDuration = 200
 
 	const [textSpring] = useSpring(() => ({
 		to: { opacity: 1 },
 		from: { opacity: 0 },
-		config: { duration: 250 },
+		config: { duration: textSpringDuration },
 		onRest: (): void => {
 			if (delayedIndex !== currentLabelIndex) {
 				setDelayedIndex(currentLabelIndex)
@@ -43,43 +55,52 @@ export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
 		reverse: indexChanging,
 	}))
 
-	// (TODO) how to nest animated divs
+	const transform =
+		orientation === NavOrientation.Left ? 'translate3d(-50%, 0, 0)' : 'translate3d(50%, 0, 0)'
 
-	// const [rootSpring] = useSpring(() => ({
-	// 	to: { opacity: 1, transform: 'translate3d(0, 0, 0)' },
-	// 	from: { opacity: 0, transform: 'translate3d(0, -50%, 0)' },
-	// }))
+	const transition = useTransition(isNavListLabelOpen, {
+		from: { opacity: 0, transform },
+		enter: { opacity: 1, transform: 'translate3d(0%, 0, 0)' },
+		leave: { opacity: 0, transform },
+	})
 
 	return (
-		<div
-			aria-label={label}
-			// @ts-ignore
-			style={{
-				display: 'flex',
-				width,
-				height,
-				minWidth: '160px',
-				cursor: 'pointer',
-				...rootStyle,
-				// ...rootSpring,
-			}}
-			onClick={(): void => {
-				if (onClick) {
-					onClick(label)
-				}
-			}}
-		>
-			<animated.div
-				// @ts-ignore
-				style={{
-					margin: 'auto',
-					padding: '16px',
-					...textStyle,
-					...textSpring,
-				}}
-			>
-				{label}
-			</animated.div>
-		</div>
+		<>
+			{transition(
+				(rootTransition, item) =>
+					item && (
+						<animated.div
+							aria-label={label}
+							// @ts-ignore
+							style={{
+								display: 'flex',
+								width,
+								height,
+								minWidth: '160px',
+								cursor: 'pointer',
+								...rootStyle,
+								...rootTransition,
+							}}
+							onClick={(): void => {
+								if (onClick) {
+									onClick(label)
+								}
+							}}
+						>
+							<animated.div
+								// @ts-ignore
+								style={{
+									margin: 'auto',
+									padding: '16px',
+									...textStyle,
+									...textSpring,
+								}}
+							>
+								{label}
+							</animated.div>
+						</animated.div>
+					)
+			)}
+		</>
 	)
 }

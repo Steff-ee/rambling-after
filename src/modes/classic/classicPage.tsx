@@ -147,8 +147,8 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 							justifyContent: 'space-between',
 						}}
 					>
-						<ClassicRightNav />
 						<ClassicLeftNav />
+						<ClassicRightNav />
 					</div>
 					<div style={{ margin: '44px 0' }}>{Pivots}</div>
 					<div style={{ maxWidth: '800px', margin: 'auto' }}>{Content}</div>

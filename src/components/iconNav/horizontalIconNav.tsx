@@ -31,7 +31,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		}
 	}
 
-	const orientationStyle = orientation === NavOrientation.Left ? { right: 0 } : { left: 0 }
+	const orientationStyle = orientation === NavOrientation.Right ? { right: 0 } : { left: 0 }
 
 	return (
 		<div
@@ -55,20 +55,19 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 					/>
 				)
 			)}
-			{hoverIndex > -1 && (
-				<NavListLabel
-					labels={navItems.map((item: INavItem): string => item.label)}
-					currentLabelIndex={hoverIndex}
-					height={iconHeight}
-					width={labelWidth}
-					rootStyle={{
-						...colorStyle,
-						...orientationStyle,
-						position: 'absolute',
-						marginTop: iconHeight,
-					}}
-				/>
-			)}
+			<NavListLabel
+				labels={navItems.map((item: INavItem): string => item.label)}
+				currentLabelIndex={hoverIndex}
+				height={iconHeight}
+				width={labelWidth}
+				orientation={orientation}
+				rootStyle={{
+					...colorStyle,
+					...orientationStyle,
+					position: 'absolute',
+					marginTop: iconHeight,
+				}}
+			/>
 		</div>
 	)
 }

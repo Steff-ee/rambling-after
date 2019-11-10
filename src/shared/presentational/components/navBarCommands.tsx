@@ -1,5 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import {
+	faAngleLeft,
+	faAngleRight,
 	faChessKnight,
 	faFeatherAlt,
 	faGlobeAmericas,
@@ -71,5 +73,31 @@ export const useChangeModeCommand = (color: string): INavItem => {
 		id: 'ModeToggleCommand',
 		label,
 		onClick: (): void => setMode(mode === Modes.Classic ? Modes.Seasons : Modes.Classic),
+	}
+}
+
+export const useBackCommand = (color: string, onClick?: () => void): INavItem | undefined => {
+	if (onClick === undefined) {
+		return undefined
+	}
+
+	return {
+		icon: <FontAwesomeIcon icon={faAngleLeft} {...commonIconProps} style={{ color }} />,
+		id: 'BackCommand',
+		label: 'Back',
+		onClick,
+	}
+}
+
+export const useNextCommand = (color: string, onClick?: () => void): INavItem | undefined => {
+	if (onClick === undefined) {
+		return undefined
+	}
+
+	return {
+		icon: <FontAwesomeIcon icon={faAngleRight} {...commonIconProps} style={{ color }} />,
+		id: 'NextCommand',
+		label: 'Next',
+		onClick,
 	}
 }

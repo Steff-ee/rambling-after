@@ -1,4 +1,3 @@
-import Fade from '@material-ui/core/Fade'
 import React from 'react'
 
 export interface INavLabelProps {
@@ -9,9 +8,6 @@ export interface INavLabelProps {
 	height: string
 	rootStyle: React.CSSProperties
 	textStyle?: React.CSSProperties
-	applyTextFade?: boolean
-	applyRootFade?: boolean
-	fadeDelay?: number
 
 	/* Callbacks */
 	onClick?: () => void
@@ -24,21 +20,13 @@ export interface INavLabelProps {
 export const NavLabel: React.FunctionComponent<INavLabelProps> = (
 	props: INavLabelProps
 ): JSX.Element => {
-	const {
-		label,
-		width,
-		height,
-		rootStyle,
-		textStyle,
-		onClick,
-		applyTextFade = true,
-		applyRootFade = true,
-		fadeDelay = 250,
-	} = props
+	const { label, width, height, rootStyle, textStyle, onClick } = props
 
 	return (
-		<Fade in={applyRootFade} timeout={fadeDelay}>
+		<div>
 			<div
+				aria-label={label}
+				key={`NavLabel-${label}`}
 				style={{
 					display: 'flex',
 					width,
@@ -49,10 +37,8 @@ export const NavLabel: React.FunctionComponent<INavLabelProps> = (
 				}}
 				onClick={onClick}
 			>
-				<Fade in={applyTextFade} timeout={fadeDelay} key={label}>
-					<div style={{ margin: 'auto', padding: '0 16px', ...textStyle }}>{label}</div>
-				</Fade>
+				<div style={{ margin: 'auto', padding: '0 16px', ...textStyle }}>{label}</div>
 			</div>
-		</Fade>
+		</div>
 	)
 }

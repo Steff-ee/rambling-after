@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
 import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
-import { NavLabel } from './navLabel'
+import { NavListLabel } from './navListLabel'
 
 /**
  * This is a macromolecular component:
@@ -20,14 +20,14 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		orientation,
 		selectedId,
 	} = props
-	const [hoverLabel, setHoverLabel] = useState<string | undefined>(undefined)
+	const [hoverIndex, setHoverIndex] = useState<number>(-1)
 	const { primary, secondary } = useContext(ColorsContext)
 
 	const colorStyle = { backgroundColor: secondary, color: primary }
 
-	const onMouseLeave = (label: string): void => {
-		if (label === hoverLabel) {
-			setHoverLabel(undefined)
+	const onMouseLeave = (index: number): void => {
+		if (index === hoverIndex) {
+			setHoverIndex(-1)
 		}
 	}
 
@@ -41,22 +41,24 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 			}}
 		>
 			{navItems.map(
-				(item: INavItem): JSX.Element => (
+				(item: INavItem, itemIndex: number): JSX.Element => (
 					<NavItem
 						{...item}
 						width={iconWidth}
 						height={iconHeight}
 						key={item.id}
+						id={itemIndex}
 						isSelected={item.id === selectedId}
-						onMouseEnter={setHoverLabel}
+						onMouseEnter={setHoverIndex}
 						onMouseLeave={onMouseLeave}
 						rootStyle={colorStyle}
 					/>
 				)
 			)}
-			{hoverLabel && (
-				<NavLabel
-					label={hoverLabel}
+			{hoverIndex > -1 && (
+				<NavListLabel
+					labels={navItems.map((item: INavItem): string => item.label)}
+					currentLabelIndex={hoverIndex}
 					height={iconHeight}
 					width={labelWidth}
 					rootStyle={{

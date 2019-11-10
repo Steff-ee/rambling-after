@@ -58,18 +58,24 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 					useHoverDelay={useHoverDelay}
 				/>
 				{navItems.map(
-					(item: INavItem): JSX.Element => (
-						<NavItem
-							{...item}
-							{...labelProps}
-							width={iconWidth}
-							height={iconHeight}
-							key={item.id}
-							isSelected={item.id === selectedId}
-							labelTextStyle={{ margin: 'auto 0' }}
-							useHoverDelay={useHoverDelay}
-						/>
-					)
+					(item: INavItem): JSX.Element => {
+						const { label, icon, onClick } = item
+
+						return (
+							<NavItem
+								{...labelProps}
+								icon={icon}
+								label={label}
+								onClick={onClick}
+								width={iconWidth}
+								height={iconHeight}
+								key={item.id}
+								isSelected={item.id === selectedId}
+								labelTextStyle={{ margin: 'auto 0' }}
+								useHoverDelay={useHoverDelay}
+							/>
+						)
+					}
 				)}
 				{onRenderBelowContent && showIconLabels && onRenderBelowContent()}
 			</div>

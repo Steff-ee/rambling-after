@@ -6,6 +6,7 @@ import { getFade } from './navHelpers'
 import { NavLabel } from './navLabel'
 
 export interface INavItemProps {
+	id?: number
 	icon: JSX.Element
 	label: string
 	labelPosition?: LabelPosition
@@ -21,8 +22,8 @@ export interface INavItemProps {
 
 	/* Callbacks */
 	onClick: () => void
-	onMouseEnter?: (label: string) => void
-	onMouseLeave?: (label: string) => void
+	onMouseEnter?: (id: number) => void
+	onMouseLeave?: (id: number) => void
 }
 
 /**
@@ -33,6 +34,7 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 	props: INavItemProps
 ): JSX.Element => {
 	let {
+		id,
 		icon,
 		onClick,
 		label = '',
@@ -87,14 +89,14 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 			style={{ display: 'flex', ...rootStyle }}
 			onMouseEnter={(): void => {
 				setIsHovering(true)
-				if (onMouseEnter) {
-					onMouseEnter(label)
+				if (onMouseEnter && id !== undefined) {
+					onMouseEnter(id)
 				}
 			}}
 			onMouseLeave={(): void => {
 				setIsHovering(false)
-				if (onMouseLeave) {
-					onMouseLeave(label)
+				if (onMouseLeave && id !== undefined) {
+					onMouseLeave(id)
 				}
 			}}
 		>

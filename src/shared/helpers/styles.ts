@@ -1,7 +1,7 @@
 export const defaultTextStyle: React.CSSProperties = {
 	fontFamily: 'Muli, Lato, sans-serif',
-	fontSize: '18px',
-	lineHeight: '29px',
+	fontSize: '22px',
+	lineHeight: '38px',
 	textAlign: 'center',
 }
 

@@ -13,9 +13,19 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 
 	return (
 		<>
-			<div>{title}</div>
-			<div>{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions)}</div>
-			<div>{content}</div>
+			<div
+				style={{
+					fontFamily: 'Montserrat',
+					fontSize: '36px',
+					padding: '16px 0',
+				}}
+			>
+				{title}
+			</div>
+			<div style={{ fontSize: '18px', padding: '16px 0' }}>
+				{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions).toUpperCase()}
+			</div>
+			<div style={{ padding: '16px 0' }}>{content}</div>
 		</>
 	)
 }

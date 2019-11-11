@@ -108,7 +108,7 @@ export const usePivots = (
 			text: [
 				{
 					fontFamily: 'Comfortaa',
-					fontSize: '20px',
+					fontSize: '22px',
 					width: '108px',
 					mixBlendMode: 'exclusion',
 					color: classicColors.primary,
@@ -122,7 +122,7 @@ export const usePivots = (
 			text: [
 				{
 					fontFamily: 'Comfortaa',
-					fontSize: '20px',
+					fontSize: '22px',
 					width: '96px',
 				},
 			],

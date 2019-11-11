@@ -34,11 +34,11 @@ const titleMap = makeTitleMap(gamePivotTitlePhrases)
 export const Games: React.FunctionComponent = (): JSX.Element => {
 	const { pivotName, pivots } = usePivots(gamePivotTitlePhrases, GamePivots.Posts, titleMap)
 	const { setSeason } = useContext(SeasonsContext)
-	const skipPostNavs = pivotName !== GamePivots.Posts
+	const showPostsNav = pivotName === GamePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
 		gamesFirstPost,
 		gamesLatestPost,
-		skipPostNavs
+		!showPostsNav
 	)
 
 	useEffect(() => {
@@ -64,7 +64,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			titleText={gamesTitle}
 			Pivots={pivots}
 			Content={pageContent}
-			showPostsNav={pivotName === GamePivots.Posts}
+			showPostsNav={showPostsNav}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}

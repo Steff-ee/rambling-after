@@ -1,5 +1,6 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React, { useContext } from 'react'
+import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
 import {
@@ -99,14 +100,15 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 					zIndex: -3,
 					transformOrigin: `0 -${topBarHeight}px`,
 					transform: 'translateZ(-3px) scale(4)',
+					height: `${bannerHeight}px`,
 				}}
 			>
-				<div
+				<FadeLoadImage
+					src={headerBackgroundImage}
 					style={{
-						backgroundImage: `url(${headerBackgroundImage})`,
-						backgroundSize: 'cover',
-						height: `${bannerHeight}px`,
+						height: `100%`,
 						width: '100vw',
+						objectFit: 'cover',
 					}}
 				/>
 			</div>

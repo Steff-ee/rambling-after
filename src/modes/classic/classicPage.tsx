@@ -109,6 +109,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						height: `100%`,
 						width: '100vw',
 						objectFit: 'cover',
+						objectPosition: 'top',
 					}}
 				/>
 			</div>

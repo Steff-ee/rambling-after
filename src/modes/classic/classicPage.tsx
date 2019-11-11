@@ -159,6 +159,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 							marginTop: '-1px',
 							display: 'flex',
 							justifyContent: 'space-between',
+							zIndex: 2,
 						}}
 					>
 						<ClassicLeftNav />

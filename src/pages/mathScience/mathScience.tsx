@@ -59,12 +59,18 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <Post post={currentPost} />
 			break
 		case MathSciencePivots.Code:
-			const { icon, label, onClick } = changeModeCommand
+			const { icon, onClick } = changeModeCommand
 			pageContent = (
 				<>
 					<p>github, also check out TreeRing and PowerApps</p>
 					<p>Click to change this website's display mode:</p>
-					<IconButton icon={icon} width={'64px'} height={'64px'} applyGrow={false} />
+					<IconButton
+						icon={icon}
+						onClick={onClick}
+						width={'64px'}
+						height={'64px'}
+						applyGrow={false}
+					/>
 				</>
 			)
 			break

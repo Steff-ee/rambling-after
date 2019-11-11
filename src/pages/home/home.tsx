@@ -86,6 +86,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 				</>
 			)
 			break
+		// (TODO) Change this to All?
 		case HomePivots.Recent:
 		default:
 			pageContent = <>BLOG POST ONE</>
@@ -97,6 +98,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 			titleText={homeTitle}
 			Pivots={pivots}
 			Content={pageContent}
+			showPostsNav={pivotName === HomePivots.Blog || pivotName === HomePivots.Recent}
 		/>
 	)
 }

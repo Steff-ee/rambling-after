@@ -8,6 +8,7 @@ export interface IPageProps {
 	titleText: string
 	Pivots: JSX.Element
 	Content: JSX.Element
+	showPostsNav: boolean
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
@@ -22,6 +23,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 		backClick,
 		nextClick,
 		latestClick,
+		showPostsNav,
 		...remainingProps
 	} = props
 	const { mode } = useContext(ModesContext)
@@ -30,6 +32,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 		return (
 			<ClassicPage
 				headerBackgroundImage={headerBackgroundImage}
+				showRightNav={showPostsNav}
 				firstClick={firstClick}
 				backClick={backClick}
 				nextClick={nextClick}

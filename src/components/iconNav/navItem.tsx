@@ -11,6 +11,7 @@ export interface INavItemProps {
 	label: string
 	labelPosition?: LabelPosition
 	isSelected?: boolean
+	disabled?: boolean
 
 	/* Styling */
 	width: string
@@ -21,7 +22,7 @@ export interface INavItemProps {
 	useHoverDelay?: boolean
 
 	/* Callbacks */
-	onClick: () => void
+	onClick?: () => void
 	onMouseEnter?: (id: number) => void
 	onMouseLeave?: (id: number) => void
 }
@@ -48,13 +49,13 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 		rootStyle,
 		labelTextStyle,
 		useHoverDelay = true,
+		disabled = false,
 	} = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 	isSelected = isSelected || false
 	const hoverDelay = 200
 	const wasHovering = useChangeDelay(isHovering, hoverDelay, !useHoverDelay)
-	const { shouldFade, fadeFilter } = getFade({ isHovering: wasHovering, isSelected })
-	const filter = shouldFade ? fadeFilter : ''
+	const filter = getFade({ isHovering: wasHovering, isSelected, disabled })
 
 	let labelElement = <></>
 	if (labelPosition !== undefined) {
@@ -78,8 +79,9 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 			width={width}
 			height={height}
 			onClick={onClick}
-			applyFade={shouldFade}
+			filter={filter}
 			applyGrow={isHovering}
+			disabled={disabled}
 		/>
 	)
 
@@ -88,15 +90,19 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 			aria-label={label}
 			style={{ display: 'flex', ...rootStyle }}
 			onMouseEnter={(): void => {
-				setIsHovering(true)
-				if (onMouseEnter && id !== undefined) {
-					onMouseEnter(id)
+				if (!disabled) {
+					setIsHovering(true)
+					if (onMouseEnter && id !== undefined) {
+						onMouseEnter(id)
+					}
 				}
 			}}
 			onMouseLeave={(): void => {
-				setIsHovering(false)
-				if (onMouseLeave && id !== undefined) {
-					onMouseLeave(id)
+				if (!disabled) {
+					setIsHovering(false)
+					if (onMouseLeave && id !== undefined) {
+						onMouseLeave(id)
+					}
 				}
 			}}
 		>

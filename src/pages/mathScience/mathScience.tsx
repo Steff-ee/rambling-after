@@ -1,7 +1,10 @@
 import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
+import { IconButton } from '../../components/iconButton'
+import { classicColors } from '../../modes/classic/classicConstants'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
+import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
 import {
 	IPivotTitlePhrases,
 	makeTitleMap,
@@ -35,6 +38,8 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
+	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
+
 	useEffect(() => {
 		setSeason(getNextSeason(3))
 	}, [])
@@ -96,7 +101,14 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			)
 			break
 		case MathSciencePivots.Code:
-			pageContent = <>github, also check out TreeRing and PowerApps</>
+			const { icon, label, onClick } = changeModeCommand
+			pageContent = (
+				<>
+					<p>github, also check out TreeRing and PowerApps</p>
+					<p>Click to change this website's display mode:</p>
+					<IconButton icon={icon} width={'64px'} height={'64px'} applyGrow={false} />
+				</>
+			)
 			break
 		case MathSciencePivots.Links:
 		default:
@@ -109,6 +121,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 			titleText={mathScienceTitle}
 			Pivots={pivots}
 			Content={pageContent}
+			showPostsNav={pivotName === MathSciencePivots.Posts}
 		/>
 	)
 }

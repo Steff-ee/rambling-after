@@ -78,54 +78,42 @@ export const useChangeModeCommand = (color: string): INavItem => {
 	}
 }
 
-export const useBackCommand = (color: string, onClick?: () => void): INavItem | undefined => {
-	if (onClick === undefined) {
-		return undefined
-	}
-
+export const useBackCommand = (color: string, onClick?: () => void): INavItem => {
 	return {
 		icon: <FontAwesomeIcon icon={faAngleLeft} {...commonIconProps} style={{ color }} />,
 		id: 'BackCommand',
 		label: 'Back',
 		onClick,
+		disabled: onClick === undefined,
 	}
 }
 
-export const useNextCommand = (color: string, onClick?: () => void): INavItem | undefined => {
-	if (onClick === undefined) {
-		return undefined
-	}
-
+export const useNextCommand = (color: string, onClick?: () => void): INavItem => {
 	return {
 		icon: <FontAwesomeIcon icon={faAngleRight} {...commonIconProps} style={{ color }} />,
 		id: 'NextCommand',
 		label: 'Next',
 		onClick,
+		disabled: onClick === undefined,
 	}
 }
 
-export const useFirstCommand = (color: string, onClick?: () => void): INavItem | undefined => {
-	if (onClick === undefined) {
-		return undefined
-	}
-
+export const useFirstCommand = (color: string, onClick?: () => void): INavItem => {
 	return {
 		icon: <FontAwesomeIcon icon={faAngleDoubleLeft} {...commonIconProps} style={{ color }} />,
 		id: 'FirstCommand',
 		label: 'First',
 		onClick,
+		disabled: onClick === undefined,
 	}
 }
 
-export const useLatestCommand = (color: string, onClick?: () => void): INavItem | undefined => {
-	if (onClick === undefined) {
-		return undefined
-	}
-
+export const useLatestCommand = (color: string, onClick?: () => void): INavItem => {
 	return {
 		icon: <FontAwesomeIcon icon={faAngleDoubleRight} {...commonIconProps} style={{ color }} />,
 		id: 'LatestCommand',
 		label: 'Latest',
 		onClick,
+		disabled: onClick === undefined,
 	}
 }

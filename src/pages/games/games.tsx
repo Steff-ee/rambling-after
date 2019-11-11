@@ -64,6 +64,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			titleText={gamesTitle}
 			Pivots={pivots}
 			Content={pageContent}
+			showPostsNav={pivotName === GamePivots.Posts}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}

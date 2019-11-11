@@ -1,11 +1,14 @@
-export const fadeFilterValue = 'invert(0.44)'
+export const fadeFilterValue = 'invert(0.33)'
+export const disabledFadeFilterValue = 'invert(0.7)'
 
 export const getFade = (options: {
 	isHovering: boolean
 	isSelected: boolean
-}): { shouldFade: boolean; fadeFilter: string } => {
-	const { isHovering, isSelected } = options
-	const shouldFade = !isHovering && !isSelected
+	disabled: boolean
+}): string => {
+	const { isHovering, isSelected, disabled } = options
+	const shouldFade = disabled || (!isHovering && !isSelected)
+	const fadeFilter = disabled ? disabledFadeFilterValue : fadeFilterValue
 
-	return { shouldFade, fadeFilter: fadeFilterValue }
+	return shouldFade ? fadeFilter : ''
 }

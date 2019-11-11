@@ -17,7 +17,8 @@ export interface INavItem {
 	id: string
 	icon: JSX.Element
 	label: string
-	onClick: () => void
+	onClick?: () => void
+	disabled?: boolean
 }
 
 export interface ICommonIconNavProps {

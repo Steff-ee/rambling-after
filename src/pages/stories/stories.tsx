@@ -80,6 +80,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 			titleText={storiesTitle}
 			Pivots={pivots}
 			Content={pageContent}
+			showPostsNav={pivotName === StoryPivots.Posts}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}

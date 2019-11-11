@@ -1,13 +1,15 @@
 import React from 'react'
-import { fadeFilterValue } from './iconNav/navHelpers'
 
 export interface IIconButtonProps {
 	icon: JSX.Element
+	applyGrow: boolean
+	disabled?: boolean
+	onClick?: () => void
+
+	/* Styling */
 	width: string
 	height: string
-	applyFade: boolean
-	applyGrow: boolean
-	onClick?: () => void
+	filter?: string
 }
 
 const growStyleBase: React.CSSProperties = {
@@ -30,12 +32,7 @@ const growStyleHover: React.CSSProperties = {
 export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 	props: IIconButtonProps
 ): JSX.Element => {
-	const { icon, onClick, width, height, applyFade, applyGrow } = props
-
-	let filter = ''
-	if (applyFade) {
-		filter = fadeFilterValue
-	}
+	const { icon, onClick, width, height, filter, applyGrow, disabled = false } = props
 
 	let growStyle = growStyleBase
 	if (applyGrow) {
@@ -51,10 +48,14 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 				justifyContent: 'center',
 				alignItems: 'center',
 				filter,
-				cursor: 'pointer',
+				cursor: disabled ? 'default' : 'pointer',
 				...growStyle,
 			}}
-			onClick={onClick}
+			onClick={(): void => {
+				if (!disabled && onClick) {
+					onClick()
+				}
+			}}
 		>
 			{icon}
 		</div>

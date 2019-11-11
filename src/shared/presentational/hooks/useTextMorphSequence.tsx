@@ -17,9 +17,10 @@ export type ITextSequence = Array<{
  */
 export const useTextMorphSequence = (textSequence: ITextSequence, skip = false): JSX.Element => {
 	const [isHovering, setIsHovering] = useState<boolean>(false)
-	const [hasBeenHovering, setHasBeenHovering] = useState<boolean>(false)
-	const [isMorphing, setIsMorphing] = useState<boolean>(false)
+	const [wasHovering, setWasHovering] = useState<boolean>(false)
 	const [currentIndex, setCurrentIndex] = useState<number>(0)
+	const hasBeenHovering = isHovering && wasHovering
+	const isMorphing = hasBeenHovering || currentIndex > 0
 	const nextText = isMorphing ? textSequence[currentIndex + 1] : textSequence[currentIndex]
 	const { morphedTexts, isMorphFinished } = useTextMorph(
 		textSequence[0].texts,
@@ -29,23 +30,24 @@ export const useTextMorphSequence = (textSequence: ITextSequence, skip = false):
 	)
 
 	useEffect(() => {
-		if (!skip) {
-			if (isHovering && hasBeenHovering) {
-				// don't start morphing until the user has been hovering a while
-				setIsMorphing(true)
-			} else if (!isHovering && !hasBeenHovering) {
-				setIsMorphing(false)
-			}
+		if (!skip && !isHovering) {
+			debounce(setWasHovering, 1)(false)
+		}
+	}, [isHovering])
 
-			if (isHovering && isMorphing) {
-				// if we're in the middle of a morph and continuing to hover, then advance
+	// start or stop morphing because hovering state has definitely changed
+	useEffect(() => {
+		if (!skip) {
+			if (hasBeenHovering) {
+				// if we're definitely hovering and the current morph has finished, then advance
 				if (isMorphFinished && textSequence.length > currentIndex + 2) {
 					const currentWait = textSequence[currentIndex + 1].wait
 					debounce(setCurrentIndex, currentWait)(currentIndex + 1)
 				}
-			} else if (!isMorphing && !hasBeenHovering) {
-				// if we've stopped morphing for a while, go back to the start
-				setCurrentIndex(0)
+			} else if (!isHovering && !hasBeenHovering) {
+				// if we're definitely not hovering, reset back to the start
+				const endWait = textSequence[textSequence.length - 1].wait
+				debounce(setCurrentIndex, endWait)(0)
 			}
 		}
 	})
@@ -54,16 +56,24 @@ export const useTextMorphSequence = (textSequence: ITextSequence, skip = false):
 		return <>{textSequence[0].texts.join(' ')}</>
 	}
 
+	const startWait = textSequence[0].wait
+
 	const onMouseEnter = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
-		const startWait = textSequence[0].wait
 		setIsHovering(true)
-		debounce(setHasBeenHovering, startWait)(true)
+		if (isMorphing) {
+			setWasHovering(true)
+		} else {
+			debounce(setWasHovering, startWait)(true)
+		}
 	}
 
 	const onMouseLeave = (): void => {
-		const endWait = textSequence[textSequence.length - 1].wait
 		setIsHovering(false)
-		debounce(setHasBeenHovering, endWait)(false)
+		if (isMorphing) {
+			setWasHovering(false)
+		} else {
+			debounce(setWasHovering, startWait)(false)
+		}
 	}
 
 	return (

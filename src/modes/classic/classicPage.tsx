@@ -142,9 +142,9 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				<div
 					style={{
 						backgroundImage: `url(${backgroundTextureImg})`,
-						width: '100%',
-						height: '100%',
 						position: 'sticky',
+						backgroundAttachment: 'fixed',
+						backgroundPosition: 'right center',
 					}}
 				>
 					<div

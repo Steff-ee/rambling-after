@@ -5,7 +5,7 @@ export const longitude = -122.1995027
 
 export const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
 	year: 'numeric',
-	month: 'long',
+	month: 'short',
 	day: 'numeric',
 }
 

@@ -22,7 +22,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 			>
 				{title}
 			</div>
-			<div style={{ fontSize: '18px', padding: '16px 0' }}>
+			<div style={{ fontSize: '18px', padding: '8px 0px 16px 44px' }}>
 				{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions).toUpperCase()}
 			</div>
 			<div style={{ padding: '16px 0' }}>{content}</div>

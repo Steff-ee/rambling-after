@@ -172,7 +172,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						style={{
 							maxWidth: '972px',
 							margin: 'auto',
-							padding: '0 5%',
+							padding: '0 5% 5% 5%',
 							textAlign: 'left',
 						}}
 					>

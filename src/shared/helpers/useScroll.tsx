@@ -6,7 +6,6 @@ export interface IScrollPosition {
 }
 
 export const getScrollPosition = (element: React.RefObject<HTMLDivElement>): IScrollPosition => {
-	console.log('element && element.current', element && element.current)
 	const target = element && element.current ? element.current : document.body
 	const position = target.getBoundingClientRect()
 
@@ -14,17 +13,17 @@ export const getScrollPosition = (element: React.RefObject<HTMLDivElement>): ISc
 }
 
 export const useScroll = (
-	element: React.RefObject<HTMLDivElement>,
+	scrollElement: React.RefObject<HTMLDivElement>,
+	positionElement: React.RefObject<HTMLDivElement>,
 	callback: (prevPosition: IScrollPosition, currentPosition: IScrollPosition) => void
 ): void => {
-	const position = useRef(getScrollPosition(element))
-	const wait = 100
+	const position = useRef(getScrollPosition(positionElement))
+	const wait = 200
 
 	let throttleTimeout: ReturnType<typeof setTimeout> | undefined
 
 	const onScroll = (): void => {
-		const currentPosition = getScrollPosition(element)
-		console.log('onScroll:', position.current, currentPosition)
+		const currentPosition = getScrollPosition(positionElement)
 		callback(position.current, currentPosition)
 		position.current = currentPosition
 		throttleTimeout = undefined
@@ -37,13 +36,13 @@ export const useScroll = (
 			}
 		}
 
-		if (element && element.current) {
-			element.current.addEventListener('scroll', onScrollThrottled)
+		if (scrollElement && scrollElement.current) {
+			scrollElement.current.addEventListener('scroll', onScrollThrottled)
 		}
 
 		return (): void => {
-			if (element && element.current) {
-				element.current.removeEventListener('scroll', onScrollThrottled)
+			if (scrollElement && scrollElement.current) {
+				scrollElement.current.removeEventListener('scroll', onScrollThrottled)
 			}
 		}
 	})

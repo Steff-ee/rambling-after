@@ -9,6 +9,7 @@ import { ClassicPostsNav } from './classicPostsNav'
 export interface IClassicNavProps {
 	showPosts: boolean
 	scrollRef: React.RefObject<HTMLDivElement>
+	positionRef: React.RefObject<HTMLDivElement>
 	rootStyle?: React.CSSProperties
 	firstClick?: () => void
 	backClick?: () => void
@@ -22,6 +23,7 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const {
 		showPosts: showPostsProp,
 		scrollRef,
+		positionRef,
 		rootStyle,
 		firstClick,
 		backClick,
@@ -34,39 +36,49 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const onScroll = (prevPosition: IScrollPosition, currentPosition: IScrollPosition): void => {
 		if (showPostsProp) {
 			const yDistance = currentPosition.y - prevPosition.y
-			console.log('onScroll -------------------', yDistance)
-			const minDistance = 1
-			if (yDistance > minDistance && showPostsState) {
+			const minUpDistance = 256
+			const minDownDistance = 128
+			if (yDistance > minUpDistance && showPostsState) {
 				setShowPostsState(false)
-			} else if (yDistance < -minDistance && !showPostsState) {
+			} else if (yDistance < -minDownDistance && !showPostsState) {
 				setShowPostsState(true)
 			}
 		}
 	}
 
-	useScroll(scrollRef, onScroll)
+	useScroll(scrollRef, positionRef, onScroll)
 
 	const commonStyle = {
 		backgroundColor: classicColors.secondary,
 		width: '100%',
 		height: '64px',
 		display: 'flex',
-		justifyContent: 'space-between',
 	}
 
-	let showPosts = showPostsProp
+	let justifyContent = 'space-between'
+
+	let showPosts: boolean
+	let showPages: boolean
 	if (mediaSize === MediaSize.Small) {
 		showPosts = showPostsProp && showPostsState
+		showPages = !showPosts
+		if (showPosts) {
+			justifyContent = 'flex-end'
+		}
+	} else {
+		showPosts = showPostsProp
+		showPages = true
 	}
 
 	return (
 		<div
 			style={{
 				...commonStyle,
+				justifyContent,
 				...rootStyle,
 			}}
 		>
-			<ClassicPageNav orientation={NavOrientation.Left} />
+			{showPages && <ClassicPageNav orientation={NavOrientation.Left} />}
 			{showPosts && (
 				<ClassicPostsNav
 					orientation={NavOrientation.Right}

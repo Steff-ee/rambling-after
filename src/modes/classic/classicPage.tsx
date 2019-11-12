@@ -37,6 +37,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
+	const positionRef = useRef(null)
 	const scrollRef = useRef(null)
 
 	const skipMorph = mediaSize === MediaSize.Small
@@ -166,8 +167,11 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						latestClick={latestClick}
 						showPosts={showPostsNav}
 						scrollRef={scrollRef}
+						positionRef={positionRef}
 					/>
-					<div style={{ margin: '64px 0' }}>{Pivots}</div>
+					<div style={{ margin: '64px 0' }} ref={positionRef}>
+						{Pivots}
+					</div>
 					<div
 						style={{
 							maxWidth: '972px',

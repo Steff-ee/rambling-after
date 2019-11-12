@@ -55,13 +55,20 @@ export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
 		reverse: indexChanging,
 	}))
 
-	const transform =
-		orientation === NavOrientation.Left ? 'translate3d(-50%, 0, 0)' : 'translate3d(50%, 0, 0)'
+	let transform
+	if (orientation === NavOrientation.Right) {
+		transform = 'translate3d(100%, 0%, 0)'
+	} else if (orientation === NavOrientation.Left) {
+		transform = 'translate3d(-100%, 0%, 0)'
+	}
+	// else {
+	// 	transform = 'translate3d(0%, -100%, 0)'
+	// }
 
 	const transition = useTransition(isNavListLabelOpen, {
-		from: { opacity: 0, transform },
-		enter: { opacity: 1, transform: 'translate3d(0%, 0, 0)' },
-		leave: { opacity: 0, transform },
+		from: { transform },
+		enter: { transform: 'translate3d(0%, 0%, 0)' },
+		leave: { transform },
 	})
 
 	return (

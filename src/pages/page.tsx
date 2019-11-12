@@ -32,7 +32,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 		return (
 			<ClassicPage
 				headerBackgroundImage={headerBackgroundImage}
-				showRightNav={showPostsNav}
+				showPostsNav={showPostsNav}
 				firstClick={firstClick}
 				backClick={backClick}
 				nextClick={nextClick}

@@ -10,14 +10,13 @@ import {
 } from '../../shared/helpers/styles'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
-import { ClassicLeftNav } from './classicLeftNav'
-import { ClassicRightNav } from './classicRightNav'
+import { ClassicNav } from './classicNav'
 
 export interface IPageProps {
 	headerBackgroundImage: string
 	Pivots: JSX.Element
 	Content: JSX.Element
-	showRightNav: boolean
+	showPostsNav: boolean
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
@@ -35,7 +34,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		backClick,
 		nextClick,
 		latestClick,
-		showRightNav,
+		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
 
@@ -152,30 +151,20 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						backgroundPosition: 'right center',
 					}}
 				>
-					<div
-						style={{
+					<ClassicNav
+						rootStyle={{
 							position: 'sticky',
 							top: 0,
-							backgroundColor: classicColors.secondary,
-							width: '100%',
-							height: '64px',
 							marginTop: '-1px',
-							display: 'flex',
-							justifyContent: 'space-between',
 							zIndex: 2,
 						}}
-					>
-						<ClassicLeftNav />
-						{showRightNav && (
-							<ClassicRightNav
-								firstClick={firstClick}
-								backClick={backClick}
-								nextClick={nextClick}
-								latestClick={latestClick}
-							/>
-						)}
-					</div>
-					<div style={{ margin: '44px 0' }}>{Pivots}</div>
+						firstClick={firstClick}
+						backClick={backClick}
+						nextClick={nextClick}
+						latestClick={latestClick}
+						showPosts={showPostsNav}
+					/>
+					<div style={{ margin: '64px 0' }}>{Pivots}</div>
 					<div
 						style={{
 							maxWidth: '972px',

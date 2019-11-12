@@ -31,7 +31,12 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		}
 	}
 
-	const orientationStyle = orientation === NavOrientation.Right ? { right: 0 } : { left: 0 }
+	let orientationStyle
+	if (orientation === NavOrientation.Right) {
+		orientationStyle = { right: 0 }
+	} else {
+		orientationStyle = { left: 0 }
+	}
 
 	return (
 		<div

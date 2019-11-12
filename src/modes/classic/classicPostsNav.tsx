@@ -11,16 +11,17 @@ import {
 import { classicColors } from './classicConstants'
 
 export interface IClassicRightNavProps {
+	orientation: NavOrientation
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
 	latestClick?: () => void
 }
 
-export const ClassicRightNav: React.FunctionComponent<IClassicRightNavProps> = (
+export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (
 	props: IClassicRightNavProps
 ): JSX.Element => {
-	const { firstClick, backClick, nextClick, latestClick } = props
+	const { firstClick, backClick, nextClick, latestClick, orientation } = props
 	const location = useLocation()
 	const color = classicColors.primary
 	const backCommand = useBackCommand(color, backClick)
@@ -32,7 +33,7 @@ export const ClassicRightNav: React.FunctionComponent<IClassicRightNavProps> = (
 		<HorizontalIconNav
 			selectedId={location.pathname}
 			navItems={[firstCommand, backCommand, nextCommand, latestCommand]}
-			orientation={NavOrientation.Right}
+			orientation={orientation}
 		/>
 	)
 }

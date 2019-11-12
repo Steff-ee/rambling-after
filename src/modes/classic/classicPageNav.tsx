@@ -5,7 +5,14 @@ import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { useNavigationLinks } from '../../shared/presentational/components/navBarCommands'
 import { classicColors } from './classicConstants'
 
-export const ClassicLeftNav: React.FunctionComponent = (): JSX.Element => {
+export interface IClassicPageNavProps {
+	orientation: NavOrientation
+}
+
+export const ClassicPageNav: React.FunctionComponent<IClassicPageNavProps> = (
+	props: IClassicPageNavProps
+): JSX.Element => {
+	const { orientation } = props
 	const location = useLocation()
 	const links = useNavigationLinks(classicColors.primary)
 
@@ -13,7 +20,7 @@ export const ClassicLeftNav: React.FunctionComponent = (): JSX.Element => {
 		<HorizontalIconNav
 			selectedId={location.pathname}
 			navItems={links}
-			orientation={NavOrientation.Left}
+			orientation={orientation}
 		/>
 	)
 }

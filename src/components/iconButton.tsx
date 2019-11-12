@@ -2,13 +2,13 @@ import React from 'react'
 
 export interface IIconButtonProps {
 	icon: JSX.Element
-	applyGrow: boolean
+	applyGrow?: boolean
 	disabled?: boolean
 	onClick?: () => void
 
 	/* Styling */
-	width: string
-	height: string
+	width?: string
+	height?: string
 	filter?: string
 }
 
@@ -32,7 +32,15 @@ const growStyleHover: React.CSSProperties = {
 export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 	props: IIconButtonProps
 ): JSX.Element => {
-	const { icon, onClick, width, height, filter, applyGrow, disabled = false } = props
+	const {
+		icon,
+		onClick,
+		width = '64px',
+		height = '64px',
+		filter,
+		applyGrow = false,
+		disabled = false,
+	} = props
 
 	let growStyle = growStyleBase
 	if (applyGrow) {

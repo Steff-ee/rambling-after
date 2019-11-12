@@ -1,5 +1,5 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
-import React, { useContext } from 'react'
+import React, { useContext, useRef } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
@@ -37,6 +37,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
+	const scrollRef = useRef(null)
 
 	const skipMorph = mediaSize === MediaSize.Small
 
@@ -76,6 +77,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				backgroundColor: classicColors.primary,
 				position: 'absolute',
 			}}
+			ref={scrollRef}
 		>
 			<div
 				style={{
@@ -163,6 +165,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						nextClick={nextClick}
 						latestClick={latestClick}
 						showPosts={showPostsNav}
+						scrollRef={scrollRef}
 					/>
 					<div style={{ margin: '64px 0' }}>{Pivots}</div>
 					<div

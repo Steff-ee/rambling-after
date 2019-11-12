@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { classicColors } from './classicConstants'
 import { ClassicPageNav } from './classicPageNav'
 import { ClassicPostsNav } from './classicPostsNav'
 
 export interface IClassicNavProps {
 	showPosts: boolean
+	scrollRef: React.RefObject<HTMLDivElement>
 	rootStyle?: React.CSSProperties
 	firstClick?: () => void
 	backClick?: () => void
@@ -19,6 +21,7 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 ): JSX.Element => {
 	const {
 		showPosts: showPostsProp,
+		scrollRef,
 		rootStyle,
 		firstClick,
 		backClick,
@@ -28,6 +31,21 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const mediaSize = useContext(MediaContext)
 	const [showPostsState, setShowPostsState] = useState<boolean>(false)
 
+	const onScroll = (prevPosition: IScrollPosition, currentPosition: IScrollPosition): void => {
+		if (showPostsProp) {
+			const yDistance = currentPosition.y - prevPosition.y
+			console.log('onScroll -------------------', yDistance)
+			const minDistance = 1
+			if (yDistance > minDistance && showPostsState) {
+				setShowPostsState(false)
+			} else if (yDistance < -minDistance && !showPostsState) {
+				setShowPostsState(true)
+			}
+		}
+	}
+
+	useScroll(scrollRef, onScroll)
+
 	const commonStyle = {
 		backgroundColor: classicColors.secondary,
 		width: '100%',
@@ -36,28 +54,28 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 		justifyContent: 'space-between',
 	}
 
-    let showPosts = showPostsProp
+	let showPosts = showPostsProp
 	if (mediaSize === MediaSize.Small) {
-        showPosts = showPostsProp // && showPostsState
-    }
-    
-		return (
-			<div
-				style={{
-					...commonStyle,
-					...rootStyle,
-				}}
-			>
-				<ClassicPageNav orientation={NavOrientation.Left} />
-				{showPostsProp && (
-					<ClassicPostsNav
-						orientation={NavOrientation.Right}
-						firstClick={firstClick}
-						backClick={backClick}
-						nextClick={nextClick}
-						latestClick={latestClick}
-					/>
-				)}
-			</div>
-		)
+		showPosts = showPostsProp && showPostsState
+	}
+
+	return (
+		<div
+			style={{
+				...commonStyle,
+				...rootStyle,
+			}}
+		>
+			<ClassicPageNav orientation={NavOrientation.Left} />
+			{showPosts && (
+				<ClassicPostsNav
+					orientation={NavOrientation.Right}
+					firstClick={firstClick}
+					backClick={backClick}
+					nextClick={nextClick}
+					latestClick={latestClick}
+				/>
+			)}
+		</div>
+	)
 }

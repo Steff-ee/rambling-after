@@ -150,7 +150,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 					style={{
 						backgroundImage: `url(${backgroundTextureImg})`,
 						position: 'sticky',
-						backgroundAttachment: 'fixed',
+						backgroundRepeat: 'repeat',
 						backgroundPosition: 'right center',
 					}}
 				>

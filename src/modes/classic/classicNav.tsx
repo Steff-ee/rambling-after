@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { animated, useTransition } from 'react-spring'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
@@ -53,40 +54,61 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 		width: '100%',
 		height: '64px',
 		display: 'flex',
+		justifyContent: 'space-between',
 	}
-
-	let justifyContent = 'space-between'
 
 	let showPosts: boolean
 	let showPages: boolean
 	if (mediaSize === MediaSize.Small) {
 		showPosts = showPostsProp && showPostsState
 		showPages = !showPosts
-		if (showPosts) {
-			justifyContent = 'flex-end'
-		}
 	} else {
 		showPosts = showPostsProp
 		showPages = true
 	}
 
+	const pagesTransition = useTransition(showPages, {
+		from: { opacity: 0, transform: 'translate3d(0, -24%, 0)' },
+		enter: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
+		leave: { opacity: 0, transform: 'translate3d(0, -24%, 0)' },
+	})
+
+	const postsTransition = useTransition(showPosts, {
+		from: { opacity: 0 },
+		enter: { opacity: 1 },
+		leave: { opacity: 0 },
+	})
+
+	// the empty div on !showPages is to keep the space-between working
 	return (
 		<div
 			style={{
 				...commonStyle,
-				justifyContent,
 				...rootStyle,
 			}}
 		>
-			{showPages && <ClassicPageNav orientation={NavOrientation.Left} />}
-			{showPosts && (
-				<ClassicPostsNav
-					orientation={NavOrientation.Right}
-					firstClick={firstClick}
-					backClick={backClick}
-					nextClick={nextClick}
-					latestClick={latestClick}
-				/>
+			{pagesTransition(
+				(rootTransition, item) =>
+					item && (
+						<animated.div style={rootTransition}>
+							<ClassicPageNav orientation={NavOrientation.Left} />
+						</animated.div>
+					)
+			)}
+			{!showPages && <div />}
+			{postsTransition(
+				(rootTransition, item) =>
+					item && (
+						<animated.div style={rootTransition}>
+							<ClassicPostsNav
+								orientation={NavOrientation.Right}
+								firstClick={firstClick}
+								backClick={backClick}
+								nextClick={nextClick}
+								latestClick={latestClick}
+							/>
+						</animated.div>
+					)
 			)}
 		</div>
 	)

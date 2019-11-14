@@ -48,24 +48,29 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
-	const [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
+	let [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
 	const contentPositionRef = useRef(null)
+	const pivotsPositionRef = useRef(null)
 	const scrollRef = useRef(null)
 
 	const skipMorph = mediaSize === MediaSize.Small
+	const allowStickyPivots = mediaSize === MediaSize.Large
 
 	const onPivotsScroll = (
 		prevPosition: IScrollPosition,
 		currentPosition: IScrollPosition
 	): void => {
-		// console.log(currentPosition)
+		console.log(currentPosition)
 		const shouldPivotsBeSticky = currentPosition.y <= 0
 		if (arePivotsSticky !== shouldPivotsBeSticky) {
-			// setArePivotsSticky(shouldPivotsBeSticky)
+			setArePivotsSticky(shouldPivotsBeSticky)
 		}
 	}
 
-	useScroll(scrollRef, contentPositionRef, onPivotsScroll)
+	arePivotsSticky = allowStickyPivots && arePivotsSticky
+
+	// (TODO) both useScrolls rely on the same scrollbar, so it should be possible to reduce computation
+	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll)
 
 	const pivotStyles: Partial<IPivotStyles> = {
 		text: [
@@ -212,7 +217,10 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						style={{
 							margin: '64px 0',
 							position: arePivotsSticky ? 'sticky' : 'relative',
+							top: 0,
+							zIndex: arePivotsSticky ? 3 : 1,
 						}}
+						ref={pivotsPositionRef}
 					>
 						<Pivot
 							selectedKey={selectedPivotTitle}

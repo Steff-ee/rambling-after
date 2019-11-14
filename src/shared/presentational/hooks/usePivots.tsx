@@ -1,7 +1,6 @@
 import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useContext, useState } from 'react'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
-import { ModesContext } from '../../../modes/modeSwitcher'
 import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
@@ -40,7 +39,6 @@ export const usePivots = (
 ): IUsePivotKeyReturns => {
 	const [selectedPivotTitle, setSelectedPivotTitle] = useState<string | undefined>(defaultTitle)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
-	const { mode } = useContext(ModesContext)
 	const mediaSize = useContext(MediaContext)
 	const skipMorph = mediaSize === MediaSize.Small
 

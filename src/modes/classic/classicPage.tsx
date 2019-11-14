@@ -56,11 +56,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	const skipMorph = mediaSize === MediaSize.Small
 	const allowStickyPivots = mediaSize === MediaSize.Large
 
-	const onPivotsScroll = (
-		prevPosition: IScrollPosition,
-		currentPosition: IScrollPosition
-	): void => {
-		console.log(currentPosition)
+	const onPivotsScroll = (currentPosition: IScrollPosition): void => {
 		const shouldPivotsBeSticky = currentPosition.y <= 0
 		if (arePivotsSticky !== shouldPivotsBeSticky) {
 			setArePivotsSticky(shouldPivotsBeSticky)

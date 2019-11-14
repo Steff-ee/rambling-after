@@ -34,7 +34,7 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const mediaSize = useContext(MediaContext)
 	const [showPostsState, setShowPostsState] = useState<boolean>(false)
 
-	const onScroll = (prevPosition: IScrollPosition, currentPosition: IScrollPosition): void => {
+	const onScroll = (currentPosition: IScrollPosition, prevPosition: IScrollPosition): void => {
 		if (showPostsProp) {
 			const yDistance = currentPosition.y - prevPosition.y
 			const minUpDistance = 256

@@ -15,7 +15,7 @@ export const getScrollPosition = (element: React.RefObject<HTMLDivElement>): ISc
 export const useScroll = (
 	scrollElement: React.RefObject<HTMLDivElement>,
 	positionElement: React.RefObject<HTMLDivElement>,
-	callback: (prevPosition: IScrollPosition, currentPosition: IScrollPosition) => void
+	callback: (currentPosition: IScrollPosition, prevPosition: IScrollPosition) => void
 ): void => {
 	const position = useRef(getScrollPosition(positionElement))
 	const wait = 200
@@ -24,7 +24,7 @@ export const useScroll = (
 
 	const onScroll = (): void => {
 		const currentPosition = getScrollPosition(positionElement)
-		callback(position.current, currentPosition)
+		callback(currentPosition, position.current)
 		position.current = currentPosition
 		throttleTimeout = undefined
 	}

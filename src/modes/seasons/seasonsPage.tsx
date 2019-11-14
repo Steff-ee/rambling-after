@@ -1,3 +1,4 @@
+import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react'
 import React, { useContext } from 'react'
 import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
@@ -11,14 +12,19 @@ import { CircadianMood, getCircadianMood } from '../../shared/helpers/time'
 import { Fireflies } from '../../shared/presentational/components/fireflies'
 import { BackgroundsContext } from '../../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 // (TODO) fade-in is not hiding the loading bars
 // import { Img } from 'react-progressive-loader'
 import { SeasonsNav } from './seasonsNav'
 
 export interface IPageProps {
 	titleText: string
-	Pivots: JSX.Element
 	Content: JSX.Element
+
+	/* Pivots */
+	selectedPivotTitle: string | undefined
+	setPivot: IUsePivotKeyReturns['setPivot']
+	pivotsItems: IUsePivotKeyReturns['pivotsItems']
 }
 
 const transparentColor = 'rgba(10, 10, 10, 0.5)'
@@ -66,7 +72,7 @@ const artistAttributionStyle: React.CSSProperties = {
 export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 	props: IPageProps
 ): JSX.Element => {
-	const { titleText, Pivots, Content } = props
+	const { selectedPivotTitle, setPivot, pivotsItems, titleText, Content } = props
 	const { primary, secondary, accent } = useContext(ColorsContext)
 	const { backgrounds, selectedIndex } = useContext(BackgroundsContext)
 	const mediaSize = useContext(MediaContext)
@@ -89,6 +95,16 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 		seasonsNav = (
 			<SeasonsNav iconLayout={IconLayout.Vertical} rootStyle={{ position: 'absolute' }} />
 		)
+	}
+
+	const pivotStyles: Partial<IPivotStyles> = {
+		text: [
+			{
+				fontFamily: 'Comfortaa',
+				fontSize: '22px',
+				width: '96px',
+			},
+		],
 	}
 
 	return (
@@ -152,7 +168,17 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 						zIndex: 4,
 					}}
 				>
-					<div style={{ ...pivotsStyle, backgroundColor: accent }}>{Pivots}</div>
+					<div style={{ ...pivotsStyle, backgroundColor: accent }}>
+						<Pivot
+							selectedKey={selectedPivotTitle}
+							onLinkClick={setPivot}
+							styles={pivotStyles}
+						>
+							{pivotsItems.map((pivotProps) => (
+								<PivotItem {...pivotProps} />
+							))}
+						</Pivot>
+					</div>
 				</div>
 				<div
 					style={{

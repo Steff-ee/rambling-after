@@ -32,9 +32,13 @@ export const storyPivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
 export const Stories: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots } = usePivots(storyPivotTitlePhrases, StoryPivots.Posts, titleMap)
+	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
+		storyPivotTitlePhrases,
+		StoryPivots.Posts,
+		titleMap
+	)
 	const { setSeason } = useContext(SeasonsContext)
-	const showPostsNav = pivotName === StoryPivots.Posts
+	const showPostsNav = selectedPivotTitle === StoryPivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
 		storiesFirstPost,
 		storiesLatestPost,
@@ -46,7 +50,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 	}, [])
 
 	let pageContent
-	switch (pivotName) {
+	switch (selectedPivotTitle) {
 		case StoryPivots.Posts:
 			pageContent = <Post post={currentPost} />
 			break
@@ -67,7 +71,9 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		<Page
 			headerBackgroundImage={booksImg}
 			titleText={storiesTitle}
-			Pivots={pivots}
+			selectedPivotTitle={selectedPivotTitle}
+			setPivot={setPivot}
+			pivotsItems={pivotsItems}
 			Content={pageContent}
 			showPostsNav={showPostsNav}
 			firstClick={firstClick}

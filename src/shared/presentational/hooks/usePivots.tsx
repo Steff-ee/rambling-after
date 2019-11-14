@@ -1,24 +1,16 @@
-import {
-	IPivotItemProps,
-	IPivotProps,
-	IPivotStyles,
-	Pivot,
-	PivotItem,
-	PivotLinkSize,
-} from 'office-ui-fabric-react/lib'
+import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useContext, useState } from 'react'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
-import { classicColors } from '../../../modes/classic/classicConstants'
-import { Modes, ModesContext } from '../../../modes/modeSwitcher'
+import { ModesContext } from '../../../modes/modeSwitcher'
 import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
 // (TODO) add documentation
 
 export interface IUsePivotKeyReturns {
-	pivotName: string | undefined
-	pivots: JSX.Element
+	selectedPivotTitle: string | undefined
 	setPivot: IPivotProps['onLinkClick']
+	pivotsItems: IPivotItemProps[]
 }
 
 // when showing a full title,
@@ -102,44 +94,5 @@ export const usePivots = (
 		key: baseTitle,
 	}))
 
-	let styles: Partial<IPivotStyles>
-	if (mode === Modes.Classic) {
-		styles = {
-			text: [
-				{
-					fontFamily: 'Comfortaa',
-					fontSize: '22px',
-					width: '108px',
-					color: classicColors.secondary,
-				},
-			],
-			link: [{ height: '64px', margin: '0 4%' }],
-			linkIsSelected: [{ height: '64px', margin: '0 4%' }],
-		}
-	} else {
-		styles = {
-			text: [
-				{
-					fontFamily: 'Comfortaa',
-					fontSize: '22px',
-					width: '96px',
-				},
-			],
-		}
-	}
-
-	const pivots = (
-		<Pivot
-			selectedKey={selectedPivotTitle}
-			onLinkClick={setPivot}
-			styles={styles}
-			linkSize={PivotLinkSize.large}
-		>
-			{pivotsItems.map((pivotProps) => (
-				<PivotItem {...pivotProps} />
-			))}
-		</Pivot>
-	)
-
-	return { pivotName: selectedPivotTitle, pivots, setPivot }
+	return { selectedPivotTitle, setPivot, pivotsItems }
 }

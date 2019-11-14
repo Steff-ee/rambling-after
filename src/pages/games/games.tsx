@@ -32,9 +32,13 @@ export const gamePivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(gamePivotTitlePhrases)
 
 export const Games: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots } = usePivots(gamePivotTitlePhrases, GamePivots.Posts, titleMap)
+	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
+		gamePivotTitlePhrases,
+		GamePivots.Posts,
+		titleMap
+	)
 	const { setSeason } = useContext(SeasonsContext)
-	const showPostsNav = pivotName === GamePivots.Posts
+	const showPostsNav = selectedPivotTitle === GamePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
 		gamesFirstPost,
 		gamesLatestPost,
@@ -46,7 +50,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 	}, [])
 
 	let pageContent
-	switch (pivotName) {
+	switch (selectedPivotTitle) {
 		case GamePivots.Posts:
 			pageContent = <Post post={currentPost} />
 			break
@@ -62,7 +66,9 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		<Page
 			headerBackgroundImage={lightbulbsImg}
 			titleText={gamesTitle}
-			Pivots={pivots}
+			selectedPivotTitle={selectedPivotTitle}
+			setPivot={setPivot}
+			pivotsItems={pivotsItems}
 			Content={pageContent}
 			showPostsNav={showPostsNav}
 			firstClick={firstClick}

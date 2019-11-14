@@ -29,14 +29,18 @@ export const homePivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(homePivotTitlePhrases)
 
 export const Home: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots } = usePivots(homePivotTitlePhrases, HomePivots.Blog, titleMap)
+	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
+		homePivotTitlePhrases,
+		HomePivots.Blog,
+		titleMap
+	)
 	const { setSeason } = useContext(SeasonsContext)
 	useEffect(() => {
 		setSeason(getNextSeason(0))
 	}, [])
 
 	let pageContent
-	switch (pivotName) {
+	switch (selectedPivotTitle) {
 		case HomePivots.About:
 			pageContent = (
 				<>
@@ -96,9 +100,13 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 		<Page
 			headerBackgroundImage={cartographyImg}
 			titleText={homeTitle}
-			Pivots={pivots}
+			selectedPivotTitle={selectedPivotTitle}
+			setPivot={setPivot}
+			pivotsItems={pivotsItems}
 			Content={pageContent}
-			showPostsNav={pivotName === HomePivots.Blog || pivotName === HomePivots.Recent}
+			showPostsNav={
+				selectedPivotTitle === HomePivots.Blog || selectedPivotTitle === HomePivots.Recent
+			}
 		/>
 	)
 }

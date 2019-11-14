@@ -2,13 +2,20 @@ import React, { useContext } from 'react'
 import { ClassicPage } from '../modes/classic/classicPage'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
 import { SeasonsPage } from '../modes/seasons/seasonsPage'
+import { IUsePivotKeyReturns } from '../shared/presentational/hooks/usePivots'
 
 export interface IPageProps {
 	headerBackgroundImage: string
 	titleText: string
-	Pivots: JSX.Element
 	Content: JSX.Element
 	showPostsNav: boolean
+
+	/* Pivots */
+	selectedPivotTitle: string | undefined
+	setPivot: IUsePivotKeyReturns['setPivot']
+	pivotsItems: IUsePivotKeyReturns['pivotsItems']
+
+	/* Posts Navigation */
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void

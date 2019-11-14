@@ -35,14 +35,14 @@ export const mathSciencePivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(mathSciencePivotTitlePhrases)
 
 export const MathScience: React.FunctionComponent = (): JSX.Element => {
-	const { pivotName, pivots } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
 		mathSciencePivotTitlePhrases,
 		MathSciencePivots.Posts,
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
 	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
-	const showPostsNav = pivotName === MathSciencePivots.Posts
+	const showPostsNav = selectedPivotTitle === MathSciencePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
 		mathScienceFirstPost,
 		mathScienceLatestPost,
@@ -54,7 +54,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 	}, [])
 
 	let pageContent
-	switch (pivotName) {
+	switch (selectedPivotTitle) {
 		case MathSciencePivots.Posts:
 			pageContent = <Post post={currentPost} />
 			break
@@ -83,7 +83,9 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 		<Page
 			headerBackgroundImage={bookshelfImg}
 			titleText={mathScienceTitle}
-			Pivots={pivots}
+			selectedPivotTitle={selectedPivotTitle}
+			setPivot={setPivot}
+			pivotsItems={pivotsItems}
 			Content={pageContent}
 			showPostsNav={showPostsNav}
 			firstClick={firstClick}

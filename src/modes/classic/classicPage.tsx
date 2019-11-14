@@ -1,5 +1,6 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
-import React, { useContext, useRef } from 'react'
+import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react'
+import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
@@ -8,15 +9,23 @@ import {
 	parallaxGroupStyle,
 	parallaxRootStyle,
 } from '../../shared/helpers/styles'
+import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
+import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
 
 export interface IPageProps {
 	headerBackgroundImage: string
-	Pivots: JSX.Element
 	Content: JSX.Element
 	showPostsNav: boolean
+
+	/* Pivots */
+	selectedPivotTitle: string | undefined
+	setPivot: IUsePivotKeyReturns['setPivot']
+	pivotsItems: IUsePivotKeyReturns['pivotsItems']
+
+	/* Posts Navigation */
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
@@ -27,7 +36,9 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	props: IPageProps
 ): JSX.Element => {
 	const {
-		Pivots,
+		selectedPivotTitle,
+		setPivot,
+		pivotsItems,
 		Content,
 		headerBackgroundImage,
 		firstClick,
@@ -37,10 +48,37 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
-	const positionRef = useRef(null)
+	const [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
+	const contentPositionRef = useRef(null)
 	const scrollRef = useRef(null)
 
 	const skipMorph = mediaSize === MediaSize.Small
+
+	const onPivotsScroll = (
+		prevPosition: IScrollPosition,
+		currentPosition: IScrollPosition
+	): void => {
+		// console.log(currentPosition)
+		const shouldPivotsBeSticky = currentPosition.y <= 0
+		if (arePivotsSticky !== shouldPivotsBeSticky) {
+			// setArePivotsSticky(shouldPivotsBeSticky)
+		}
+	}
+
+	useScroll(scrollRef, contentPositionRef, onPivotsScroll)
+
+	const pivotStyles: Partial<IPivotStyles> = {
+		text: [
+			{
+				fontFamily: 'Comfortaa',
+				fontSize: '22px',
+				width: '108px',
+				color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
+			},
+		],
+		link: [{ height: '64px', margin: '0 4%' }],
+		linkIsSelected: [{ height: '64px', margin: '0 4%' }],
+	}
 
 	const title = useTextMorphSequence(
 		[
@@ -153,6 +191,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						backgroundRepeat: 'repeat',
 						backgroundPosition: 'right center',
 					}}
+					ref={contentPositionRef}
 				>
 					<ClassicNav
 						rootStyle={{
@@ -167,10 +206,23 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						latestClick={latestClick}
 						showPosts={showPostsNav}
 						scrollRef={scrollRef}
-						positionRef={positionRef}
+						positionRef={contentPositionRef}
 					/>
-					<div style={{ margin: '64px 0' }} ref={positionRef}>
-						{Pivots}
+					<div
+						style={{
+							margin: '64px 0',
+							position: arePivotsSticky ? 'sticky' : 'relative',
+						}}
+					>
+						<Pivot
+							selectedKey={selectedPivotTitle}
+							onLinkClick={setPivot}
+							styles={pivotStyles}
+						>
+							{pivotsItems.map((pivotProps) => (
+								<PivotItem {...pivotProps} />
+							))}
+						</Pivot>
 					</div>
 					<div
 						style={{

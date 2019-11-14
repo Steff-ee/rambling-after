@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -43,14 +44,11 @@ export const POST_00100: IPost = {
 				that it can be many things, and many conflicting things, as mercurial as the people
 				who play it.
 			</p>
-			[caption id="" align="aligncenter" width="628"]
-			<img
+			<ContentImage
 				src="https://s-i.huffpost.com/gen/1262734/images/h-BIG-BANG-THEORY-628x314.jpg"
-				width="628"
-				height="314"
-			/>{' '}
-			The socially awkward characters of The Big Bang playing the game infamous for being
-			played by the socially awkward.[/caption]
+				caption="The socially awkward characters of The Big Bang playing the game infamous for being
+				played by the socially awkward."
+			/>
 			<p>
 				You might think of D&D as a board game, which isn’t a bad place to start, except you
 				have to keep in mind that all of the board, the pieces and the rules are optional.
@@ -115,13 +113,10 @@ export const POST_00100: IPost = {
 				gamer perhaps grow in diameter as you share pizza that is as tasty as it is bad for
 				your cholesterol.
 			</p>
-			[caption id="" align="aligncenter" width="1452"]
-			<img
+			<ContentImage
 				src="http://s3-eu-west-1.amazonaws.com/images.geeknative.com/wp-content/uploads/2014/08/dnd-5e-barbarian.jpg"
-				width="1452"
-				height="960"
-			/>{' '}
-			I've spent hours poring over the different classes in 5e's Player's Handbook.[/caption]
+				caption="I've spent hours poring over the different classes in 5e's Player's Handbook."
+			/>
 			<p>
 				But how does the game actually work? If players decide what their characters do and
 				say, what’s to stop a player from saying, “I stab the big bad villain through the
@@ -137,13 +132,11 @@ export const POST_00100: IPost = {
 			roll a D20, and your GM decides how high a roll you’ll need to make the leap—maybe a ten
 			or higher will succeed, but a nine or lower will leave you to deal with a painfully
 			porcupinous landing.   [caption id="" align="aligncenter" width="850"]
-			<img
-				src="https://thenerdrecites.com/wp-content/uploads/2016/08/community2v2.png"
-				width="850"
-				height="475"
-			/>{' '}
-			The friends of Community perilously allow their fates to be determined by the roll of a
-			die. ("Remedial Chaos Theory")[/caption]
+			<ContentImage
+				src="https://nbcprobasketballtalk.files.wordpress.com/2012/01/darkesttimeline.png"
+				caption='The friends of Community perilously allow their fates to be determined by the roll of a
+				die. ("Remedial Chaos Theory")'
+			/>
 			<p>
 				But now let’s say you’re playing a half-orc barbarian who’s devoted their life to
 				bashing in the skulls of his enemies with their considerable brawn. Surely it should
@@ -185,14 +178,11 @@ export const POST_00100: IPost = {
 				start if you want to pick up an RPG, or if you want a more imaginative way to spend
 				a few hours with friends. I highly recommend it, if you get the chance.
 			</p>
-			[caption id="" align="aligncenter" width="600"]
-			<img
+			<ContentImage
 				src="https://pbs.twimg.com/media/CJVRZLOUMAACZ0E.jpg"
-				width="600"
-				height="325"
-			/>{' '}
-			The players of Critical Role pose with far more panache than I could ever
-			muster.[/caption]
+				caption="The players of Critical Role pose with far more panache than I could ever
+				muster."
+			/>
 		</>
 	),
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -90,14 +91,11 @@ export const POST_00112: IPost = {
 					ribbons throughout the rest of Infinity War?
 				</span>
 			</p>
-			[caption id="" align="aligncenter" width="2047"]
-			<img
+			<ContentImage
 				src="https://sm.ign.com/ign_de/screenshot/default/g_epax.jpg"
-				width="2047"
-				height="1080"
+				caption="Thanos likes long walks on the beach, bubbles, gazing at moons, and sometimes throwing
+				them."
 			/>{' '}
-			Thanos likes long walks on the beach, bubbles, gazing at moons, and sometimes throwing
-			them.[/caption]
 			<p>
 				Questions<strong> (1)</strong>, <strong>(2)</strong>, and <strong>(4)</strong> are
 				answered simply by this: Thanos was faking.
@@ -239,13 +237,10 @@ export const POST_00112: IPost = {
 					for heroism.
 				</span>
 			</p>
-			[caption id="" align="aligncenter" width="875"]
-			<img
+			<ContentImage
 				src="https://pbs.twimg.com/media/D5qEaEqUwAA_Vgx.jpg"
-				width="875"
-				height="1200"
+				caption="You thought I'd end this post with a picture of Iron Man, didn't you."
 			/>{' '}
-			You thought I'd end this post with a picture of Iron Man, didn't you.[/caption]    
 		</>
 	),
 }

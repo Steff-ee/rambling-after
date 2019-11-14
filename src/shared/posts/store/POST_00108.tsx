@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -28,29 +29,26 @@ export const POST_00108: IPost = {
 				code isn’t quite like writing prose either.{' '}
 			</p>
 			<p>
-				It’s more like editing. [caption id="attachment_501" align="aligncenter"
-				width="480"]
-				<img
+				It’s more like editing.
+				<ContentImage
 					src="https://ramblingafter.files.wordpress.com/2018/01/matrix-3109795_1280.jpg?w=960"
-					alt="matrix-3109795_1280"
-					width="480"
-					height="331"
-				/>{' '}
+					caption="This might look cool, but it has nothing to do with coding."
+					style={{ maxHeight: '384px' }}
+				/>
 			</p>
 			<p>
-				This might look cool, but it has nothing to do with coding.[/caption] Whether it’s a
-				book, a movie, or even a Youtube video, every piece of media has a purpose—to amuse,
-				to educate, to shock or inspire, but always, invariably, to maintain the audience’s
-				attention. Every scene, every line should serve this ultimate goal. Sometimes,
-				though, the author screws up: Readers stumble over poorly constructed sentences,
-				give up out of confusion, rage unexpectedly at the unfulfilled promise of abandoned
-				plotlines, or simply lose interest out of boredom. Computers are the same. Readers
-				stop reading; programs crash. Readers complain loudly; programs behave wildly. The
-				diligently editing author must fix the grammar of his sentences; the programmer, her
-				syntax. Authors reorder and reorganize concepts for clarity, trim unneeded plotlines
-				or expand upon those accidentally left unfinished, and speed up pacing as necessary.
-				Programmers do the same—except with plotlines that spell the fate of data instead of
-				characters.
+				Whether it’s a book, a movie, or even a Youtube video, every piece of media has a
+				purpose—to amuse, to educate, to shock or inspire, but always, invariably, to
+				maintain the audience’s attention. Every scene, every line should serve this
+				ultimate goal. Sometimes, though, the author screws up: Readers stumble over poorly
+				constructed sentences, give up out of confusion, rage unexpectedly at the
+				unfulfilled promise of abandoned plotlines, or simply lose interest out of boredom.
+				Computers are the same. Readers stop reading; programs crash. Readers complain
+				loudly; programs behave wildly. The diligently editing author must fix the grammar
+				of his sentences; the programmer, her syntax. Authors reorder and reorganize
+				concepts for clarity, trim unneeded plotlines or expand upon those accidentally left
+				unfinished, and speed up pacing as necessary. Programmers do the same—except with
+				plotlines that spell the fate of data instead of characters.
 			</p>
 			<p>
 				{' '}
@@ -65,15 +63,11 @@ export const POST_00108: IPost = {
 				coding done today is deeply, intrinsically collaborative.
 			</p>
 			<p>
-				{' '}
-				[caption id="" align="aligncenter" width="1600"]
-				<img
+				<ContentImage
 					src="http://a.abcnews.com/images/Entertainment/don-cheadle-mark-ruffalo-avengers-abc-jc-170719_1x1_1600.jpg"
-					width="1600"
-					height="1600"
-				/>{' '}
-				The MCU has never had to retcon anything. Left: Terrence Howard. Right: Edward
-				Norton.[/caption]{' '}
+					caption="The MCU has never had to retcon anything. Left: Terrence Howard. Right: Edward
+					Norton."
+				/>
 			</p>
 			<p>
 				In either case, the writer must maintain multiple threads alive in his or her head,

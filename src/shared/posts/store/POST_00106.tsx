@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -21,15 +22,10 @@ export const POST_00106: IPost = {
 				snobs, it’s not the pattern I think should change.
 			</p>
 			<p>
-				{' '}
-				[caption id="attachment_493" align="aligncenter" width="320"]
-				<img
+				<ContentImage
 					src="https://ramblingafter.files.wordpress.com/2017/12/snobby-cat.jpg?w=640"
-					alt="snobby cat"
-					width="320"
-					height="480"
-				/>{' '}
-				This cat is a snob. Don't be a snob.[/caption]
+					caption="This cat is a snob. Don't be a snob."
+				/>
 			</p>
 			<p>
 				{' '}
@@ -95,15 +91,11 @@ export const POST_00106: IPost = {
 				three-act structure with the most intimate cinematography I’ve ever seen.
 			</p>
 			<p>
-				{' '}
-				[caption id="" align="aligncenter" width="1600"]
-				<img
+				<ContentImage
 					src="http://moonlight.movie/storage/images/e09fcd88f32281e2cf30ecd908416034.jpg"
-					width="1600"
-					height="800"
-				/>{' '}
-				Alex R. Hibbert and Mahershala Ali were only two of the many outstanding cast
-				members of 2016's <em>Moonlight</em>.[/caption]{' '}
+					caption="Alex R. Hibbert and Mahershala Ali were only two of the many outstanding cast
+					members of 2016's Moonlight."
+				/>
 			</p>
 			<p>
 				So what’s the alternative? Break it down. Many award shows already distinguish

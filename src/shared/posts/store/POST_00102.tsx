@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -21,22 +22,20 @@ export const POST_00102: IPost = {
 				rank, each quality representing the average proficiency at a whole category of
 				skills. Which qualities would you choose to make your job of ranking humans easier?
 			</p>
-			[caption id="" align="aligncenter" width="570"]
-			<img
+			<ContentImage
 				src="https://i.pinimg.com/736x/1c/7f/f2/1c7ff25c4aa1b6aa10b117a7a8f4f8ac--wedding-rehearsal-four-.jpg"
-				width="570"
-				height="427"
-			/>{' '}
-			<p>
-				Perhaps you choose wisdom, kindness, courage, and cunning, because you're the
+				caption="Perhaps you choose wisdom, kindness, courage, and cunning, because you're the
 				headmaster of a school of wizardry and you want to segregate and stereotype students
-				by personality... for some reason.[/caption] For instance, I could choose critical
-				thinking, emotional stability, self-discipline, bravery, people skills, and
-				athleticism. A politician with deep-set insecurities who’s also adept at inspiring
-				followers might score highly on people skills but low in emotional intelligence. A
-				clever student who never achieves his goals in life might score high in critical
-				thinking but low in self-discipline, and a visionary who goes against the fold might
-				score highest in bravery than in any other category.{' '}
+				by personality... for some reason."
+			/>
+			<p>
+				For instance, I could choose critical thinking, emotional stability,
+				self-discipline, bravery, people skills, and athleticism. A politician with deep-set
+				insecurities who’s also adept at inspiring followers might score highly on people
+				skills but low in emotional intelligence. A clever student who never achieves his
+				goals in life might score high in critical thinking but low in self-discipline, and
+				a visionary who goes against the fold might score highest in bravery than in any
+				other category.{' '}
 			</p>
 			<p>
 				In videogames, these categories are used to track the growth of players’ characters,
@@ -117,16 +116,12 @@ export const POST_00102: IPost = {
 				explanations, but they’re not intuitive, and they’re not the only alternative.
 			</p>
 			<p>
-				Here’s <a href="https://ramblingafter.wordpress.com/dd-homebrew/">mine</a>. [caption
-				id="attachment_402" align="aligncenter" width="1024"]
-				<img
+				Here’s <a href="https://ramblingafter.wordpress.com/dd-homebrew/">mine</a>.
+				<ContentImage
 					src="https://ramblingafter.files.wordpress.com/2017/10/skyrim-skills.jpg?w=1024"
-					alt="skyrim skills"
-					width="1024"
-					height="640"
-				/>{' '}
-				Skyrim's only attributes are magicka, health, and stamina. Skills level up
-				individually.[/caption]
+					caption="Skyrim's only attributes are magicka, health, and stamina. Skills level up
+					individually."
+				/>
 			</p>
 			<p>
 				Postscriptum: Ironically, my{' '}

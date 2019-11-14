@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentImage } from '../../../components/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -109,13 +110,10 @@ export const POST_00110: IPost = {
 				it for both sides. Google (or Google Scholar) is your friend!
 			</p>
 			<p>
-				[caption id="" align="aligncenter" width="620"]
-				<img
+				<ContentImage
 					src="https://i.cbc.ca/1.4540294.1518837685!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/black-panther-movie.jpg"
-					width="620"
-					height="349"
+					caption="Forget voting, trial by combat's where it's at."
 				/>{' '}
-				Forget voting, trial by combat's where it's at.[/caption]
 			</p>
 			<p>
 				What should a voting scheme ideally achieve? Roughly speaking, a perfect voting
@@ -164,12 +162,7 @@ export const POST_00110: IPost = {
 				</a>{' '}
 				(also known as Score voting), and that’s where problem number two comes in: People
 				lie.
-				<img
-					src="https://ramblingafter.files.wordpress.com/2018/03/range-voting-ballot.png?w=960"
-					alt="Range voting ballot"
-					width="480"
-					height="134"
-				/>
+				<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/range-voting-ballot.png?w=960" />
 			</p>
 			<p>
 				I could give Iron Man a 9 and Spidey a 7 to reflect my true preferences. Or I could
@@ -257,13 +250,11 @@ export const POST_00110: IPost = {
 			</p>
 			<p>
 				Also, Spidey would stand no chance of winning against Cap’ in a Condorcet method
-				either. And that’s not cool. [caption id="" align="aligncenter" width="2048"]
-				<img
+				either. And that’s not cool.
+				<ContentImage
 					src="http://www.syfy.fr/sites/default/files/coversmb2048.jpg"
-					width="2048"
-					height="1152"
+					caption="Alright, alright, I admit it. I'm biased. Spiderman's totally my favorite."
 				/>{' '}
-				Alright, alright, I admit it. I'm biased. Spiderman's totally my favorite.[/caption]
 			</p>
 			<p>
 				<a
@@ -340,12 +331,7 @@ export const POST_00110: IPost = {
 					voting
 				</a>
 				.
-				<img
-					src="https://ramblingafter.files.wordpress.com/2018/03/approval-voting-ballot1.png"
-					alt="Approval voting ballot"
-					width="220"
-					height="285"
-				/>
+				<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/approval-voting-ballot1.png" />
 			</p>
 			<p>
 				Of all the options I’ve encountered since beginning my research on this topic,{' '}
@@ -374,7 +360,7 @@ export const POST_00110: IPost = {
 			</p>
 			<p>Even Spidey.</p>
 			<p>
-				<img src="http://media.comicbook.com/uploads1/2014/12/spiderman-america-captain-115732.jpg" />
+				<ContentImage src="http://media.comicbook.com/uploads1/2014/12/spiderman-america-captain-115732.jpg" />
 			</p>
 			<p>
 				The question of whether Spiderman would defeat Captain America, in that original

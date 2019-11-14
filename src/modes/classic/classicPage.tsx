@@ -211,7 +211,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 					/>
 					<div
 						style={{
-							margin: '64px 0',
+							margin: '64px 20%',
 							position: arePivotsSticky ? 'sticky' : 'relative',
 							top: 0,
 							zIndex: arePivotsSticky ? 3 : 1,

@@ -7,7 +7,7 @@ export const POST_00110: IPost = {
 	id: 110,
 	title: 'Which is the best voting scheme?',
 	createdTime: 1519905600000,
-	route: PageRoutes.MathScience,
+	route: PageRoutes.Conjectures,
 	content: (
 		<>
 			<p>

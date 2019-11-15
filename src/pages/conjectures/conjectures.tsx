@@ -5,7 +5,7 @@ import { classicColors } from '../../modes/classic/classicConstants'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
 import { Post } from '../../shared/posts/post'
-import { mathScienceFirstPost, mathScienceLatestPost } from '../../shared/posts/posts'
+import { conjectureFirstPost, conjectureLatestPost } from '../../shared/posts/posts'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
 import {
@@ -15,37 +15,37 @@ import {
 } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
 
-export const mathScienceTitle = 'math & science'
+export const conjecturesTitle = 'conjectures'
 
-export enum MathSciencePivots {
+export enum ConjecturePivots {
 	Posts = 'posts',
 	Code = 'code',
 	Links = 'links',
 }
 
-export const mathSciencePivotTitlePhrases: IPivotTitlePhrases = [
-	// posts about math & science
-	[MathSciencePivots.Posts, 'about', mathScienceTitle],
+export const conjecturePivotTitlePhrases: IPivotTitlePhrases = [
+	// posts arguing conjectures
+	[ConjecturePivots.Posts, 'arguing', conjecturesTitle],
 	// my code hub
-	['my', MathSciencePivots.Code, 'hub'],
+	['my', ConjecturePivots.Code, 'hub'],
 	// some interesting links
-	['some', 'interesting', MathSciencePivots.Links],
+	['some', 'interesting', ConjecturePivots.Links],
 ]
 
-const titleMap = makeTitleMap(mathSciencePivotTitlePhrases)
+const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 
-export const MathScience: React.FunctionComponent = (): JSX.Element => {
+export const Conjectures: React.FunctionComponent = (): JSX.Element => {
 	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
-		mathSciencePivotTitlePhrases,
-		MathSciencePivots.Posts,
+		conjecturePivotTitlePhrases,
+		ConjecturePivots.Posts,
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
 	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
-	const showPostsNav = selectedPivotTitle === MathSciencePivots.Posts
+	const showPostsNav = selectedPivotTitle === ConjecturePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
-		mathScienceFirstPost,
-		mathScienceLatestPost,
+		conjectureFirstPost,
+		conjectureLatestPost,
 		!showPostsNav
 	)
 
@@ -55,10 +55,10 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 
 	let pageContent
 	switch (selectedPivotTitle) {
-		case MathSciencePivots.Posts:
+		case ConjecturePivots.Posts:
 			pageContent = <Post post={currentPost} />
 			break
-		case MathSciencePivots.Code:
+		case ConjecturePivots.Code:
 			const { icon, onClick } = changeModeCommand
 			pageContent = (
 				<>
@@ -74,7 +74,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 				</>
 			)
 			break
-		case MathSciencePivots.Links:
+		case ConjecturePivots.Links:
 		default:
 			pageContent = <>538</>
 	}
@@ -82,7 +82,7 @@ export const MathScience: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<Page
 			headerBackgroundImage={bookshelfImg}
-			titleText={mathScienceTitle}
+			titleText={conjecturesTitle}
 			selectedPivotTitle={selectedPivotTitle}
 			setPivot={setPivot}
 			pivotsItems={pivotsItems}

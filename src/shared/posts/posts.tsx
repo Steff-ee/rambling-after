@@ -31,9 +31,13 @@ POST_00106.prevPostByRoute = POST_00104
 POST_00106.nextPostByRoute = POST_00112
 POST_00112.prevPostByRoute = POST_00106
 
-/* MATH & SCIENCE LINKED LIST */
-export const mathScienceFirstPost = POST_00108
-export const mathScienceLatestPost = POST_00110
+/* CONJECTURE LINKED LIST */
+
+// head & tail
+export const conjectureFirstPost = POST_00108
+export const conjectureLatestPost = POST_00110
+
+// links
 POST_00108.nextPostByRoute = POST_00110
 POST_00110.prevPostByRoute = POST_00108
 

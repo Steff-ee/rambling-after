@@ -13,9 +13,9 @@ import {
 	defaultColorsContext,
 	IColorsContext,
 } from '../shared/presentational/hooks/useColors'
+import { Conjectures } from './conjectures/conjectures'
 import { Games } from './games/games'
 import { Home } from './home/home'
-import { MathScience } from './mathScience/mathScience'
 import { Stories } from './stories/stories'
 
 initializeIcons()
@@ -55,8 +55,8 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 											<Route path={PageRoutes.Stories} component={Stories} />
 											<Route path={PageRoutes.Games} component={Games} />
 											<Route
-												path={PageRoutes.MathScience}
-												component={MathScience}
+												path={PageRoutes.Conjectures}
+												component={Conjectures}
 											/>
 										</Switch>
 									</BrowserRouter>

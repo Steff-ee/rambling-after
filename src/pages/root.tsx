@@ -16,6 +16,7 @@ import {
 import { Conjecture } from './conjectures/conjectures'
 import { Games } from './games/games'
 import { Home } from './home/home'
+import './root.css'
 import { Stories } from './stories/stories'
 
 initializeIcons()

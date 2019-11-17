@@ -7,7 +7,7 @@ export const POST_00110: IPost = {
 	id: 110,
 	title: 'Which is the best voting scheme?',
 	createdTime: 1519905600000,
-	route: PageRoutes.Conjectures,
+	route: PageRoutes.Conjecture,
 	content: (
 		<>
 			<p>
@@ -109,12 +109,10 @@ export const POST_00110: IPost = {
 				anything I argue unconvincingly, I assure you, will already have articles written on
 				it for both sides. Google (or Google Scholar) is your friend!
 			</p>
-			<p>
-				<ContentImage
-					src="https://i.cbc.ca/1.4540294.1518837685!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/black-panther-movie.jpg"
-					caption="Forget voting, trial by combat's where it's at."
-				/>{' '}
-			</p>
+			<ContentImage
+				src="https://i.cbc.ca/1.4540294.1518837685!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_620/black-panther-movie.jpg"
+				caption="Forget voting, trial by combat's where it's at."
+			/>{' '}
 			<p>
 				What should a voting scheme ideally achieve? Roughly speaking, a perfect voting
 				scheme would elect the candidate most preferred by the most people. But there are
@@ -162,8 +160,8 @@ export const POST_00110: IPost = {
 				</a>{' '}
 				(also known as Score voting), and that’s where problem number two comes in: People
 				lie.
-				<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/range-voting-ballot.png?w=960" />
 			</p>
+			<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/range-voting-ballot.png?w=960" />
 			<p>
 				I could give Iron Man a 9 and Spidey a 7 to reflect my true preferences. Or I could
 				give both of them a 10 to boost their chances of winning relative to Captain
@@ -251,11 +249,11 @@ export const POST_00110: IPost = {
 			<p>
 				Also, Spidey would stand no chance of winning against Cap’ in a Condorcet method
 				either. And that’s not cool.
-				<ContentImage
-					src="http://www.syfy.fr/sites/default/files/coversmb2048.jpg"
-					caption="Alright, alright, I admit it. I'm biased. Spiderman's totally my favorite."
-				/>{' '}
 			</p>
+			<ContentImage
+				src="http://www.syfy.fr/sites/default/files/coversmb2048.jpg"
+				caption="Alright, alright, I admit it. I'm biased. Spiderman's totally my favorite."
+			/>{' '}
 			<p>
 				<a
 					href="https://en.wikipedia.org/wiki/Instant-runoff_voting"
@@ -331,8 +329,8 @@ export const POST_00110: IPost = {
 					voting
 				</a>
 				.
-				<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/approval-voting-ballot1.png" />
 			</p>
+			<ContentImage src="https://ramblingafter.files.wordpress.com/2018/03/approval-voting-ballot1.png" />
 			<p>
 				Of all the options I’ve encountered since beginning my research on this topic,{' '}
 				<a
@@ -359,9 +357,7 @@ export const POST_00110: IPost = {
 				chance.{' '}
 			</p>
 			<p>Even Spidey.</p>
-			<p>
-				<ContentImage src="http://media.comicbook.com/uploads1/2014/12/spiderman-america-captain-115732.jpg" />
-			</p>
+			<ContentImage src="http://media.comicbook.com/uploads1/2014/12/spiderman-america-captain-115732.jpg" />
 			<p>
 				The question of whether Spiderman would defeat Captain America, in that original
 				example, depends. It depends on how many voters choose to support only their top

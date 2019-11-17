@@ -7,7 +7,7 @@ export const POST_00108: IPost = {
 	id: 108,
 	title: 'Writing code is like...',
 	createdTime: 1517054400000,
-	route: PageRoutes.Conjectures,
+	route: PageRoutes.Conjecture,
 	content: (
 		<>
 			<p>
@@ -28,14 +28,12 @@ export const POST_00108: IPost = {
 				together words, albeit words with highly contextualized meanings. Although, writing
 				code isn’t quite like writing prose either.{' '}
 			</p>
-			<p>
-				It’s more like editing.
-				<ContentImage
-					src="https://ramblingafter.files.wordpress.com/2018/01/matrix-3109795_1280.jpg?w=960"
-					caption="This might look cool, but it has nothing to do with coding."
-					style={{ maxHeight: '384px' }}
-				/>
-			</p>
+			<p>It’s more like editing.</p>
+			<ContentImage
+				src="https://ramblingafter.files.wordpress.com/2018/01/matrix-3109795_1280.jpg?w=960"
+				caption="This might look cool, but it has nothing to do with coding."
+				style={{ maxHeight: '384px' }}
+			/>
 			<p>
 				Whether it’s a book, a movie, or even a Youtube video, every piece of media has a
 				purpose—to amuse, to educate, to shock or inspire, but always, invariably, to
@@ -62,13 +60,11 @@ export const POST_00108: IPost = {
 				Hollywood might have audiences believing about the geeky, hacker lifestyle, most
 				coding done today is deeply, intrinsically collaborative.
 			</p>
-			<p>
-				<ContentImage
-					src="http://a.abcnews.com/images/Entertainment/don-cheadle-mark-ruffalo-avengers-abc-jc-170719_1x1_1600.jpg"
-					caption="The MCU has never had to retcon anything. Left: Terrence Howard. Right: Edward
+			<ContentImage
+				src="http://a.abcnews.com/images/Entertainment/don-cheadle-mark-ruffalo-avengers-abc-jc-170719_1x1_1600.jpg"
+				caption="The MCU has never had to retcon anything. Left: Terrence Howard. Right: Edward
 					Norton."
-				/>
-			</p>
+			/>
 			<p>
 				In either case, the writer must maintain multiple threads alive in his or her head,
 				gradually growing each and interweaving them, layer by layer, lest the resulting

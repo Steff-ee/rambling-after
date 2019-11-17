@@ -117,12 +117,12 @@ export const POST_00102: IPost = {
 			</p>
 			<p>
 				Here’s <a href="https://ramblingafter.wordpress.com/dd-homebrew/">mine</a>.
-				<ContentImage
-					src="https://ramblingafter.files.wordpress.com/2017/10/skyrim-skills.jpg?w=1024"
-					caption="Skyrim's only attributes are magicka, health, and stamina. Skills level up
-					individually."
-				/>
 			</p>
+			<ContentImage
+				src="https://ramblingafter.files.wordpress.com/2017/10/skyrim-skills.jpg?w=1024"
+				caption="Skyrim's only attributes are magicka, health, and stamina. Skills level up
+					individually."
+			/>
 			<p>
 				Postscriptum: Ironically, my{' '}
 				<a href="http://en.uesp.net/wiki/Oblivion:Skills" target="_blank" rel="noopener">

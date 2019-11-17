@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { IPost } from './post.types'
+import { getNextPost, getPrevPost } from './posts'
 
 export interface IUsePostsNavReturns {
 	currentPost: IPost
@@ -20,7 +21,8 @@ export const usePostsNav = (
 		return { currentPost }
 	}
 
-	const { prevPostByRoute: prevPost, nextPostByRoute: nextPost } = currentPost
+	const prevPost = getPrevPost(currentPost)
+	const nextPost = getNextPost(currentPost)
 
 	let backClick
 	if (prevPost) {
@@ -34,13 +36,13 @@ export const usePostsNav = (
 
 	// if we're already at the first or second post, no need to show "<<"
 	let firstClick
-	if (prevPost && firstPost.nextPostByRoute!.id !== currentPost.id) {
+	if (prevPost && getNextPost(firstPost)!.id !== currentPost.id) {
 		firstClick = (): void => setCurrentPost(firstPost)
 	}
 
 	// if we're already at the latest or next-to-latest post, no need to show ">>"
 	let latestClick
-	if (nextPost && latestPost.prevPostByRoute!.id !== currentPost.id) {
+	if (nextPost && getPrevPost(latestPost)!.id !== currentPost.id) {
 		latestClick = (): void => setCurrentPost(latestPost)
 	}
 

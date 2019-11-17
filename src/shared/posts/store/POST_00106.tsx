@@ -21,12 +21,10 @@ export const POST_00106: IPost = {
 				And while this might cause perennial bickering in between the hoi polloi and the
 				snobs, it’s not the pattern I think should change.
 			</p>
-			<p>
-				<ContentImage
-					src="https://ramblingafter.files.wordpress.com/2017/12/snobby-cat.jpg?w=640"
-					caption="This cat is a snob. Don't be a snob."
-				/>
-			</p>
+			<ContentImage
+				src="https://ramblingafter.files.wordpress.com/2017/12/snobby-cat.jpg?w=640"
+				caption="This cat is a snob. Don't be a snob."
+			/>
 			<p>
 				{' '}
 				I want people to stop discussing “best movies” altogether. Specifically, I want the
@@ -90,13 +88,11 @@ export const POST_00106: IPost = {
 				Academy gave its “Best Picture” award to an indie film that combined a novel
 				three-act structure with the most intimate cinematography I’ve ever seen.
 			</p>
-			<p>
-				<ContentImage
-					src="http://moonlight.movie/storage/images/e09fcd88f32281e2cf30ecd908416034.jpg"
-					caption="Alex R. Hibbert and Mahershala Ali were only two of the many outstanding cast
+			<ContentImage
+				src="http://moonlight.movie/storage/images/e09fcd88f32281e2cf30ecd908416034.jpg"
+				caption="Alex R. Hibbert and Mahershala Ali were only two of the many outstanding cast
 					members of 2016's Moonlight."
-				/>
-			</p>
+			/>
 			<p>
 				So what’s the alternative? Break it down. Many award shows already distinguish
 				between comedy and drama; why not break it down further: Most delightful. Most

@@ -16,7 +16,7 @@ import React, { useContext } from 'react'
 import { useHistory } from 'react-router'
 import { INavItem } from '../../../components/iconNav/iconNav.types'
 import { Modes, ModesContext } from '../../../modes/modeSwitcher'
-import { conjecturesTitle } from '../../../pages/conjectures/conjectures'
+import { conjectureTitle } from '../../../pages/conjectures/conjectures'
 import { gamesTitle } from '../../../pages/games/games'
 import { homeTitle } from '../../../pages/home/home'
 import { storiesTitle } from '../../../pages/stories/stories'
@@ -50,9 +50,9 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 		},
 		{
 			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
-			id: PageRoutes.Conjectures,
-			label: conjecturesTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Conjectures }),
+			id: PageRoutes.Conjecture,
+			label: conjectureTitle,
+			onClick: (): void => history.push({ pathname: PageRoutes.Conjecture }),
 		},
 	]
 }

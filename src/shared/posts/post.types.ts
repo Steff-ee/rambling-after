@@ -6,6 +6,4 @@ export interface IPost {
 	content: JSX.Element
 	createdTime: number
 	route: PageRoutes
-	prevPostByRoute?: IPost
-	nextPostByRoute?: IPost
 }

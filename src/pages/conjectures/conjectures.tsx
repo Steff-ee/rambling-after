@@ -15,7 +15,7 @@ import {
 } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
 
-export const conjecturesTitle = 'conjectures'
+export const conjectureTitle = 'conjecture'
 
 export enum ConjecturePivots {
 	Posts = 'posts',
@@ -24,8 +24,8 @@ export enum ConjecturePivots {
 }
 
 export const conjecturePivotTitlePhrases: IPivotTitlePhrases = [
-	// posts arguing conjectures
-	[ConjecturePivots.Posts, 'arguing', conjecturesTitle],
+	// posts positing conjecture
+	[ConjecturePivots.Posts, 'arguing', conjectureTitle],
 	// my code hub
 	['my', ConjecturePivots.Code, 'hub'],
 	// some interesting links
@@ -34,7 +34,7 @@ export const conjecturePivotTitlePhrases: IPivotTitlePhrases = [
 
 const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 
-export const Conjectures: React.FunctionComponent = (): JSX.Element => {
+export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
 		conjecturePivotTitlePhrases,
 		ConjecturePivots.Posts,
@@ -82,7 +82,7 @@ export const Conjectures: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<Page
 			headerBackgroundImage={bookshelfImg}
-			titleText={conjecturesTitle}
+			titleText={conjectureTitle}
 			selectedPivotTitle={selectedPivotTitle}
 			setPivot={setPivot}
 			pivotsItems={pivotsItems}

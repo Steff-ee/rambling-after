@@ -83,7 +83,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 
 	const title = useTextMorphSequence(
 		[
-			{ texts: ['RAMBLING', 'AFTER'], wait: 4000 },
+			{ texts: ['RAMBLING', 'AFTER'], wait: 6000 },
 			{ texts: ['RAMBLING', 'THOUGHTS'], wait: 2000 },
 			{ texts: ['PULSE', ''], wait: 750 },
 			{ texts: ['LIKE', ''], wait: 750 },

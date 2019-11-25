@@ -16,6 +16,7 @@ import {
 import { Conjecture } from './conjectures/conjectures'
 import { Games } from './games/games'
 import { Home } from './home/home'
+import { PageNotFound } from './pageNotFound'
 import './root.css'
 import { Stories } from './stories/stories'
 
@@ -79,6 +80,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 													path={`/${PageRoutes.Conjecture}/:pivot?/:postId?`}
 													component={Conjecture}
 												/>
+												<Route path={'*'} component={PageNotFound} />
 											</Switch>
 										</BrowserRouter>
 									</MediaProvider>

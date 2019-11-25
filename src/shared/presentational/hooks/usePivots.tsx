@@ -1,5 +1,6 @@
 import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useContext, useState } from 'react'
+import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
 import { useTextMorph } from './useTextMorph'
 
@@ -10,6 +11,7 @@ export interface IUsePivotKeyReturns {
 	selectedPivotTitle: string | undefined
 	setPivot: IPivotProps['onLinkClick']
 	pivotsItems: IPivotItemProps[]
+	redirectTo: JSX.Element | undefined
 }
 
 // when showing a full title,
@@ -32,19 +34,30 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
 	return titleMap
 }
 
+export const getNewPath = (oldPathname: string, newPivot: string): string => {
+	const newPath = oldPathname.split('/')
+	const pageRoute = newPath[1]
+
+	return `/${pageRoute}/${newPivot}`
+}
+
 export const usePivots = (
 	titlePhrases: IPivotTitlePhrases,
 	defaultTitle: string,
 	titleMap: ITitleMap
 ): IUsePivotKeyReturns => {
-	const [selectedPivotTitle, setSelectedPivotTitle] = useState<string | undefined>(defaultTitle)
+	const { pivot: selectedPivotTitle } = useParams()
+	const history = useHistory()
+	const location = useLocation()
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
 	const mediaSize = useContext(MediaContext)
 	const skipMorph = mediaSize === MediaSize.Small
 
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
-		setSelectedPivotTitle(newSelectedKey)
+		if (newSelectedKey) {
+			history.replace(getNewPath(location.pathname, newSelectedKey))
+		}
 	}
 
 	const onMouseEnter = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
@@ -92,5 +105,11 @@ export const usePivots = (
 		key: baseTitle,
 	}))
 
-	return { selectedPivotTitle, setPivot, pivotsItems }
+	let redirectTo
+	const isValidTitle = baseTitles.indexOf(selectedPivotTitle || '') > -1
+	if (!isValidTitle) {
+		redirectTo = <Redirect to={getNewPath(location.pathname, defaultTitle)} />
+	}
+
+	return { selectedPivotTitle, setPivot, pivotsItems, redirectTo }
 }

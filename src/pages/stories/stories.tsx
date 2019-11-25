@@ -32,7 +32,7 @@ export const storyPivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
 export const Stories: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo } = usePivots(
 		storyPivotTitlePhrases,
 		StoryPivots.Posts,
 		titleMap
@@ -48,6 +48,10 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 	useEffect(() => {
 		setSeason(getNextSeason(1))
 	}, [])
+
+	if (redirectTo) {
+		return redirectTo
+	}
 
 	let pageContent
 	switch (selectedPivotTitle) {

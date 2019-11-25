@@ -34,25 +34,25 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Home }),
+			onClick: (): void => history.push({ pathname: `/${PageRoutes.Home}` }),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonProps} />,
 			id: PageRoutes.Stories,
 			label: storiesTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Stories }),
+			onClick: (): void => history.push({ pathname: `/${PageRoutes.Stories}` }),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faChessKnight} {...commonProps} />,
 			id: PageRoutes.Games,
 			label: gamesTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Games }),
+			onClick: (): void => history.push({ pathname: `/${PageRoutes.Games}` }),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
 			id: PageRoutes.Conjecture,
 			label: conjectureTitle,
-			onClick: (): void => history.push({ pathname: PageRoutes.Conjecture }),
+			onClick: (): void => history.push({ pathname: `/${PageRoutes.Conjecture}` }),
 		},
 	]
 }

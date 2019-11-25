@@ -35,7 +35,7 @@ export const conjecturePivotTitlePhrases: IPivotTitlePhrases = [
 const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 
 export const Conjecture: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo } = usePivots(
 		conjecturePivotTitlePhrases,
 		ConjecturePivots.Posts,
 		titleMap
@@ -52,6 +52,10 @@ export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 	useEffect(() => {
 		setSeason(getNextSeason(3))
 	}, [])
+
+	if (redirectTo) {
+		return redirectTo
+	}
 
 	let pageContent
 	switch (selectedPivotTitle) {

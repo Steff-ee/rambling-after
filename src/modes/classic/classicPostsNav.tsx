@@ -2,6 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import { HorizontalIconNav } from '../../components/iconNav/horizontalIconNav'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
+import { getPrimaryRoute } from '../../shared/helpers/routes'
 import {
 	useBackCommand,
 	useFirstCommand,
@@ -31,7 +32,7 @@ export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (
 
 	return (
 		<HorizontalIconNav
-			selectedId={location.pathname}
+			selectedId={getPrimaryRoute(location.pathname)}
 			navItems={[firstCommand, backCommand, nextCommand, latestCommand]}
 			orientation={orientation}
 		/>

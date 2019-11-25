@@ -52,11 +52,20 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 									<BrowserRouter>
 										<Switch>
 											<Redirect exact={true} from="/" to={PageRoutes.Home} />
-											<Route path={PageRoutes.Home} component={Home} />
-											<Route path={PageRoutes.Stories} component={Stories} />
-											<Route path={PageRoutes.Games} component={Games} />
 											<Route
-												path={PageRoutes.Conjecture}
+												path={`/${PageRoutes.Home}/:pivot?/:postId?`}
+												component={Home}
+											/>
+											<Route
+												path={`/${PageRoutes.Stories}/:pivot?/:postId?`}
+												component={Stories}
+											/>
+											<Route
+												path={`/${PageRoutes.Games}/:pivot?/:postId?`}
+												component={Games}
+											/>
+											<Route
+												path={`/${PageRoutes.Conjecture}/:pivot?/:postId?`}
 												component={Conjecture}
 											/>
 										</Switch>

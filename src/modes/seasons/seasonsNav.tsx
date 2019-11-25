@@ -8,6 +8,7 @@ import {
 } from '../../components/iconNav/iconNav.types'
 import { VerticalIconNav } from '../../components/iconNav/verticalIconNav'
 import { Colors } from '../../shared/helpers/constants'
+import { getPrimaryRoute } from '../../shared/helpers/routes'
 import { BackgroundPicker } from '../../shared/presentational/components/backgroundPicker'
 import { ColorPicker } from '../../shared/presentational/components/colorPicker'
 import {
@@ -31,7 +32,7 @@ export const SeasonsNav: React.FunctionComponent<INavBarProps> = (
 	const changeModeCommand = useChangeModeCommand(Colors.OffBlack)
 
 	const commonProps: ICommonIconNavProps = {
-		selectedId: location.pathname,
+		selectedId: getPrimaryRoute(location.pathname),
 		rootStyle,
 		navItems: [...navigationLinks, changeModeCommand],
 		orientation: NavOrientation.Left,

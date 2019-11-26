@@ -4,12 +4,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
-import {
-	defaultTextStyle,
-	parallaxGroupStyle,
-	parallaxRootStyle,
-	smallestDeviceWidth,
-} from '../../shared/helpers/styles'
+import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
@@ -125,10 +120,14 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	let titleFontSize = '96px'
 	let titleLetterSpacing = '18px'
 	let titleLineHeight = '144px'
-	if (mediaSize === MediaSize.Small) {
-		titleFontSize = '64px'
-		titleLetterSpacing = '12px'
+	if (mediaSize === MediaSize.Medium) {
+		titleFontSize = '72px'
+		titleLetterSpacing = '16px'
 		titleLineHeight = '96px'
+	} else if (mediaSize === MediaSize.Small) {
+		titleFontSize = '36px'
+		titleLetterSpacing = '12px'
+		titleLineHeight = '54px'
 	}
 
 	return (

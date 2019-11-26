@@ -4,12 +4,7 @@ import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
-import {
-	defaultTextStyle,
-	parallaxGroupStyle,
-	parallaxRootStyle,
-	smallestDeviceWidth,
-} from '../../shared/helpers/styles'
+import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
@@ -80,6 +75,29 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		],
 		link: [{ height: '64px', margin: '0 4%' }],
 		linkIsSelected: [{ height: '64px', margin: '0 4%' }],
+	}
+
+	let pivots: JSX.Element = <div style={{height: '64px'}} />
+	if (mediaSize !== MediaSize.Small) {
+		pivots = (<div
+			style={{
+				margin: '64px 20%',
+				position: arePivotsSticky ? 'sticky' : 'relative',
+				top: 0,
+				zIndex: arePivotsSticky ? 3 : 1,
+			}}
+			ref={pivotsPositionRef}
+		>
+			<Pivot
+				selectedKey={selectedPivotTitle}
+				onLinkClick={setPivot}
+				styles={pivotStyles}
+			>
+				{pivotsItems.map((pivotProps) => (
+					<PivotItem {...pivotProps} />
+				))}
+			</Pivot>
+		</div>)
 	}
 
 	const title = useTextMorphSequence(
@@ -211,25 +229,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						scrollRef={scrollRef}
 						positionRef={contentPositionRef}
 					/>
-					<div
-						style={{
-							margin: '64px 20%',
-							position: arePivotsSticky ? 'sticky' : 'relative',
-							top: 0,
-							zIndex: arePivotsSticky ? 3 : 1,
-						}}
-						ref={pivotsPositionRef}
-					>
-						<Pivot
-							selectedKey={selectedPivotTitle}
-							onLinkClick={setPivot}
-							styles={pivotStyles}
-						>
-							{pivotsItems.map((pivotProps) => (
-								<PivotItem {...pivotProps} />
-							))}
-						</Pivot>
-					</div>
+					{pivots}
 					<div
 						style={{
 							maxWidth: '972px',

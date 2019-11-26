@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { animated, useTransition } from 'react-spring'
+import { animated, to, useTransition } from 'react-spring'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
@@ -90,7 +90,14 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 			{pagesTransition(
 				(rootTransition, item) =>
 					item && (
-						<animated.div style={rootTransition}>
+						<animated.div
+							style={{
+								...rootTransition,
+								visibility: to(rootTransition.opacity, (opacity: number) =>
+									opacity === 0 ? 'hidden' : 'visible'
+								),
+							}}
+						>
 							<ClassicPageNav orientation={NavOrientation.Left} />
 						</animated.div>
 					)
@@ -99,7 +106,14 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 			{postsTransition(
 				(rootTransition, item) =>
 					item && (
-						<animated.div style={rootTransition}>
+						<animated.div
+							style={{
+								...rootTransition,
+								visibility: to(rootTransition.opacity, (opacity: number) =>
+									opacity === 0 ? 'hidden' : 'visible'
+								),
+							}}
+						>
 							<ClassicPostsNav
 								orientation={NavOrientation.Right}
 								firstClick={firstClick}

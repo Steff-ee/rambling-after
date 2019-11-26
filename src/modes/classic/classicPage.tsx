@@ -8,6 +8,7 @@ import {
 	defaultTextStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
+	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
@@ -116,6 +117,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				...parallaxRootStyle,
 				backgroundColor: classicColors.primary,
 				position: 'absolute',
+				minWidth: smallestDeviceWidth,
 			}}
 			ref={scrollRef}
 		>

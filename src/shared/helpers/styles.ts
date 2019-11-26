@@ -32,3 +32,5 @@ export const parallaxGroupStyle: React.CSSProperties = {
 	position: 'relative',
 	transformStyle: 'preserve-3d',
 }
+
+export const smallestDeviceWidth = '320px'

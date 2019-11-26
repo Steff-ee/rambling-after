@@ -7,6 +7,7 @@ import {
 	defaultTextStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
+	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { CircadianMood, getCircadianMood } from '../../shared/helpers/time'
 import { Fireflies } from '../../shared/presentational/components/fireflies'
@@ -112,6 +113,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 			style={{
 				...parallaxRootStyle,
 				...defaultTextStyle,
+				minWidth: smallestDeviceWidth,
 			}}
 		>
 			<div

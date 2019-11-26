@@ -3,6 +3,7 @@ import { ColorsContext } from '../../shared/presentational/hooks/useColors'
 import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 import { NavListLabel } from './navListLabel'
+import { MediaContext, MediaSize } from '../mediaProvider'
 
 /**
  * This is a macromolecular component:
@@ -22,6 +23,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 	} = props
 	const [hoverIndex, setHoverIndex] = useState<number>(-1)
 	const { primary, secondary } = useContext(ColorsContext)
+	const mediaSize = useContext(MediaContext)
 
 	const onMouseLeave = (index: number): void => {
 		if (index === hoverIndex) {
@@ -30,16 +32,19 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 	}
 
 	let orientationStyle
+	const sidePadding = mediaSize === MediaSize.Small ? '32px' : 0
 	if (orientation === NavOrientation.Right) {
-		orientationStyle = { right: 0 }
+		orientationStyle = { right: sidePadding }
 	} else {
-		orientationStyle = { left: 0 }
+		orientationStyle = { left: sidePadding }
 	}
 
 	return (
 		<div
 			style={{
 				display: 'flex',
+				position: 'absolute',
+				...orientationStyle,
 				...rootStyle,
 			}}
 		>
@@ -64,10 +69,8 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 				width={labelWidth}
 				orientation={orientation}
 				rootStyle={{
-					...orientationStyle,
 					backgroundColor: secondary,
 					color: primary,
-					position: 'absolute',
 					marginTop: iconHeight,
 				}}
 			/>

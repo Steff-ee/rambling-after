@@ -54,7 +54,6 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 		width: '100%',
 		height: '64px',
 		display: 'flex',
-		justifyContent: 'space-between',
 	}
 
 	let showPosts: boolean

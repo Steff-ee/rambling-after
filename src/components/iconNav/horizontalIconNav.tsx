@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import { MediaContext, MediaSize } from '../mediaProvider'
 import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 import { NavListLabel } from './navListLabel'
-import { MediaContext, MediaSize } from '../mediaProvider'
 
 /**
  * This is a macromolecular component:
@@ -31,37 +31,41 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		}
 	}
 
-	let orientationStyle
+	let iconsOrientationStyle: React.CSSProperties
+	let labelOrientationStyle: React.CSSProperties
 	const sidePadding = mediaSize === MediaSize.Small ? '32px' : 0
 	if (orientation === NavOrientation.Right) {
-		orientationStyle = { right: sidePadding }
+		iconsOrientationStyle = { right: sidePadding }
+		labelOrientationStyle = { right: 0 }
 	} else {
-		orientationStyle = { left: sidePadding }
+		iconsOrientationStyle = { left: sidePadding }
+		labelOrientationStyle = { left: 0 }
 	}
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				position: 'absolute',
-				...orientationStyle,
-				...rootStyle,
-			}}
-		>
-			{navItems.map(
-				(item: INavItem, itemIndex: number): JSX.Element => (
-					<NavItem
-						{...item}
-						width={iconWidth}
-						height={iconHeight}
-						key={item.id}
-						id={itemIndex}
-						isSelected={item.id === selectedId}
-						onMouseEnter={setHoverIndex}
-						onMouseLeave={onMouseLeave}
-					/>
-				)
-			)}
+		<div style={rootStyle}>
+			<div
+				style={{
+					display: 'flex',
+					position: 'absolute',
+					...iconsOrientationStyle,
+				}}
+			>
+				{navItems.map(
+					(item: INavItem, itemIndex: number): JSX.Element => (
+						<NavItem
+							{...item}
+							width={iconWidth}
+							height={iconHeight}
+							key={item.id}
+							id={itemIndex}
+							isSelected={item.id === selectedId}
+							onMouseEnter={setHoverIndex}
+							onMouseLeave={onMouseLeave}
+						/>
+					)
+				)}
+			</div>
 			<NavListLabel
 				labels={navItems.map((item: INavItem): string => item.label)}
 				currentLabelIndex={hoverIndex}
@@ -72,6 +76,8 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 					backgroundColor: secondary,
 					color: primary,
 					marginTop: iconHeight,
+					position: 'absolute',
+					...labelOrientationStyle,
 				}}
 			/>
 		</div>

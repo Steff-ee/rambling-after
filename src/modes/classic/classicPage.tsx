@@ -4,7 +4,12 @@ import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
-import { defaultTextStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
+import {
+	defaultTextStyle,
+	parallaxGroupStyle,
+	parallaxRootStyle,
+	smallestDeviceWidth,
+} from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
@@ -77,27 +82,25 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		linkIsSelected: [{ height: '64px', margin: '0 4%' }],
 	}
 
-	let pivots: JSX.Element = <div style={{height: '64px'}} />
+	let pivots: JSX.Element = <div style={{ height: '64px' }} />
 	if (mediaSize !== MediaSize.Small) {
-		pivots = (<div
-			style={{
-				margin: '64px 20%',
-				position: arePivotsSticky ? 'sticky' : 'relative',
-				top: 0,
-				zIndex: arePivotsSticky ? 3 : 1,
-			}}
-			ref={pivotsPositionRef}
-		>
-			<Pivot
-				selectedKey={selectedPivotTitle}
-				onLinkClick={setPivot}
-				styles={pivotStyles}
+		pivots = (
+			<div
+				style={{
+					margin: '64px 20%',
+					position: arePivotsSticky ? 'sticky' : 'relative',
+					top: 0,
+					zIndex: arePivotsSticky ? 3 : 1,
+				}}
+				ref={pivotsPositionRef}
 			>
-				{pivotsItems.map((pivotProps) => (
-					<PivotItem {...pivotProps} />
-				))}
-			</Pivot>
-		</div>)
+				<Pivot selectedKey={selectedPivotTitle} onLinkClick={setPivot} styles={pivotStyles}>
+					{pivotsItems.map((pivotProps) => (
+						<PivotItem {...pivotProps} />
+					))}
+				</Pivot>
+			</div>
+		)
 	}
 
 	const title = useTextMorphSequence(

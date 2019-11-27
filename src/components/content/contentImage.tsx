@@ -1,5 +1,5 @@
 import React from 'react'
-import { FadeLoadImage } from './fadeLoadImage'
+import { FadeLoadImage } from '../fadeLoadImage'
 
 export interface IContentLoadImageProps {
 	src: string

@@ -5,6 +5,12 @@ export const defaultTextStyle: React.CSSProperties = {
 	textAlign: 'center',
 }
 
+export const lightTextStyle: React.CSSProperties = {
+	fontFamily: 'Montserrat',
+	fontSize: '19px',
+	lineHeight: '29px',
+}
+
 export const entirePageStyle: React.CSSProperties = {
 	top: 0,
 	left: 0,

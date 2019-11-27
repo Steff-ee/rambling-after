@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContentImage } from '../../../components/contentImage'
+import { ContentImage } from '../../../components/content/contentImage'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 

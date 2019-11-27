@@ -1,5 +1,6 @@
 import React from 'react'
-import { ContentImage } from '../../../components/contentImage'
+import { ContentImage } from '../../../components/content/contentImage'
+import { Dialogue } from '../../../components/content/dialogue'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -24,27 +25,19 @@ export const POST_00112: IPost = {
 				answers can be taken at face value, others may be much more elaborate, and not at
 				all obvious after a single viewing.
 			</p>
-			<blockquote>
-				<pre>
-					<p>STRANGE</p>
-					<p>
-						I went forward in time... to view alternate futures. To see all the possible
-						outcomes of the coming conflict.
-					</p>
-
-					<p>QUILL</p>
-					<p>How many did you see?</p>
-
-					<p>STRANGE</p>
-					<p>Fourteen million six hundred and five.</p>
-
-					<p>STARK</p>
-					<p>How many did we win?</p>
-
-					<p>STRANGE</p>
-					<p>One.</p>
-				</pre>
-			</blockquote>
+			<Dialogue
+				lines={[
+					{
+						by: 'STRANGE',
+						says:
+							'I went forward in time... to view alternate futures. To see all the possible outcomes of the coming conflict.',
+					},
+					{ by: 'QUILL', says: 'How many did you see?' },
+					{ by: 'STRANGE', says: 'Fourteen million six hundred and five.' },
+					{ by: 'STARK', says: 'How many did we win?' },
+					{ by: 'STRANGE', says: 'One.' },
+				]}
+			/>
 			<p>
 				Only one way to win out of fourteen million, we’re to believe, but at first glance
 				the numbers don’t seem to add up.
@@ -112,18 +105,16 @@ export const POST_00112: IPost = {
 				Titan, Thanos mastered using the reality stone to fake a scene while using all three
 				of his stones to engage in real combat. Though he felt real to punch and kick...
 			</p>
-			<blockquote>
-				<pre>
-					<p>PETER</p>
-					<p>Magic!</p>
-
-					<p>PETER</p>
-					<p>More magic!</p>
-
-					<p>PETER</p>
-					<p>Magic with a kick!</p>
-				</pre>
-			</blockquote>
+			<Dialogue
+				lines={[
+					{
+						by: 'PETE',
+						says: 'Magic!',
+					},
+					{ by: 'PETER', says: 'More magic!' },
+					{ by: 'PETER', says: 'Magic with a kick!' },
+				]}
+			/>
 			<p>
 				...he was no more real than the version of Thanos on Knowhere. Just real enough to
 				punch back. An avatar, perhaps controlled remotely by the real Thanos, who was never
@@ -176,18 +167,19 @@ export const POST_00112: IPost = {
 				Earth as a whole didn’t have that kind of time. The Earth was missing its Sorcerer
 				Supreme, and the Sorcerer Supreme’s most important weapon: the time stone.{' '}
 			</p>
-			<blockquote>
-				<pre>
-					<p>STRANGE</p>
-					<p>Dormammu, I've come to bargain!</p>
-
-					<p>DORMAMMU</p>
-					<p>You've come to die. Your world is now my world. Like all worlds.</p>
-
-					<p>STRANGE</p>
-					<p>Dormammu, I've come to bargain!</p>
-				</pre>
-			</blockquote>
+			<Dialogue
+				lines={[
+					{
+						by: 'STRANGE',
+						says: "Dormammu, I've come to bargain!",
+					},
+					{
+						by: 'DORMAMMU',
+						says: "You've come to die. Your world is now my world. Like all worlds.",
+					},
+					{ by: 'STRANGE', says: "Dormammu, I've come to bargain!" },
+				]}
+			/>
 			<p>
 				Dormammu, Galactus, Dr. Doom, you name it. The Earth can attract a lot of hostiles
 				over the course of five years, and they would always distract Tony from doing what

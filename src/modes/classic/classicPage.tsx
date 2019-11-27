@@ -130,8 +130,8 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 		titleLetterSpacing = '16px'
 		titleLineHeight = '96px'
 	} else if (mediaSize === MediaSize.Small) {
-		titleFontSize = '36px'
-		titleLetterSpacing = '12px'
+		titleFontSize = '40px'
+		titleLetterSpacing = '10px'
 		titleLineHeight = '54px'
 	}
 
@@ -206,6 +206,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						color: classicColors.primary,
 						filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 						cursor: 'pointer',
+						margin: '0 16px'
 					}}
 				>
 					{title}

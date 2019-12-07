@@ -1,5 +1,5 @@
 import React from 'react'
-import { lightTextStyle } from '../../shared/helpers/styles'
+import { bottomContentMargin, lightTextStyle } from '../../shared/helpers/styles'
 
 export interface IDialogueLine {
 	by: string | JSX.Element
@@ -21,7 +21,7 @@ export const Dialogue: React.FunctionComponent<IDialogueProps> = (
 				...lightTextStyle,
 				textAlign: 'center',
 				backgroundColor: 'rgb(255, 255, 255, 0.25)',
-				marginBottom: '34px',
+				marginBottom: bottomContentMargin,
 			}}
 		>
 			{lines.map(

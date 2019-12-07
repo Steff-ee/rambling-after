@@ -1,5 +1,7 @@
 import React from 'react'
+import { Table } from 'semantic-ui-react'
 import { ContentImage } from '../../../components/content/contentImage'
+import { StyledTable } from '../../../components/content/styledTable'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -121,22 +123,29 @@ export const POST_00110: IPost = {
 				superhero-centric example coming up to explain it. And two—the bigger problem—most
 				people lie.
 			</p>
-			<table>
-				<tbody>
-					<tr>
-						<td>% of voters</td>
-						<td>True candidate preferences</td>
-					</tr>
-					<tr>
-						<td>55%</td>
-						<td>Captain America (10/10) > Spiderman (7/10) > Iron Man (1/10)</td>
-					</tr>
-					<tr>
-						<td>45%</td>
-						<td>Iron Man (9/10) > Spiderman (7/10) > Captain America (2/10)</td>
-					</tr>
-				</tbody>
-			</table>
+			<StyledTable>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>% of voters</Table.HeaderCell>
+						<Table.HeaderCell>True candidate preferences</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell>55%</Table.Cell>
+						<Table.Cell>
+							Captain America (10/10) > Spiderman (7/10) > Iron Man (1/10)
+						</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>45%</Table.Cell>
+						<Table.Cell>
+							Iron Man (9/10) > Spiderman (7/10) > Captain America (2/10)
+						</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</StyledTable>
 			<p>
 				In the above example, Captain America and Iron Man are people’s top choices, but
 				Spiderman is everyone’s second favorite, universally ranked at a
@@ -182,26 +191,29 @@ export const POST_00110: IPost = {
 				rank them? Many voting schemes are built off of ordered rankings, and I’ll cover two
 				of the most commonly discussed ones: Condorcet, and Instant-Runoff Voting (IRV).
 			</p>
-			<table>
-				<tbody>
-					<tr>
-						<td>% of voters</td>
-						<td>True candidate preferences</td>
-					</tr>
-					<tr>
-						<td>46%</td>
-						<td>Black Widow > Hawkeye > Nick Fury</td>
-					</tr>
-					<tr>
-						<td>9%</td>
-						<td>Hawkeye > Black Widow > Nick Fury</td>
-					</tr>
-					<tr>
-						<td>45%</td>
-						<td>Nick Fury > Hawkeye > Black Widow</td>
-					</tr>
-				</tbody>
-			</table>
+			<StyledTable>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>% of voters</Table.HeaderCell>
+						<Table.HeaderCell>True candidate preferences</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell>46%</Table.Cell>
+						<Table.Cell>Black Widow > Hawkeye > Nick Fury</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>9%</Table.Cell>
+						<Table.Cell>Hawkeye > Black Widow > Nick Fury</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>45%</Table.Cell>
+						<Table.Cell>Nick Fury > Hawkeye > Black Widow</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</StyledTable>
 			<p>
 				<a
 					href="https://en.wikipedia.org/wiki/Condorcet_method"
@@ -217,19 +229,19 @@ export const POST_00110: IPost = {
 				Hawkeye to Nick Fury, so he gets one win there, and 54% of voters prefer Hawkeye to
 				Black Widow, so he gets a second win:
 			</p>
-			<table>
-				<tbody>
-					<tr>
-						<td>Hawkeye > Nick Fury</td>
-					</tr>
-					<tr>
-						<td>Hawkeye > Black Widow</td>
-					</tr>
-					<tr>
-						<td>Black Widow > Nick Fury</td>
-					</tr>
-				</tbody>
-			</table>
+			<StyledTable>
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell>Hawkeye > Nick Fury</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>Hawkeye > Black Widow</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>Black Widow > Nick Fury</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</StyledTable>
 			<p>
 				And Hawkeye wins the election. That’s good news for our humble archer, but there’s a
 				major drawback: Moderates{' '}
@@ -274,26 +286,29 @@ export const POST_00110: IPost = {
 				</a>{' '}
 				that leads to two candidate dominance.
 			</p>
-			<table>
-				<tbody>
-					<tr>
-						<td>% of voters</td>
-						<td>True candidate preferences</td>
-					</tr>
-					<tr>
-						<td>34</td>
-						<td>Hulk > Star-Lord > Thor</td>
-					</tr>
-					<tr>
-						<td>17</td>
-						<td>Star-Lord > Hulk > Thor</td>
-					</tr>
-					<tr>
-						<td>49</td>
-						<td>Thor > Star-Lord > Hulk</td>
-					</tr>
-				</tbody>
-			</table>
+			<StyledTable>
+				<Table.Header>
+					<Table.Row>
+						<Table.HeaderCell>% of voters</Table.HeaderCell>
+						<Table.HeaderCell>True candidate preferences</Table.HeaderCell>
+					</Table.Row>
+				</Table.Header>
+
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell>34</Table.Cell>
+						<Table.Cell>Hulk > Star-Lord > Thor</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>17</Table.Cell>
+						<Table.Cell>Star-Lord > Hulk > Thor</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>49</Table.Cell>
+						<Table.Cell>Thor > Star-Lord > Hulk</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</StyledTable>
 			<p>
 				In this example, Star-Lord is eliminated first. The 17% of ballots that ranked him
 				first now support Hulk as first, giving Hulk a 51% majority and a win over

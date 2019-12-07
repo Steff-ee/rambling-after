@@ -206,7 +206,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 						color: classicColors.primary,
 						filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 						cursor: 'pointer',
-						margin: '0 16px'
+						margin: '0 16px',
 					}}
 				>
 					{title}

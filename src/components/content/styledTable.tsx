@@ -14,7 +14,7 @@ export const StyledTable: React.FunctionComponent<React.PropsWithChildren<{}>> =
 				marginBottom: bottomContentMargin,
 			}}
 		>
-			<Table collapsing={true} celled={true}>
+			<Table collapsing={true} celled={true} inverted={true} textAlign={'center'}>
 				{props.children}
 			</Table>
 		</div>

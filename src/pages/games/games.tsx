@@ -5,29 +5,9 @@ import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
 import { Post } from '../../shared/posts/post'
 import { gamesFirstPost, gamesLatestPost } from '../../shared/posts/posts'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
-import {
-	IPivotTitlePhrases,
-	makeTitleMap,
-	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
-
-export const gamesTitle = 'games'
-
-export enum GamePivots {
-	Posts = 'posts',
-	Games = 'games',
-	Links = 'links',
-}
-
-export const gamePivotTitlePhrases: IPivotTitlePhrases = [
-	// posts about games
-	[GamePivots.Posts, 'about', gamesTitle],
-	// my games made
-	['my', GamePivots.Games, 'made'],
-	// some interesting links
-	['some', 'interesting', GamePivots.Links],
-]
+import { GamePivots, gamePivotTitlePhrases, gamesTitle } from './games.types'
 
 const titleMap = makeTitleMap(gamePivotTitlePhrases)
 

@@ -8,29 +8,9 @@ import { Post } from '../../shared/posts/post'
 import { conjectureFirstPost, conjectureLatestPost } from '../../shared/posts/posts'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
-import {
-	IPivotTitlePhrases,
-	makeTitleMap,
-	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
-
-export const conjectureTitle = 'conjecture'
-
-export enum ConjecturePivots {
-	Posts = 'posts',
-	Code = 'code',
-	Links = 'links',
-}
-
-export const conjecturePivotTitlePhrases: IPivotTitlePhrases = [
-	// posts positing conjecture
-	[ConjecturePivots.Posts, 'arguing', conjectureTitle],
-	// my code hub
-	['my', ConjecturePivots.Code, 'hub'],
-	// some interesting links
-	['some', 'interesting', ConjecturePivots.Links],
-]
+import { ConjecturePivots, conjecturePivotTitlePhrases, conjectureTitle } from './conjectures.types'
 
 const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 

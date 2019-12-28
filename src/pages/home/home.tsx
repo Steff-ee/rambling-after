@@ -2,29 +2,9 @@ import cartographyImg from 'Assets/images/cartography.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
-import {
-	IPivotTitlePhrases,
-	makeTitleMap,
-	usePivots,
-} from '../../shared/presentational/hooks/usePivots'
+import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
-
-export const homeTitle = 'home'
-
-export enum HomePivots {
-	About = 'about',
-	Blog = 'blog',
-	Recent = 'recent',
-}
-
-export const homePivotTitlePhrases: IPivotTitlePhrases = [
-	// about this site
-	[HomePivots.About, 'this', 'site'],
-	// all blog posts
-	['all', HomePivots.Blog, 'posts'],
-	// only most recent
-	['only', 'most', HomePivots.Recent],
-]
+import { HomePivots, homePivotTitlePhrases, homeTitle } from './home.types'
 
 const titleMap = makeTitleMap(homePivotTitlePhrases)
 

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
 import { RouteContext } from '../../helpers/routes'
+import { IPivotTitlePhrases } from './usePivots.types'
 import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
@@ -14,12 +15,6 @@ export interface IUsePivotKeyReturns {
 	pivotsItems: IPivotItemProps[]
 	redirectTo: JSX.Element | undefined
 }
-
-// when showing a full title,
-// 		each string corresponds to one pivot, together making a phrase
-// when regularly showing one title per pivot
-// 		the ith string will be used as the title, where i is the index of IPivotTitle among other IPivotTitles
-export type IPivotTitlePhrases = string[][]
 
 interface ITitleMap {
 	[title: string]: number | undefined

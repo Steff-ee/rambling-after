@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import { IPost } from './post.types'
-import { getNextPost, getPrevPost } from './posts'
+import { useContext } from 'react'
+import { PageRoutes } from '../helpers/routes'
+import { OpenPostsContext } from './openPosts'
+import { IPost, PivotRoutes } from './post.types'
+import { firstPostByPage, getNextPost, getPrevPost, latestPostByPage } from './posts'
 
 export interface IUsePostsNavReturns {
 	currentPost: IPost
@@ -11,11 +13,14 @@ export interface IUsePostsNavReturns {
 }
 
 export const usePostsNav = (
-	firstPost: IPost,
-	latestPost: IPost,
+	page: PageRoutes,
+	pivot: PivotRoutes,
 	skip = false
 ): IUsePostsNavReturns => {
-	const [currentPost, setCurrentPost] = useState<IPost>(latestPost)
+	const { getLastOpenPost, setLastOpenPost } = useContext(OpenPostsContext)
+	const firstPost = firstPostByPage[page]
+	const latestPost = latestPostByPage[page]
+	const currentPost = getLastOpenPost(page, pivot) || latestPost
 
 	if (skip) {
 		return { currentPost }
@@ -26,24 +31,24 @@ export const usePostsNav = (
 
 	let backClick
 	if (prevPost) {
-		backClick = (): void => setCurrentPost(prevPost)
+		backClick = (): void => setLastOpenPost(page, pivot, prevPost)
 	}
 
 	let nextClick
 	if (nextPost) {
-		nextClick = (): void => setCurrentPost(nextPost)
+		nextClick = (): void => setLastOpenPost(page, pivot, nextPost)
 	}
 
 	// if we're already at the first or second post, no need to show "<<"
 	let firstClick
 	if (prevPost && getNextPost(firstPost)!.id !== currentPost.id) {
-		firstClick = (): void => setCurrentPost(firstPost)
+		firstClick = (): void => setLastOpenPost(page, pivot, firstPost)
 	}
 
 	// if we're already at the latest or next-to-latest post, no need to show ">>"
 	let latestClick
 	if (nextPost && getPrevPost(latestPost)!.id !== currentPost.id) {
-		latestClick = (): void => setCurrentPost(latestPost)
+		latestClick = (): void => setLastOpenPost(page, pivot, latestPost)
 	}
 
 	return {

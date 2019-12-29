@@ -23,16 +23,26 @@ export const allPosts: IPost[] = [
 	POST_00112,
 ]
 
+export const latestPostByPage: { [page: string]: IPost } = {}
+export const firstPostByPage: { [page: string]: IPost } = {}
+export const allPostsByPage: { [page: string]: IPost[] } = {}
+
+Object.keys(PageRoutes).forEach((key: string) => {
+	const pageKey = key as keyof typeof PageRoutes
+	allPostsByPage[PageRoutes[pageKey]] = []
+})
+
 const allPostsDictionary: { [id: number]: number } = {}
 allPosts.forEach((post, index) => {
 	allPostsDictionary[post.id] = index
+	allPostsByPage[post.route].push(post)
 })
 
 /* STORIES */
 
-export const storiesPosts: IPost[] = allPosts.filter((item) => item.route === PageRoutes.Stories)
-export const storiesFirstPost = storiesPosts[0]
-export const storiesLatestPost = storiesPosts[storiesPosts.length - 1]
+export const storiesPosts: IPost[] = allPostsByPage[PageRoutes.Stories]
+firstPostByPage[PageRoutes.Stories] = storiesPosts[0]
+latestPostByPage[PageRoutes.Stories] = storiesPosts[storiesPosts.length - 1]
 
 const storiesPostsDictionary: { [id: number]: number } = {}
 storiesPosts.forEach((post, index) => {
@@ -41,9 +51,9 @@ storiesPosts.forEach((post, index) => {
 
 /* GAMES */
 
-export const gamesPosts: IPost[] = allPosts.filter((item) => item.route === PageRoutes.Games)
-export const gamesFirstPost = gamesPosts[0]
-export const gamesLatestPost = gamesPosts[gamesPosts.length - 1]
+export const gamesPosts: IPost[] = allPostsByPage[PageRoutes.Games]
+firstPostByPage[PageRoutes.Games] = gamesPosts[0]
+latestPostByPage[PageRoutes.Games] = gamesPosts[gamesPosts.length - 1]
 
 const gamesPostsDictionary: { [id: number]: number } = {}
 gamesPosts.forEach((post, index) => {
@@ -52,11 +62,9 @@ gamesPosts.forEach((post, index) => {
 
 /* CONJECTURE */
 
-export const conjecturePosts: IPost[] = allPosts.filter(
-	(item) => item.route === PageRoutes.Conjecture
-)
-export const conjectureFirstPost = conjecturePosts[0]
-export const conjectureLatestPost = conjecturePosts[conjecturePosts.length - 1]
+export const conjecturePosts: IPost[] = allPostsByPage[PageRoutes.Conjecture]
+firstPostByPage[PageRoutes.Conjecture] = conjecturePosts[0]
+latestPostByPage[PageRoutes.Conjecture] = conjecturePosts[conjecturePosts.length - 1]
 
 const conjecturePostsDictionary: { [id: number]: number } = {}
 conjecturePosts.forEach((post, index) => {

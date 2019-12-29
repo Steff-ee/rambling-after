@@ -4,8 +4,9 @@ import { IconButton } from '../../components/iconButton'
 import { classicColors } from '../../modes/classic/classicConstants'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
+import { PageRoutes } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
-import { conjectureFirstPost, conjectureLatestPost } from '../../shared/posts/posts'
+import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
@@ -24,8 +25,8 @@ export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
 	const showPostsNav = selectedPivotTitle === ConjecturePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
-		conjectureFirstPost,
-		conjectureLatestPost,
+		PageRoutes.Conjecture,
+		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
 	)
 

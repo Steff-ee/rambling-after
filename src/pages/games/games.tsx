@@ -2,8 +2,9 @@ import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
+import { PageRoutes } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
-import { gamesFirstPost, gamesLatestPost } from '../../shared/posts/posts'
+import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
@@ -20,8 +21,8 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 	const { setSeason } = useContext(SeasonsContext)
 	const showPostsNav = selectedPivotTitle === GamePivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
-		gamesFirstPost,
-		gamesLatestPost,
+		PageRoutes.Games,
+		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
 	)
 

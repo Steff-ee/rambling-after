@@ -2,6 +2,7 @@ import React from 'react'
 import { Table } from 'semantic-ui-react'
 import { ContentImage } from '../../../components/content/contentImage'
 import { StyledTable } from '../../../components/content/styledTable'
+import { ConjecturePivots } from '../../../pages/conjectures/conjectures.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -10,6 +11,7 @@ export const POST_00110: IPost = {
 	title: 'Which is the best voting scheme?',
 	createdTime: 1519905600000,
 	route: PageRoutes.Conjecture,
+	pivot: ConjecturePivots.Posts,
 	content: (
 		<>
 			<p>

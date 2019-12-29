@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
+import { ConjecturePivots } from '../../../pages/conjectures/conjectures.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -8,6 +9,7 @@ export const POST_00108: IPost = {
 	title: 'Writing code is like...',
 	createdTime: 1517054400000,
 	route: PageRoutes.Conjecture,
+	pivot: ConjecturePivots.Posts,
 	content: (
 		<>
 			<p>

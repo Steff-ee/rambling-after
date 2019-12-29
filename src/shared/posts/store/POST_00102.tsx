@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
+import { GamePivots } from '../../../pages/games/games.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -8,6 +9,7 @@ export const POST_00102: IPost = {
 	title: 'Which attributes best describe player characters?',
 	createdTime: 1509019200000,
 	route: PageRoutes.Games,
+	pivot: GamePivots.Posts,
 	content: (
 		<>
 			<p>

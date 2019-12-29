@@ -1,6 +1,7 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
 import { Dialogue } from '../../../components/content/dialogue'
+import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -9,6 +10,7 @@ export const POST_00112: IPost = {
 	title: 'The Thanos Avatar & The Sorcerer Supreme',
 	createdTime: 1558267200000,
 	route: PageRoutes.Stories,
+	pivot: StoryPivots.Posts,
 	content: (
 		<>
 			 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
+import { GamePivots } from '../../../pages/games/games.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -8,6 +9,7 @@ export const POST_00100: IPost = {
 	title: 'What is Dungeons & Dragons?',
 	createdTime: 1508760000000,
 	route: PageRoutes.Games,
+	pivot: GamePivots.Posts,
 	content: (
 		<>
 			<p>

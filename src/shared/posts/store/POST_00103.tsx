@@ -1,4 +1,5 @@
 import React from 'react'
+import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -7,6 +8,7 @@ export const POST_00103: IPost = {
 	title: 'The TimeLord',
 	createdTime: 1510142400000,
 	route: PageRoutes.Stories,
+	pivot: StoryPivots.Posts,
 	content: (
 		<>
 			This is a Doctor Who fanfic, a headcanon I developed a while back to explain some of the

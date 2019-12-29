@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
+import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -8,6 +9,7 @@ export const POST_00106: IPost = {
 	title: 'There Are No “Best” Films',
 	createdTime: 1514116800000,
 	route: PageRoutes.Stories,
+	pivot: StoryPivots.Posts,
 	content: (
 		<>
 			<p>

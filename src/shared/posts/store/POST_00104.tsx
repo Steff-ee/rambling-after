@@ -1,4 +1,5 @@
 import React from 'react'
+import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
 
@@ -7,6 +8,7 @@ export const POST_00104: IPost = {
 	title: 'The Atrium',
 	createdTime: 1512043200000,
 	route: PageRoutes.Stories,
+	pivot: StoryPivots.Posts,
 	content: (
 		<>
 			<p>Not a fanfic this time, but an original piece. Hope you find it interesting:</p>

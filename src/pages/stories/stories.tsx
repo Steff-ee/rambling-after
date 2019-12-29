@@ -2,8 +2,9 @@ import booksImg from 'Assets/images/books.jpg'
 import React, { useContext, useEffect } from 'react'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
+import { PageRoutes } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
-import { storiesFirstPost, storiesLatestPost } from '../../shared/posts/posts'
+import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
@@ -20,8 +21,8 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 	const { setSeason } = useContext(SeasonsContext)
 	const showPostsNav = selectedPivotTitle === StoryPivots.Posts
 	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
-		storiesFirstPost,
-		storiesLatestPost,
+		PageRoutes.Stories,
+		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
 	)
 

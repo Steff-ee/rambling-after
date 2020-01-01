@@ -99,6 +99,12 @@ const getPageListIndexOfPost = (post: IPost): number => {
 	}
 }
 
+export const getPostFromId = (postId: number): IPost | undefined => {
+	const pageListIndex = allPostsDictionary[postId]
+
+	return allPosts[pageListIndex]
+}
+
 export const getNextPost = (post: IPost): IPost | undefined => {
 	const index = getPageListIndexOfPost(post) + 1
 	const pageList = getPageListFromPost(post)

@@ -13,7 +13,6 @@ import { storiesTitle, StoryPivots, storyPivotTitlePhrases } from './stories.typ
 const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
 export const Stories: React.FunctionComponent = (): JSX.Element => {
-	console.log('stories')
 	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo: redirectTo1 } = usePivots(
 		storyPivotTitlePhrases,
 		StoryPivots.Posts,

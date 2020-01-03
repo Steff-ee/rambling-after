@@ -2,7 +2,7 @@ import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/
 import React, { useContext, useEffect, useState } from 'react'
 import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
-import { RouteContext } from '../../helpers/routes'
+import { getPath, RouteContext } from '../../helpers/routes'
 import { IPivotTitlePhrases } from './usePivots.types'
 import { useTextMorph } from './useTextMorph'
 
@@ -13,7 +13,7 @@ export interface IUsePivotKeyReturns {
 	selectedPivotTitle: string | undefined
 	setPivot: IPivotProps['onLinkClick']
 	pivotsItems: IPivotItemProps[]
-	redirectTo: JSX.Element | undefined
+	redirectTo?: JSX.Element
 }
 
 interface ITitleMap {
@@ -28,10 +28,6 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
 	})
 
 	return titleMap
-}
-
-export const getNewPath = (pageRoute: string, newPivot: string): string => {
-	return `/${pageRoute}/${newPivot}`
 }
 
 export const usePivots = (
@@ -59,7 +55,7 @@ export const usePivots = (
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
 		if (newSelectedKey) {
-			history.replace(getNewPath(pageRoute, newSelectedKey))
+			history.replace(getPath(pageRoute, newSelectedKey))
 		}
 	}
 
@@ -111,7 +107,7 @@ export const usePivots = (
 	let redirectTo
 	const isValidTitle = baseTitles.indexOf(selectedPivotTitle || '') > -1
 	if (!isValidTitle) {
-		redirectTo = <Redirect to={getNewPath(pageRoute, prevPivot || defaultTitle)} />
+		redirectTo = <Redirect to={getPath(pageRoute, prevPivot || defaultTitle)} />
 	}
 
 	return { selectedPivotTitle, setPivot, pivotsItems, redirectTo }

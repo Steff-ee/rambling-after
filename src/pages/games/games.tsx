@@ -13,14 +13,21 @@ import { GamePivots, gamePivotTitlePhrases, gamesTitle } from './games.types'
 const titleMap = makeTitleMap(gamePivotTitlePhrases)
 
 export const Games: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo: redirectTo1 } = usePivots(
 		gamePivotTitlePhrases,
 		GamePivots.Posts,
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
 	const showPostsNav = selectedPivotTitle === GamePivots.Posts
-	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
+	const {
+		currentPost,
+		firstClick,
+		backClick,
+		nextClick,
+		latestClick,
+		redirectTo: redirectTo12,
+	} = usePostsNav(
 		PageRoutes.Games,
 		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
@@ -30,6 +37,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		setSeason(getNextSeason(2))
 	}, [])
 
+	const redirectTo = redirectTo1 || redirectTo12
 	if (redirectTo) {
 		return redirectTo
 	}

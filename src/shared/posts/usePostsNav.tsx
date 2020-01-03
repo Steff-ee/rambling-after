@@ -1,13 +1,14 @@
 import { History } from 'history'
-import { useContext, useEffect } from 'react'
-import { useHistory, useLocation, useParams } from 'react-router-dom'
-import { PageRoutes } from '../helpers/routes'
+import React, { useContext, useEffect } from 'react'
+import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
+import { getPath, PageRoutes } from '../helpers/routes'
 import { OpenPostsContext } from './openPosts'
 import { IPost, PivotRoutes } from './post.types'
 import { firstPostByPage, getNextPost, getPostFromId, getPrevPost, latestPostByPage } from './posts'
 
 export interface IUsePostsNavReturns {
 	currentPost: IPost
+	redirectTo?: JSX.Element
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
@@ -62,6 +63,10 @@ export const usePostsNav = (
 		}
 	}, [location.pathname])
 
+	if (!postFromRoute && currentPost) {
+		return { currentPost, redirectTo: <Redirect to={getPath(page, pivot, currentPost.id)} /> }
+	}
+
 	if (skip) {
 		return { currentPost }
 	}
@@ -71,24 +76,24 @@ export const usePostsNav = (
 
 	let backClick
 	if (prevPost) {
-		backClick = (): void => navigateToPost(history, prevPost.id, pivot, page)
+		backClick = (): void => history.push(getPath(page, pivot, prevPost.id))
 	}
 
 	let nextClick
 	if (nextPost) {
-		nextClick = (): void => navigateToPost(history, nextPost.id, pivot, page)
+		nextClick = (): void => history.push(getPath(page, pivot, nextPost.id))
 	}
 
 	// if we're already at the first or second post, no need to show "<<"
 	let firstClick
 	if (prevPost && getNextPost(firstPost)!.id !== currentPost.id) {
-		firstClick = (): void => navigateToPost(history, firstPost.id, pivot, page)
+		firstClick = (): void => history.push(getPath(page, pivot, firstPost.id))
 	}
 
 	// if we're already at the latest or next-to-latest post, no need to show ">>"
 	let latestClick
 	if (nextPost && getPrevPost(latestPost)!.id !== currentPost.id) {
-		latestClick = (): void => navigateToPost(history, latestPost.id, pivot, page)
+		latestClick = (): void => history.push(getPath(page, pivot, latestPost.id))
 	}
 
 	return {

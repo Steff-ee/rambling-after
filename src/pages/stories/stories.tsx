@@ -13,14 +13,22 @@ import { storiesTitle, StoryPivots, storyPivotTitlePhrases } from './stories.typ
 const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
 export const Stories: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo } = usePivots(
+	console.log('stories')
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo: redirectTo1 } = usePivots(
 		storyPivotTitlePhrases,
 		StoryPivots.Posts,
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
 	const showPostsNav = selectedPivotTitle === StoryPivots.Posts
-	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
+	const {
+		currentPost,
+		firstClick,
+		backClick,
+		nextClick,
+		latestClick,
+		redirectTo: redirectTo12,
+	} = usePostsNav(
 		PageRoutes.Stories,
 		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
@@ -30,6 +38,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		setSeason(getNextSeason(1))
 	}, [])
 
+	const redirectTo = redirectTo1 || redirectTo12
 	if (redirectTo) {
 		return redirectTo
 	}

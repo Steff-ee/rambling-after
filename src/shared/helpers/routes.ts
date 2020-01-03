@@ -24,3 +24,11 @@ export const RouteContext = React.createContext<IRouteContext>({
 		return
 	},
 })
+
+export const getPath = (page: string, pivot: string, postId?: string | number): string => {
+	if (postId !== undefined) {
+		return `/${page}/${pivot}/${postId}`
+	}
+
+	return `/${page}/${pivot}`
+}

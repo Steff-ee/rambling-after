@@ -16,7 +16,7 @@ import { ConjecturePivots, conjecturePivotTitlePhrases, conjectureTitle } from '
 const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 
 export const Conjecture: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo: redirectTo1 } = usePivots(
 		conjecturePivotTitlePhrases,
 		ConjecturePivots.Posts,
 		titleMap
@@ -24,7 +24,14 @@ export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 	const { setSeason } = useContext(SeasonsContext)
 	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
 	const showPostsNav = selectedPivotTitle === ConjecturePivots.Posts
-	const { currentPost, firstClick, backClick, nextClick, latestClick } = usePostsNav(
+	const {
+		currentPost,
+		firstClick,
+		backClick,
+		nextClick,
+		latestClick,
+		redirectTo: redirectTo2,
+	} = usePostsNav(
 		PageRoutes.Conjecture,
 		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
 		!showPostsNav
@@ -34,6 +41,7 @@ export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 		setSeason(getNextSeason(3))
 	}, [])
 
+	const redirectTo = redirectTo1 || redirectTo2
 	if (redirectTo) {
 		return redirectTo
 	}

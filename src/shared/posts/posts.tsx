@@ -27,6 +27,9 @@ export const latestPostByPage: { [page: string]: IPost } = {}
 export const firstPostByPage: { [page: string]: IPost } = {}
 export const allPostsByPage: { [page: string]: IPost[] } = {}
 
+latestPostByPage[PageRoutes.Home] = allPosts[allPosts.length - 1]
+firstPostByPage[PageRoutes.Home] = allPosts[0]
+
 Object.keys(PageRoutes).forEach((key: string) => {
 	const pageKey = key as keyof typeof PageRoutes
 	allPostsByPage[PageRoutes[pageKey]] = []
@@ -73,8 +76,8 @@ conjecturePosts.forEach((post, index) => {
 
 /* NAVIGATION */
 
-const getPageListFromPost = (post: IPost): IPost[] => {
-	switch (post.route) {
+const getPageList = (page: PageRoutes): IPost[] => {
+	switch (page) {
 		case PageRoutes.Home:
 			return allPosts
 		case PageRoutes.Stories:
@@ -86,8 +89,8 @@ const getPageListFromPost = (post: IPost): IPost[] => {
 	}
 }
 
-const getPageListIndexOfPost = (post: IPost): number => {
-	switch (post.route) {
+const getPageListIndexOfPost = (post: IPost, page?: PageRoutes): number => {
+	switch (page || post.route) {
 		case PageRoutes.Home:
 			return allPostsDictionary[post.id]
 		case PageRoutes.Stories:
@@ -97,6 +100,8 @@ const getPageListIndexOfPost = (post: IPost): number => {
 		case PageRoutes.Conjecture:
 			return conjecturePostsDictionary[post.id]
 	}
+
+	return -1
 }
 
 export const getPostFromId = (postId: number): IPost | undefined => {
@@ -105,9 +110,9 @@ export const getPostFromId = (postId: number): IPost | undefined => {
 	return allPosts[pageListIndex]
 }
 
-export const getNextPost = (post: IPost): IPost | undefined => {
+export const getNextPost = (post: IPost, page?: PageRoutes): IPost | undefined => {
 	const index = getPageListIndexOfPost(post) + 1
-	const pageList = getPageListFromPost(post)
+	const pageList = getPageList(page || post.route)
 
 	if (pageList.length > index) {
 		return pageList[index]
@@ -116,9 +121,9 @@ export const getNextPost = (post: IPost): IPost | undefined => {
 	return undefined
 }
 
-export const getPrevPost = (post: IPost): IPost | undefined => {
-	const index = getPageListIndexOfPost(post) - 1
-	const pageList = getPageListFromPost(post)
+export const getPrevPost = (post: IPost, page?: PageRoutes): IPost | undefined => {
+	const index = getPageListIndexOfPost(post, page) - 1
+	const pageList = getPageList(page || post.route)
 
 	if (index >= 0) {
 		return pageList[index]

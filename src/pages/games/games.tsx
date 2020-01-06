@@ -26,7 +26,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		backClick,
 		nextClick,
 		latestClick,
-		redirectTo: redirectTo12,
+		redirectTo: redirectTo2,
 	} = usePostsNav(
 		PageRoutes.Games,
 		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
@@ -37,7 +37,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 		setSeason(getNextSeason(2))
 	}, [])
 
-	const redirectTo = redirectTo1 || redirectTo12
+	const redirectTo = redirectTo1 || redirectTo2
 	if (redirectTo) {
 		return redirectTo
 	}

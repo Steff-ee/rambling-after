@@ -26,7 +26,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		backClick,
 		nextClick,
 		latestClick,
-		redirectTo: redirectTo12,
+		redirectTo: redirectTo2,
 	} = usePostsNav(
 		PageRoutes.Stories,
 		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
@@ -37,7 +37,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		setSeason(getNextSeason(1))
 	}, [])
 
-	const redirectTo = redirectTo1 || redirectTo12
+	const redirectTo = redirectTo1 || redirectTo2
 	if (redirectTo) {
 		return redirectTo
 	}

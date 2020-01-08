@@ -4,7 +4,7 @@ import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import { getPath, PageRoutes } from '../helpers/routes'
 import { OpenPostsContext } from './openPosts'
 import { IPost, PivotRoutes } from './post.types'
-import { firstPostByPage, getNextPost, getPostFromId, getPrevPost, latestPostByPage } from './posts'
+import { getFirstPost, getLatestPost, getNextPost, getPostFromId, getPrevPost } from './posts'
 
 export interface IUsePostsNavReturns {
 	currentPost: IPost
@@ -50,8 +50,8 @@ export const usePostsNav = (
 	const history = useHistory()
 	const location = useLocation()
 	const { getLastOpenPost, setLastOpenPost } = useContext(OpenPostsContext)
-	const firstPost = firstPostByPage[page]
-	const latestPost = latestPostByPage[page]
+	const firstPost = getFirstPost(page, pivot)
+	const latestPost = getLatestPost(page, pivot)
 	const postFromRoute = getPostFromRoute(postIdFromRoute, page)
 
 	const currentPost: IPost = postFromRoute || getLastOpenPost(page, pivot) || latestPost
@@ -71,8 +71,8 @@ export const usePostsNav = (
 		return { currentPost }
 	}
 
-	const prevPost = getPrevPost(currentPost, page)
-	const nextPost = getNextPost(currentPost, page)
+	const prevPost = getPrevPost(currentPost, page, pivot)
+	const nextPost = getNextPost(currentPost, page, pivot)
 
 	let backClick
 	if (prevPost) {
@@ -86,13 +86,13 @@ export const usePostsNav = (
 
 	// if we're already at the first or second post, no need to show "<<"
 	let firstClick
-	if (prevPost && getNextPost(firstPost, page)!.id !== currentPost.id) {
+	if (prevPost && getNextPost(firstPost, page, pivot)!.id !== currentPost.id) {
 		firstClick = (): void => history.push(getPath(page, pivot, firstPost.id))
 	}
 
 	// if we're already at the latest or next-to-latest post, no need to show ">>"
 	let latestClick
-	if (nextPost && getPrevPost(latestPost, page)!.id !== currentPost.id) {
+	if (nextPost && getPrevPost(latestPost, page, pivot)!.id !== currentPost.id) {
 		latestClick = (): void => history.push(getPath(page, pivot, latestPost.id))
 	}
 

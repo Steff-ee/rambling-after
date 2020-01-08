@@ -9,6 +9,7 @@ import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
 import { storiesTitle, StoryPivots, storyPivotTitlePhrases } from './stories.types'
+import { StoryLinks } from './storyLinks'
 
 const titleMap = makeTitleMap(storyPivotTitlePhrases)
 
@@ -19,7 +20,7 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
-	const showPostsNav = selectedPivotTitle === StoryPivots.Posts
+	const showPostsNav = selectedPivotTitle !== StoryPivots.Links
 	const {
 		currentPost,
 		firstClick,
@@ -45,19 +46,12 @@ export const Stories: React.FunctionComponent = (): JSX.Element => {
 	let pageContent
 	switch (selectedPivotTitle) {
 		case StoryPivots.Posts:
-			pageContent = <Post post={currentPost} />
-			break
 		case StoryPivots.Stories:
-			pageContent = (
-				<>
-					Links and descriptions of short stories here, until novel is complete. Maybe
-					link to comics
-				</>
-			)
+			pageContent = <Post post={currentPost} />
 			break
 		case StoryPivots.Links:
 		default:
-			pageContent = <>Big Ideas blog, Janet Reid's...</>
+			pageContent = <StoryLinks />
 	}
 
 	return (

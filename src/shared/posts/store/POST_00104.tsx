@@ -8,7 +8,7 @@ export const POST_00104: IPost = {
 	title: 'The Atrium',
 	createdTime: 1512043200000,
 	route: PageRoutes.Stories,
-	pivot: StoryPivots.Posts,
+	pivot: StoryPivots.Stories,
 	content: (
 		<>
 			<p>Not a fanfic this time, but an original piece. Hope you find it interesting:</p>

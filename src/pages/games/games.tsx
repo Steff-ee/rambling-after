@@ -48,11 +48,8 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			pageContent = <Post post={currentPost} />
 			break
 		case GamePivots.Games:
-			pageContent = <>Penultima</>
-			break
-		case GamePivots.Links:
 		default:
-			pageContent = <>GDC</>
+			pageContent = <>Penultima</>
 	}
 
 	return (

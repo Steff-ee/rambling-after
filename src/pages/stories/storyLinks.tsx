@@ -1,7 +1,6 @@
 import React from 'react'
 import { DetailFrame } from '../../shared/presentational/components/detailFrame'
 
-// (TODO) Styling
 export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div>
@@ -22,6 +21,14 @@ export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 						The Query Shark's <i>other</i> blog
 					</>
 				}
+			/>
+			<DetailFrame
+				title={
+					<a href="https://www.youtube.com/channel/UCyNtlmLB73-7gtlBz00XOQQ/videos">
+						Folding Ideas
+					</a>
+				}
+				description={'YouTube essays about pop culture'}
 			/>
 		</div>
 	)

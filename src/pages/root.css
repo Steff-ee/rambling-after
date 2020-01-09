@@ -1,3 +1,23 @@
 p {
 	margin: 0 0 34px 0;
 }
+
+a:link {
+	color: rgb(42, 158, 193);
+}
+
+a:visited {
+	color: rgb(158, 40, 90);
+}
+
+a:link:hover {
+	color: rgb(68, 162, 190);
+	padding-bottom: 2px;
+	border-bottom: 1.5px solid rgb(68, 162, 190);
+}
+
+a:visited:hover {
+	color: rgb(160, 59, 101);
+	padding-bottom: 2px;
+	border-bottom: 1.5px solid rgb(160, 59, 101);
+}

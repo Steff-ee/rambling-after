@@ -3,6 +3,7 @@ import { ContentImage } from '../../../components/content/contentImage'
 import { Dialogue } from '../../../components/content/dialogue'
 import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
+import { SpoilerWarning } from '../../presentational/components/spoilerWarning'
 import { IPost } from '../post.types'
 
 export const POST_00112: IPost = {
@@ -13,10 +14,7 @@ export const POST_00112: IPost = {
 	pivot: StoryPivots.Posts,
 	content: (
 		<>
-			 
-			<p>
-				<strong>SPOILERS for Avengers: Infinity War & Endgame</strong>
-			</p>
+			<SpoilerWarning title={'Avengers: Infinity War & Endgame'} />
 			 
 			<p>
 				Avengers: Infinity War left audiences with the greatest cliffhanger of cinematic

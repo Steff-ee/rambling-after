@@ -5,6 +5,7 @@ export enum Colors {
 	WarmSand = '#d4ad6e',
 	LightSand = '#fffae8',
 	MaroonMud = '#3c1e14',
+	BloodRed = '#6c2b26',
 	CherryBlossom = '#fcccf0',
 	SkyBlue = '#bee4fa',
 	Salmon = '#fad4be',

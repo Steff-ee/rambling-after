@@ -19,6 +19,7 @@ export const ConjectureLinks: React.FunctionComponent = (): JSX.Element => {
 					</a>
 				}
 				description={`Scott Alexander (author of Unsong)'s "rational" blog`}
+				rightShadow={true}
 			/>
 			<DetailFrame
 				title={

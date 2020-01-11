@@ -10,7 +10,7 @@ export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 						Rambling After
 					</a>
 				}
-				description={'My old comics'}
+				description={'My college comics'}
 			/>
 			<DetailFrame
 				title={
@@ -19,6 +19,7 @@ export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 					</a>
 				}
 				description={'Authors describing their inspirations, collected by John Scalzi'}
+				rightShadow={true}
 			/>
 			<DetailFrame
 				title={
@@ -42,6 +43,7 @@ export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 					</a>
 				}
 				description={'YouTube essays about pop culture'}
+				rightShadow={true}
 			/>
 		</div>
 	)

@@ -10,13 +10,15 @@ a:visited {
 	color: rgb(158, 40, 90);
 }
 
-a:link:hover {
+a:link:hover,
+.linkHover a:link {
 	color: rgb(68, 162, 190);
 	padding-bottom: 2px;
 	border-bottom: 1.5px solid rgb(68, 162, 190);
 }
 
-a:visited:hover {
+a:visited:hover,
+.linkHover a:visited {
 	color: rgb(160, 59, 101);
 	padding-bottom: 2px;
 	border-bottom: 1.5px solid rgb(160, 59, 101);

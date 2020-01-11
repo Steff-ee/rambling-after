@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { lightTextStyle } from '../../helpers/styles'
 
-export interface IDetailFrameProps {
+export interface ILinkFrameProps {
 	title: JSX.Element | string
 	description: JSX.Element | string
+	link: string
 	// put the shadow on bottom and right, instead of the default bottom and left
 	rightShadow?: boolean
 }
 
 // (TODO) Styling
-export const DetailFrame: React.FunctionComponent<IDetailFrameProps> = (
-	props: IDetailFrameProps
+export const LinkFrame: React.FunctionComponent<ILinkFrameProps> = (
+	props: ILinkFrameProps
 ): JSX.Element => {
-	const { title, description, rightShadow } = props
+	const { title, description, link, rightShadow } = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 
 	let horizontalShadow = '24px'
@@ -27,10 +28,12 @@ export const DetailFrame: React.FunctionComponent<IDetailFrameProps> = (
 
 	return (
 		<div
+			className={isHovering ? 'linkHover' : ''}
 			style={{
 				padding: '24px 0px 24px 36px',
 				marginBottom: '40px',
 				boxShadow,
+				cursor: isHovering ? 'pointer' : 'none',
 			}}
 			onMouseEnter={(): void => {
 				setIsHovering(true)
@@ -38,8 +41,13 @@ export const DetailFrame: React.FunctionComponent<IDetailFrameProps> = (
 			onMouseLeave={(): void => {
 				setIsHovering(false)
 			}}
+			onClick={(): void => {
+				window.open(link, '_blank')
+			}}
 		>
-			<div style={{ fontSize: '24px' }}>{title}</div>
+			<a href={link} target="_blank" style={{ fontSize: '24px' }}>
+				{title}
+			</a>
 			<div style={{ ...lightTextStyle, padding: '6px 0px 0px 6px' }}>{description}</div>
 		</div>
 	)

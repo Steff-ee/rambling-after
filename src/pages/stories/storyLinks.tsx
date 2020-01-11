@@ -1,47 +1,32 @@
 import React from 'react'
-import { DetailFrame } from '../../shared/presentational/components/detailFrame'
+import { LinkFrame } from '../../shared/presentational/components/linkFrame'
 
 export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div>
-			<DetailFrame
-				title={
-					<a href="http://ramblingafter.thecomicseries.com/" target="_blank">
-						Rambling After
-					</a>
-				}
+			<LinkFrame
+				title={'Rambling After'}
+				link={'http://ramblingafter.thecomicseries.com/'}
 				description={'My college comics'}
 			/>
-			<DetailFrame
-				title={
-					<a href="https://whatever.scalzi.com/category/big-idea/" target="_blank">
-						The Big Idea
-					</a>
-				}
+			<LinkFrame
+				title={'The Big Idea'}
 				description={'Authors describing their inspirations, collected by John Scalzi'}
+				link={'https://whatever.scalzi.com/category/big-idea/'}
 				rightShadow={true}
 			/>
-			<DetailFrame
-				title={
-					<a href="http://jetreidliterary.blogspot.com/" target="_blank">
-						Janet Reid, Literary Agent
-					</a>
-				}
+			<LinkFrame
+				title={'Janet Reid, Literary Agent'}
 				description={
 					<>
 						The Query Shark's <i>other</i> blog
 					</>
 				}
+				link={'http://jetreidliterary.blogspot.com/'}
 			/>
-			<DetailFrame
-				title={
-					<a
-						href="https://www.youtube.com/channel/UCyNtlmLB73-7gtlBz00XOQQ/videos"
-						target="_blank"
-					>
-						Folding Ideas
-					</a>
-				}
+			<LinkFrame
+				title={'Folding Ideas'}
+				link={'https://www.youtube.com/channel/UCyNtlmLB73-7gtlBz00XOQQ/videos'}
 				description={'YouTube essays about pop culture'}
 				rightShadow={true}
 			/>

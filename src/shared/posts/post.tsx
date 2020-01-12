@@ -1,4 +1,5 @@
 import React from 'react'
+import { titleTextStyle } from '../helpers/styles'
 import { dateTimeFormatOptions } from '../helpers/time'
 import { IPost } from './post.types'
 
@@ -13,15 +14,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 
 	return (
 		<>
-			<div
-				style={{
-					fontFamily: 'Montserrat',
-					fontSize: '36px',
-					padding: '16px 0',
-				}}
-			>
-				{title}
-			</div>
+			<div style={titleTextStyle}>{title}</div>
 			<div style={{ fontSize: '18px', padding: '8px 0px 16px 44px' }}>
 				{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions).toUpperCase()}
 			</div>

@@ -5,6 +5,12 @@ export const defaultTextStyle: React.CSSProperties = {
 	textAlign: 'center',
 }
 
+export const titleTextStyle: React.CSSProperties = {
+	fontFamily: 'Montserrat',
+	fontSize: '36px',
+	padding: '16px 0',
+}
+
 export const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '19px',

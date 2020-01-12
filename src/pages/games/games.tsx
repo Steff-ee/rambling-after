@@ -9,6 +9,7 @@ import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
 import { GamePivots, gamePivotTitlePhrases, gamesTitle } from './games.types'
+import { Penultima } from './penultima'
 
 const titleMap = makeTitleMap(gamePivotTitlePhrases)
 
@@ -49,7 +50,7 @@ export const Games: React.FunctionComponent = (): JSX.Element => {
 			break
 		case GamePivots.Games:
 		default:
-			pageContent = <>Penultima</>
+			pageContent = <Penultima />
 	}
 
 	return (

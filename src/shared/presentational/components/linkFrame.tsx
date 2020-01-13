@@ -30,7 +30,7 @@ export const LinkFrame: React.FunctionComponent<ILinkFrameProps> = (
 		<div
 			className={isHovering ? 'linkHover' : ''}
 			style={{
-				padding: '24px 0px 24px 36px',
+				padding: '24px 24px 24px 36px',
 				marginBottom: '40px',
 				boxShadow,
 				cursor: isHovering ? 'pointer' : 'none',

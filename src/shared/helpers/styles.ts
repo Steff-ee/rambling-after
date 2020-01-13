@@ -8,7 +8,7 @@ export const defaultTextStyle: React.CSSProperties = {
 export const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '36px',
-	padding: '16px 0',
+	paddingBottom: '32px',
 }
 
 export const lightTextStyle: React.CSSProperties = {

@@ -240,10 +240,11 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 					{pivots}
 					<div
 						style={{
-							maxWidth: '972px',
 							margin: 'auto',
 							padding: '0 5% 5% 5%',
 							textAlign: 'left',
+							display: 'flex',
+							justifyContent: 'center',
 						}}
 					>
 						{Content}

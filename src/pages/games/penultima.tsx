@@ -5,7 +5,7 @@ export const Penultima: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div>
 			<div style={titleTextStyle}>Penultima</div>
-			<div style={{ paddingTop: '16px' }}>
+			<div>
 				<p>Enjoy Chess, but looking for a change?</p>
 				<p>
 					Yearning for a game that emphasizes <i>creativity</i> more than strategy?

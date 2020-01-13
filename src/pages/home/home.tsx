@@ -8,6 +8,7 @@ import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
+import { AboutPage } from './about'
 import { HomePivots, homePivotTitlePhrases, homeTitle } from './home.types'
 
 const titleMap = makeTitleMap(homePivotTitlePhrases)
@@ -44,13 +45,7 @@ export const Home: React.FunctionComponent = (): JSX.Element => {
 	let pageContent
 	switch (selectedPivotTitle) {
 		case HomePivots.About:
-			pageContent = (
-				<>
-					Dice icon used in the Nav bar courtesy of <i>my name is mud</i>. Book icon
-					courtesy of <i>catyline_Icon</i>. Tea mug icon courstey of <i>y. onaldi</i>. All
-					icons taken from the Noun Project.
-				</>
-			)
+			pageContent = <AboutPage />
 			break
 		case HomePivots.Posts:
 		default:

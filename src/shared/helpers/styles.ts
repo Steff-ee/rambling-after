@@ -17,6 +17,12 @@ export const lightTextStyle: React.CSSProperties = {
 	lineHeight: '29px',
 }
 
+export const subscriptStyle: React.CSSProperties = {
+	fontFamily: 'Montserrat',
+	fontSize: '14px',
+	lineHeight: '18px',
+}
+
 export const entirePageStyle: React.CSSProperties = {
 	top: 0,
 	left: 0,

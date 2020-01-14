@@ -13,7 +13,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 	const createdDate = new Date(createdTime)
 
 	return (
-		<div style={{ maxWidth: '972px', display: 'block' }}>
+		<div style={{ maxWidth: '972px' }}>
 			<div style={titleTextStyle}>{title}</div>
 			<div style={{ fontSize: '18px', padding: '0px 0px 32px 44px', marginTop: '-12px' }}>
 				{createdDate.toLocaleDateString('en-US', dateTimeFormatOptions).toUpperCase()}

@@ -247,7 +247,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 							justifyContent: 'center',
 						}}
 					>
-						{Content}
+						<div style={{ maxWidth: '100%' }}>{Content}</div>
 					</div>
 				</div>
 			</div>

@@ -12,15 +12,15 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Steff-ee/rambling-after.git"
+		"url": "git+https://github.com/Steff-ee/Steff-ee.github.io.git"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/Steff-ee/rambling-after/issues"
+		"url": "https://github.com/Steff-ee/Steff-ee.github.io/issues"
 	},
-	"homepage": "https://github.com/Steff-ee/rambling-after#readme",
+	"homepage": "https://github.com/Steff-ee/Steff-ee.github.io#readme",
 	"devDependencies": {
 		"@babel/cli": "^7.7.5",
 		"@babel/core": "^7.7.5",

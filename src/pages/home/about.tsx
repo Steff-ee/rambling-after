@@ -72,7 +72,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 					</p>
 					<p>
 						Wrote this blog using React 16.12. Check out the code{' '}
-						<a href="https://github.com/Steff-ee/rambling-after/" target="_blank">
+						<a href="https://github.com/Steff-ee/Steff-ee.github.io" target="_blank">
 							here
 						</a>
 						!

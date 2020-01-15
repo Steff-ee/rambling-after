@@ -89,7 +89,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	// (parallax title is not used for small)
 
 	return (
-		<div>
+		<>
 			<div
 				style={{
 					...parallaxGroupStyle,
@@ -154,7 +154,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					{title}
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 
@@ -263,6 +263,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				...defaultTextStyle,
 				...scrollRefStyle,
 				...backgroundStyle,
+				backgroundColor: classicColors.primary,
 				overscrollBehavior: 'none',
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,

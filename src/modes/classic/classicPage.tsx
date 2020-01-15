@@ -6,6 +6,7 @@ import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
+	entirePageStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
 	smallestDeviceWidth,
@@ -202,6 +203,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 
 	let pivots: JSX.Element = <div style={{ height: '64px' }} />
 	let titleElement: JSX.Element
+	let scrollRefStyle: React.CSSProperties
 	if (mediaSize !== MediaSize.Small) {
 		pivots = (
 			<div
@@ -227,6 +229,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				skipMorph={skipMorph}
 			/>
 		)
+		scrollRefStyle = parallaxRootStyle
 	} else {
 		titleElement = (
 			<div
@@ -241,13 +244,18 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 				RAMBLING AFTER
 			</div>
 		)
+		scrollRefStyle = {
+			...entirePageStyle,
+			overflowX: 'hidden',
+			overflowY: 'scroll',
+		}
 	}
 
 	return (
 		<div
 			style={{
 				...defaultTextStyle,
-				...parallaxRootStyle,
+				...scrollRefStyle,
 				backgroundColor: classicColors.primary,
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
@@ -271,6 +279,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 							top: 0,
 							marginTop: '-1px',
 							zIndex: 2,
+							WebkitBackfaceVisibility: 'hidden',
 						}}
 						firstClick={firstClick}
 						backClick={backClick}

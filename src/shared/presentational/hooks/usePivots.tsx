@@ -16,6 +16,13 @@ import { useTextMorph } from './useTextMorph'
 // (TODO) do an efficiency pass (use memoization)
 // (TODO) add documentation
 
+export interface IUsePivotProps {
+	titlePhrases: IPivotTitlePhrases
+	defaultTitle: PivotRoutes
+	titleMap: ITitleMap
+	skip?: boolean
+}
+
 export interface IUsePivotKeyReturns {
 	selectedPivotTitle: PivotRoutes | undefined
 	setPivot: IPivotProps['onLinkClick']
@@ -37,24 +44,21 @@ export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
 	return titleMap
 }
 
-export const usePivots = (
-	titlePhrases: IPivotTitlePhrases,
-	defaultTitle: string,
-	titleMap: ITitleMap
-): IUsePivotKeyReturns => {
+export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
+	const { titlePhrases, titleMap, defaultTitle, skip } = props
 	const params = useParams<IRouteParams>()
-	const selectedPivotTitle = params.pivot as PivotRoutes | undefined
+	let selectedPivotTitle = params.pivot as PivotRoutes | undefined
 	const location = useLocation()
 	const pageRoute = getPrimaryRoute(location.pathname)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
 	const mediaSize = useContext(MediaContext)
 	const { prevPivots, setPrevPivot } = useContext(RouteContext)
 	const prevPivot = prevPivots[pageRoute]
-	const skipMorph = mediaSize === MediaSize.Small
+	const skipMorph = skip || mediaSize === MediaSize.Small
 
 	// keep previously selected pivot up to date
 	useEffect(() => {
-		if (selectedPivotTitle && selectedPivotTitle !== prevPivot) {
+		if (!skip && selectedPivotTitle && selectedPivotTitle !== prevPivot) {
 			setPrevPivot(pageRoute, selectedPivotTitle)
 		}
 	}, [selectedPivotTitle])
@@ -114,7 +118,9 @@ export const usePivots = (
 	let redirectPath
 	const isValidTitle = baseTitles.indexOf(selectedPivotTitle || '') > -1
 	if (!isValidTitle) {
-		redirectPath = getPath(pageRoute, prevPivot || defaultTitle)
+		console.log('prevPivot', prevPivot, 'defaultTitle', defaultTitle)
+		selectedPivotTitle = prevPivot || defaultTitle
+		redirectPath = getPath(pageRoute, selectedPivotTitle)
 	}
 
 	return { selectedPivotTitle, setPivot, pivotsItems, redirectPath }

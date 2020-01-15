@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ClassicPage } from '../modes/classic/classicPage'
+import { ClassicPageTemplate } from '../modes/classic/classicPageTemplate'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
 import { SeasonsPage } from '../modes/seasons/seasonsPage'
 import { IUsePivotKeyReturns } from '../shared/presentational/hooks/usePivots'
@@ -37,7 +37,7 @@ export const Page: React.FunctionComponent<IPageProps> = (props: IPageProps): JS
 
 	if (mode === Modes.Classic) {
 		return (
-			<ClassicPage
+			<ClassicPageTemplate
 				headerBackgroundImage={headerBackgroundImage}
 				showPostsNav={showPostsNav}
 				firstClick={firstClick}

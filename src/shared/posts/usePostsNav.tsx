@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
-import { getPath, PageRoutes, redirectTo } from '../helpers/routes'
+import { getPath, IRouteParams, PageRoutes, redirectTo } from '../helpers/routes'
 import { OpenPostsContext } from './openPosts'
 import { IPost, PivotRoutes } from './post.types'
 import { getFirstPost, getLatestPost, getNextPost, getPostFromId, getPrevPost } from './posts'
@@ -36,14 +36,24 @@ export const usePostsNav = (
 	pivot: PivotRoutes | undefined,
 	skip = false
 ): IUsePostsNavReturns => {
-	const { postId: postIdFromRoute } = useParams()
+	const { postId: postIdFromRoute } = useParams<IRouteParams>()
+	console.log('postIdFromRoute', postIdFromRoute, 'page', page, 'pivot', pivot)
 	const location = useLocation()
 	const { getLastOpenPost, setLastOpenPost } = useContext(OpenPostsContext)
 	const firstPost = getFirstPost(page, pivot)
 	const latestPost = getLatestPost(page, pivot)
 	const postFromRoute = getPostFromRoute(postIdFromRoute, page)
+	console.log(
+		'postFromRoute',
+		postFromRoute,
+		'getLastOpenPost(page, pivot)',
+		getLastOpenPost(page, pivot),
+		'latestPost',
+		latestPost
+	)
 
 	const currentPost: IPost = postFromRoute || getLastOpenPost(page, pivot) || latestPost
+	console.log('currentPost', currentPost)
 
 	useEffect(() => {
 		// if the new route was valid, store it in the last-open-posts provider

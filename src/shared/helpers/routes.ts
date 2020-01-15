@@ -9,8 +9,9 @@ export enum PageRoutes {
 }
 
 export interface IRouteParams {
-	page: PageRoutes
-	pivot: PivotRoutes
+	page?: PageRoutes
+	pivot?: PivotRoutes
+	postId?: string
 }
 
 export const getPrimaryRoute = (pathName: string): string => {
@@ -24,8 +25,8 @@ export const getPrimaryRoute = (pathName: string): string => {
 }
 
 export interface IRouteContext {
-	prevPivots: { [page: string]: string | undefined }
-	setPrevPivot: (page: string, pivot: string) => void
+	prevPivots: { [page: string]: PivotRoutes | undefined }
+	setPrevPivot: (page: string, pivot: PivotRoutes) => void
 }
 
 export const RouteContext = React.createContext<IRouteContext>({

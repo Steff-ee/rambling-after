@@ -5,7 +5,16 @@ const morphDelay = 96
 
 // (TODO) improve the morphing algorithm when there is significant overlap not at index 0
 
-const randomMorph = (text: string, prevText: string): string => {
+const randomMorph = (text: string | undefined, prevText: string | undefined): string => {
+	if (prevText === undefined || text === undefined) {
+		if (!!text) {
+			return text
+		} else if (!!prevText) {
+			return prevText
+		}
+
+		return ''
+	}
 	// construct space-filled arrays of same length to deal with length discrepancies
 	const maxLength = Math.max(text.length, prevText.length)
 	const textArray = new Array(maxLength).fill(' ')

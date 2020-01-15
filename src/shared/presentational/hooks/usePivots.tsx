@@ -2,6 +2,7 @@ import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
+import { getAnyPagePath } from '../../helpers/navigation'
 import {
 	getPath,
 	getPrimaryRoute,
@@ -9,6 +10,7 @@ import {
 	redirectTo,
 	RouteContext,
 } from '../../helpers/routes'
+import { OpenPostsContext } from '../../posts/openPosts'
 import { PivotRoutes } from '../../posts/post.types'
 import { IPivotTitlePhrases } from './usePivots.types'
 import { useTextMorph } from './useTextMorph'
@@ -53,6 +55,7 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
 	const mediaSize = useContext(MediaContext)
 	const { prevPivots, setPrevPivot } = useContext(RouteContext)
+	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const prevPivot = prevPivots[pageRoute]
 	const skipMorph = skip || mediaSize === MediaSize.Small
 
@@ -66,7 +69,9 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
 		if (newSelectedKey) {
-			redirectTo(getPath(pageRoute, newSelectedKey))
+			redirectTo(
+				getAnyPagePath(pageRoute, getLastOpenPost, undefined, newSelectedKey as PivotRoutes)
+			)
 		}
 	}
 
@@ -118,7 +123,6 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	let redirectPath
 	const isValidTitle = baseTitles.indexOf(selectedPivotTitle || '') > -1
 	if (!isValidTitle) {
-		console.log('prevPivot', prevPivot, 'defaultTitle', defaultTitle)
 		selectedPivotTitle = prevPivot || defaultTitle
 		redirectPath = getPath(pageRoute, selectedPivotTitle)
 	}

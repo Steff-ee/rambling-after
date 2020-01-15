@@ -18,69 +18,27 @@ import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { conjectureTitle } from '../../../pages/conjectures/conjectures.types'
 import { gamesTitle } from '../../../pages/games/games.types'
 import { homeTitle } from '../../../pages/home/home.types'
-import { storiesTitle, StoryPivots } from '../../../pages/stories/stories.types'
-import { IRouteContext, PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
-import { IOpenPostsContext, OpenPostsContext } from '../../posts/openPosts'
-import { getLatestPost } from '../../posts/posts'
+import { storiesTitle } from '../../../pages/stories/stories.types'
+import {
+	getConjecturePath,
+	getGamesPath,
+	getHomePath,
+	getStoriesPath,
+} from '../../helpers/navigation'
+import { PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
+import { OpenPostsContext } from '../../posts/openPosts'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
-
-const getHomePath = (
-	prevPivots: IRouteContext['prevPivots'],
-	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
-): string => {
-	// (TODO) handle default pivots and posts elsewhere in a common area
-	const homePivot = (prevPivots[PageRoutes.Home] as StoryPivots) || StoryPivots.Posts
-	const currentPost =
-		getLastOpenPost(PageRoutes.Home, homePivot) || getLatestPost(PageRoutes.Home, homePivot)
-
-	return `/#/${PageRoutes.Home}/${homePivot}/${currentPost.id}`
-}
-
-const getStoriesPath = (
-	prevPivots: IRouteContext['prevPivots'],
-	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
-): string => {
-	const storiesPivot = (prevPivots[PageRoutes.Stories] as StoryPivots) || StoryPivots.Posts
-	const currentPost =
-		getLastOpenPost(PageRoutes.Stories, storiesPivot) ||
-		getLatestPost(PageRoutes.Stories, storiesPivot)
-
-	return `/#/${PageRoutes.Stories}/${storiesPivot}/${currentPost.id}`
-}
-
-const getGamesPath = (
-	prevPivots: IRouteContext['prevPivots'],
-	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
-): string => {
-	const gamesPivot = (prevPivots[PageRoutes.Games] as StoryPivots) || StoryPivots.Posts
-	const currentPost =
-		getLastOpenPost(PageRoutes.Games, gamesPivot) || getLatestPost(PageRoutes.Games, gamesPivot)
-
-	return `/#/${PageRoutes.Games}/${gamesPivot}/${currentPost.id}`
-}
-
-const getConjecturePath = (
-	prevPivots: IRouteContext['prevPivots'],
-	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
-): string => {
-	const conjecturePivot = (prevPivots[PageRoutes.Conjecture] as StoryPivots) || StoryPivots.Posts
-	const currentPost =
-		getLastOpenPost(PageRoutes.Conjecture, conjecturePivot) ||
-		getLatestPost(PageRoutes.Conjecture, conjecturePivot)
-
-	return `/#/${PageRoutes.Conjecture}/${conjecturePivot}/${currentPost.id}`
-}
 
 export const useNavigationLinks = (color: string): INavItem[] => {
 	const { prevPivots } = useContext(RouteContext)
 	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const commonProps = { ...commonIconProps, style: { color } }
 
-	const homePath = getHomePath(prevPivots, getLastOpenPost)
-	const storiesPath = getStoriesPath(prevPivots, getLastOpenPost)
-	const gamesPath = getGamesPath(prevPivots, getLastOpenPost)
-	const conjecturePath = getConjecturePath(prevPivots, getLastOpenPost)
+	const homePath = getHomePath(getLastOpenPost, prevPivots)
+	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)
+	const gamesPath = getGamesPath(getLastOpenPost, prevPivots)
+	const conjecturePath = getConjecturePath(getLastOpenPost, prevPivots)
 
 	return [
 		{

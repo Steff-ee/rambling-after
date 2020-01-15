@@ -29,7 +29,6 @@ import { ClassicPageTemplate, IClassicPageTemplateProps } from './classicPageTem
 // tslint:disable:cyclomatic-complexity
 export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => {
 	const { page } = useParams<IRouteParams>()
-	console.log('loc', window.location.href, 'page', page)
 
 	let usePivotsProps
 	switch (page) {
@@ -78,7 +77,6 @@ export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => 
 
 	const redirectPath = redirectPath2 || redirectPath1
 	if (redirectPath) {
-		console.log('redirect1', redirectPath1, 'redirect2', redirectPath2)
 		redirectTo(redirectPath)
 
 		return <></>

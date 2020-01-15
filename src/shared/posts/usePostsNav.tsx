@@ -1,27 +1,17 @@
-import { History } from 'history'
-import React, { useContext, useEffect } from 'react'
-import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
-import { getPath, PageRoutes } from '../helpers/routes'
+import { useContext, useEffect } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import { getPath, PageRoutes, redirectTo } from '../helpers/routes'
 import { OpenPostsContext } from './openPosts'
 import { IPost, PivotRoutes } from './post.types'
 import { getFirstPost, getLatestPost, getNextPost, getPostFromId, getPrevPost } from './posts'
 
 export interface IUsePostsNavReturns {
 	currentPost: IPost
-	redirectTo?: JSX.Element
+	redirectPath?: string
 	firstClick?: () => void
 	backClick?: () => void
 	nextClick?: () => void
 	latestClick?: () => void
-}
-
-export const navigateToPost = (
-	history: History<any>,
-	postId: number,
-	pivot: string,
-	page: string
-): void => {
-	history.push(`/${page}/${pivot}/${postId}`)
 }
 
 const getPostFromRoute = (postIdFromRoute: string | undefined, page: string): IPost | undefined => {
@@ -43,11 +33,10 @@ const getPostFromRoute = (postIdFromRoute: string | undefined, page: string): IP
  */
 export const usePostsNav = (
 	page: PageRoutes,
-	pivot: PivotRoutes,
+	pivot: PivotRoutes | undefined,
 	skip = false
 ): IUsePostsNavReturns => {
 	const { postId: postIdFromRoute } = useParams()
-	const history = useHistory()
 	const location = useLocation()
 	const { getLastOpenPost, setLastOpenPost } = useContext(OpenPostsContext)
 	const firstPost = getFirstPost(page, pivot)
@@ -58,13 +47,13 @@ export const usePostsNav = (
 
 	useEffect(() => {
 		// if the new route was valid, store it in the last-open-posts provider
-		if (!!postFromRoute) {
+		if (!!postFromRoute && pivot) {
 			setLastOpenPost(page, pivot, currentPost)
 		}
 	}, [location.pathname])
 
 	if (!postFromRoute && currentPost) {
-		return { currentPost, redirectTo: <Redirect to={getPath(page, pivot, currentPost.id)} /> }
+		return { currentPost, redirectPath: getPath(page, pivot, currentPost.id) }
 	}
 
 	if (skip) {
@@ -76,24 +65,24 @@ export const usePostsNav = (
 
 	let backClick
 	if (prevPost) {
-		backClick = (): void => history.push(getPath(page, pivot, prevPost.id))
+		backClick = (): void => redirectTo(getPath(page, pivot, prevPost.id))
 	}
 
 	let nextClick
 	if (nextPost) {
-		nextClick = (): void => history.push(getPath(page, pivot, nextPost.id))
+		nextClick = (): void => redirectTo(getPath(page, pivot, nextPost.id))
 	}
 
 	// if we're already at the first or second post, no need to show "<<"
 	let firstClick
 	if (prevPost && getNextPost(firstPost, page, pivot)!.id !== currentPost.id) {
-		firstClick = (): void => history.push(getPath(page, pivot, firstPost.id))
+		firstClick = (): void => redirectTo(getPath(page, pivot, firstPost.id))
 	}
 
 	// if we're already at the latest or next-to-latest post, no need to show ">>"
 	let latestClick
 	if (nextPost && getPrevPost(latestPost, page, pivot)!.id !== currentPost.id) {
-		latestClick = (): void => history.push(getPath(page, pivot, latestPost.id))
+		latestClick = (): void => redirectTo(getPath(page, pivot, latestPost.id))
 	}
 
 	return {

@@ -1,7 +1,7 @@
 import { initializeIcons } from '@uifabric/icons'
 import { loadTheme } from '@uifabric/styling'
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { MediaProvider } from '../components/mediaProvider'
 import { classicColors } from '../modes/classic/classicConstants'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
@@ -63,7 +63,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 											href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
 										/>
 										<MediaProvider>
-											<BrowserRouter>
+											<HashRouter>
 												<Switch>
 													<Redirect
 														exact={true}
@@ -88,7 +88,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 													/>
 													<Route path={'*'} component={PageNotFound} />
 												</Switch>
-											</BrowserRouter>
+											</HashRouter>
 										</MediaProvider>
 									</IsNavBarOpenContext.Provider>
 								</ColorsContext.Provider>

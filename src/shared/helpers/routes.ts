@@ -1,4 +1,5 @@
 import React from 'react'
+import { PivotRoutes } from '../posts/post.types'
 
 export enum PageRoutes {
 	Home = 'home',
@@ -7,8 +8,17 @@ export enum PageRoutes {
 	Conjecture = 'conjecture',
 }
 
+export interface IRouteParams {
+	page: PageRoutes
+	pivot: PivotRoutes
+}
+
 export const getPrimaryRoute = (pathName: string): string => {
 	const subroutes = pathName.split('/')
+
+	if (subroutes.length < 2) {
+		return PageRoutes.Home
+	}
 
 	return subroutes[1]
 }
@@ -25,10 +35,20 @@ export const RouteContext = React.createContext<IRouteContext>({
 	},
 })
 
-export const getPath = (page: string, pivot: string, postId?: string | number): string => {
+export const getPath = (
+	page: string,
+	pivot: string | undefined,
+	postId?: string | number
+): string => {
 	if (postId !== undefined) {
-		return `/${page}/${pivot}/${postId}`
+		return `/#/${page}/${pivot}/${postId}`
 	}
 
-	return `/${page}/${pivot}`
+	return `/#/${page}/${pivot}`
+}
+
+export const redirectTo = (path: string): void => {
+	if (window.location.href !== path) {
+		window.location.replace(path)
+	}
 }

@@ -1,13 +1,10 @@
 import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React, { useContext, useEffect } from 'react'
-import { classicColors } from '../../modes/classic/classicConstants'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { getNextSeason } from '../../modes/seasons/seasonsHelpers'
-import { PageRoutes } from '../../shared/helpers/routes'
+import { PageRoutes, redirectTo } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
-import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
-import { useChangeModeCommand } from '../../shared/presentational/components/navBarCommands'
 import { makeTitleMap, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { Page } from '../page'
 import { ConjectureLinks } from './conjectureLinks'
@@ -16,13 +13,12 @@ import { ConjecturePivots, conjecturePivotTitlePhrases, conjectureTitle } from '
 const titleMap = makeTitleMap(conjecturePivotTitlePhrases)
 
 export const Conjecture: React.FunctionComponent = (): JSX.Element => {
-	const { selectedPivotTitle, setPivot, pivotsItems, redirectTo: redirectTo1 } = usePivots(
+	const { selectedPivotTitle, setPivot, pivotsItems, redirectPath: redirectPath1 } = usePivots(
 		conjecturePivotTitlePhrases,
 		ConjecturePivots.Posts,
 		titleMap
 	)
 	const { setSeason } = useContext(SeasonsContext)
-	const changeModeCommand = useChangeModeCommand(classicColors.secondary)
 	const showPostsNav = selectedPivotTitle === ConjecturePivots.Posts
 	const {
 		currentPost,
@@ -30,20 +26,18 @@ export const Conjecture: React.FunctionComponent = (): JSX.Element => {
 		backClick,
 		nextClick,
 		latestClick,
-		redirectTo: redirectTo2,
-	} = usePostsNav(
-		PageRoutes.Conjecture,
-		selectedPivotTitle as PivotRoutes, // (TODO) remove cast
-		!showPostsNav
-	)
+		redirectPath: redirectPath2,
+	} = usePostsNav(PageRoutes.Conjecture, selectedPivotTitle, !showPostsNav)
 
 	useEffect(() => {
 		setSeason(getNextSeason(3))
 	}, [])
 
-	const redirectTo = redirectTo1 || redirectTo2
-	if (redirectTo) {
-		return redirectTo
+	const redirectPath = redirectPath1 || redirectPath2
+	if (redirectPath) {
+		redirectTo(redirectPath)
+
+		return <></>
 	}
 
 	let pageContent

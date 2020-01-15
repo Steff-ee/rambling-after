@@ -1,8 +1,15 @@
 import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useContext, useEffect, useState } from 'react'
-import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
-import { getPath, RouteContext } from '../../helpers/routes'
+import {
+	getPath,
+	getPrimaryRoute,
+	IRouteParams,
+	redirectTo,
+	RouteContext,
+} from '../../helpers/routes'
+import { PivotRoutes } from '../../posts/post.types'
 import { IPivotTitlePhrases } from './usePivots.types'
 import { useTextMorph } from './useTextMorph'
 
@@ -10,10 +17,10 @@ import { useTextMorph } from './useTextMorph'
 // (TODO) add documentation
 
 export interface IUsePivotKeyReturns {
-	selectedPivotTitle: string | undefined
+	selectedPivotTitle: PivotRoutes | undefined
 	setPivot: IPivotProps['onLinkClick']
 	pivotsItems: IPivotItemProps[]
-	redirectTo?: JSX.Element
+	redirectPath?: string
 }
 
 interface ITitleMap {
@@ -35,10 +42,10 @@ export const usePivots = (
 	defaultTitle: string,
 	titleMap: ITitleMap
 ): IUsePivotKeyReturns => {
-	const { pivot: selectedPivotTitle } = useParams()
-	const history = useHistory()
+	const params = useParams<IRouteParams>()
+	const selectedPivotTitle = params.pivot as PivotRoutes | undefined
 	const location = useLocation()
-	const pageRoute = location.pathname.split('/')[1]
+	const pageRoute = getPrimaryRoute(location.pathname)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)
 	const mediaSize = useContext(MediaContext)
 	const { prevPivots, setPrevPivot } = useContext(RouteContext)
@@ -55,7 +62,7 @@ export const usePivots = (
 	const setPivot = (item?: PivotItem): void => {
 		const newSelectedKey = item && item.props.itemKey
 		if (newSelectedKey) {
-			history.replace(getPath(pageRoute, newSelectedKey))
+			redirectTo(getPath(pageRoute, newSelectedKey))
 		}
 	}
 
@@ -104,11 +111,11 @@ export const usePivots = (
 		key: baseTitle,
 	}))
 
-	let redirectTo
+	let redirectPath
 	const isValidTitle = baseTitles.indexOf(selectedPivotTitle || '') > -1
 	if (!isValidTitle) {
-		redirectTo = <Redirect to={getPath(pageRoute, prevPivot || defaultTitle)} />
+		redirectPath = getPath(pageRoute, prevPivot || defaultTitle)
 	}
 
-	return { selectedPivotTitle, setPivot, pivotsItems, redirectTo }
+	return { selectedPivotTitle, setPivot, pivotsItems, redirectPath }
 }

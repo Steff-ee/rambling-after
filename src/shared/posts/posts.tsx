@@ -75,7 +75,7 @@ conjecturePosts.forEach((post, index) => {
 
 /* NAVIGATION */
 
-const getPageList = (page: PageRoutes, pivot: PivotRoutes): IPost[] => {
+const getPageList = (page: PageRoutes, pivot: PivotRoutes | undefined): IPost[] => {
 	switch (page) {
 		case PageRoutes.Home:
 			return allPosts
@@ -92,7 +92,11 @@ const getPageList = (page: PageRoutes, pivot: PivotRoutes): IPost[] => {
 	}
 }
 
-const getPageListIndexOfPost = (postId: number, page: PageRoutes, pivot: PivotRoutes): number => {
+const getPageListIndexOfPost = (
+	postId: number,
+	page: PageRoutes,
+	pivot: PivotRoutes | undefined
+): number => {
 	switch (page) {
 		case PageRoutes.Home:
 			return allPostsDictionary[postId]
@@ -120,7 +124,7 @@ export const getPostFromId = (postId: number): IPost | undefined => {
 export const getNextPost = (
 	post: IPost,
 	page: PageRoutes,
-	pivot: PivotRoutes
+	pivot: PivotRoutes | undefined
 ): IPost | undefined => {
 	const index = getPageListIndexOfPost(post.id, page, pivot) + 1
 	const pageList = getPageList(page, pivot)
@@ -135,7 +139,7 @@ export const getNextPost = (
 export const getPrevPost = (
 	post: IPost,
 	page: PageRoutes,
-	pivot: PivotRoutes
+	pivot: PivotRoutes | undefined
 ): IPost | undefined => {
 	const index = getPageListIndexOfPost(post.id, page, pivot) - 1
 	const pageList = getPageList(page, pivot)
@@ -147,7 +151,7 @@ export const getPrevPost = (
 	return undefined
 }
 
-export const getFirstPost = (page: PageRoutes, pivot: PivotRoutes): IPost => {
+export const getFirstPost = (page: PageRoutes, pivot: PivotRoutes | undefined): IPost => {
 	switch (page) {
 		case PageRoutes.Home:
 			return allPosts[0]
@@ -164,7 +168,7 @@ export const getFirstPost = (page: PageRoutes, pivot: PivotRoutes): IPost => {
 	}
 }
 
-export const getLatestPost = (page: PageRoutes, pivot: PivotRoutes): IPost => {
+export const getLatestPost = (page: PageRoutes, pivot: PivotRoutes | undefined): IPost => {
 	switch (page) {
 		case PageRoutes.Home:
 			return allPosts[allPosts.length - 1]

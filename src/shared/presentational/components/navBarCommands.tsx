@@ -13,20 +13,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
-import { useHistory } from 'react-router'
 import { INavItem } from '../../../components/iconNav/iconNav.types'
 import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { conjectureTitle } from '../../../pages/conjectures/conjectures.types'
 import { gamesTitle } from '../../../pages/games/games.types'
 import { homeTitle } from '../../../pages/home/home.types'
 import { storiesTitle } from '../../../pages/stories/stories.types'
-import { PageRoutes } from '../../helpers/routes'
+import { PageRoutes, redirectTo } from '../../helpers/routes'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
 export const useNavigationLinks = (color: string): INavItem[] => {
-	const history = useHistory()
-
 	const commonProps = { ...commonIconProps, style: { color } }
 
 	return [
@@ -34,25 +31,25 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
-			onClick: (): void => history.push({ pathname: `/${PageRoutes.Home}` }),
+			onClick: (): void => redirectTo(`/#/${PageRoutes.Home}`),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonProps} />,
 			id: PageRoutes.Stories,
 			label: storiesTitle,
-			onClick: (): void => history.push({ pathname: `/${PageRoutes.Stories}` }),
+			onClick: (): void => redirectTo(`/#/${PageRoutes.Stories}`),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faChessKnight} {...commonProps} />,
 			id: PageRoutes.Games,
 			label: gamesTitle,
-			onClick: (): void => history.push({ pathname: `/${PageRoutes.Games}` }),
+			onClick: (): void => redirectTo(`/#/${PageRoutes.Games}`),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
 			id: PageRoutes.Conjecture,
 			label: conjectureTitle,
-			onClick: (): void => history.push({ pathname: `/${PageRoutes.Conjecture}` }),
+			onClick: (): void => redirectTo(`/#/${PageRoutes.Conjecture}`),
 		},
 	]
 }

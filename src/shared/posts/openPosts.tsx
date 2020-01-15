@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { PageRoutes } from '../helpers/routes'
 import { IPost, PivotRoutes } from './post.types'
 
-interface IOpenPostsContext {
+export interface IOpenPostsContext {
 	getLastOpenPost: (page: PageRoutes, pivot: PivotRoutes | undefined) => IPost | undefined
 	setLastOpenPost: (page: PageRoutes, pivot: PivotRoutes, post: IPost) => void
 }

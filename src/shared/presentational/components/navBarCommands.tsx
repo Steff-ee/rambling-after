@@ -18,38 +18,98 @@ import { Modes, ModesContext } from '../../../modes/modeSwitcher'
 import { conjectureTitle } from '../../../pages/conjectures/conjectures.types'
 import { gamesTitle } from '../../../pages/games/games.types'
 import { homeTitle } from '../../../pages/home/home.types'
-import { storiesTitle } from '../../../pages/stories/stories.types'
-import { PageRoutes, redirectTo } from '../../helpers/routes'
+import { storiesTitle, StoryPivots } from '../../../pages/stories/stories.types'
+import { IRouteContext, PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
+import { IOpenPostsContext, OpenPostsContext } from '../../posts/openPosts'
+import { getLatestPost } from '../../posts/posts'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
+const getHomePath = (
+	prevPivots: IRouteContext['prevPivots'],
+	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
+): string => {
+	// (TODO) handle default pivots and posts elsewhere in a common area
+	const homePivot = (prevPivots[PageRoutes.Home] as StoryPivots) || StoryPivots.Posts
+	const homeCurrentPost = getLastOpenPost(PageRoutes.Home, homePivot)
+	const homeCurrentPostId =
+		(homeCurrentPost && homeCurrentPost.id) || getLatestPost(PageRoutes.Home, homePivot)
+
+	return `/#/${PageRoutes.Home}/${homePivot}/${homeCurrentPostId}`
+}
+
+const getStoriesPath = (
+	prevPivots: IRouteContext['prevPivots'],
+	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
+): string => {
+	const storiesPivot = (prevPivots[PageRoutes.Stories] as StoryPivots) || StoryPivots.Posts
+	const storiesCurrentPost = getLastOpenPost(PageRoutes.Stories, storiesPivot)
+	const storiesCurrentPostId =
+		(storiesCurrentPost && storiesCurrentPost.id) ||
+		getLatestPost(PageRoutes.Stories, storiesPivot)
+
+	return `/#/${PageRoutes.Stories}/${storiesPivot}/${storiesCurrentPostId}`
+}
+
+const getGamesPath = (
+	prevPivots: IRouteContext['prevPivots'],
+	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
+): string => {
+	const gamesPivot = (prevPivots[PageRoutes.Games] as StoryPivots) || StoryPivots.Posts
+	const gamesCurrentPost = getLastOpenPost(PageRoutes.Games, gamesPivot)
+	const gamesCurrentPostId =
+		(gamesCurrentPost && gamesCurrentPost.id) || getLatestPost(PageRoutes.Games, gamesPivot)
+
+	return `/#/${PageRoutes.Games}/${gamesPivot}/${gamesCurrentPostId}`
+}
+
+const getConjecturePath = (
+	prevPivots: IRouteContext['prevPivots'],
+	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
+): string => {
+	const conjecturePivot = (prevPivots[PageRoutes.Conjecture] as StoryPivots) || StoryPivots.Posts
+	const conjectureCurrentPost = getLastOpenPost(PageRoutes.Conjecture, conjecturePivot)
+	const conjectureCurrentPostId =
+		(conjectureCurrentPost && conjectureCurrentPost.id) ||
+		getLatestPost(PageRoutes.Conjecture, conjecturePivot)
+
+	return `/#/${PageRoutes.Conjecture}/${conjecturePivot}/${conjectureCurrentPostId}`
+}
+
 export const useNavigationLinks = (color: string): INavItem[] => {
+	const { prevPivots } = useContext(RouteContext)
+	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const commonProps = { ...commonIconProps, style: { color } }
+
+	const homePath = getHomePath(prevPivots, getLastOpenPost)
+	const storiesPath = getStoriesPath(prevPivots, getLastOpenPost)
+	const gamesPath = getGamesPath(prevPivots, getLastOpenPost)
+	const conjecturePath = getConjecturePath(prevPivots, getLastOpenPost)
 
 	return [
 		{
 			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
-			onClick: (): void => redirectTo(`/#/${PageRoutes.Home}`),
+			onClick: (): void => redirectTo(homePath),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonProps} />,
 			id: PageRoutes.Stories,
 			label: storiesTitle,
-			onClick: (): void => redirectTo(`/#/${PageRoutes.Stories}`),
+			onClick: (): void => redirectTo(storiesPath),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faChessKnight} {...commonProps} />,
 			id: PageRoutes.Games,
 			label: gamesTitle,
-			onClick: (): void => redirectTo(`/#/${PageRoutes.Games}`),
+			onClick: (): void => redirectTo(gamesPath),
 		},
 		{
 			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
 			id: PageRoutes.Conjecture,
 			label: conjectureTitle,
-			onClick: (): void => redirectTo(`/#/${PageRoutes.Conjecture}`),
+			onClick: (): void => redirectTo(conjecturePath),
 		},
 	]
 }

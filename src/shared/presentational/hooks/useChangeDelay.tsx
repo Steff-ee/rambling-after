@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 export const useChangeDelay = (propOn: boolean, delayLength: number, skip = false): boolean => {
 	const [stateOn, setStateOn] = useState<boolean>(propOn)
 
+	// (TODO) remove async callback after unmount
 	useEffect(() => {
 		if (!skip) {
 			if (propOn) {

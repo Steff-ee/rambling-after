@@ -15,10 +15,11 @@ export const getScrollPosition = (element: React.RefObject<HTMLDivElement>): ISc
 export const useScroll = (
 	scrollElement: React.RefObject<HTMLDivElement>,
 	positionElement: React.RefObject<HTMLDivElement>,
-	callback: (currentPosition: IScrollPosition, prevPosition: IScrollPosition) => void
+	callback: (currentPosition: IScrollPosition, prevPosition: IScrollPosition) => void,
+	skip?: boolean
 ): void => {
 	const position = useRef(getScrollPosition(positionElement))
-	const wait = 200
+	const wait = 500
 
 	let throttleTimeout: ReturnType<typeof setTimeout> | undefined
 
@@ -30,6 +31,10 @@ export const useScroll = (
 	}
 
 	useLayoutEffect(() => {
+		if (skip) {
+			return undefined
+		}
+
 		const onScrollThrottled = (): void => {
 			if (throttleTimeout === undefined) {
 				throttleTimeout = setTimeout(onScroll, wait)

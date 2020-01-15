@@ -83,7 +83,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	// (parallax title is not used for small)
 
 	return (
-		<>
+		<div>
 			<div
 				style={{
 					...parallaxGroupStyle,
@@ -148,7 +148,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					{title}
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }
 
@@ -186,7 +186,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 	arePivotsSticky = allowStickyPivots && arePivotsSticky
 
 	// (TODO) both useScrolls rely on the same scrollbar, so it should be possible to reduce computation
-	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll)
+	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll, !allowStickyPivots)
 
 	const pivotStyles: Partial<IPivotStyles> = {
 		text: [
@@ -256,6 +256,7 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 			style={{
 				...defaultTextStyle,
 				...scrollRefStyle,
+				overscrollBehavior: 'none',
 				backgroundColor: classicColors.primary,
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
@@ -279,7 +280,6 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 							top: 0,
 							marginTop: '-1px',
 							zIndex: 2,
-							WebkitBackfaceVisibility: 'hidden',
 						}}
 						firstClick={firstClick}
 						backClick={backClick}

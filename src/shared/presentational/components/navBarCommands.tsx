@@ -31,11 +31,10 @@ const getHomePath = (
 ): string => {
 	// (TODO) handle default pivots and posts elsewhere in a common area
 	const homePivot = (prevPivots[PageRoutes.Home] as StoryPivots) || StoryPivots.Posts
-	const homeCurrentPost = getLastOpenPost(PageRoutes.Home, homePivot)
-	const homeCurrentPostId =
-		(homeCurrentPost && homeCurrentPost.id) || getLatestPost(PageRoutes.Home, homePivot)
+	const currentPost =
+		getLastOpenPost(PageRoutes.Home, homePivot) || getLatestPost(PageRoutes.Home, homePivot)
 
-	return `/#/${PageRoutes.Home}/${homePivot}/${homeCurrentPostId}`
+	return `/#/${PageRoutes.Home}/${homePivot}/${currentPost.id}`
 }
 
 const getStoriesPath = (
@@ -43,12 +42,11 @@ const getStoriesPath = (
 	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
 ): string => {
 	const storiesPivot = (prevPivots[PageRoutes.Stories] as StoryPivots) || StoryPivots.Posts
-	const storiesCurrentPost = getLastOpenPost(PageRoutes.Stories, storiesPivot)
-	const storiesCurrentPostId =
-		(storiesCurrentPost && storiesCurrentPost.id) ||
+	const currentPost =
+		getLastOpenPost(PageRoutes.Stories, storiesPivot) ||
 		getLatestPost(PageRoutes.Stories, storiesPivot)
 
-	return `/#/${PageRoutes.Stories}/${storiesPivot}/${storiesCurrentPostId}`
+	return `/#/${PageRoutes.Stories}/${storiesPivot}/${currentPost.id}`
 }
 
 const getGamesPath = (
@@ -56,11 +54,10 @@ const getGamesPath = (
 	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
 ): string => {
 	const gamesPivot = (prevPivots[PageRoutes.Games] as StoryPivots) || StoryPivots.Posts
-	const gamesCurrentPost = getLastOpenPost(PageRoutes.Games, gamesPivot)
-	const gamesCurrentPostId =
-		(gamesCurrentPost && gamesCurrentPost.id) || getLatestPost(PageRoutes.Games, gamesPivot)
+	const currentPost =
+		getLastOpenPost(PageRoutes.Games, gamesPivot) || getLatestPost(PageRoutes.Games, gamesPivot)
 
-	return `/#/${PageRoutes.Games}/${gamesPivot}/${gamesCurrentPostId}`
+	return `/#/${PageRoutes.Games}/${gamesPivot}/${currentPost.id}`
 }
 
 const getConjecturePath = (
@@ -68,12 +65,11 @@ const getConjecturePath = (
 	getLastOpenPost: IOpenPostsContext['getLastOpenPost']
 ): string => {
 	const conjecturePivot = (prevPivots[PageRoutes.Conjecture] as StoryPivots) || StoryPivots.Posts
-	const conjectureCurrentPost = getLastOpenPost(PageRoutes.Conjecture, conjecturePivot)
-	const conjectureCurrentPostId =
-		(conjectureCurrentPost && conjectureCurrentPost.id) ||
+	const currentPost =
+		getLastOpenPost(PageRoutes.Conjecture, conjecturePivot) ||
 		getLatestPost(PageRoutes.Conjecture, conjecturePivot)
 
-	return `/#/${PageRoutes.Conjecture}/${conjecturePivot}/${conjectureCurrentPostId}`
+	return `/#/${PageRoutes.Conjecture}/${conjecturePivot}/${currentPost.id}`
 }
 
 export const useNavigationLinks = (color: string): INavItem[] => {

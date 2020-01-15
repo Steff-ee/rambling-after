@@ -46,6 +46,12 @@ const commonTitleStyle = {
 	color: classicColors.primary,
 }
 
+const backgroundStyle = {
+	backgroundImage: `url(${backgroundTextureImg})`,
+	backgroundRepeat: 'repeat',
+	backgroundPosition: 'right center',
+}
+
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
 ): JSX.Element => {
@@ -256,8 +262,8 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 			style={{
 				...defaultTextStyle,
 				...scrollRefStyle,
+				...backgroundStyle,
 				overscrollBehavior: 'none',
-				backgroundColor: classicColors.primary,
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
 			}}
@@ -267,10 +273,8 @@ export const ClassicPage: React.FunctionComponent<IPageProps> = (
 			<div>
 				<div
 					style={{
-						backgroundImage: `url(${backgroundTextureImg})`,
+						...backgroundStyle,
 						position: 'sticky',
-						backgroundRepeat: 'repeat',
-						backgroundPosition: 'right center',
 					}}
 					ref={contentPositionRef}
 				>

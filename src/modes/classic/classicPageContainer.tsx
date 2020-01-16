@@ -22,49 +22,87 @@ import {
 } from '../../pages/stories/stories.helpers'
 import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
+import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
-import { usePivots } from '../../shared/presentational/hooks/usePivots'
+import { IUsePivotProps, usePivots } from '../../shared/presentational/hooks/usePivots'
 import { ClassicPageTemplate, IClassicPageTemplateProps } from './classicPageTemplate'
 
-// tslint:disable:cyclomatic-complexity
+const getUsePivotProps = (page: string | undefined): IUsePivotProps => {
+	switch (page) {
+		case PageRoutes.Stories:
+			return getStoriesUsePivotsProps()
+
+		case PageRoutes.Games:
+			return getGameUsePivotsProps()
+
+		case PageRoutes.Conjecture:
+			return getConjectureUsePivotsProps()
+
+		case PageRoutes.Home:
+		default:
+			return getHomeUsePivotsProps()
+	}
+}
+
+const getShowPostsNav = (page: string | undefined, pivot: PivotRoutes | undefined): boolean => {
+	switch (page) {
+		case PageRoutes.Stories:
+			return showPostsNavForStories(pivot)
+
+		case PageRoutes.Games:
+			return showPostsNavForGame(pivot)
+
+		case PageRoutes.Conjecture:
+			return showPostsNavForConjecture(pivot)
+
+		case PageRoutes.Home:
+		default:
+			return showPostsNavForHome(pivot)
+	}
+}
+
+// tslint:disable:typedef
+const getPageTemplateProps = <T extends {}>(
+	page: string | undefined,
+	pivot: PivotRoutes | undefined,
+	commonTemplateProps: T
+) => {
+	switch (page) {
+		case PageRoutes.Stories:
+			return {
+				...commonTemplateProps,
+				...getStoriesPageTemplateProps(pivot),
+			}
+
+		case PageRoutes.Games:
+			return {
+				...commonTemplateProps,
+				...getGamePageTemplateProps(pivot),
+			}
+
+		case PageRoutes.Conjecture:
+			return {
+				...commonTemplateProps,
+				...getConjecturePageTemplateProps(pivot),
+			}
+
+		case PageRoutes.Home:
+		default:
+			return {
+				...commonTemplateProps,
+				...getHomePageTemplateProps(pivot),
+			}
+	}
+}
+
 export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => {
 	const { page } = useParams<IRouteParams>()
 
-	let usePivotsProps
-	switch (page) {
-		case PageRoutes.Stories:
-			usePivotsProps = getStoriesUsePivotsProps()
-			break
-		case PageRoutes.Games:
-			usePivotsProps = getGameUsePivotsProps()
-			break
-		case PageRoutes.Conjecture:
-			usePivotsProps = getConjectureUsePivotsProps()
-			break
-		case PageRoutes.Home:
-		default:
-			usePivotsProps = getHomeUsePivotsProps()
-	}
-
 	const { selectedPivotTitle, setPivot, pivotsItems, redirectPath: redirectPath1 } = usePivots(
-		usePivotsProps
+		getUsePivotProps(page)
 	)
 
-	let showPostsNav: boolean
-	switch (page) {
-		case PageRoutes.Stories:
-			showPostsNav = showPostsNavForStories(selectedPivotTitle)
-			break
-		case PageRoutes.Games:
-			showPostsNav = showPostsNavForGame(selectedPivotTitle)
-			break
-		case PageRoutes.Conjecture:
-			showPostsNav = showPostsNavForConjecture(selectedPivotTitle)
-			break
-		case PageRoutes.Home:
-		default:
-			showPostsNav = showPostsNavForHome(selectedPivotTitle)
-	}
+	const showPostsNav: boolean = getShowPostsNav(page, selectedPivotTitle)
 
 	const {
 		currentPost,
@@ -99,33 +137,11 @@ export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => 
 		pivotsItems,
 	}
 
-	let pageTemplateProps: IClassicPageTemplateProps
-	switch (page) {
-		case PageRoutes.Stories:
-			pageTemplateProps = {
-				...commonTemplateProps,
-				...getStoriesPageTemplateProps(selectedPivotTitle),
-			}
-			break
-		case PageRoutes.Games:
-			pageTemplateProps = {
-				...commonTemplateProps,
-				...getGamePageTemplateProps(selectedPivotTitle),
-			}
-			break
-		case PageRoutes.Conjecture:
-			pageTemplateProps = {
-				...commonTemplateProps,
-				...getConjecturePageTemplateProps(selectedPivotTitle),
-			}
-			break
-		case PageRoutes.Home:
-		default:
-			pageTemplateProps = {
-				...commonTemplateProps,
-				...getHomePageTemplateProps(selectedPivotTitle),
-			}
-	}
+	const pageTemplateProps: IClassicPageTemplateProps = getPageTemplateProps(
+		page,
+		selectedPivotTitle,
+		commonTemplateProps
+	)
 
 	return <ClassicPageTemplate {...pageTemplateProps} />
 }

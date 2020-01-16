@@ -1,8 +1,8 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
-import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react'
 import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
 import {
 	defaultTextStyle,
@@ -40,16 +40,26 @@ interface IParallaxTitleProps {
 	skipMorph: boolean
 }
 
-const commonTitleStyle = {
+const commonTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
 	fontFamily: 'Montserrat',
 	color: classicColors.primary,
 }
 
-const backgroundStyle = {
+const backgroundStyle: React.CSSProperties = {
 	backgroundImage: `url(${backgroundTextureImg})`,
 	backgroundRepeat: 'repeat',
 	backgroundPosition: 'right center',
+}
+
+const pivotItemStyle: React.CSSProperties = {
+	width: '108px',
+	height: '64px',
+	margin: '0 4%',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	whiteSpace: 'nowrap',
 }
 
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
@@ -194,17 +204,11 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	// (TODO) both useScrolls rely on the same scrollbar, so it should be possible to reduce computation
 	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll, !allowStickyPivots)
 
-	const pivotStyles: Partial<IPivotStyles> = {
-		text: [
-			{
-				fontFamily: 'Comfortaa',
-				fontSize: '22px',
-				width: '108px',
-				color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
-			},
-		],
-		link: [{ height: '64px', margin: '0 4%' }],
-		linkIsSelected: [{ height: '64px', margin: '0 4%' }],
+	const pivotRootStyle = {
+		fontFamily: 'Comfortaa',
+		fontSize: '22px',
+		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
+		justifyContent: 'center',
 	}
 
 	let pivots: JSX.Element = <div style={{ height: '64px' }} />
@@ -221,11 +225,16 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				}}
 				ref={pivotsPositionRef}
 			>
-				<Pivot selectedKey={selectedPivotTitle} onLinkClick={setPivot} styles={pivotStyles}>
-					{pivotsItems.map((pivotProps) => (
-						<PivotItem {...pivotProps} />
-					))}
-				</Pivot>
+				<Pivots
+					activeItemKey={selectedPivotTitle}
+					onClick={setPivot}
+					rootStyle={pivotRootStyle}
+					commonItemStyle={pivotItemStyle}
+					commonIsActiveStyle={{
+						borderBottom: `2px solid ${classicColors.secondary}`,
+					}}
+					pivotItems={pivotsItems}
+				/>
 			</div>
 		)
 		titleElement = (

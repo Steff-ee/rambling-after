@@ -1,4 +1,3 @@
-import { IPivotStyles, Pivot, PivotItem } from 'office-ui-fabric-react'
 import React, { useContext } from 'react'
 import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
@@ -98,15 +97,15 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 		)
 	}
 
-	const pivotStyles: Partial<IPivotStyles> = {
-		text: [
-			{
-				fontFamily: 'Comfortaa',
-				fontSize: '22px',
-				width: '96px',
-			},
-		],
-	}
+	// const pivotStyles: Partial<IPivotStyles> = {
+	// 	text: [
+	// 		{
+	// 			fontFamily: 'Comfortaa',
+	// 			fontSize: '22px',
+	// 			width: '96px',
+	// 		},
+	// 	],
+	// }
 
 	return (
 		<div
@@ -171,7 +170,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 					}}
 				>
 					<div style={{ ...pivotsStyle, backgroundColor: accent }}>
-						<Pivot
+						{/* <Pivot
 							selectedKey={selectedPivotTitle}
 							onLinkClick={setPivot}
 							styles={pivotStyles}
@@ -179,7 +178,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 							{pivotsItems.map((pivotProps) => (
 								<PivotItem {...pivotProps} />
 							))}
-						</Pivot>
+						</Pivot> */}
 					</div>
 				</div>
 				<div

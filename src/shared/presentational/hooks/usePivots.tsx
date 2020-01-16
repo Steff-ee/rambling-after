@@ -1,7 +1,7 @@
-import { IPivotItemProps, IPivotProps, PivotItem } from 'office-ui-fabric-react/lib'
 import React, { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
+import { IPivotItem, IPivotsProps } from '../../../components/pivots/pivots.types'
 import { getAnyPagePath } from '../../helpers/navigation'
 import {
 	getPath,
@@ -27,8 +27,8 @@ export interface IUsePivotProps {
 
 export interface IUsePivotKeyReturns {
 	selectedPivotTitle: PivotRoutes | undefined
-	setPivot: IPivotProps['onLinkClick']
-	pivotsItems: IPivotItemProps[]
+	setPivot: IPivotsProps['onClick']
+	pivotsItems: IPivotsProps['pivotItems']
 	redirectPath?: string
 }
 
@@ -66,8 +66,8 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 		}
 	}, [selectedPivotTitle])
 
-	const setPivot = (item?: PivotItem): void => {
-		const newSelectedKey = item && item.props.itemKey
+	const setPivot = (item?: IPivotItem): void => {
+		const newSelectedKey = item && item.key
 		if (newSelectedKey) {
 			redirectTo(
 				getAnyPagePath(pageRoute, getLastOpenPost, undefined, newSelectedKey as PivotRoutes)
@@ -83,17 +83,6 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 
 	const onMouseLeave = (): void => {
 		setHoverPivotTitle(undefined)
-	}
-
-	const onRenderItemLink = (
-		props?: IPivotItemProps,
-		defaultRender?: (props?: IPivotItemProps) => JSX.Element | null
-	): JSX.Element | null => {
-		return (
-			<div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-				{defaultRender && defaultRender(props)}
-			</div>
-		)
 	}
 
 	const baseTitles = titlePhrases.map((phrase, index) => phrase[index])
@@ -113,11 +102,11 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 		skipMorph
 	)
 
-	const pivotsItems: IPivotItemProps[] = baseTitles.map((baseTitle, index) => ({
-		onRenderItemLink,
-		headerText: morphedTitles[index],
-		itemKey: baseTitle,
+	const pivotsItems: IPivotsProps['pivotItems'] = baseTitles.map((baseTitle, index) => ({
+		text: morphedTitles[index],
 		key: baseTitle,
+		onMouseEnter,
+		onMouseLeave,
 	}))
 
 	let redirectPath

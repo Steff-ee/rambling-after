@@ -1,6 +1,4 @@
-import { initializeIcons } from '@uifabric/icons'
-import { loadTheme } from '@uifabric/styling'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { MediaProvider } from '../components/mediaProvider'
 import { classicColors } from '../modes/classic/classicConstants'
@@ -19,8 +17,6 @@ import {
 import { PageNotFound } from './pageNotFound'
 import './root.css'
 
-initializeIcons()
-
 export const Root: React.FunctionComponent = (): JSX.Element => {
 	const [isNavBarOpen, setIsNavBarOpen] = useState<boolean>(false)
 	const [mode, setMode] = useState<Modes>(Modes.Classic)
@@ -38,14 +34,6 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 							if (mode === Modes.Classic) {
 								colors = { ...defaultColorsContext, ...classicColors }
 							}
-
-							useEffect(() => {
-								loadTheme({
-									semanticColors: {
-										inputBackgroundChecked: colors.secondary,
-									},
-								})
-							}, [])
 
 							return (
 								<ColorsContext.Provider value={colors}>

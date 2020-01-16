@@ -252,8 +252,11 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 					...commonTitleStyle,
 					fontSize: '26px',
 					letterSpacing: '6px',
-					padding: '16px 0px',
+					padding: '64px 0px',
 					backgroundColor: classicColors.secondary,
+					position: 'relative',
+					width: '100vw',
+					zIndex: 6,
 				}}
 			>
 				RAMBLING AFTER
@@ -265,6 +268,24 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			overflowY: 'scroll',
 		}
 	}
+
+	const classicNav = (
+		<ClassicNav
+			rootStyle={{
+				position: mediaSize === MediaSize.Small ? 'fixed' : 'sticky',
+				top: 0,
+				marginTop: mediaSize === MediaSize.Small ? '0px' : '-1px',
+				zIndex: 2,
+			}}
+			firstClick={firstClick}
+			backClick={backClick}
+			nextClick={nextClick}
+			latestClick={latestClick}
+			showPosts={showPostsNav}
+			scrollRef={scrollRef}
+			positionRef={contentPositionRef}
+		/>
+	)
 
 	return (
 		<div
@@ -279,30 +300,17 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			}}
 			ref={scrollRef}
 		>
+			{mediaSize === MediaSize.Small && classicNav}
 			{titleElement}
 			<div>
 				<div
 					style={{
 						...backgroundStyle,
-						position: 'sticky',
+						position: mediaSize === MediaSize.Small ? 'relative' : 'sticky',
 					}}
 					ref={contentPositionRef}
 				>
-					<ClassicNav
-						rootStyle={{
-							position: 'sticky',
-							top: 0,
-							marginTop: '-1px',
-							zIndex: 2,
-						}}
-						firstClick={firstClick}
-						backClick={backClick}
-						nextClick={nextClick}
-						latestClick={latestClick}
-						showPosts={showPostsNav}
-						scrollRef={scrollRef}
-						positionRef={contentPositionRef}
-					/>
+					{mediaSize !== MediaSize.Small && classicNav}
 					{pivots}
 					<div
 						style={{

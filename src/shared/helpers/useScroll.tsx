@@ -19,7 +19,7 @@ export const useScroll = (
 	skip?: boolean
 ): void => {
 	const position = useRef(getScrollPosition(positionElement))
-	const wait = 500
+	const wait = 250
 
 	let throttleTimeout: ReturnType<typeof setTimeout> | undefined
 

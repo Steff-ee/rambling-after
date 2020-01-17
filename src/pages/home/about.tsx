@@ -2,12 +2,7 @@ import profileImg from 'Assets/images/me.jpg'
 import React, { useContext } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
-import {
-	lightTextStyle,
-	smallestDeviceWidth,
-	subscriptStyle,
-	titleTextStyle,
-} from '../../shared/helpers/styles'
+import { lightTextStyle, subscriptStyle, titleTextStyle } from '../../shared/helpers/styles'
 
 const Attributions: React.FunctionComponent = (): JSX.Element => {
 	return (
@@ -59,7 +54,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 				}}
 			>
 				<FadeLoadImage src={profileImg} style={aboutImageStyle} />
-				<div style={{ minWidth: smallestDeviceWidth, maxWidth: '800px', flexGrow: 1 }}>
+				<div style={{ maxWidth: '800px', flexGrow: 1, padding: '0px 12px' }}>
 					<div
 						style={{
 							display: 'flex',

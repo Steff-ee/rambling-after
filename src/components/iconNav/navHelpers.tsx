@@ -1,5 +1,5 @@
 export const fadeFilterValue = 'invert(0.33)'
-export const disabledFadeFilterValue = 'invert(0.7)'
+export const disabledFadeFilterValue = 'invert(0.8)'
 
 export const getFade = (options: {
 	isHovering: boolean

@@ -1,7 +1,7 @@
 export const defaultTextStyle: React.CSSProperties = {
 	fontFamily: 'Muli, Lato, sans-serif',
-	fontSize: '21px',
-	lineHeight: '34px',
+	fontSize: '19px',
+	lineHeight: '32px',
 	textAlign: 'center',
 }
 
@@ -13,8 +13,8 @@ export const titleTextStyle: React.CSSProperties = {
 
 export const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
-	fontSize: '19px',
-	lineHeight: '29px',
+	fontSize: '18px',
+	lineHeight: '28px',
 }
 
 export const subscriptStyle: React.CSSProperties = {

@@ -184,10 +184,11 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 					style={pivotItemStyleMobile}
 					text={
 						<span>
-							Click here for
+							Go to
 							<span>
-								<b>{` ${pivotItem.text}`}</b>
+								<b>{` ${pivotItem.text} `}</b>
 							</span>
+							page
 						</span>
 					}
 					onClick={(): void => setPivot(pivotItem)}

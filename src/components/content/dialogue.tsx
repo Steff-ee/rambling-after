@@ -27,7 +27,7 @@ export const Dialogue: React.FunctionComponent<IDialogueProps> = (
 			{lines.map(
 				(line: IDialogueLine, index: number): JSX.Element => {
 					return (
-						<div key={`line-${index}`} style={{ padding: '14px' }}>
+						<div key={`line-${index}`} style={{ padding: '13px' }}>
 							<div>{line.by}</div>
 							<div>{line.says}</div>
 						</div>

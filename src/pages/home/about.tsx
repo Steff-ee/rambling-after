@@ -38,7 +38,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 			>
 				<FadeLoadImage
 					src={profileImg}
-					style={{ width: '360px', height: '480px', margin: '0px 4% 32px 4%' }}
+					style={{ width: '375px', height: '500px', margin: '0px 4% 32px 4%' }}
 				/>
 				<div style={{ minWidth: smallestDeviceWidth, maxWidth: '800px', flexGrow: 1 }}>
 					<div
@@ -53,7 +53,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 							style={{
 								...lightTextStyle,
 								textAlign: 'right',
-								marginBottom: '32px',
+								padding: '32px',
 								lineHeight: '24px',
 								minWidth: '320px',
 								flexGrow: 1,
@@ -61,8 +61,9 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 						>
 							<div>Daniel Steffee</div>
 							<div>dsteffee@alumni.stanford.edu</div>
-							<div>Microsoft Software Developer</div>
-							<div>Bellevue, Washington</div>
+							<div>Full Stack Software Developer</div>
+							<div>Working for Microsoft in Bellevue, Washington</div>
+							<div>https://www.linkedin.com/in/daniel-steffee-aba414159/</div>
 						</div>
 					</div>
 					<p>When not writing code, writing stories.</p>

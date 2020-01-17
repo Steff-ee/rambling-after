@@ -16,7 +16,7 @@ export interface IClassicNavProps {
 	backClick?: () => void
 	nextClick?: () => void
 	latestClick?: () => void
-	onScroll?: (isScrollingDownward: boolean, positionY: number) => void
+	onScroll?: (positionY: number, prevPositionY: number) => void
 }
 
 export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
@@ -43,26 +43,26 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 			const minUpDistance = 128
 			const minDownDistance = 128
 			const minDistanceFromTop = 32
-			if (isScrollingDownward) {
-				if (yDistance > minUpDistance) {
-					setIsScrollingDownward(false)
-				}
-				if (currentPosition.y < minDistanceFromTop && isAtTop) {
-					setIsAtTop(false)
-				}
-			} else {
-				if (yDistance < -minDownDistance) {
-					setIsScrollingDownward(true)
-				}
 
-				if (currentPosition.y > minDistanceFromTop && !isAtTop) {
-					setIsAtTop(true)
-				}
+			if (yDistance > minUpDistance && isScrollingDownward) {
+				setIsScrollingDownward(false)
+			}
+
+			if (yDistance < -minDownDistance && !isScrollingDownward) {
+				setIsScrollingDownward(true)
+			}
+
+			if (currentPosition.y < minDistanceFromTop && isAtTop) {
+				setIsAtTop(false)
+			}
+
+			if (currentPosition.y > minDistanceFromTop && !isAtTop) {
+				setIsAtTop(true)
 			}
 		}
 
 		if (onScrollProp) {
-			onScrollProp(isScrollingDownward, currentPosition.y)
+			onScrollProp(currentPosition.y, prevPosition.y)
 		}
 	}
 

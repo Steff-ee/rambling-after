@@ -4,12 +4,22 @@ import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
-import { defaultTextStyle, entirePageStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
+import {
+	defaultTextStyle,
+	entirePageStyle,
+	parallaxGroupStyle,
+	parallaxRootStyle,
+	smallestDeviceWidth,
+} from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav, IClassicNavProps } from './classicNav'
-import { IClassicPageTemplateProps, IParallaxPivotsProps, IParallaxTitleProps } from './classicPageTemplate.types'
+import {
+	IClassicPageTemplateProps,
+	IParallaxPivotsProps,
+	IParallaxTitleProps,
+} from './classicPageTemplate.types'
 
 const commonTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
@@ -261,9 +271,11 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			overflowY: 'scroll',
 		}
 		pivots = <div style={{ height: '128px' }} />
-		onScroll = (isScrollingDownward: boolean, positionY: number): void => {
+		onScroll = (positionY: number, prevPositionY: number): void => {
+			const yDistance = positionY - prevPositionY
+			const downLimit = -64
 			const topBoundary = 64
-			const shouldSnapBody = positionY < topBoundary && !isScrollingDownward
+			const shouldSnapBody = positionY < topBoundary && yDistance > downLimit
 			if (allowSnapBody !== shouldSnapBody) {
 				setAllowSnapBody(shouldSnapBody)
 			}

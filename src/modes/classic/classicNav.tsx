@@ -32,7 +32,6 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	} = props
 	const mediaSize = useContext(MediaContext)
 	const [isScrollingDownward, setIsScrollingDownward] = useState<boolean>(true)
-	const [isAtTop, setIsAtTop] = useState<boolean>(true)
 
 	const onScroll = (currentPosition: IScrollPosition, prevPosition: IScrollPosition): void => {
 		if (showPostsProp) {
@@ -48,14 +47,6 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 			if (yDistance < -minDownDistance && !isScrollingDownward) {
 				setIsScrollingDownward(true)
 			}
-
-			if (currentPosition.y < minDistanceFromTop && isAtTop) {
-				setIsAtTop(false)
-			}
-
-			if (currentPosition.y > minDistanceFromTop && !isAtTop) {
-				setIsAtTop(true)
-			}
 		}
 	}
 
@@ -64,8 +55,8 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	let showPosts: boolean
 	let showPages: boolean
 	if (mediaSize === MediaSize.Small) {
-		showPosts = !isAtTop && showPostsProp && isScrollingDownward
-		showPages = !isAtTop && !showPosts
+		showPosts = showPostsProp && isScrollingDownward
+		showPages = !showPosts
 	} else {
 		showPosts = showPostsProp
 		showPages = true

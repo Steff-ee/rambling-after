@@ -3,31 +3,13 @@ import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
-import {
-	defaultTextStyle,
-	entirePageStyle,
-	parallaxGroupStyle,
-	parallaxRootStyle,
-	smallestDeviceWidth,
-} from '../../shared/helpers/styles'
+import { defaultTextStyle, entirePageStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
-import {
-	backgroundStyle,
-	commonTitleStyle,
-	contentWrapperStyle,
-	fixedBlackBarStyle,
-	navBarStyleBigScreen,
-	navBarStyleMobile,
-	pivotItemStyle,
-} from './classicPageTemplate.styles'
-import {
-	IClassicPageTemplateProps,
-	IParallaxPivotsProps,
-	IParallaxTitleProps,
-} from './classicPageTemplate.types'
+import { backgroundStyle, commonTitleStyle, contentWrapperStyle, fixedBlackBarStyle, navBarStyleBigScreen, navBarStyleMobile, pivotItemStyle } from './classicPageTemplate.styles'
+import { IClassicPageTemplateProps, IParallaxPivotsProps, IParallaxTitleProps } from './classicPageTemplate.types'
 
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
@@ -212,7 +194,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	const scrollRef = useRef(null)
 
 	const skipMorph = mediaSize === MediaSize.Small
-	const allowStickyPivots = mediaSize === MediaSize.Large
+	const allowStickyPivots = mediaSize !== MediaSize.Medium
 
 	const onPivotsScroll = (currentPosition: IScrollPosition): void => {
 		const shouldPivotsBeSticky = currentPosition.y <= 0
@@ -224,7 +206,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	arePivotsSticky = allowStickyPivots && arePivotsSticky
 
 	// (TODO) both useScrolls rely on the same scrollbar, so it should be possible to reduce computation
-	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll, !allowStickyPivots)
+	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll)
 
 	let pivots: JSX.Element
 	let titleElement: JSX.Element
@@ -256,7 +238,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			overflowX: 'hidden',
 			overflowY: 'scroll',
 		}
-		pivots = <div style={{ height: '128px' }} />
+		pivots = <div style={{ height: '96px' }} ref={pivotsPositionRef} />
 		navBarStyle = navBarStyleMobile
 	}
 
@@ -274,35 +256,36 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	)
 
 	return (
-		<div
-			style={{
-				...defaultTextStyle,
-				...scrollRefStyle,
-				...backgroundStyle,
-				overscrollBehavior: 'none',
-				position: 'absolute',
-				minWidth: smallestDeviceWidth,
-			}}
-			ref={scrollRef}
-		>
+		<>
 			<div style={fixedBlackBarStyle} />
-			{mediaSize === MediaSize.Small && classicNav}
-			{titleElement}
-			<div>
-				<div
-					style={{
-						...backgroundStyle,
-						position: mediaSize === MediaSize.Small ? 'relative' : 'sticky',
-					}}
-					ref={contentPositionRef}
-				>
-					{mediaSize !== MediaSize.Small && classicNav}
-					{pivots}
-					<div style={contentWrapperStyle}>
-						<div style={{ maxWidth: '100%' }}>{Content}</div>
+			<div
+				style={{
+					...defaultTextStyle,
+					...scrollRefStyle,
+					...backgroundStyle,
+					position: 'absolute',
+					minWidth: smallestDeviceWidth,
+				}}
+				ref={scrollRef}
+			>
+				{mediaSize === MediaSize.Small && arePivotsSticky && classicNav}
+				{titleElement}
+				<div>
+					<div
+						style={{
+							...backgroundStyle,
+							position: mediaSize === MediaSize.Small ? 'relative' : 'sticky',
+						}}
+						ref={contentPositionRef}
+					>
+						{mediaSize !== MediaSize.Small && classicNav}
+						{pivots}
+						<div style={contentWrapperStyle}>
+							<div style={{ maxWidth: '100%' }}>{Content}</div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }

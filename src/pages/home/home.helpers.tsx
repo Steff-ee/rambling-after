@@ -1,6 +1,6 @@
 import cartographyImg from 'Assets/images/cartography.jpg'
 import React from 'react'
-import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate'
+import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { IUsePivotProps, makeTitleMap } from '../../shared/presentational/hooks/usePivots'
 import { AboutPage } from './about'

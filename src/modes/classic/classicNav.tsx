@@ -36,13 +36,11 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const [isAtTop, setIsAtTop] = useState<boolean>(true)
 
 	const onScroll = (currentPosition: IScrollPosition, prevPosition: IScrollPosition): void => {
-		console.log('showPostsProp', showPostsProp)
 		if (showPostsProp) {
-			console.log('currentPosition.y', currentPosition.y)
 			const yDistance = currentPosition.y - prevPosition.y
 			const minUpDistance = 256
 			const minDownDistance = 128
-			const minDistanceFromTop = -64
+			const minDistanceFromTop = 32
 			if (yDistance > minUpDistance && isScrollingDownward) {
 				setIsScrollingDownward(false)
 			} else if (yDistance < -minDownDistance && !isScrollingDownward) {

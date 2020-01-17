@@ -1,6 +1,6 @@
 import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React from 'react'
-import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate'
+import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { IUsePivotProps, makeTitleMap } from '../../shared/presentational/hooks/usePivots'
 import { ConjectureLinks } from './conjectureLinks'

@@ -12,33 +12,14 @@ import {
 	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
-import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
-
-export interface IClassicPageTemplateProps {
-	headerBackgroundImage: string
-	Content: JSX.Element
-	showPostsNav: boolean
-
-	/* Pivots */
-	selectedPivotTitle: string | undefined
-	setPivot: IUsePivotKeyReturns['setPivot']
-	pivotsItems: IUsePivotKeyReturns['pivotsItems']
-
-	/* Posts Navigation */
-	firstClick?: () => void
-	backClick?: () => void
-	nextClick?: () => void
-	latestClick?: () => void
-}
-
-interface IParallaxTitleProps {
-	headerBackgroundImage: string
-	mediaSize: MediaSize
-	skipMorph: boolean
-}
+import {
+	IClassicPageTemplateProps,
+	IParallaxPivotsProps,
+	IParallaxTitleProps,
+} from './classicPageTemplate.types'
 
 const commonTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
@@ -168,6 +149,62 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	)
 }
 
+const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
+	props: IParallaxPivotsProps
+): JSX.Element => {
+	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
+
+	const pivotRootStyle = {
+		fontFamily: 'Comfortaa',
+		fontSize: '22px',
+		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
+		justifyContent: 'center',
+	}
+
+	return (
+		<div
+			style={{
+				margin: '64px 20%',
+				position: arePivotsSticky ? 'sticky' : 'relative',
+				top: 0,
+				zIndex: arePivotsSticky ? 3 : 1,
+			}}
+			ref={pivotsPositionRef}
+		>
+			<Pivots
+				activeItemKey={selectedPivotTitle}
+				onClick={setPivot}
+				rootStyle={pivotRootStyle}
+				commonItemStyle={pivotItemStyle}
+				commonIsActiveStyle={{
+					borderBottom: `2px solid ${classicColors.secondary}`,
+				}}
+				pivotItems={pivotsItems}
+			/>
+		</div>
+	)
+}
+
+const MobileTitle: React.FunctionComponent = (): JSX.Element => {
+	return (
+		<div
+			style={{
+				...commonTitleStyle,
+				fontSize: '26px',
+				letterSpacing: '6px',
+				padding: '68px 0px',
+				backgroundColor: classicColors.secondary,
+				position: 'relative',
+				width: '100vw',
+				zIndex: 6,
+				scrollSnapAlign: 'start',
+			}}
+		>
+			RAMBLING AFTER
+		</div>
+	)
+}
+
 export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplateProps> = (
 	props: IClassicPageTemplateProps
 ): JSX.Element => {
@@ -204,38 +241,18 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	// (TODO) both useScrolls rely on the same scrollbar, so it should be possible to reduce computation
 	useScroll(scrollRef, pivotsPositionRef, onPivotsScroll, !allowStickyPivots)
 
-	const pivotRootStyle = {
-		fontFamily: 'Comfortaa',
-		fontSize: '22px',
-		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
-		justifyContent: 'center',
-	}
-
-	let pivots: JSX.Element = <div style={{ height: '64px' }} />
+	let pivots: JSX.Element
 	let titleElement: JSX.Element
 	let scrollRefStyle: React.CSSProperties
 	if (mediaSize !== MediaSize.Small) {
 		pivots = (
-			<div
-				style={{
-					margin: '64px 20%',
-					position: arePivotsSticky ? 'sticky' : 'relative',
-					top: 0,
-					zIndex: arePivotsSticky ? 3 : 1,
-				}}
-				ref={pivotsPositionRef}
-			>
-				<Pivots
-					activeItemKey={selectedPivotTitle}
-					onClick={setPivot}
-					rootStyle={pivotRootStyle}
-					commonItemStyle={pivotItemStyle}
-					commonIsActiveStyle={{
-						borderBottom: `2px solid ${classicColors.secondary}`,
-					}}
-					pivotItems={pivotsItems}
-				/>
-			</div>
+			<ParallaxPivots
+				arePivotsSticky={arePivotsSticky}
+				setPivot={setPivot}
+				selectedPivotTitle={selectedPivotTitle}
+				pivotsItems={pivotsItems}
+				pivotsPositionRef={pivotsPositionRef}
+			/>
 		)
 		titleElement = (
 			<ParallaxTitle
@@ -246,28 +263,13 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		)
 		scrollRefStyle = parallaxRootStyle
 	} else {
-		titleElement = (
-			<div
-				style={{
-					...commonTitleStyle,
-					fontSize: '26px',
-					letterSpacing: '6px',
-					padding: '192px 0px 64px 0px',
-					marginTop: '-128px',
-					backgroundColor: classicColors.secondary,
-					position: 'relative',
-					width: '100vw',
-					zIndex: 6,
-				}}
-			>
-				RAMBLING AFTER
-			</div>
-		)
+		titleElement = <MobileTitle />
 		scrollRefStyle = {
 			...entirePageStyle,
 			overflowX: 'hidden',
 			overflowY: 'scroll',
 		}
+		pivots = <div style={{ height: '96px' }} />
 	}
 
 	const classicNav = (
@@ -298,12 +300,17 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				overscrollBehavior: 'none',
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
+				scrollSnapType: mediaSize === MediaSize.Small ? 'y proximity' : '',
 			}}
 			ref={scrollRef}
 		>
 			{mediaSize === MediaSize.Small && classicNav}
 			{titleElement}
-			<div>
+			<div
+				style={{
+					scrollSnapAlign: mediaSize === MediaSize.Small ? 'start' : '',
+				}}
+			>
 				<div
 					style={{
 						...backgroundStyle,

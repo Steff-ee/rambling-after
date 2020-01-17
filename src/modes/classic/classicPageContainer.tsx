@@ -25,7 +25,8 @@ import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
 import { IUsePivotProps, usePivots } from '../../shared/presentational/hooks/usePivots'
-import { ClassicPageTemplate, IClassicPageTemplateProps } from './classicPageTemplate'
+import { ClassicPageTemplate } from './classicPageTemplate'
+import { IClassicPageTemplateProps } from './classicPageTemplate.types'
 
 const getUsePivotProps = (page: string | undefined): IUsePivotProps => {
 	switch (page) {

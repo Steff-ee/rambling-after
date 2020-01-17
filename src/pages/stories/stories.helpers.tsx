@@ -1,6 +1,6 @@
 import booksImg from 'Assets/images/books.jpg'
 import React from 'react'
-import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate'
+import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { IUsePivotProps, makeTitleMap } from '../../shared/presentational/hooks/usePivots'
 import { StoryPivots, storyPivotTitlePhrases } from './stories.types'

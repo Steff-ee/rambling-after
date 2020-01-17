@@ -32,17 +32,27 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 		latestClick,
 	} = props
 	const mediaSize = useContext(MediaContext)
-	const [showPostsState, setShowPostsState] = useState<boolean>(false)
+	const [isScrollingDownward, setIsScrollingDownward] = useState<boolean>(true)
+	const [isAtTop, setIsAtTop] = useState<boolean>(true)
 
 	const onScroll = (currentPosition: IScrollPosition, prevPosition: IScrollPosition): void => {
+		console.log('showPostsProp', showPostsProp)
 		if (showPostsProp) {
+			console.log('currentPosition.y', currentPosition.y)
 			const yDistance = currentPosition.y - prevPosition.y
 			const minUpDistance = 256
 			const minDownDistance = 128
-			if (yDistance > minUpDistance && showPostsState) {
-				setShowPostsState(false)
-			} else if (yDistance < -minDownDistance && !showPostsState) {
-				setShowPostsState(true)
+			const minDistanceFromTop = -64
+			if (yDistance > minUpDistance && isScrollingDownward) {
+				setIsScrollingDownward(false)
+			} else if (yDistance < -minDownDistance && !isScrollingDownward) {
+				setIsScrollingDownward(true)
+			}
+
+			if (currentPosition.y > minDistanceFromTop && !isAtTop && !isScrollingDownward) {
+				setIsAtTop(true)
+			} else if (currentPosition.y < minDistanceFromTop && isAtTop && isScrollingDownward) {
+				setIsAtTop(false)
 			}
 		}
 	}
@@ -59,8 +69,8 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	let showPosts: boolean
 	let showPages: boolean
 	if (mediaSize === MediaSize.Small) {
-		showPosts = showPostsProp && showPostsState
-		showPages = !showPosts
+		showPosts = !isAtTop && showPostsProp && isScrollingDownward
+		showPages = !isAtTop && !showPosts
 	} else {
 		showPosts = showPostsProp
 		showPages = true
@@ -69,7 +79,7 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const pagesTransition = useTransition(showPages, {
 		from: { opacity: 0, transform: 'translate3d(0, -24%, 0)' },
 		enter: { opacity: 1, transform: 'translate3d(0, 0%, 0)' },
-		leave: { opacity: 0, transform: 'translate3d(0, -24%, 0)' },
+		leave: { opacity: 0 },
 	})
 
 	const postsTransition = useTransition(showPosts, {

@@ -178,7 +178,7 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 	const { setPivot, pivotsItems } = props
 
 	return (
-		<>
+		<div style={{ margin: '64px 0px' }}>
 			{pivotsItems.map((pivotItem) => (
 				<PivotItem
 					style={pivotItemStyleMobile}
@@ -195,7 +195,7 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 					isActive={false}
 				/>
 			))}
-		</>
+		</div>
 	)
 }
 

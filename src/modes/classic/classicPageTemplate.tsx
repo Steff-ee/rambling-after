@@ -1,4 +1,3 @@
-import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
@@ -14,34 +13,21 @@ import {
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
-import { ClassicNav, IClassicNavProps } from './classicNav'
+import { ClassicNav } from './classicNav'
+import {
+	backgroundStyle,
+	commonTitleStyle,
+	contentWrapperStyle,
+	fixedBlackBarStyle,
+	navBarStyleBigScreen,
+	navBarStyleMobile,
+	pivotItemStyle,
+} from './classicPageTemplate.styles'
 import {
 	IClassicPageTemplateProps,
 	IParallaxPivotsProps,
 	IParallaxTitleProps,
 } from './classicPageTemplate.types'
-
-const commonTitleStyle: React.CSSProperties = {
-	fontWeight: 600,
-	fontFamily: 'Montserrat',
-	color: classicColors.primary,
-}
-
-const backgroundStyle: React.CSSProperties = {
-	backgroundImage: `url(${backgroundTextureImg})`,
-	backgroundRepeat: 'repeat',
-	backgroundPosition: 'right center',
-}
-
-const pivotItemStyle: React.CSSProperties = {
-	width: '108px',
-	height: '64px',
-	margin: '0 4%',
-	display: 'flex',
-	alignItems: 'center',
-	justifyContent: 'center',
-	whiteSpace: 'nowrap',
-}
 
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
@@ -221,7 +207,6 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	} = props
 	const mediaSize = useContext(MediaContext)
 	let [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
-	const [allowSnapBody, setAllowSnapBody] = useState<boolean>(false)
 	const contentPositionRef = useRef(null)
 	const pivotsPositionRef = useRef(null)
 	const scrollRef = useRef(null)
@@ -244,7 +229,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	let pivots: JSX.Element
 	let titleElement: JSX.Element
 	let scrollRefStyle: React.CSSProperties
-	let onScroll: IClassicNavProps['onScroll']
+	let navBarStyle: React.CSSProperties
 	if (mediaSize !== MediaSize.Small) {
 		pivots = (
 			<ParallaxPivots
@@ -263,6 +248,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			/>
 		)
 		scrollRefStyle = parallaxRootStyle
+		navBarStyle = navBarStyleBigScreen
 	} else {
 		titleElement = <MobileTitle />
 		scrollRefStyle = {
@@ -271,25 +257,12 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			overflowY: 'scroll',
 		}
 		pivots = <div style={{ height: '128px' }} />
-		onScroll = (positionY: number, prevPositionY: number): void => {
-			const yDistance = positionY - prevPositionY
-			const downLimit = -64
-			const topBoundary = 64
-			const shouldSnapBody = positionY < topBoundary && yDistance > downLimit
-			if (allowSnapBody !== shouldSnapBody) {
-				setAllowSnapBody(shouldSnapBody)
-			}
-		}
+		navBarStyle = navBarStyleMobile
 	}
 
 	const classicNav = (
 		<ClassicNav
-			rootStyle={{
-				position: mediaSize === MediaSize.Small ? 'fixed' : 'sticky',
-				top: 0,
-				marginTop: mediaSize === MediaSize.Small ? '0px' : '-1px',
-				zIndex: 2,
-			}}
+			rootStyle={navBarStyle}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}
@@ -297,7 +270,6 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			showPosts={showPostsNav}
 			scrollRef={scrollRef}
 			positionRef={contentPositionRef}
-			onScroll={onScroll}
 		/>
 	)
 
@@ -310,26 +282,13 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				overscrollBehavior: 'none',
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
-				scrollSnapType: 'y proximity',
 			}}
 			ref={scrollRef}
 		>
-			<div
-				style={{
-					backgroundColor: classicColors.secondary,
-					width: '100%',
-					height: '256px',
-					position: 'fixed',
-					zIndex: -10,
-				}}
-			/>
+			<div style={fixedBlackBarStyle} />
 			{mediaSize === MediaSize.Small && classicNav}
 			{titleElement}
-			<div
-				style={{
-					scrollSnapAlign: allowSnapBody && mediaSize === MediaSize.Small ? 'start' : '',
-				}}
-			>
+			<div>
 				<div
 					style={{
 						...backgroundStyle,
@@ -339,15 +298,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				>
 					{mediaSize !== MediaSize.Small && classicNav}
 					{pivots}
-					<div
-						style={{
-							margin: 'auto',
-							padding: '0 5% 5% 5%',
-							textAlign: 'left',
-							display: 'flex',
-							justifyContent: 'center',
-						}}
-					>
+					<div style={contentWrapperStyle}>
 						<div style={{ maxWidth: '100%' }}>{Content}</div>
 					</div>
 				</div>

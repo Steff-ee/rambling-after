@@ -3,7 +3,6 @@ import { animated, to, useTransition } from 'react-spring'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
-import { classicColors } from './classicConstants'
 import { ClassicPageNav } from './classicPageNav'
 import { ClassicPostsNav } from './classicPostsNav'
 
@@ -16,7 +15,6 @@ export interface IClassicNavProps {
 	backClick?: () => void
 	nextClick?: () => void
 	latestClick?: () => void
-	onScroll?: (positionY: number, prevPositionY: number) => void
 }
 
 export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
@@ -24,7 +22,6 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 ): JSX.Element => {
 	const {
 		showPosts: showPostsProp,
-		onScroll: onScrollProp,
 		scrollRef,
 		positionRef,
 		rootStyle,
@@ -40,8 +37,8 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 	const onScroll = (currentPosition: IScrollPosition, prevPosition: IScrollPosition): void => {
 		if (showPostsProp) {
 			const yDistance = currentPosition.y - prevPosition.y
-			const minUpDistance = 128
-			const minDownDistance = 128
+			const minUpDistance = 256
+			const minDownDistance = 256
 			const minDistanceFromTop = 32
 
 			if (yDistance > minUpDistance && isScrollingDownward) {
@@ -60,20 +57,9 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 				setIsAtTop(true)
 			}
 		}
-
-		if (onScrollProp) {
-			onScrollProp(currentPosition.y, prevPosition.y)
-		}
 	}
 
 	useScroll(scrollRef, positionRef, onScroll)
-
-	const commonStyle = {
-		backgroundColor: classicColors.secondary,
-		width: '100%',
-		height: '64px',
-		display: 'flex',
-	}
 
 	let showPosts: boolean
 	let showPages: boolean
@@ -99,12 +85,7 @@ export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
 
 	// the empty div on !showPages is to keep the space-between working
 	return (
-		<div
-			style={{
-				...commonStyle,
-				...rootStyle,
-			}}
-		>
+		<div style={rootStyle}>
 			{pagesTransition(
 				(rootTransition, item) =>
 					item && (

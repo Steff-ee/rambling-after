@@ -19,16 +19,9 @@ export const useScroll = (
 	skip?: boolean
 ): void => {
 	const position = useRef(getScrollPosition(positionElement))
-	const wait = 250
+	const wait = 500
 
 	let throttleTimeout: ReturnType<typeof setTimeout> | undefined
-
-	const onScroll = (): void => {
-		const currentPosition = getScrollPosition(positionElement)
-		callback(currentPosition, position.current)
-		position.current = currentPosition
-		throttleTimeout = undefined
-	}
 
 	useLayoutEffect(() => {
 		if (skip) {
@@ -37,6 +30,13 @@ export const useScroll = (
 
 		const onScrollThrottled = (): void => {
 			if (throttleTimeout === undefined) {
+				const onScroll = (): void => {
+					const currentPosition = getScrollPosition(positionElement)
+					callback(currentPosition, position.current)
+					position.current = currentPosition
+					throttleTimeout = undefined
+				}
+
 				throttleTimeout = setTimeout(onScroll, wait)
 			}
 		}

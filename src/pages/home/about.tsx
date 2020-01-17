@@ -27,7 +27,7 @@ const Attributions: React.FunctionComponent = (): JSX.Element => {
 
 export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<div style={{ display: 'block', marginTop: '32px' }}>
+		<div style={{ display: 'block', padding: '0px 8px', marginTop: '32px' }}>
 			<div
 				style={{
 					display: 'flex',
@@ -48,12 +48,12 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 							flexWrap: 'wrap',
 						}}
 					>
-						<div style={titleTextStyle}>Hola!</div>
+						<div style={{ ...titleTextStyle, margin: '32px' }}>Hola!</div>
 						<div
 							style={{
 								...lightTextStyle,
 								textAlign: 'right',
-								padding: '32px',
+								marginBottom: '32px',
 								lineHeight: '24px',
 								minWidth: '320px',
 								flexGrow: 1,
@@ -62,8 +62,10 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 							<div>Daniel Steffee</div>
 							<div>dsteffee@alumni.stanford.edu</div>
 							<div>Full Stack Software Developer</div>
-							<div>Working for Microsoft in Bellevue, Washington</div>
-							<div>https://www.linkedin.com/in/daniel-steffee-aba414159/</div>
+							<div>At Microsoft in Bellevue, Washington</div>
+							<a href={'https://www.linkedin.com/in/daniel-steffee-aba414159/'}>
+								LinkedIn
+							</a>
 						</div>
 					</div>
 					<p>When not writing code, writing stories.</p>

@@ -31,3 +31,5 @@ export type IParallaxPivotsProps = Pick<
 	arePivotsSticky: boolean
 	pivotsPositionRef: React.MutableRefObject<null>
 }
+
+export type IMobilePivotsProps = Pick<IClassicPageTemplateProps, 'setPivot' | 'pivotsItems'>

@@ -13,14 +13,27 @@ export const backgroundStyle: React.CSSProperties = {
 	backgroundPosition: 'right center',
 }
 
-export const pivotItemStyle: React.CSSProperties = {
-	width: '108px',
+const pivotItemStyle: React.CSSProperties = {
 	height: '64px',
 	margin: '0 4%',
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
 	whiteSpace: 'nowrap',
+}
+
+export const pivotUnderlineStyle: React.CSSProperties = {
+	borderBottom: `2px solid ${classicColors.secondary}`,
+}
+
+export const pivotItemStyleBigScreen: React.CSSProperties = {
+	...pivotItemStyle,
+	width: '108px',
+}
+
+export const pivotItemStyleMobile: React.CSSProperties = {
+	...pivotItemStyle,
+	...pivotUnderlineStyle,
 }
 
 const navBarStyle = {

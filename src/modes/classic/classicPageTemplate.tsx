@@ -1,15 +1,36 @@
 import React, { useContext, useRef, useState } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import { PivotItem } from '../../components/pivots/pivotItem'
 import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
-import { defaultTextStyle, entirePageStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
+import {
+	defaultTextStyle,
+	entirePageStyle,
+	parallaxGroupStyle,
+	parallaxRootStyle,
+	smallestDeviceWidth,
+} from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
-import { backgroundStyle, commonTitleStyle, contentWrapperStyle, fixedBlackBarStyle, navBarStyleBigScreen, navBarStyleMobile, pivotItemStyle } from './classicPageTemplate.styles'
-import { IClassicPageTemplateProps, IParallaxPivotsProps, IParallaxTitleProps } from './classicPageTemplate.types'
+import {
+	backgroundStyle,
+	commonTitleStyle,
+	contentWrapperStyle,
+	navBarStyleBigScreen,
+	navBarStyleMobile,
+	pivotItemStyleBigScreen,
+	pivotItemStyleMobile,
+	pivotUnderlineStyle,
+} from './classicPageTemplate.styles'
+import {
+	IClassicPageTemplateProps,
+	IMobilePivotsProps,
+	IParallaxPivotsProps,
+	IParallaxTitleProps,
+} from './classicPageTemplate.types'
 
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
@@ -143,13 +164,38 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 				activeItemKey={selectedPivotTitle}
 				onClick={setPivot}
 				rootStyle={pivotRootStyle}
-				commonItemStyle={pivotItemStyle}
-				commonIsActiveStyle={{
-					borderBottom: `2px solid ${classicColors.secondary}`,
-				}}
+				commonItemStyle={pivotItemStyleBigScreen}
+				commonIsActiveStyle={pivotUnderlineStyle}
 				pivotItems={pivotsItems}
 			/>
 		</div>
+	)
+}
+
+const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
+	props: IMobilePivotsProps
+): JSX.Element => {
+	const { setPivot, pivotsItems } = props
+
+	return (
+		<>
+			{pivotsItems.map((pivotItem) => (
+				<PivotItem
+					style={pivotItemStyleMobile}
+					text={
+						<span>
+							Click here for
+							<span>
+								<b>{` ${pivotItem.text}`}</b>
+							</span>
+						</span>
+					}
+					onClick={(): void => setPivot(pivotItem)}
+					key={pivotItem.key}
+					isActive={false}
+				/>
+			))}
+		</>
 	)
 }
 
@@ -256,36 +302,36 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	)
 
 	return (
-		<>
-			<div style={fixedBlackBarStyle} />
-			<div
-				style={{
-					...defaultTextStyle,
-					...scrollRefStyle,
-					...backgroundStyle,
-					position: 'absolute',
-					minWidth: smallestDeviceWidth,
-				}}
-				ref={scrollRef}
-			>
-				{mediaSize === MediaSize.Small && arePivotsSticky && classicNav}
-				{titleElement}
-				<div>
-					<div
-						style={{
-							...backgroundStyle,
-							position: mediaSize === MediaSize.Small ? 'relative' : 'sticky',
-						}}
-						ref={contentPositionRef}
-					>
-						{mediaSize !== MediaSize.Small && classicNav}
-						{pivots}
-						<div style={contentWrapperStyle}>
-							<div style={{ maxWidth: '100%' }}>{Content}</div>
-						</div>
+		<div
+			style={{
+				...defaultTextStyle,
+				...scrollRefStyle,
+				...backgroundStyle,
+				position: 'absolute',
+				minWidth: smallestDeviceWidth,
+			}}
+			ref={scrollRef}
+		>
+			{mediaSize === MediaSize.Small && arePivotsSticky && classicNav}
+			{titleElement}
+			<div>
+				<div
+					style={{
+						...backgroundStyle,
+						position: mediaSize === MediaSize.Small ? 'relative' : 'sticky',
+					}}
+					ref={contentPositionRef}
+				>
+					{mediaSize !== MediaSize.Small && classicNav}
+					{pivots}
+					<div style={contentWrapperStyle}>
+						<div style={{ maxWidth: '100%' }}>{Content}</div>
 					</div>
+					{mediaSize === MediaSize.Small && (
+						<MobilePivots setPivot={setPivot} pivotsItems={pivotsItems} />
+					)}
 				</div>
 			</div>
-		</>
+		</div>
 	)
 }

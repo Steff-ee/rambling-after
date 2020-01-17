@@ -1,5 +1,5 @@
 export interface IPivotItemProps {
-	text: string
+	text: string | JSX.Element
 	isActive: boolean
 	style?: React.CSSProperties
 	isActiveStyle?: React.CSSProperties

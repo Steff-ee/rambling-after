@@ -27,7 +27,7 @@ export interface IUsePivotProps {
 
 export interface IUsePivotKeyReturns {
 	selectedPivotTitle: PivotRoutes | undefined
-	setPivot: IPivotsProps['onClick']
+	setPivot: (item: IPivotItem) => void
 	pivotsItems: IPivotsProps['pivotItems']
 	redirectPath?: string
 }
@@ -102,7 +102,7 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 		skipMorph
 	)
 
-	const pivotsItems: IPivotsProps['pivotItems'] = baseTitles.map((baseTitle, index) => ({
+	let pivotsItems: IPivotsProps['pivotItems'] = baseTitles.map((baseTitle, index) => ({
 		text: morphedTitles[index],
 		key: baseTitle,
 		onMouseEnter,
@@ -114,6 +114,10 @@ export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	if (!isValidTitle) {
 		selectedPivotTitle = prevPivot || defaultTitle
 		redirectPath = getPath(pageRoute, selectedPivotTitle)
+	}
+
+	if (mediaSize === MediaSize.Small) {
+		pivotsItems = pivotsItems.filter((pivotItem) => pivotItem.key !== selectedPivotTitle)
 	}
 
 	return { selectedPivotTitle, setPivot, pivotsItems, redirectPath }

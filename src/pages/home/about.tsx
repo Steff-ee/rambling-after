@@ -1,6 +1,7 @@
 import profileImg from 'Assets/images/me.jpg'
-import React from 'react'
+import React, { useContext } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
+import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import {
 	lightTextStyle,
 	smallestDeviceWidth,
@@ -25,7 +26,28 @@ const Attributions: React.FunctionComponent = (): JSX.Element => {
 	)
 }
 
+const aboutImageStyleMobile: React.CSSProperties = {
+	width: '300px',
+	height: '400px',
+	marginBottom: '32px',
+}
+
+const aboutImageStyleBigScreen: React.CSSProperties = {
+	width: '375px',
+	height: '500px',
+	margin: '0px 4% 32px 4%',
+}
+
 export const AboutPage: React.FunctionComponent = (): JSX.Element => {
+	const mediaSize = useContext(MediaContext)
+
+	let aboutImageStyle: React.CSSProperties
+	if (mediaSize === MediaSize.Small) {
+		aboutImageStyle = aboutImageStyleMobile
+	} else {
+		aboutImageStyle = aboutImageStyleBigScreen
+	}
+
 	return (
 		<div style={{ display: 'block', padding: '0px 8px', marginTop: '32px' }}>
 			<div
@@ -36,10 +58,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 					justifyContent: 'space-around',
 				}}
 			>
-				<FadeLoadImage
-					src={profileImg}
-					style={{ width: '375px', height: '500px', margin: '0px 4% 32px 4%' }}
-				/>
+				<FadeLoadImage src={profileImg} style={aboutImageStyle} />
 				<div style={{ minWidth: smallestDeviceWidth, maxWidth: '800px', flexGrow: 1 }}>
 					<div
 						style={{

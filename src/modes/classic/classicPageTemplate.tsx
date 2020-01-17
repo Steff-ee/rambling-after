@@ -4,22 +4,12 @@ import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
-import {
-	defaultTextStyle,
-	entirePageStyle,
-	parallaxGroupStyle,
-	parallaxRootStyle,
-	smallestDeviceWidth,
-} from '../../shared/helpers/styles'
+import { defaultTextStyle, entirePageStyle, parallaxGroupStyle, parallaxRootStyle, smallestDeviceWidth } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
-import { ClassicNav } from './classicNav'
-import {
-	IClassicPageTemplateProps,
-	IParallaxPivotsProps,
-	IParallaxTitleProps,
-} from './classicPageTemplate.types'
+import { ClassicNav, IClassicNavProps } from './classicNav'
+import { IClassicPageTemplateProps, IParallaxPivotsProps, IParallaxTitleProps } from './classicPageTemplate.types'
 
 const commonTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
@@ -197,7 +187,6 @@ const MobileTitle: React.FunctionComponent = (): JSX.Element => {
 				position: 'relative',
 				width: '100vw',
 				zIndex: 6,
-				scrollSnapAlign: 'start',
 			}}
 		>
 			RAMBLING AFTER
@@ -222,6 +211,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	} = props
 	const mediaSize = useContext(MediaContext)
 	let [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
+	const [allowSnapBody, setAllowSnapBody] = useState<boolean>(false)
 	const contentPositionRef = useRef(null)
 	const pivotsPositionRef = useRef(null)
 	const scrollRef = useRef(null)
@@ -244,6 +234,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	let pivots: JSX.Element
 	let titleElement: JSX.Element
 	let scrollRefStyle: React.CSSProperties
+	let onScroll: IClassicNavProps['onScroll']
 	if (mediaSize !== MediaSize.Small) {
 		pivots = (
 			<ParallaxPivots
@@ -269,7 +260,14 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			overflowX: 'hidden',
 			overflowY: 'scroll',
 		}
-		pivots = <div style={{ height: '96px' }} />
+		pivots = <div style={{ height: '128px' }} />
+		onScroll = (isScrollingDownward: boolean, positionY: number): void => {
+			const topBoundary = 64
+			const shouldSnapBody = positionY < topBoundary && !isScrollingDownward
+			if (allowSnapBody !== shouldSnapBody) {
+				setAllowSnapBody(shouldSnapBody)
+			}
+		}
 	}
 
 	const classicNav = (
@@ -287,6 +285,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 			showPosts={showPostsNav}
 			scrollRef={scrollRef}
 			positionRef={contentPositionRef}
+			onScroll={onScroll}
 		/>
 	)
 
@@ -296,19 +295,27 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				...defaultTextStyle,
 				...scrollRefStyle,
 				...backgroundStyle,
-				backgroundColor: classicColors.primary,
 				overscrollBehavior: 'none',
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
-				scrollSnapType: mediaSize === MediaSize.Small ? 'y proximity' : '',
+				scrollSnapType: 'y proximity',
 			}}
 			ref={scrollRef}
 		>
+			<div
+				style={{
+					backgroundColor: classicColors.secondary,
+					width: '100%',
+					height: '256px',
+					position: 'fixed',
+					zIndex: -10,
+				}}
+			/>
 			{mediaSize === MediaSize.Small && classicNav}
 			{titleElement}
 			<div
 				style={{
-					scrollSnapAlign: mediaSize === MediaSize.Small ? 'start' : '',
+					scrollSnapAlign: allowSnapBody && mediaSize === MediaSize.Small ? 'start' : '',
 				}}
 			>
 				<div

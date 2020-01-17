@@ -13,10 +13,10 @@ const Attributions: React.FunctionComponent = (): JSX.Element => {
 				textAlign: 'center',
 			}}
 		>
-			Cartography photo on Home page courtesy of Dariusz Sankowski, from Unsplash. Books photo
-			on Stories page courtesy of Drew Coffman, from Unsplash. Light bulbs photo on Games page
-			courtesy of Kari Shea, from Unsplash. Bookshelf photo on Conjecture page courtesy of
-			Janko Ferlič, from Unsplash. All icons courtesy of Font Awesome.
+			Cartography photo (Home page) by Dariusz Sankowski. Books photo (Stories page) by Drew
+			Coffman. Light bulbs photo (Games page) by Kari Shea. Bookshelf photo (Conjecture page)
+			by Janko Ferlič. All of these photos courtesy of Unsplash. All icons courtesy of Font
+			Awesome.
 		</div>
 	)
 }
@@ -54,7 +54,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 				}}
 			>
 				<FadeLoadImage src={profileImg} style={aboutImageStyle} />
-				<div style={{ maxWidth: '800px', flexGrow: 1, padding: '0px 12px' }}>
+				<div style={{ maxWidth: '800px', flexGrow: 1 }}>
 					<div
 						style={{
 							display: 'flex',
@@ -69,7 +69,6 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 								textAlign: 'right',
 								marginBottom: '32px',
 								lineHeight: '24px',
-								minWidth: '320px',
 								flexGrow: 1,
 							}}
 						>
@@ -94,7 +93,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 						</a>
 						!
 					</p>
-					<div>
+					<div style={lightTextStyle}>
 						<div>I hope you have enjoyed your stay</div>
 						<div>and as well I hope</div>
 						<div>wherever you're going, wherefore,</div>

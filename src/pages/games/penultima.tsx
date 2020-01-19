@@ -1,5 +1,5 @@
 import React from 'react'
-import { titleTextStyle } from '../../shared/helpers/styles'
+import { listStyle, titleTextStyle } from '../../shared/helpers/styles'
 
 export const Penultima: React.FunctionComponent = (): JSX.Element => {
 	return (
@@ -74,11 +74,11 @@ export const Penultima: React.FunctionComponent = (): JSX.Element => {
 				</p>
 				<p>What exactly does this look like?</p>
 				<p>Any time a combatant makes a move, the president can do one of three things:</p>
-				<p>
+				<div style={listStyle}>
 					<li>Modify the board (by moving pieces, removing them, or anything else)</li>
 					<li>Declare a move to be illegal</li>
 					<li>Do nothing</li>
-				</p>
+				</div>
 				<p>
 					One important addendum: In the case of illegal moves, the person who made the
 					illegal move is penalized by play proceeding to their opponent. An exception is
@@ -95,7 +95,7 @@ export const Penultima: React.FunctionComponent = (): JSX.Element => {
 					The president's goal is whatever they want it to be, but here's a few
 					possiblities:
 				</p>
-				<p>
+				<div style={listStyle}>
 					<li>
 						Devise rules that meaningfully impact gameplay without imbalancing the game
 						so much it becomes a short, swingy slaughterfest.
@@ -105,7 +105,7 @@ export const Penultima: React.FunctionComponent = (): JSX.Element => {
 						Devise rules that test your own memory skills (for example, think of{' '}
 						<i>mines</i>).
 					</li>
-				</p>
+				</div>
 				<p>
 					Also, as the president, don't be afraid to give hints (simply giving your rule a
 					name can be a fun way to get your players thinking in the right direction,

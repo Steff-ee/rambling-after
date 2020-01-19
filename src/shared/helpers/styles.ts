@@ -51,6 +51,11 @@ export const parallaxGroupStyle: React.CSSProperties = {
 	transformStyle: 'preserve-3d',
 }
 
+export const listStyle: React.CSSProperties = {
+	...lightTextStyle,
+	margin: '16px 5% 32px 5%',
+}
+
 export const smallestDeviceWidth = '320px'
 
 export const bottomContentMargin = '34px'

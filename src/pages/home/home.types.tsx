@@ -5,11 +5,14 @@ export const homeTitle = 'home'
 export enum HomePivots {
 	About = 'about',
 	Posts = 'posts',
+	Resume = 'resume',
 }
 
 export const homePivotTitlePhrases: IPivotTitlePhrases = [
-	// about me
-	[HomePivots.About, 'me'],
-	// latest posts
-	['latest', HomePivots.Posts],
+	// about the author
+	[HomePivots.About, 'the', 'author'],
+	// all posts by date
+	['all', HomePivots.Posts, 'by date'],
+	// view my resume
+	['view', 'my', HomePivots.Resume],
 ]

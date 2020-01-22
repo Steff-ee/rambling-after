@@ -31,7 +31,6 @@ const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 			<div style={subtitleTextStyle}>Software Engineer</div>
 			<div
 				style={{
-					...lightTextStyle,
 					paddingTop: '12px',
 					display: 'flex',
 					flexDirection: 'row',
@@ -48,10 +47,10 @@ const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 			</div>
 			<Divider thickness={2} rootStyle={{ padding: '12px' }} />
 			<div style={subscriptStyle}>
-				Adaptable Full Stack Web Developer with 5 years’ experience prioritizing the highest
-				impact changes for customers. Flexibly aided team to ensure at-risk features
-				deliver. Drove design discussions, service reports, and reviewed all code changes to
-				guarantee code quality and product reliability.
+				Adaptable Full Stack Web Developer with 10 years coding and 5 years delivering,
+				prioritizing the highest impact changes for customers. Flexibly aided teams to
+				ensure at-risk features deliver. Drove design discussions, service reports, and
+				reviewed all code changes to ensure code quality and product reliability.
 			</div>
 		</div>
 	)
@@ -68,11 +67,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 	const { title, body } = props
 
 	return (
-		<div
-			style={{
-				marginBottom: '25px',
-			}}
-		>
+		<div style={{ marginBottom: '25px' }}>
 			<div
 				style={{
 					fontFamily: 'Montserrat',
@@ -83,21 +78,35 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 			>
 				{title}
 			</div>
-			<div style={lightTextStyle}>{body}</div>
+			<div style={{ marginLeft: '10px' }}>{body}</div>
 		</div>
 	)
+}
+
+// replaces use of <li> to get around the univeral li styling in root.css
+const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
+	props: React.PropsWithChildren<{}>
+): JSX.Element => {
+	return <li style={{ margin: '0px' }}>{props.children}</li>
+}
+
+const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
+	props: React.PropsWithChildren<{}>
+): JSX.Element => {
+	return <div style={{ marginTop: '6px', fontWeight: 600 }}>{props.children}</div>
 }
 
 interface IExperienceSubSectionProps {
 	title: string
 	timeRange: string
+	subtext?: string
 	body: JSX.Element
 }
 
 const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> = (
 	props: IExperienceSubSectionProps
 ): JSX.Element => {
-	const { title, timeRange, body } = props
+	const { title, timeRange, body, subtext } = props
 
 	return (
 		<div style={{ marginBottom: '25px' }}>
@@ -117,7 +126,8 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				</div>
 				<div>{timeRange}</div>
 			</div>
-			<div style={{ marginTop: '20px' }}>{body}</div>
+			<div>{subtext}</div>
+			<div style={{ marginTop: '10px' }}>{body}</div>
 		</div>
 	)
 }
@@ -132,6 +142,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div
 			style={{
+				...lightTextStyle,
 				maxWidth: 850,
 				maxHeight: 1100,
 				backgroundColor: 'white',
@@ -148,12 +159,49 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 						<ExperienceSubSection
 							title={'Microsoft'}
 							timeRange={'2018 - present'}
+							subtext={
+								'Enterprise application, managing life cycle of low-code apps, project solutions, and sharing experiences'
+							}
 							body={<>Blah blah blah</>}
 						/>
 						<ExperienceSubSection
 							title={'TreeRing'}
 							timeRange={'2015 - 2018'}
-							body={<>Blah blah blah</>}
+							subtext={
+								'Consumer Yearbook Editor web application with high quality, robust print rendering'
+							}
+							body={
+								<>
+									<ListHeader>Primary Back-End Engineer</ListHeader>
+									<ListItem>
+										"Xylem" project: Re-architect the client/server framework in
+										a team of two, like GraphQL but customized: unifying
+										duplicate code, simplifying data access, and increasing
+										expressiveness
+									</ListItem>
+									<ListItem>
+										Prioritize back-end features and fixes by customer impact,
+										difficulty, and ancillary benefit of code
+									</ListItem>
+									<ListItem>
+										Manage all SQL queries for new requirements and
+										optimizations
+									</ListItem>
+									<ListHeader>Managed the Customer Support Queue</ListHeader>
+									<ListItem>
+										Identify and then address or circumvent the root cause of
+										customer concerns
+									</ListItem>
+									<ListItem>
+										Balance between elegant, robust solutions and rapid-response
+										repairs
+									</ListItem>
+									<ListItem>
+										Implement nightly tests and scripts to maintain or repair
+										customer data
+									</ListItem>
+								</>
+							}
 						/>
 					</>
 				}
@@ -162,9 +210,23 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 				title={'EDUCATION'}
 				body={
 					<ExperienceSubSection
-						title={'Stanford'}
+						title={'Stanford University'}
 						timeRange={'2010 - 2015'}
-						body={<>Blah blah blah</>}
+						body={
+							<>
+								<ListItem>
+									Focus on graduate-level Theoretical Computer Science (algorithms
+									and computability)
+								</ListItem>
+								<ListItem>
+									Teaching Assistant for “Logic and Automated Reasoning”
+								</ListItem>
+								<ListItem>
+									Resident Assistant for Eucalypto, collaborating to build a safe,
+									supportive community for freshmen
+								</ListItem>
+							</>
+						}
 					/>
 				}
 			/>
@@ -172,11 +234,11 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 				title={'SKILLS'}
 				body={
 					<>
-						<li>
+						<ListItem>
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
 							MySQL
-						</li>
-						<li>Prior Proficiencies: Angular 4, PHP, Java, C, C++, Ruby</li>
+						</ListItem>
+						<ListItem>Prior Proficiencies: Angular 4, PHP, Java, C, C++, Ruby</ListItem>
 					</>
 				}
 			/>

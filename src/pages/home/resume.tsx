@@ -26,7 +26,7 @@ const dividerStar = <div>✧</div>
 
 const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<div style={{ textAlign: 'center', marginBottom: '25px' }}>
+		<div style={{ textAlign: 'center' }}>
 			<div style={titleTextStyle}>DANIEL STEFFEE</div>
 			<div style={subtitleTextStyle}>Software Engineer</div>
 			<div
@@ -47,10 +47,9 @@ const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 			</div>
 			<Divider thickness={2} rootStyle={{ padding: '12px' }} />
 			<div style={subscriptStyle}>
-				Adaptable Full Stack Web Developer with 10 years coding and 5 years delivering,
-				prioritizing the highest impact changes for customers. Flexibly aided teams to
-				ensure at-risk features deliver. Drove design discussions, service reports, and
-				reviewed all code changes to ensure code quality and product reliability.
+				Adaptable Full Stack Web Developer with 10 years coding and 5 years' experience
+				delivering and prioritizing the highest impact changes for customers without
+				sacrificing code quality and reliability.
 			</div>
 		</div>
 	)
@@ -67,18 +66,18 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 	const { title, body } = props
 
 	return (
-		<div style={{ marginBottom: '25px' }}>
+		<div style={{ marginTop: '20px' }}>
 			<div
 				style={{
 					fontFamily: 'Montserrat',
 					fontSize: '23px',
 					textAlign: 'center',
-					marginBottom: '15px',
+					marginBottom: '10px',
 				}}
 			>
 				{title}
 			</div>
-			<div style={{ marginLeft: '10px' }}>{body}</div>
+			<div>{body}</div>
 		</div>
 	)
 }
@@ -87,7 +86,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
-	return <li style={{ margin: '0px' }}>{props.children}</li>
+	return <li style={{ margin: '0px 0px 0px 10px' }}>{props.children}</li>
 }
 
 const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
@@ -109,7 +108,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 	const { title, timeRange, body, subtext } = props
 
 	return (
-		<div style={{ marginBottom: '25px' }}>
+		<div style={{ marginBottom: '20px' }}>
 			<div
 				style={{
 					display: 'flex',
@@ -162,7 +161,23 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							subtext={
 								'Enterprise application, managing life cycle of low-code apps, project solutions, and sharing experiences'
 							}
-							body={<>Blah blah blah</>}
+							body={
+								<>
+									<ListHeader>Something</ListHeader>
+									<ListItem>
+										Reliability: Drive design discussions, service reports, and
+										review all pull requests
+									</ListItem>
+									<ListItem>Drive adoption of React Hooks</ListItem>
+									<ListItem>Something</ListItem>
+									<ListHeader>Something</ListHeader>
+									<ListItem>
+										Manage vendors, assist partner teams, and mentor interns
+									</ListItem>
+									<ListItem>Something</ListItem>
+									<ListItem>Something</ListItem>
+								</>
+							}
 						/>
 						<ExperienceSubSection
 							title={'TreeRing'}

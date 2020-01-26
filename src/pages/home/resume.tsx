@@ -163,19 +163,33 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							}
 							body={
 								<>
-									<ListHeader>Something</ListHeader>
+									<ListHeader>Code Architecture</ListHeader>
 									<ListItem>
-										Reliability: Drive design discussions, service reports, and
-										review all pull requests
+										Drive team to adopt Hooks and replace Redux with more
+										productive patterns
 									</ListItem>
-									<ListItem>Drive adoption of React Hooks</ListItem>
-									<ListItem>Something</ListItem>
-									<ListHeader>Something</ListHeader>
 									<ListItem>
-										Manage vendors, assist partner teams, and mentor interns
+										Run regular and ad-hoc design discussions to maintain code
+										quality
 									</ListItem>
-									<ListItem>Something</ListItem>
-									<ListItem>Something</ListItem>
+									<ListHeader>Reliability</ListHeader>
+									<ListItem>
+										Triage bugs daily and generate service reports weekly and
+										monthly
+									</ListItem>
+									<ListItem>
+										Improve perceived performance through partial loading and
+										track through revamped telemetry
+									</ListItem>
+									<ListHeader>Teamwork</ListHeader>
+									<ListItem>
+										Review all of team's pull requests, assist partner teams,
+										guide vendors, and mentor interns
+									</ListItem>
+									<ListItem>
+										Responsively dive into at-risk featurework to aid any
+										feature crew in need
+									</ListItem>
 								</>
 							}
 						/>
@@ -202,18 +216,14 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 										Manage all SQL queries for new requirements and
 										optimizations
 									</ListItem>
-									<ListHeader>Managed the Customer Support Queue</ListHeader>
+									<ListHeader>Customer Support Queue</ListHeader>
 									<ListItem>
-										Identify and then address or circumvent the root cause of
-										customer concerns
+										Identify causes of customer concerns and address with fixes,
+										scripts, and tests
 									</ListItem>
 									<ListItem>
 										Balance between elegant, robust solutions and rapid-response
 										repairs
-									</ListItem>
-									<ListItem>
-										Implement nightly tests and scripts to maintain or repair
-										customer data
 									</ListItem>
 								</>
 							}
@@ -253,7 +263,13 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
 							MySQL
 						</ListItem>
-						<ListItem>Prior Proficiencies: Angular 4, PHP, Java, C, C++, Ruby</ListItem>
+						<ListItem>
+							Prior Proficiencies: Angular 4, PHP, Java, C, C++, Ruby, Python
+						</ListItem>
+						<ListItem>
+							Eager to learn new languages, frameworks, tools, skills, and software
+							development habits
+						</ListItem>
 					</>
 				}
 			/>

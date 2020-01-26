@@ -12,39 +12,11 @@ import {
 } from '../../helpers/routes'
 import { OpenPostsContext } from '../../posts/openPosts'
 import { PivotRoutes } from '../../posts/post.types'
-import { IPivotTitlePhrases } from './usePivots.types'
+import { IUsePivotKeyReturns, IUsePivotProps } from './usePivots.types'
 import { useTextMorph } from './useTextMorph'
 
 // (TODO) do an efficiency pass (use memoization)
 // (TODO) add documentation
-
-export interface IUsePivotProps {
-	titlePhrases: IPivotTitlePhrases
-	defaultTitle: PivotRoutes
-	titleMap: ITitleMap
-	skip?: boolean
-}
-
-export interface IUsePivotKeyReturns {
-	selectedPivotTitle: PivotRoutes | undefined
-	setPivot: (item: IPivotItem) => void
-	pivotsItems: IPivotsProps['pivotItems']
-	redirectPath?: string
-}
-
-interface ITitleMap {
-	[title: string]: number | undefined
-}
-
-export const makeTitleMap = (phrases: IPivotTitlePhrases): ITitleMap => {
-	const titleMap: ITitleMap = {}
-	phrases.forEach((phrase, index) => {
-		const title = phrase[index]
-		titleMap[title] = index
-	})
-
-	return titleMap
-}
 
 export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	const { titlePhrases, titleMap, defaultTitle, skip } = props

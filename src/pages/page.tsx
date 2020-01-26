@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { ClassicPageTemplate } from '../modes/classic/classicPageTemplate'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
 import { SeasonsPage } from '../modes/seasons/seasonsPage'
-import { IUsePivotKeyReturns } from '../shared/presentational/hooks/usePivots'
+import { IUsePivotKeyReturns } from '../shared/presentational/hooks/usePivots.types'
 
 export interface IPageProps {
 	headerBackgroundImage: string

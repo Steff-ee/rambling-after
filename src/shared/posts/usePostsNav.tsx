@@ -52,12 +52,12 @@ export const usePostsNav = (
 		}
 	}, [location.pathname])
 
-	if (!postFromRoute && currentPost) {
-		return { currentPost, redirectPath: getPath(page, pivot, currentPost.id) }
-	}
-
 	if (skip) {
 		return { currentPost }
+	}
+
+	if (!postFromRoute && currentPost) {
+		return { currentPost, redirectPath: getPath(page, pivot, currentPost.id) }
 	}
 
 	const prevPost = getPrevPost(currentPost, page, pivot)

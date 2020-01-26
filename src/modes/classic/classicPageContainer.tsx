@@ -24,7 +24,8 @@ import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/route
 import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
-import { IUsePivotProps, usePivots } from '../../shared/presentational/hooks/usePivots'
+import { usePivots } from '../../shared/presentational/hooks/usePivots'
+import { IUsePivotProps } from '../../shared/presentational/hooks/usePivots.types'
 import { ClassicPageTemplate } from './classicPageTemplate'
 import { IClassicPageTemplateProps } from './classicPageTemplate.types'
 

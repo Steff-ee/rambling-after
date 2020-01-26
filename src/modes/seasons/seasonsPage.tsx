@@ -12,7 +12,7 @@ import { CircadianMood, getCircadianMood } from '../../shared/helpers/time'
 import { Fireflies } from '../../shared/presentational/components/fireflies'
 import { BackgroundsContext } from '../../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
-import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
+import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots.types'
 // (TODO) fade-in is not hiding the loading bars
 // import { Img } from 'react-progressive-loader'
 import { SeasonsNav } from './seasonsNav'

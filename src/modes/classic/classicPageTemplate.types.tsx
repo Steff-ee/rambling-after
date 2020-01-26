@@ -1,5 +1,5 @@
 import { MediaSize } from '../../components/mediaProvider'
-import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots'
+import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots.types'
 
 export interface IClassicPageTemplateProps {
 	headerBackgroundImage: string

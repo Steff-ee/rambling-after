@@ -1,6 +1,10 @@
+import { showPostsNavForConjecture } from '../../pages/conjectures/conjecture.helpers'
 import { ConjecturePivots } from '../../pages/conjectures/conjectures.types'
+import { showPostsNavForGame } from '../../pages/games/game.helpers'
 import { GamePivots } from '../../pages/games/games.types'
+import { showPostsNavForHome } from '../../pages/home/home.helpers'
 import { HomePivots } from '../../pages/home/home.types'
+import { showPostsNavForStories } from '../../pages/stories/stories.helpers'
 import { StoryPivots } from '../../pages/stories/stories.types'
 import { IOpenPostsContext } from '../posts/openPosts'
 import { PivotRoutes } from '../posts/post.types'
@@ -13,8 +17,12 @@ export const getHomePath = (
 	pivot?: PivotRoutes
 ): string => {
 	// (TODO) handle default pivots and posts elsewhere in a common area
-	const homePivot =
-		pivot || (prevPivots && (prevPivots[PageRoutes.Home] as HomePivots)) || HomePivots.Posts
+	const homePivot = pivot || (prevPivots && (prevPivots[PageRoutes.Home] as HomePivots))
+
+	if (!showPostsNavForHome(homePivot)) {
+		return `/#/${PageRoutes.Home}/${homePivot}`
+	}
+
 	const currentPost =
 		getLastOpenPost(PageRoutes.Home, homePivot) || getLatestPost(PageRoutes.Home, homePivot)
 
@@ -26,10 +34,12 @@ export const getStoriesPath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
-	const storiesPivot =
-		pivot ||
-		(prevPivots && (prevPivots[PageRoutes.Stories] as StoryPivots)) ||
-		StoryPivots.Posts
+	const storiesPivot = pivot || (prevPivots && (prevPivots[PageRoutes.Stories] as StoryPivots))
+
+	if (!showPostsNavForStories(storiesPivot)) {
+		return `/#/${PageRoutes.Stories}/${storiesPivot}`
+	}
+
 	const currentPost =
 		getLastOpenPost(PageRoutes.Stories, storiesPivot) ||
 		getLatestPost(PageRoutes.Stories, storiesPivot)
@@ -42,8 +52,12 @@ export const getGamesPath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
-	const gamesPivot =
-		pivot || (prevPivots && (prevPivots[PageRoutes.Games] as GamePivots)) || GamePivots.Posts
+	const gamesPivot = pivot || (prevPivots && (prevPivots[PageRoutes.Games] as GamePivots))
+
+	if (!showPostsNavForGame(gamesPivot)) {
+		return `/#/${PageRoutes.Games}/${gamesPivot}`
+	}
+
 	const currentPost =
 		getLastOpenPost(PageRoutes.Games, gamesPivot) || getLatestPost(PageRoutes.Games, gamesPivot)
 
@@ -56,9 +70,12 @@ export const getConjecturePath = (
 	pivot?: PivotRoutes
 ): string => {
 	const conjecturePivot =
-		pivot ||
-		(prevPivots && (prevPivots[PageRoutes.Conjecture] as ConjecturePivots)) ||
-		ConjecturePivots.Posts
+		pivot || (prevPivots && (prevPivots[PageRoutes.Conjecture] as ConjecturePivots))
+
+	if (!showPostsNavForConjecture(conjecturePivot)) {
+		return `/#/${PageRoutes.Conjecture}/${conjecturePivot}`
+	}
+
 	const currentPost =
 		getLastOpenPost(PageRoutes.Conjecture, conjecturePivot) ||
 		getLatestPost(PageRoutes.Conjecture, conjecturePivot)

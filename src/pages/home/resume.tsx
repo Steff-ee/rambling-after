@@ -126,7 +126,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				<div>{timeRange}</div>
 			</div>
 			<div>{subtext}</div>
-			<div style={{ marginTop: '10px' }}>{body}</div>
+			<div style={{ margin: '10px 0px 0px 15px' }}>{body}</div>
 		</div>
 	)
 }
@@ -258,7 +258,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 			<ResumeSection
 				title={'SKILLS'}
 				body={
-					<>
+					<div style={{ marginLeft: '15px' }}>
 						<ListItem>
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
 							MySQL
@@ -270,7 +270,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							Eager to learn new languages, frameworks, tools, skills, and software
 							development habits
 						</ListItem>
-					</>
+					</div>
 				}
 			/>
 		</div>

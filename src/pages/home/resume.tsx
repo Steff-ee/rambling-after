@@ -3,6 +3,9 @@ import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { subscriptStyle } from '../../shared/helpers/styles'
 
+const pageWidth = 850
+const pageHeight = 1100
+
 const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '14px',
@@ -12,7 +15,8 @@ const lightTextStyle: React.CSSProperties = {
 const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '36px',
-	paddingBottom: '12px',
+	lineHeight: '39px',
+	paddingBottom: '8px',
 	letterSpacing: '3px',
 }
 
@@ -24,7 +28,15 @@ const subtitleTextStyle: React.CSSProperties = {
 
 const dividerStar = <div>✧</div>
 
-const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
+interface IResumeHeaderProps {
+	isMobile: boolean
+}
+
+const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
+	props: IResumeHeaderProps
+): JSX.Element => {
+	const { isMobile } = props
+
 	return (
 		<div style={{ textAlign: 'center' }}>
 			<div style={titleTextStyle}>DANIEL STEFFEE</div>
@@ -33,7 +45,7 @@ const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 				style={{
 					paddingTop: '12px',
 					display: 'flex',
-					flexDirection: 'row',
+					flexDirection: isMobile ? 'column' : 'row',
 					justifyContent: 'space-between',
 				}}
 			>
@@ -58,12 +70,13 @@ const ResumeHeader: React.FunctionComponent = (): JSX.Element => {
 interface IResumeSectionProps {
 	title: string
 	body: JSX.Element
+	isMobile: boolean
 }
 
 const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 	props: IResumeSectionProps
 ): JSX.Element => {
-	const { title, body } = props
+	const { title, body, isMobile } = props
 
 	return (
 		<div style={{ marginTop: '20px' }}>
@@ -72,7 +85,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 					fontFamily: 'Montserrat',
 					fontSize: '23px',
 					textAlign: 'center',
-					marginBottom: '10px',
+					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 10px 0px',
 				}}
 			>
 				{title}
@@ -100,12 +113,13 @@ interface IExperienceSubSectionProps {
 	timeRange: string
 	subtext?: string
 	body: JSX.Element
+	isMobile: boolean
 }
 
 const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> = (
 	props: IExperienceSubSectionProps
 ): JSX.Element => {
-	const { title, timeRange, body, subtext } = props
+	const { title, timeRange, body, subtext, isMobile } = props
 
 	return (
 		<div style={{ marginBottom: '20px' }}>
@@ -113,6 +127,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
+					flexDirection: isMobile ? 'column' : 'row',
 				}}
 			>
 				<div
@@ -123,36 +138,36 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				>
 					{title}
 				</div>
-				<div>{timeRange}</div>
+				<div style={{ margin: '0px 10px' }}>{timeRange}</div>
 			</div>
 			<div>{subtext}</div>
-			<div style={{ margin: '10px 0px 0px 15px' }}>{body}</div>
+			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '10px 0px 0px 15px' }}>
+				{body}
+			</div>
 		</div>
 	)
 }
 
 export const Resume: React.FunctionComponent = (): JSX.Element => {
 	const mediaSize = useContext(MediaContext)
-
-	if (mediaSize === MediaSize.Small) {
-		return <div>Resume has yet to be implemented for mobile</div>
-	}
+	const isMobile = mediaSize === MediaSize.Small
 
 	return (
 		<div
 			style={{
 				...lightTextStyle,
-				maxWidth: 850,
-				maxHeight: 1100,
+				maxWidth: pageWidth,
+				maxHeight: isMobile ? '' : pageHeight,
 				backgroundColor: 'white',
-				padding: '50px',
+				padding: isMobile ? '10px' : '50px',
 				border: '1px black solid',
 				boxShadow: '3px 3px 1px darkgray',
 			}}
 		>
-			<ResumeHeader />
+			<ResumeHeader isMobile={isMobile} />
 			<ResumeSection
 				title={'WORK EXPERIENCE'}
+				isMobile={isMobile}
 				body={
 					<>
 						<ExperienceSubSection
@@ -161,6 +176,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							subtext={
 								'Enterprise application, managing life cycle of low-code apps, project solutions, and sharing experiences'
 							}
+							isMobile={isMobile}
 							body={
 								<>
 									<ListHeader>Code Architecture</ListHeader>
@@ -199,6 +215,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							subtext={
 								'Consumer Yearbook Editor web application with high quality, robust print rendering'
 							}
+							isMobile={isMobile}
 							body={
 								<>
 									<ListHeader>Primary Back-End Engineer</ListHeader>
@@ -233,10 +250,12 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 			/>
 			<ResumeSection
 				title={'EDUCATION'}
+				isMobile={isMobile}
 				body={
 					<ExperienceSubSection
 						title={'Stanford University'}
 						timeRange={'2010 - 2015'}
+						isMobile={isMobile}
 						body={
 							<>
 								<ListItem>
@@ -257,6 +276,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 			/>
 			<ResumeSection
 				title={'SKILLS'}
+				isMobile={isMobile}
 				body={
 					<div style={{ marginLeft: '15px' }}>
 						<ListItem>

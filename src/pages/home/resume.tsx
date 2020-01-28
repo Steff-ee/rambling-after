@@ -185,7 +185,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 										productive patterns
 									</ListItem>
 									<ListItem>
-										Run regular and ad-hoc design discussions to maintain code
+										Elicit feedback and run design discussions to maintain code
 										quality
 									</ListItem>
 									<ListHeader>Reliability</ListHeader>
@@ -195,7 +195,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 									</ListItem>
 									<ListItem>
 										Improve perceived performance through partial loading and
-										track through revamped telemetry
+										track with revamped telemetry
 									</ListItem>
 									<ListHeader>Teamwork</ListHeader>
 									<ListItem>
@@ -226,17 +226,14 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 										expressiveness
 									</ListItem>
 									<ListItem>
-										Prioritize back-end features and fixes by customer impact,
-										difficulty, and ancillary benefit of code
-									</ListItem>
-									<ListItem>
-										Manage all SQL queries for new requirements and
-										optimizations
+										Supervise all SQL queries: Optimizing for efficiency,
+										producing for new features, and advancing the algorithm for
+										duplicate-finding during roster uploads
 									</ListItem>
 									<ListHeader>Customer Support Queue</ListHeader>
 									<ListItem>
-										Identify causes of customer concerns and address with fixes,
-										scripts, and tests
+										Identify causes of reported incidents and address with
+										fixes, scripts, and tests
 									</ListItem>
 									<ListItem>
 										Balance between elegant, robust solutions and rapid-response
@@ -284,11 +281,11 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							MySQL
 						</ListItem>
 						<ListItem>
-							Prior Proficiencies: Angular 4, PHP, Java, C, C++, Ruby, Python
+							Prior Proficiencies: Angular, PHP, Java, C, C++, Ruby, Python
 						</ListItem>
 						<ListItem>
-							Eager to learn new languages, frameworks, tools, skills, and software
-							development habits
+							Eager to learn new languages, tools, and skills; learn from the best;
+							and share what I learn
 						</ListItem>
 					</div>
 				}

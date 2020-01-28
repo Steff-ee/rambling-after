@@ -157,7 +157,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 			style={{
 				...lightTextStyle,
 				maxWidth: pageWidth,
-				maxHeight: isMobile ? '' : pageHeight,
+				height: mediaSize === MediaSize.Large ? pageHeight : '',
 				backgroundColor: 'white',
 				padding: isMobile ? '10px' : '50px',
 				border: '1px black solid',

@@ -6,7 +6,7 @@ export const longitude = -122.1995027
 export const dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
 	year: 'numeric',
 	month: 'short',
-	day: 'numeric',
+	day: '2-digit',
 }
 
 export const minutesOfDay = (date: Date): number => {

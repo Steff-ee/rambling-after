@@ -41,7 +41,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 										value={{ isNavBarOpen, setIsNavBarOpen }}
 									>
 										<link
-											href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Comfortaa|Muli|Montserrat&display=swap"
+											href="https://fonts.googleapis.com/css?family=Cabin+Sketch|Source+Code+Pro|Muli|Montserrat&display=swap"
 											rel="stylesheet"
 										/>
 										<link

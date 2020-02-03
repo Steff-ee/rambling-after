@@ -51,11 +51,11 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			>
 				<div>dsteffee@alumni.stanford.edu</div>
 				{dividerStar}
-				<div>(352) 672-4266</div>
-				{dividerStar}
 				<div>Issaquah, WA</div>
 				{dividerStar}
 				<div>steff-ee.github.io</div>
+				{dividerStar}
+				<div>linkedin.com/in/steff-ee</div>
 			</div>
 			<Divider thickness={2} rootStyle={{ padding: '12px' }} />
 			<div style={subscriptStyle}>

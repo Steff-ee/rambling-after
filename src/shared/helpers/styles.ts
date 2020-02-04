@@ -8,6 +8,14 @@ export const defaultTextStyle: React.CSSProperties = {
 export const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '36px',
+	lineHeight: '44px',
+	paddingBottom: '32px',
+}
+
+export const titleTextStyleSlim: React.CSSProperties = {
+	fontFamily: 'Montserrat',
+	fontSize: '31px',
+	lineHeight: '36px',
 	paddingBottom: '32px',
 }
 

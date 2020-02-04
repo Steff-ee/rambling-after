@@ -5,6 +5,13 @@ export const defaultTextStyle: React.CSSProperties = {
 	textAlign: 'center',
 }
 
+export const defaultTextStyleSlim: React.CSSProperties = {
+	fontFamily: 'Muli, Lato, sans-serif',
+	fontSize: '17px',
+	lineHeight: '24px',
+	textAlign: 'center',
+}
+
 export const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '36px',

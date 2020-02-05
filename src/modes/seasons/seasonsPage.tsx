@@ -3,12 +3,12 @@ import { IconLayout } from '../../components/iconNav/iconNav.types'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { Colors } from '../../shared/helpers/constants'
 import {
-	defaultTextStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
 	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { CircadianMood, getCircadianMood } from '../../shared/helpers/time'
+import { useDefaultTextStyle } from '../../shared/helpers/useStyles'
 import { Fireflies } from '../../shared/presentational/components/fireflies'
 import { BackgroundsContext } from '../../shared/presentational/hooks/useBackgrounds'
 import { ColorsContext } from '../../shared/presentational/hooks/useColors'
@@ -76,6 +76,7 @@ export const SeasonsPage: React.FunctionComponent<IPageProps> = (
 	const { primary, secondary, accent } = useContext(ColorsContext)
 	const { backgrounds, selectedIndex } = useContext(BackgroundsContext)
 	const mediaSize = useContext(MediaContext)
+	const defaultTextStyle = useDefaultTextStyle()
 	const background = backgrounds[selectedIndex]
 
 	const mood = getCircadianMood()

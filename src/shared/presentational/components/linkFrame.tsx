@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { lightTextStyle } from '../../helpers/styles'
+import { useLightTextStyle } from '../../helpers/useStyles'
 
 export interface ILinkFrameProps {
 	title: JSX.Element | string
@@ -15,6 +15,7 @@ export const LinkFrame: React.FunctionComponent<ILinkFrameProps> = (
 ): JSX.Element => {
 	const { title, description, link, rightShadow } = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
+	const lightTextStyle = useLightTextStyle()
 
 	let horizontalShadow = '24px'
 	if (rightShadow) {

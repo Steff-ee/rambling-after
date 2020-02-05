@@ -5,14 +5,13 @@ import { PivotItem } from '../../components/pivots/pivotItem'
 import { Pivots } from '../../components/pivots/pivots'
 import { Colors } from '../../shared/helpers/constants'
 import {
-	defaultTextStyle as defaultTextStyleLarge,
-	defaultTextStyleSlim,
 	entirePageStyle,
 	parallaxGroupStyle,
 	parallaxRootStyle,
 	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
+import { useDefaultTextStyle } from '../../shared/helpers/useStyles'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
@@ -236,6 +235,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		showPostsNav,
 	} = props
 	const mediaSize = useContext(MediaContext)
+	const defaultTextStyle = useDefaultTextStyle()
 	let [arePivotsSticky, setArePivotsSticky] = useState<boolean>(false)
 	const contentPositionRef = useRef(null)
 	const pivotsPositionRef = useRef(null)
@@ -260,7 +260,6 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	let titleElement: JSX.Element
 	let scrollRefStyle: React.CSSProperties
 	let navBarStyle: React.CSSProperties
-	let defaultTextStyle: React.CSSProperties
 	if (mediaSize === MediaSize.Small) {
 		titleElement = <MobileTitle />
 		scrollRefStyle = {
@@ -270,7 +269,6 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		}
 		pivots = <div style={{ height: '96px' }} ref={pivotsPositionRef} />
 		navBarStyle = navBarStyleMobile
-		defaultTextStyle = defaultTextStyleSlim
 	} else {
 		pivots = (
 			<ParallaxPivots
@@ -290,7 +288,6 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		)
 		scrollRefStyle = parallaxRootStyle
 		navBarStyle = navBarStyleBigScreen
-		defaultTextStyle = defaultTextStyleLarge
 	}
 
 	const classicNav = (

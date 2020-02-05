@@ -2,7 +2,8 @@ import profileImg from 'Assets/images/me.jpg'
 import React, { useContext } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
-import { lightTextStyle, subscriptStyle, titleTextStyle } from '../../shared/helpers/styles'
+import { subscriptStyle, titleTextStyle } from '../../shared/helpers/styles'
+import { useLightTextStyle } from '../../shared/helpers/useStyles'
 
 const Attributions: React.FunctionComponent = (): JSX.Element => {
 	return (
@@ -35,6 +36,7 @@ const aboutImageStyleBigScreen: React.CSSProperties = {
 
 export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 	const mediaSize = useContext(MediaContext)
+	const lightTextStyle = useLightTextStyle()
 
 	let aboutImageStyle: React.CSSProperties
 	if (mediaSize === MediaSize.Small) {

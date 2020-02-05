@@ -2,16 +2,14 @@ import React from 'react'
 import { Divider } from '../../../components/content/divider'
 import { HomePivots } from '../../../pages/home/home.types'
 import { PageRoutes } from '../../helpers/routes'
-import { lightTextStyle, listStyle } from '../../helpers/styles'
+import { useLightTextStyle, useListStyle } from '../../helpers/useStyles'
 import { IPost } from '../post.types'
 
-export const POST_00114: IPost = {
-	id: 114,
-	title: 'Reflections - 01/18/2020',
-	createdTime: 1579403782000,
-	route: PageRoutes.Home,
-	pivot: HomePivots.Posts,
-	content: (
+const PostContent: React.FunctionComponent = (): JSX.Element => {
+	const lightTextStyle = useLightTextStyle()
+	const listStyle = useListStyle()
+
+	return (
 		<>
 			<p>
 				Welcome to the new site! I had fun building it. I'd originally envisioned a blog
@@ -199,5 +197,14 @@ export const POST_00114: IPost = {
 				<div>in a fate altogether, arbitrarily bound.</div>
 			</div>
 		</>
-	),
+	)
+}
+
+export const POST_00114: IPost = {
+	id: 114,
+	title: 'Reflections - 01/18/2020',
+	createdTime: 1579403782000,
+	route: PageRoutes.Home,
+	pivot: HomePivots.Posts,
+	content: <PostContent />,
 }

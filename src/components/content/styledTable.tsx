@@ -1,10 +1,13 @@
 import React from 'react'
 import { Table } from 'semantic-ui-react'
-import { bottomContentMargin, lightTextStyle } from '../../shared/helpers/styles'
+import { bottomContentMargin } from '../../shared/helpers/styles'
+import { useLightTextStyle } from '../../shared/helpers/useStyles'
 
 export const StyledTable: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
+	const lightTextStyle = useLightTextStyle()
+
 	return (
 		<div
 			style={{

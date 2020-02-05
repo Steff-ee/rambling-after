@@ -1,17 +1,3 @@
-export const defaultTextStyle: React.CSSProperties = {
-	fontFamily: 'Muli, Lato, sans-serif',
-	fontSize: '19px',
-	lineHeight: '32px',
-	textAlign: 'center',
-}
-
-export const defaultTextStyleSlim: React.CSSProperties = {
-	fontFamily: 'Muli, Lato, sans-serif',
-	fontSize: '17px',
-	lineHeight: '24px',
-	textAlign: 'center',
-}
-
 export const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '36px',
@@ -24,12 +10,6 @@ export const titleTextStyleSlim: React.CSSProperties = {
 	fontSize: '31px',
 	lineHeight: '36px',
 	paddingBottom: '32px',
-}
-
-export const lightTextStyle: React.CSSProperties = {
-	fontFamily: 'Montserrat',
-	fontSize: '18px',
-	lineHeight: '28px',
 }
 
 export const subscriptStyle: React.CSSProperties = {
@@ -64,11 +44,6 @@ export const parallaxRootStyle: React.CSSProperties = {
 export const parallaxGroupStyle: React.CSSProperties = {
 	position: 'relative',
 	transformStyle: 'preserve-3d',
-}
-
-export const listStyle: React.CSSProperties = {
-	...lightTextStyle,
-	margin: '16px 5% 32px 5%',
 }
 
 export const smallestDeviceWidth = '320px'

@@ -1,7 +1,10 @@
 import React from 'react'
-import { listStyle, titleTextStyle } from '../../shared/helpers/styles'
+import { titleTextStyle } from '../../shared/helpers/styles'
+import { useListStyle } from '../../shared/helpers/useStyles'
 
 export const Penultima: React.FunctionComponent = (): JSX.Element => {
+	const listStyle = useListStyle()
+
 	return (
 		<div>
 			<div style={titleTextStyle}>Penultima</div>

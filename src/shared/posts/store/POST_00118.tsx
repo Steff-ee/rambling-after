@@ -47,7 +47,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				I reserved five star ratings for the best of the best, and distributed my ratings
 				somewhat like this:
 			</p>
-			<StyledTable>
+			<StyledTable unstackable={true}>
 				<Table.Body>
 					<Table.Row>
 						<Table.Cell>1</Table.Cell>
@@ -89,7 +89,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				upgraded a bunch of my other ratings as well. Now my distribution looks more like
 				this:
 			</p>
-			<StyledTable>
+			<StyledTable unstackable={true}>
 				<Table.Body>
 					<Table.Row>
 						<Table.Cell>1</Table.Cell>
@@ -153,9 +153,9 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 					<div style={{ marginLeft: '160px' }}>abruptly (like most things).</div>
 					<div>I would dip but even alone I'm shy.</div>
 					<div>None here'd notice me</div>
-					<div style={{ marginLeft: '224px' }}>trip,</div>
-					<div style={{ marginLeft: '256px' }}>slip in,</div>
-					<div style={{ marginLeft: '288px' }}>and drown.</div>
+					<div style={{ marginLeft: '160px' }}>trip,</div>
+					<div style={{ marginLeft: '192px' }}>slip in,</div>
+					<div style={{ marginLeft: '224px' }}>and drown.</div>
 					<div>Did you know: Ten thousand sand grains would stack</div>
 					<div style={{ marginLeft: '32px' }}>as tall as Chicago's Water Tower?</div>
 					<div>Ten thousand such Towers, if stacked would crash</div>
@@ -163,7 +163,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 						slowly, as North-long as Lake Michigan.
 					</div>
 					<div>Ten thousand such lakes would die in a</div>
-					<div style={{ marginLeft: '368px' }}>flash</div>
+					<div style={{ marginLeft: '224px' }}>flash</div>
 					<div style={{ marginLeft: '32px' }}>into vapor the sun's radius long.</div>
 					<div>Ten thousand such suns in any would have</div>
 					<div style={{ marginLeft: '32px' }}>still only</div>

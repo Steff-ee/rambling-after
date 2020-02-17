@@ -1,11 +1,14 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
+import { Table, TableProps } from 'semantic-ui-react'
 import { bottomContentMargin } from '../../shared/helpers/styles'
 import { useLightTextStyle } from '../../shared/helpers/useStyles'
 
-export const StyledTable: React.FunctionComponent<React.PropsWithChildren<{}>> = (
-	props: React.PropsWithChildren<{}>
+export type IStyledTableProps = React.PropsWithChildren<Partial<TableProps>>
+
+export const StyledTable: React.FunctionComponent<IStyledTableProps> = (
+	props: IStyledTableProps
 ): JSX.Element => {
+	const { children, ...tableProps } = props
 	const lightTextStyle = useLightTextStyle()
 
 	return (
@@ -17,8 +20,14 @@ export const StyledTable: React.FunctionComponent<React.PropsWithChildren<{}>> =
 				marginBottom: bottomContentMargin,
 			}}
 		>
-			<Table collapsing={true} celled={true} inverted={true} textAlign={'center'}>
-				{props.children}
+			<Table
+				collapsing={true}
+				celled={true}
+				inverted={true}
+				textAlign={'center'}
+				{...tableProps}
+			>
+				{children}
 			</Table>
 		</div>
 	)

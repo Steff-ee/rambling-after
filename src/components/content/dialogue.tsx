@@ -3,7 +3,7 @@ import { bottomContentMargin } from '../../shared/helpers/styles'
 import { useLightTextStyle } from '../../shared/helpers/useStyles'
 
 export interface IDialogueLine {
-	by: string | JSX.Element
+	by?: string | JSX.Element
 	says: string | JSX.Element
 }
 
@@ -30,7 +30,7 @@ export const Dialogue: React.FunctionComponent<IDialogueProps> = (
 				(line: IDialogueLine, index: number): JSX.Element => {
 					return (
 						<div key={`line-${index}`} style={{ padding: '13px' }}>
-							<div>{line.by}</div>
+							{line.by && <div>{line.by}</div>}
 							<div>{line.says}</div>
 						</div>
 					)

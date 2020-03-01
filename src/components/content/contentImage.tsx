@@ -3,7 +3,7 @@ import { FadeLoadImage } from '../fadeLoadImage'
 
 export interface IContentLoadImageProps {
 	src: string
-	caption?: string
+	caption?: string | JSX.Element
 	style?: React.CSSProperties
 }
 

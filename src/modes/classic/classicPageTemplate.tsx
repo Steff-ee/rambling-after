@@ -145,7 +145,8 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 
 	const pivotRootStyle = {
 		fontFamily: 'Source Code Pro',
-		fontSize: '22px',
+		fontSize: '23px',
+		letterSpacing: '1px',
 		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
 		justifyContent: 'center',
 	}

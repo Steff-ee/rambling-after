@@ -1,6 +1,6 @@
 export const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Raleway',
-	fontSize: '36px',
+	fontSize: '32px',
 	lineHeight: '44px',
 	paddingBottom: '32px',
 }

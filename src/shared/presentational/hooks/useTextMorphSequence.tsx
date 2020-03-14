@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useTextMorph } from './useTextMorph'
 
 export type ITextSequence = Array<{
@@ -16,9 +16,10 @@ export type ITextSequence = Array<{
  * @skip if true, this hook will do nothing except return the first texts in the sequence
  */
 export const useTextMorphSequence = (textSequence: ITextSequence, skip = false): JSX.Element => {
+	const isMounted = useRef<boolean>(true)
 	const [isHovering, setIsHovering] = useState<boolean>(false)
-	const [wasHovering, setWasHovering] = useState<boolean>(false)
-	const [currentIndex, setCurrentIndex] = useState<number>(0)
+	const [wasHovering, _setWasHovering] = useState<boolean>(false)
+	const [currentIndex, _setCurrentIndex] = useState<number>(0)
 	const hasBeenHovering = isHovering && wasHovering
 	const isMorphing = hasBeenHovering || currentIndex > 0
 	const nextText = isMorphing ? textSequence[currentIndex + 1] : textSequence[currentIndex]
@@ -28,6 +29,26 @@ export const useTextMorphSequence = (textSequence: ITextSequence, skip = false):
 		false,
 		skip
 	)
+
+	// won't trigger state updates after mount
+	const setWasHovering = (value: boolean): void => {
+		if (isMounted.current) {
+			_setWasHovering(value)
+		}
+	}
+
+	// won't trigger state updates after mount
+	const setCurrentIndex = (value: number): void => {
+		if (isMounted.current) {
+			_setCurrentIndex(value)
+		}
+	}
+
+	useEffect(() => {
+		return (): void => {
+			isMounted.current = false
+		}
+	}, [])
 
 	useEffect(() => {
 		if (!skip && !isHovering) {

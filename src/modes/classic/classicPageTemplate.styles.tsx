@@ -1,9 +1,15 @@
 import backgroundTextureImg from 'Assets/images/background_texture.png'
 import { classicColors } from './classicConstants'
 
-export const commonTitleStyle: React.CSSProperties = {
+export const grandTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
 	fontFamily: 'Montserrat',
+	color: classicColors.primary,
+}
+
+export const commonTitleStyle: React.CSSProperties = {
+	fontWeight: 600,
+	fontFamily: 'Raleway',
 	color: classicColors.primary,
 }
 

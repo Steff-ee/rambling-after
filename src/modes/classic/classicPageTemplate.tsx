@@ -17,8 +17,8 @@ import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
 import {
 	backgroundStyle,
-	commonTitleStyle,
 	contentWrapperStyle,
+	grandTitleStyle,
 	navBarStyleBigScreen,
 	navBarStyleMobile,
 	pivotItemStyleBigScreen,
@@ -122,7 +122,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 			>
 				<div
 					style={{
-						...commonTitleStyle,
+						...grandTitleStyle,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
 						letterSpacing: titleLetterSpacing,
@@ -204,7 +204,7 @@ const MobileTitle: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div
 			style={{
-				...commonTitleStyle,
+				...grandTitleStyle,
 				fontSize: '26px',
 				letterSpacing: '6px',
 				padding: '68px 0px',

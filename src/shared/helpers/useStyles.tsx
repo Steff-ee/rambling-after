@@ -2,27 +2,27 @@ import { useContext } from 'react'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
 const defaultTextStyleLarge: React.CSSProperties = {
-	fontFamily: 'Muli, Lato, sans-serif',
-	fontSize: '19px',
-	lineHeight: '32px',
+	fontFamily: 'Open Sans, Lato, sans-serif',
+	fontSize: '20px',
+	lineHeight: '34px',
 	textAlign: 'center',
 }
 
 const defaultTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Muli, Lato, sans-serif',
+	fontFamily: 'Open Sans, Lato, sans-serif',
 	fontSize: '17px',
-	lineHeight: '24px',
+	lineHeight: '25px',
 	textAlign: 'center',
 }
 
 const lightTextStyleLarge: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Raleway',
 	fontSize: '18px',
 	lineHeight: '28px',
 }
 
 const lightTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Raleway',
 	fontSize: '16px',
 	lineHeight: '22px',
 }

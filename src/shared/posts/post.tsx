@@ -19,7 +19,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 	const label = route === PageRoutes.Home ? dateStr : `${dateStr} / ${capitalize(route)}`
 
 	return (
-		<div style={{ maxWidth: '972px' }}>
+		<div style={{ maxWidth: '768px' }}>
 			<div style={mediaSize === MediaSize.Small ? titleTextStyleSlim : titleTextStyle}>
 				{title}
 			</div>

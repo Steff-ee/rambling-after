@@ -40,7 +40,7 @@ export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
 	const indexChanging = delayedIndex !== currentLabelIndex
 	const label = labels[delayedIndex]
 	const isNavListLabelOpen = currentLabelIndex > -1
-	const textSpringDuration = 180
+	const textSpringDuration = 90
 
 	const [textSpring] = useSpring(() => ({
 		to: { opacity: 1 },

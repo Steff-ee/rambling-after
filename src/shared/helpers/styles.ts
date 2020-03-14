@@ -1,19 +1,19 @@
 export const titleTextStyle: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Raleway',
 	fontSize: '36px',
 	lineHeight: '44px',
 	paddingBottom: '32px',
 }
 
 export const titleTextStyleSlim: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Raleway',
 	fontSize: '31px',
 	lineHeight: '36px',
 	paddingBottom: '32px',
 }
 
 export const subscriptStyle: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Raleway',
 	fontSize: '14px',
 	lineHeight: '18px',
 }

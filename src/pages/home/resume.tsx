@@ -1,29 +1,30 @@
 import React, { useContext } from 'react'
 import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
-import { subscriptStyle } from '../../shared/helpers/styles'
 
 const pageWidth = 850
 const pageHeight = 1100
 
 const lightTextStyle: React.CSSProperties = {
-	fontFamily: 'Montserrat',
-	fontSize: '14px',
+	fontFamily: 'Open Sans',
+	fontSize: '15px',
 	lineHeight: '23px',
 }
 
 const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
-	fontSize: '36px',
+	fontWeight: 600,
+	fontSize: '34px',
 	lineHeight: '39px',
 	paddingBottom: '8px',
-	letterSpacing: '3px',
+	letterSpacing: '4px',
 }
 
 const subtitleTextStyle: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '21px',
 	letterSpacing: '1px',
+	fontWeight: 600,
 }
 
 const dividerStar = <div>✧</div>
@@ -40,7 +41,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 	return (
 		<div style={{ textAlign: 'center' }}>
 			<div style={titleTextStyle}>DANIEL STEFFEE</div>
-			<div style={subtitleTextStyle}>Software Engineer</div>
+			<div style={{ ...subtitleTextStyle, fontWeight: 400 }}>Software Engineer</div>
 			<div
 				style={{
 					paddingTop: '12px',
@@ -58,7 +59,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 				<div>linkedin.com/in/steff-ee</div>
 			</div>
 			<Divider thickness={2} rootStyle={{ padding: '12px' }} />
-			<div style={subscriptStyle}>
+			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
 				Adaptable Full Stack Web Developer with 10 years coding and 5 years' experience
 				delivering and prioritizing the highest impact changes for customers without
 				sacrificing code quality and reliability.
@@ -82,10 +83,11 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 		<div style={{ marginTop: '20px' }}>
 			<div
 				style={{
-					fontFamily: 'Montserrat',
+					...subtitleTextStyle,
 					fontSize: '23px',
 					textAlign: 'center',
 					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 10px 0px',
+					letterSpacing: '1px',
 				}}
 			>
 				{title}
@@ -105,7 +107,7 @@ const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
-	return <div style={{ marginTop: '6px', fontWeight: 600 }}>{props.children}</div>
+	return <div style={{ marginTop: '7px', fontWeight: 600 }}>{props.children}</div>
 }
 
 interface IExperienceSubSectionProps {
@@ -130,14 +132,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 					flexDirection: isMobile ? 'column' : 'row',
 				}}
 			>
-				<div
-					style={{
-						fontWeight: 600,
-						fontSize: '21px',
-					}}
-				>
-					{title}
-				</div>
+				<div style={subtitleTextStyle}>{title}</div>
 				<div style={{ margin: '0px 10px' }}>{timeRange}</div>
 			</div>
 			<div>{subtext}</div>

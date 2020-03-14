@@ -13,9 +13,9 @@ export const titleTextStyleSlim: React.CSSProperties = {
 }
 
 export const subscriptStyle: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Source Code Pro',
 	fontSize: '14px',
-	lineHeight: '18px',
+	lineHeight: '19px',
 }
 
 export const entirePageStyle: React.CSSProperties = {

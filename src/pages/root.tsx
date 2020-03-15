@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
 import { MediaProvider } from '../components/mediaProvider'
+import '../components/semantic.css'
 import { classicColors } from '../modes/classic/classicConstants'
 import { ClassicPageContainer } from '../modes/classic/classicPageContainer'
 import { Modes, ModesContext } from '../modes/modeSwitcher'
@@ -41,12 +42,8 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 										value={{ isNavBarOpen, setIsNavBarOpen }}
 									>
 										<link
-											href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro|Open+Sans|Raleway:400,600&display=swap"
+											href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro|Open+Sans|Raleway:300,400,600&display=swap"
 											rel="stylesheet"
-										/>
-										<link
-											rel="stylesheet"
-											href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
 										/>
 										<MediaProvider>
 											<HashRouter>

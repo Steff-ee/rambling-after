@@ -3,8 +3,8 @@ import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
 const defaultTextStyleLarge: React.CSSProperties = {
 	fontFamily: 'Open Sans, Lato, sans-serif',
-	fontSize: '20px',
-	lineHeight: '34px',
+	fontSize: '19px',
+	lineHeight: '32px',
 	textAlign: 'center',
 }
 
@@ -18,7 +18,7 @@ const defaultTextStyleSmall: React.CSSProperties = {
 const lightTextStyleLarge: React.CSSProperties = {
 	fontFamily: 'Raleway',
 	fontSize: '18px',
-	lineHeight: '28px',
+	lineHeight: '27px',
 }
 
 const lightTextStyleSmall: React.CSSProperties = {

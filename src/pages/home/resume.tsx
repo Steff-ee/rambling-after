@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
-const pageWidth = 850
+const pageWidth = 750 // with padding of 50, makes 8.5 x 11 ratio
 const pageHeight = 1100
 
 const lightTextStyle: React.CSSProperties = {

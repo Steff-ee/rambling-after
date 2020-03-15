@@ -70,7 +70,6 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 								...lightTextStyle,
 								textAlign: 'right',
 								marginBottom: '32px',
-								lineHeight: '24px',
 								flexGrow: 1,
 							}}
 						>

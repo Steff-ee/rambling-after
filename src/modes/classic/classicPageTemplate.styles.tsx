@@ -21,7 +21,7 @@ export const backgroundStyle: React.CSSProperties = {
 
 const pivotItemStyle: React.CSSProperties = {
 	height: '64px',
-	margin: '0 4%',
+	margin: '-2px 4%',
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',

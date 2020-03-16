@@ -58,7 +58,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 				{dividerStar}
 				<div>linkedin.com/in/steff-ee</div>
 			</div>
-			<Divider thickness={2} rootStyle={{ padding: '12px' }} />
+			<Divider thickness={2} rootStyle={{ padding: '10px' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
 				Adaptable Full Stack Web Developer with 10 years coding and 5 years' experience
 				delivering and prioritizing the highest impact changes for customers without
@@ -80,13 +80,13 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 	const { title, body, isMobile } = props
 
 	return (
-		<div style={{ marginTop: '20px' }}>
+		<div style={{ marginTop: '24px' }}>
 			<div
 				style={{
 					...subtitleTextStyle,
 					fontSize: '23px',
 					textAlign: 'center',
-					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 10px 0px',
+					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 11px 0px',
 					letterSpacing: '1px',
 				}}
 			>
@@ -101,13 +101,17 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
-	return <li style={{ margin: '0px 0px 0px 10px' }}>{props.children}</li>
+	return <li style={{ margin: '0px 0px 2px 11px' }}>{props.children}</li>
 }
 
 const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
-	return <div style={{ marginTop: '7px', fontWeight: 600 }}>{props.children}</div>
+	return (
+		<div style={{ marginTop: '8px', fontWeight: 600, lineHeight: '26px' }}>
+			{props.children}
+		</div>
+	)
 }
 
 interface IExperienceSubSectionProps {
@@ -124,12 +128,13 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 	const { title, timeRange, body, subtext, isMobile } = props
 
 	return (
-		<div style={{ marginBottom: '20px' }}>
+		<div style={{ marginBottom: '21px' }}>
 			<div
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
 					flexDirection: isMobile ? 'column' : 'row',
+					lineHeight: '27px',
 				}}
 			>
 				<div style={subtitleTextStyle}>{title}</div>
@@ -271,7 +276,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 				title={'SKILLS'}
 				isMobile={isMobile}
 				body={
-					<div style={{ marginLeft: '15px' }}>
+					<div style={{ padding: '4px 0px 0px 15px' }}>
 						<ListItem>
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
 							MySQL

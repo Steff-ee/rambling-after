@@ -2,8 +2,8 @@ import React, { useContext } from 'react'
 import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
-const pageWidth = 750 // with padding of 50, makes 8.5 x 11 ratio
-const pageHeight = 1100
+const pageWidth = '750px' // with padding of 50, makes 8.5 x 11 ratio
+const pageHeight = '1000px'
 
 const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Open Sans',
@@ -16,7 +16,7 @@ const titleTextStyle: React.CSSProperties = {
 	fontWeight: 600,
 	fontSize: '34px',
 	lineHeight: '39px',
-	paddingBottom: '8px',
+	paddingBottom: '2px',
 	letterSpacing: '4px',
 }
 
@@ -44,7 +44,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			<div style={{ ...subtitleTextStyle, fontWeight: 400 }}>Software Engineer</div>
 			<div
 				style={{
-					paddingTop: '12px',
+					paddingTop: '10px',
 					display: 'flex',
 					flexDirection: isMobile ? 'column' : 'row',
 					justifyContent: 'space-between',
@@ -58,7 +58,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 				{dividerStar}
 				<div>linkedin.com/in/steff-ee</div>
 			</div>
-			<Divider thickness={2} rootStyle={{ padding: '10px' }} />
+			<Divider thickness={2} rootStyle={{ width: '96%', padding: '8px 2% 8px 2%' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
 				Adaptable Full Stack Web Developer with 10 years coding and 5 years' experience
 				delivering and prioritizing the highest impact changes for customers without
@@ -72,21 +72,22 @@ interface IResumeSectionProps {
 	title: string
 	body: JSX.Element
 	isMobile: boolean
+	rootStyle?: React.CSSProperties
 }
 
 const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 	props: IResumeSectionProps
 ): JSX.Element => {
-	const { title, body, isMobile } = props
+	const { title, body, isMobile, rootStyle } = props
 
 	return (
-		<div style={{ marginTop: '24px' }}>
+		<div style={{ ...rootStyle, marginTop: '21px' }}>
 			<div
 				style={{
 					...subtitleTextStyle,
 					fontSize: '23px',
 					textAlign: 'center',
-					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 11px 0px',
+					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 2px 0px',
 					letterSpacing: '1px',
 				}}
 			>
@@ -108,7 +109,7 @@ const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
 	return (
-		<div style={{ marginTop: '8px', fontWeight: 600, lineHeight: '26px' }}>
+		<div style={{ marginTop: '8px', fontWeight: 600, lineHeight: '25px' }}>
 			{props.children}
 		</div>
 	)
@@ -128,22 +129,20 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 	const { title, timeRange, body, subtext, isMobile } = props
 
 	return (
-		<div style={{ marginBottom: '21px' }}>
+		<div style={{ marginBottom: '16px' }}>
 			<div
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
 					flexDirection: isMobile ? 'column' : 'row',
-					lineHeight: '27px',
+					lineHeight: '25px',
 				}}
 			>
 				<div style={subtitleTextStyle}>{title}</div>
-				<div style={{ margin: '0px 10px' }}>{timeRange}</div>
+				<div style={{ margin: '0px 6px' }}>{timeRange}</div>
 			</div>
-			<div>{subtext}</div>
-			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '10px 0px 0px 15px' }}>
-				{body}
-			</div>
+			{subtext && <div>{subtext}</div>}
+			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '2px 0px 0px 15px' }}>{body}</div>
 		</div>
 	)
 }
@@ -275,8 +274,9 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 			<ResumeSection
 				title={'SKILLS'}
 				isMobile={isMobile}
+				rootStyle={{ marginTop: '14px' }}
 				body={
-					<div style={{ padding: '4px 0px 0px 15px' }}>
+					<div style={{ padding: '6px 0px 0px 15px' }}>
 						<ListItem>
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
 							MySQL

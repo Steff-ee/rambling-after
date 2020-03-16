@@ -16,7 +16,7 @@ export const commonTitleStyle: React.CSSProperties = {
 export const backgroundStyle: React.CSSProperties = {
 	backgroundImage: `url(${backgroundTextureImg})`,
 	backgroundRepeat: 'repeat',
-	backgroundPosition: 'right center',
+	backgroundPosition: 'right top',
 }
 
 const pivotItemStyle: React.CSSProperties = {

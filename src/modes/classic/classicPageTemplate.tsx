@@ -154,7 +154,7 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	return (
 		<div
 			style={{
-				margin: '64px 20%',
+				margin: '64px 20% 96px 20%',
 				position: arePivotsSticky ? 'sticky' : 'relative',
 				top: 0,
 				zIndex: arePivotsSticky ? 3 : 1,

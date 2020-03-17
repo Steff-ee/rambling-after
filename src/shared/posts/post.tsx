@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import React from 'react'
+import { Colors } from '../helpers/constants'
 import { PageRoutes } from '../helpers/routes'
 import { capitalize } from '../helpers/strings'
-import { titleTextStyle, titleTextStyleSlim } from '../helpers/styles'
 import { dateTimeFormatOptions } from '../helpers/time'
+import { useSubtitleTextStyle, useTitleTextStyle } from '../helpers/useStyles'
 import { IPost } from './post.types'
 
 export interface IPostProps {
@@ -12,29 +12,38 @@ export interface IPostProps {
 
 export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JSX.Element => {
 	const { post } = props
-	const { title, content, createdTime, route } = post
-	const mediaSize = useContext(MediaContext)
+	const { title, subtitle, content, createdTime, route } = post
+	const titleTextStyle = useTitleTextStyle()
+	const subtitleTextStyle = useSubtitleTextStyle()
 	const createdDate = new Date(createdTime)
 	const dateStr = createdDate.toLocaleDateString('en-US', dateTimeFormatOptions)
 	const label = route === PageRoutes.Home ? dateStr : `${dateStr} / ${capitalize(route)}`
 
 	return (
 		<div style={{ maxWidth: '736px' }}>
-			<div style={mediaSize === MediaSize.Small ? titleTextStyleSlim : titleTextStyle}>
-				{title}
-			</div>
+			<div style={titleTextStyle}>{title}</div>
+			{subtitle && (
+				<div
+					style={{
+						...subtitleTextStyle,
+						margin: '10px 0px',
+						color: Colors.FadedBlack,
+					}}
+				>
+					{subtitle}
+				</div>
+			)}
 			<div
 				style={{
 					fontFamily: 'Source Code Pro',
-					fontSize: '17px',
+					fontSize: '16px',
 					lineHeight: '22px',
-					padding: '0px 0px 32px 44px',
-					marginTop: '-12px',
+					color: Colors.FadedBlack,
 				}}
 			>
 				{label}
 			</div>
-			<div>{content}</div>
+			<div style={{ marginTop: '48px' }}>{content}</div>
 		</div>
 	)
 }

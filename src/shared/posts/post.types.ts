@@ -13,4 +13,5 @@ export interface IPost {
 	createdTime: number
 	route: PageRoutes
 	pivot: PivotRoutes
+	subtitle?: string
 }

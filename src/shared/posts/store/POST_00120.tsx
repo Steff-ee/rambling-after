@@ -8,6 +8,7 @@ import { IPost } from '../post.types'
 export const POST_00120: IPost = {
 	id: 120,
 	title: 'The Witcher, The Boys, & the Call to Adventure',
+	subtitle: `The Witcher's theme song is specious, but that's a part of its appeal.`,
 	createdTime: 1583044394000,
 	route: PageRoutes.Stories,
 	pivot: StoryPivots.Posts,

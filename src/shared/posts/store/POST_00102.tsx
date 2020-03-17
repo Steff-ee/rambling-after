@@ -7,6 +7,7 @@ import { IPost } from '../post.types'
 export const POST_00102: IPost = {
 	id: 102,
 	title: 'Which attributes best describe player characters?',
+	subtitle: `Esotera about RPG attributes and skills`,
 	createdTime: 1509019200000,
 	route: PageRoutes.Games,
 	pivot: GamePivots.Posts,

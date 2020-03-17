@@ -7,6 +7,7 @@ import { IPost } from '../post.types'
 export const POST_00100: IPost = {
 	id: 100,
 	title: 'What is Dungeons & Dragons?',
+	subtitle: `Role Playing, for D&D and its kin, is infinitely more expressive than other kinds of game-playing.`,
 	createdTime: 1508760000000,
 	route: PageRoutes.Games,
 	pivot: GamePivots.Posts,

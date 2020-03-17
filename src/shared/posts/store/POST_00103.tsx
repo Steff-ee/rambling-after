@@ -6,6 +6,7 @@ import { IPost } from '../post.types'
 export const POST_00103: IPost = {
 	id: 103,
 	title: 'The TimeLord',
+	subtitle: `A Doctor Who fanfiction`,
 	createdTime: 1510142400000,
 	route: PageRoutes.Stories,
 	pivot: StoryPivots.Stories,

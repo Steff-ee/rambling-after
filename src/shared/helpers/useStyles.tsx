@@ -27,6 +27,52 @@ const lightTextStyleSmall: React.CSSProperties = {
 	lineHeight: '22px',
 }
 
+const titleTextStyle: React.CSSProperties = {
+	fontFamily: 'Raleway',
+	fontSize: '35px',
+	lineHeight: '48px',
+	fontWeight: 600,
+}
+
+const titleTextStyleSmall: React.CSSProperties = {
+	fontFamily: 'Raleway',
+	fontSize: '31px',
+	lineHeight: '42px',
+	fontWeight: 600,
+}
+
+const subtitleTextStyle: React.CSSProperties = {
+	fontFamily: 'Raleway',
+	fontSize: '21px',
+	lineHeight: '35px',
+}
+
+const subtitleTextStyleSmall: React.CSSProperties = {
+	fontFamily: 'Raleway',
+	fontSize: '20px',
+	lineHeight: '30px',
+}
+
+export const useTitleTextStyle = (): React.CSSProperties => {
+	const mediaSize = useContext(MediaContext)
+
+	if (mediaSize === MediaSize.Small) {
+		return titleTextStyleSmall
+	}
+
+	return titleTextStyle
+}
+
+export const useSubtitleTextStyle = (): React.CSSProperties => {
+	const mediaSize = useContext(MediaContext)
+
+	if (mediaSize === MediaSize.Small) {
+		return subtitleTextStyleSmall
+	}
+
+	return subtitleTextStyle
+}
+
 export const useDefaultTextStyle = (): React.CSSProperties => {
 	const mediaSize = useContext(MediaContext)
 

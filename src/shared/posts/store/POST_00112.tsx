@@ -9,13 +9,13 @@ import { IPost } from '../post.types'
 export const POST_00112: IPost = {
 	id: 112,
 	title: 'The Thanos Avatar & The Sorcerer Supreme',
+	subtitle: `Cinema's greatest cliffhanger was never fully explained. This theory resolves the hanging questions.`,
 	createdTime: 1558267200000,
 	route: PageRoutes.Stories,
 	pivot: StoryPivots.Posts,
 	content: (
 		<>
-			<SpoilerWarning title={'Avengers: Infinity War & Endgame'} />
-			 
+			<SpoilerWarning title={'Avengers: Infinity War & Endgame'} /> 
 			<p>
 				Avengers: Infinity War left audiences with the greatest cliffhanger of cinematic
 				history, more shocking and far more interesting to speculate about than even any of

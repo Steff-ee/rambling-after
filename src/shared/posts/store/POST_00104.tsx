@@ -6,12 +6,12 @@ import { IPost } from '../post.types'
 export const POST_00104: IPost = {
 	id: 104,
 	title: 'The Atrium',
+	subtitle: `An original short fiction`,
 	createdTime: 1512043200000,
 	route: PageRoutes.Stories,
 	pivot: StoryPivots.Stories,
 	content: (
 		<>
-			<p>Not a fanfic this time, but an original piece. Hope you find it interesting:</p>
 			<p>I feel warm.</p>
 
 			<p>Warm and soft.</p>

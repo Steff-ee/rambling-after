@@ -42,7 +42,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 										value={{ isNavBarOpen, setIsNavBarOpen }}
 									>
 										<link
-											href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro|Open+Sans|Raleway:300,400,600&display=swap"
+											href="https://fonts.googleapis.com/css?family=Montserrat:400,600|Source+Code+Pro:300,400|Open+Sans|Raleway:300,400,600&display=swap"
 											rel="stylesheet"
 										/>
 										<MediaProvider>

@@ -1,14 +1,14 @@
 import React from 'react'
-import { titleTextStyle } from '../../shared/helpers/styles'
-import { useListStyle } from '../../shared/helpers/useStyles'
+import { useListStyle, useTitleTextStyle } from '../../shared/helpers/useStyles'
 
 export const Penultima: React.FunctionComponent = (): JSX.Element => {
+	const titleTextStyle = useTitleTextStyle()
 	const listStyle = useListStyle()
 
 	return (
 		<div>
 			<div style={titleTextStyle}>Penultima</div>
-			<div>
+			<div style={{ marginTop: '32px' }}>
 				<p>Enjoy Chess, but looking for a change?</p>
 				<p>
 					Yearning for a game that emphasizes <i>creativity</i> more than strategy?

@@ -6,6 +6,7 @@ import { IPost } from '../post.types'
 export const POST_00116: IPost = {
 	id: 116,
 	title: 'Free Will is Compatible with Determinism',
+	subtitle: `Not having free will is existentially terrifying. There's one kind of "fate", however, that's not.`,
 	createdTime: 1580664312000,
 	route: PageRoutes.Conjecture,
 	pivot: ConjecturePivots.Posts,

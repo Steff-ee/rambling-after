@@ -20,7 +20,7 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 			style={{
 				backgroundColor: transparentBackground,
 				marginBottom: bottomContentMargin,
-				padding: '6px 12px 6px 6px',
+				padding: '10px 20px 10px 10px',
 			}}
 		>
 			<div
@@ -29,7 +29,7 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 					fontSize: '27px',
 					lineHeight: '40px',
 					fontStyle: 'italic',
-					padding: '4px 28px 4px 14px',
+					padding: '20px 30px',
 					borderLeft: border,
 					borderBottom: border,
 				}}
@@ -39,7 +39,7 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 						return <div key={`line-${index}`}>{line}</div>
 					}
 				)}
-				<div style={{ textAlign: 'right', fontSize: '20px' }}>—{by}</div>
+				<div style={{ paddingTop: '12px', fontSize: '20px' }}>—{by}</div>
 			</div>
 		</div>
 	)

@@ -16,39 +16,39 @@ const defaultTextStyleSmall: React.CSSProperties = {
 }
 
 const lightTextStyleLarge: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	fontSize: '18px',
 	lineHeight: '27px',
 }
 
 const lightTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	fontSize: '16px',
 	lineHeight: '22px',
 }
 
 const titleTextStyle: React.CSSProperties = {
-	fontFamily: 'Raleway',
-	fontSize: '54px',
-	lineHeight: '76px',
+	fontFamily: 'Montserrat',
+	fontSize: '56px',
+	lineHeight: '78px',
 	fontWeight: 600,
 }
 
 const titleTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	fontSize: '31px',
 	lineHeight: '42px',
 	fontWeight: 600,
 }
 
 const subtitleTextStyle: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	fontSize: '24px',
 	lineHeight: '36px',
 }
 
 const subtitleTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	fontSize: '20px',
 	lineHeight: '30px',
 }

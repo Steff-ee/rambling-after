@@ -3,7 +3,6 @@ import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { PivotItem } from '../../components/pivots/pivotItem'
 import { Pivots } from '../../components/pivots/pivots'
-import { Colors } from '../../shared/helpers/constants'
 import {
 	entirePageStyle,
 	parallaxGroupStyle,
@@ -57,14 +56,12 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	const bannerHeight = 480
 
 	// large
-	let titleFontSize = '96px'
-	let titleLetterSpacing = '18px'
-	let titleLineHeight = '144px'
+	let titleFontSize = '124px'
+	let titleLineHeight = '160px'
 	// medium
 	if (mediaSize === MediaSize.Medium) {
-		titleFontSize = '72px'
-		titleLetterSpacing = '16px'
-		titleLineHeight = '96px'
+		titleFontSize = '100px'
+		titleLineHeight = '120px'
 	}
 	// (parallax title is not used for small)
 
@@ -125,8 +122,6 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 						...grandTitleStyle,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
-						letterSpacing: titleLetterSpacing,
-						filter: `drop-shadow(-1px 1px 8px ${Colors.MaroonMud})`,
 						cursor: 'pointer',
 						margin: '0 16px',
 					}}
@@ -149,7 +144,6 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 		letterSpacing: '1px',
 		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
 		justifyContent: 'center',
-		fontWeight: 500,
 	}
 
 	return (
@@ -206,9 +200,12 @@ const MobileTitle: React.FunctionComponent = (): JSX.Element => {
 	return (
 		<div
 			style={{
-				...grandTitleStyle,
-				fontSize: '26px',
-				letterSpacing: '6px',
+				fontWeight: 500,
+				fontFamily: 'Montserrat',
+				color: classicColors.primary,
+				fontSize: '36px',
+				lineHeight: '52px',
+				letterSpacing: '2px',
 				padding: '68px 0px',
 				backgroundColor: classicColors.secondary,
 				position: 'relative',

@@ -9,7 +9,7 @@ export const grandTitleStyle: React.CSSProperties = {
 
 export const commonTitleStyle: React.CSSProperties = {
 	fontWeight: 600,
-	fontFamily: 'Raleway',
+	fontFamily: 'Montserrat',
 	color: classicColors.primary,
 }
 
@@ -20,8 +20,8 @@ export const backgroundStyle: React.CSSProperties = {
 }
 
 const pivotItemStyle: React.CSSProperties = {
-	height: '64px',
-	margin: '-2px 4%',
+	height: '62px',
+	margin: '0px 4%',
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
@@ -34,7 +34,7 @@ export const pivotUnderlineStyle: React.CSSProperties = {
 
 export const pivotItemStyleBigScreen: React.CSSProperties = {
 	...pivotItemStyle,
-	width: '108px',
+	width: '100px',
 }
 
 export const pivotItemStyleMobile: React.CSSProperties = {

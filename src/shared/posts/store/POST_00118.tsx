@@ -178,6 +178,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 export const POST_00118: IPost = {
 	id: 118,
 	title: 'Reflections - 02/17/2020',
+	subtitle: `The act of rating books I've read has a pesky downside.`,
 	createdTime: 1581967124000,
 	route: PageRoutes.Home,
 	pivot: HomePivots.Posts,

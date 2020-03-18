@@ -50,8 +50,8 @@ export const POST_00120: IPost = {
 
 			<PullQuote
 				lines={[
-					'Will the elf king heed / what the witcher entreats?',
-					'Is history a wheel / doomed to repeat?',
+					`"Will the elf king heed / what the witcher entreats?`,
+					`Is history a wheel / doomed to repeat?"`,
 				]}
 				by={`Jaskier 'Dandelion' Pankratz`}
 			/>

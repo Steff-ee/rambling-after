@@ -13,33 +13,33 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 ): JSX.Element => {
 	const { lines, by } = props
 	const lightTextStyle = useLightTextStyle()
+	const border = `2px solid ${Colors.DarkGray}`
 
 	return (
 		<div
 			style={{
 				backgroundColor: transparentBackground,
 				marginBottom: bottomContentMargin,
-				padding: '6px 0px',
+				padding: '6px 12px 6px 6px',
 			}}
 		>
 			<div
 				style={{
 					...lightTextStyle,
+					fontSize: '27px',
+					lineHeight: '40px',
 					fontStyle: 'italic',
 					padding: '4px 28px 4px 14px',
-					borderLeft: `2px solid ${Colors.DarkGray}`,
+					borderLeft: border,
+					borderBottom: border,
 				}}
 			>
 				{lines.map(
 					(line, index: number): JSX.Element => {
-						return (
-							<div key={`line-${index}`} style={{}}>
-								{line}
-							</div>
-						)
+						return <div key={`line-${index}`}>{line}</div>
 					}
 				)}
-				<div style={{ textAlign: 'right' }}>—{by}</div>
+				<div style={{ textAlign: 'right', fontSize: '20px' }}>—{by}</div>
 			</div>
 		</div>
 	)

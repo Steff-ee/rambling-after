@@ -39,6 +39,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 					fontSize: '16px',
 					lineHeight: '22px',
 					color: Colors.FadedBlack,
+					fontWeight: 300,
 				}}
 			>
 				{label}

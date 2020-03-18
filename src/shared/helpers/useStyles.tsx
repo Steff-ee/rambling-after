@@ -29,8 +29,8 @@ const lightTextStyleSmall: React.CSSProperties = {
 
 const titleTextStyle: React.CSSProperties = {
 	fontFamily: 'Raleway',
-	fontSize: '35px',
-	lineHeight: '48px',
+	fontSize: '54px',
+	lineHeight: '76px',
 	fontWeight: 600,
 }
 
@@ -43,8 +43,8 @@ const titleTextStyleSmall: React.CSSProperties = {
 
 const subtitleTextStyle: React.CSSProperties = {
 	fontFamily: 'Raleway',
-	fontSize: '21px',
-	lineHeight: '35px',
+	fontSize: '24px',
+	lineHeight: '36px',
 }
 
 const subtitleTextStyleSmall: React.CSSProperties = {

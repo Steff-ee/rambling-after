@@ -7,7 +7,7 @@ import { IPost } from '../post.types'
 export const POST_00108: IPost = {
 	id: 108,
 	title: 'Writing code is like...',
-	subtitle: `Though mathematics is related to coding in numerous ways, coding is NOT math, and there exists a better metaphor to describe the skill it takes to code.`,
+	subtitle: `Mathematics is not the only lens through which to understand what coding is like.`,
 	createdTime: 1517054400000,
 	route: PageRoutes.Conjecture,
 	pivot: ConjecturePivots.Posts,

@@ -9,7 +9,7 @@ import { IPost } from '../post.types'
 export const POST_00110: IPost = {
 	id: 110,
 	title: 'Which is the best voting scheme?',
-	subtitle: `The best ways to vote (when there exist more than two candidates) are sometimes the opposite of what you'd intuit.`,
+	subtitle: `The best way to vote might be a voting scheme that's unintuitively restrictive.`,
 	createdTime: 1519905600000,
 	route: PageRoutes.Conjecture,
 	pivot: ConjecturePivots.Posts,

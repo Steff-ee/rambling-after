@@ -1,6 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
-import { Dialogue } from '../../../components/content/dialogue'
+import { PullQuote } from '../../../components/content/pullQuote'
 import { StoryPivots } from '../../../pages/stories/stories.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
@@ -48,13 +48,12 @@ export const POST_00120: IPost = {
 				events he and Geralt experienced in the episode, singing:
 			</p>
 
-			<Dialogue
+			<PullQuote
 				lines={[
-					{ says: 'Will the elf king heed' },
-					{ says: 'what the witcher entreats?' },
-					{ says: 'Is history a wheel' },
-					{ says: 'doomed to repeat?' },
+					'Will the elf king heed / what the witcher entreats?',
+					'Is history a wheel / doomed to repeat?',
 				]}
+				by={`Jaskier 'Dandelion' Pankratz`}
 			/>
 
 			<p>

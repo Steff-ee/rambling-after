@@ -15,7 +15,6 @@ export const StyledTable: React.FunctionComponent<IStyledTableProps> = (
 		<div
 			style={{
 				...lightTextStyle,
-				fontWeight: 300,
 				display: 'flex',
 				justifyContent: 'center',
 				marginBottom: bottomContentMargin,

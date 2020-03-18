@@ -1,5 +1,5 @@
 import React from 'react'
-import { bottomContentMargin } from '../../shared/helpers/styles'
+import { bottomContentMargin, transparentBackground } from '../../shared/helpers/styles'
 import { useLightTextStyle } from '../../shared/helpers/useStyles'
 
 export interface IDialogueLine {
@@ -22,7 +22,7 @@ export const Dialogue: React.FunctionComponent<IDialogueProps> = (
 			style={{
 				...lightTextStyle,
 				textAlign: 'center',
-				backgroundColor: 'rgb(255, 255, 255, 0.25)',
+				backgroundColor: transparentBackground,
 				marginBottom: bottomContentMargin,
 			}}
 		>
@@ -30,7 +30,7 @@ export const Dialogue: React.FunctionComponent<IDialogueProps> = (
 				(line: IDialogueLine, index: number): JSX.Element => {
 					return (
 						<div key={`line-${index}`} style={{ padding: '13px' }}>
-							{line.by && <div>{line.by}</div>}
+							{line.by && <div style={{ fontFamily: 'Montserrat' }}>{line.by}</div>}
 							<div>{line.says}</div>
 						</div>
 					)

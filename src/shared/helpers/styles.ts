@@ -36,3 +36,5 @@ export const parallaxGroupStyle: React.CSSProperties = {
 export const smallestDeviceWidth = '320px'
 
 export const bottomContentMargin = '34px'
+
+export const transparentBackground = 'rgb(255, 255, 255, 0.24)'

@@ -16,13 +16,13 @@ const defaultTextStyleSmall: React.CSSProperties = {
 }
 
 const lightTextStyleLarge: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Open Sans',
 	fontSize: '18px',
 	lineHeight: '27px',
 }
 
 const lightTextStyleSmall: React.CSSProperties = {
-	fontFamily: 'Montserrat',
+	fontFamily: 'Open Sans',
 	fontSize: '16px',
 	lineHeight: '22px',
 }

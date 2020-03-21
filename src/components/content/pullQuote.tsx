@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Colors } from '../../shared/helpers/constants'
 import { bottomContentMargin, transparentBackground } from '../../shared/helpers/styles'
-import { useLightTextStyle } from '../../shared/helpers/useStyles'
+import { MediaContext, MediaSize } from '../mediaProvider'
 
 export interface IPullQuoteProps {
 	by: string | JSX.Element
 	lines: Array<string | JSX.Element>
 }
 
+const pullQuoteTextStyleLarge: React.CSSProperties = {
+	fontFamily: 'Open Sans',
+	fontStyle: 'italic',
+	fontSize: '27px',
+	lineHeight: '40px',
+}
+
+const pullQuoteTextStyleSmall: React.CSSProperties = {
+	fontFamily: 'Open Sans',
+	fontStyle: 'italic',
+	fontSize: '20px',
+	lineHeight: '30px',
+}
+
 export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 	props: IPullQuoteProps
 ): JSX.Element => {
 	const { lines, by } = props
-	const lightTextStyle = useLightTextStyle()
+	const mediaSize = useContext(MediaContext)
+	const textStyle =
+		mediaSize === MediaSize.Small ? pullQuoteTextStyleSmall : pullQuoteTextStyleLarge
+	const attributionFontSize = mediaSize === MediaSize.Small ? '17px' : '20px'
 	const border = `2px solid ${Colors.DarkGray}`
 
 	return (
@@ -25,10 +42,7 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 		>
 			<div
 				style={{
-					...lightTextStyle,
-					fontSize: '27px',
-					lineHeight: '40px',
-					fontStyle: 'italic',
+					...textStyle,
 					padding: '20px 30px',
 					borderLeft: border,
 					borderBottom: border,
@@ -39,7 +53,7 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 						return <div key={`line-${index}`}>{line}</div>
 					}
 				)}
-				<div style={{ paddingTop: '12px', fontSize: '20px' }}>—{by}</div>
+				<div style={{ paddingTop: '12px', fontSize: attributionFontSize }}>—{by}</div>
 			</div>
 		</div>
 	)

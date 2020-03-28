@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import { useColors } from '../../shared/presentational/hooks/useColors'
 import { MediaContext, MediaSize } from '../mediaProvider'
 import { IHorizontalIconNavProps, INavItem, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
@@ -22,7 +22,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		selectedId,
 	} = props
 	const [hoverIndex, setHoverIndex] = useState<number>(-1)
-	const { primary, secondary } = useContext(ColorsContext)
+	const { primary, border } = useColors()
 	const mediaSize = useContext(MediaContext)
 
 	const onMouseLeave = (index: number): void => {
@@ -73,7 +73,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 				width={labelWidth}
 				orientation={orientation}
 				rootStyle={{
-					backgroundColor: secondary,
+					backgroundColor: border,
 					color: primary,
 					marginTop: iconHeight,
 					position: 'absolute',

@@ -4,7 +4,6 @@ import { HorizontalIconNav } from '../../components/iconNav/horizontalIconNav'
 import { NavOrientation } from '../../components/iconNav/iconNav.types'
 import { getPrimaryRoute } from '../../shared/helpers/routes'
 import { useNavigationLinks } from '../../shared/presentational/components/navBarCommands'
-import { classicColors } from './classicConstants'
 
 export interface IClassicPageNavProps {
 	orientation: NavOrientation
@@ -15,7 +14,7 @@ export const ClassicPageNav: React.FunctionComponent<IClassicPageNavProps> = (
 ): JSX.Element => {
 	const { orientation } = props
 	const location = useLocation()
-	const links = useNavigationLinks(classicColors.primary)
+	const links = useNavigationLinks()
 
 	return (
 		<HorizontalIconNav

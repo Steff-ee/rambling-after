@@ -1,4 +1,3 @@
-import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import {
 	faAngleDoubleLeft,
 	faAngleDoubleRight,
@@ -8,13 +7,14 @@ import {
 	faFeatherAlt,
 	faGlobeAmericas,
 	faPoll,
-	faToggleOff,
-	faToggleOn,
+	faSyncAlt,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { INavItem } from '../../../components/iconNav/iconNav.types'
-import { Modes, ModesContext } from '../../../modes/modeSwitcher'
+import { MediaContext, MediaSize } from '../../../components/mediaProvider'
+import { SeasonsContext } from '../../../modes/seasons/seasons'
+import { Seasons } from '../../../modes/seasons/seasonsHelpers'
 import { conjectureTitle } from '../../../pages/conjectures/conjectures.types'
 import { gamesTitle } from '../../../pages/games/games.types'
 import { homeTitle } from '../../../pages/home/home.types'
@@ -27,20 +27,40 @@ import {
 } from '../../helpers/navigation'
 import { PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
 import { OpenPostsContext } from '../../posts/openPosts'
+import { useColors } from '../hooks/useColors'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
-export const useNavigationLinks = (color: string): INavItem[] => {
+const getNextSeason = (season: Seasons): Seasons => {
+	switch (season) {
+		case Seasons.None:
+			return Seasons.Winter
+		case Seasons.Winter:
+			return Seasons.Spring
+		case Seasons.Spring:
+			return Seasons.Summer
+		case Seasons.Summer:
+			return Seasons.Autumn
+		case Seasons.Autumn:
+		default:
+			return Seasons.None
+	}
+}
+
+export const useNavigationLinks = (): INavItem[] => {
 	const { prevPivots } = useContext(RouteContext)
 	const { getLastOpenPost } = useContext(OpenPostsContext)
-	const commonProps = { ...commonIconProps, style: { color } }
+	const { season, setSeason } = useContext(SeasonsContext)
+	const { primary } = useColors()
+	const mediaSize = useContext(MediaContext)
+	const commonProps = { ...commonIconProps, style: { color: primary } }
 
 	const homePath = getHomePath(getLastOpenPost, prevPivots)
 	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)
 	const gamesPath = getGamesPath(getLastOpenPost, prevPivots)
 	const conjecturePath = getConjecturePath(getLastOpenPost, prevPivots)
 
-	return [
+	const navLinks: INavItem[] = [
 		{
 			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
 			id: PageRoutes.Home,
@@ -66,27 +86,17 @@ export const useNavigationLinks = (color: string): INavItem[] => {
 			onClick: (): void => redirectTo(conjecturePath),
 		},
 	]
-}
 
-export const useChangeModeCommand = (color: string): INavItem => {
-	const { mode, setMode } = useContext(ModesContext)
-
-	let icon: IconProp
-	let label: string
-	if (mode === Modes.Classic) {
-		icon = faToggleOff
-		label = 'seasons mode'
-	} else {
-		icon = faToggleOn
-		label = 'classic mode'
+	if (mediaSize === MediaSize.Large) {
+		navLinks.push({
+			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonProps} />,
+			id: undefined,
+			label: 'Change theme',
+			onClick: (): void => setSeason(getNextSeason(season)),
+		})
 	}
 
-	return {
-		icon: <FontAwesomeIcon icon={icon} {...commonIconProps} style={{ color }} />,
-		id: 'ModeToggleCommand',
-		label,
-		onClick: (): void => setMode(mode === Modes.Classic ? Modes.Seasons : Modes.Classic),
-	}
+	return navLinks
 }
 
 export const useBackCommand = (color: string, onClick?: () => void): INavItem => {

@@ -33,6 +33,47 @@ export const parallaxGroupStyle: React.CSSProperties = {
 	transformStyle: 'preserve-3d',
 }
 
+export const contentWrapperStyle: React.CSSProperties = {
+	margin: 'auto',
+	padding: '0 5% 5% 5%',
+	textAlign: 'left',
+	display: 'flex',
+	justifyContent: 'center',
+}
+
+export const grandTitleStyle: React.CSSProperties = {
+	fontWeight: 600,
+	fontFamily: 'Montserrat',
+}
+
+const navBarStyle = {
+	width: '100%',
+	height: '64px',
+	display: 'flex',
+	top: 0,
+	zIndex: 2,
+}
+
+export const navBarStyleMobile: React.CSSProperties = {
+	...navBarStyle,
+	position: 'fixed',
+}
+
+export const navBarStyleBigScreen: React.CSSProperties = {
+	...navBarStyle,
+	position: 'sticky',
+	marginTop: '-1px',
+}
+
+export const pivotItemStyle: React.CSSProperties = {
+	height: '62px',
+	margin: '0px 4%',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	whiteSpace: 'nowrap',
+}
+
 export const smallestDeviceWidth = '320px'
 
 export const bottomContentMargin = '34px'

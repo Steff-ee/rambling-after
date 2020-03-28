@@ -2,7 +2,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { Colors } from '../../shared/helpers/constants'
-import { ColorsContext } from '../../shared/presentational/hooks/useColors'
+import { HuesContext } from '../../shared/presentational/hooks/useHues'
 import { INavItem, IVerticalIconNavProps, LabelPosition, NavOrientation } from './iconNav.types'
 import { NavItem } from './navItem'
 
@@ -27,7 +27,7 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 		selectedId,
 		orientation,
 	} = props
-	const { accent } = useContext(ColorsContext)
+	const { accent } = useContext(HuesContext)
 
 	const style: React.CSSProperties = {
 		backgroundColor: accent,

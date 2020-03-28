@@ -1,10 +1,10 @@
 import foggyTown from 'Assets/images/foggy_town.jpg'
 import React from 'react'
-import { Page } from './page'
+import { ClassicPageTemplate } from '../modes/classic/classicPageTemplate'
 
 export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<Page
+		<ClassicPageTemplate
 			Content={
 				<div style={{ margin: 'auto', width: '384px' }}>
 					<p>Though your page could not be found</p>
@@ -14,7 +14,6 @@ export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 				</div>
 			}
 			headerBackgroundImage={foggyTown}
-			titleText={''}
 			selectedPivotTitle={''}
 			setPivot={(): void => {
 				return

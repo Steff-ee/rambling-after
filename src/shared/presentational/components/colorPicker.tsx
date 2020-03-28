@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ColorsContext } from '../hooks/useColors'
+import { HuesContext } from '../hooks/useHues'
 
 export const ColorPicker: React.FunctionComponent = (): JSX.Element => {
 	const {
@@ -9,7 +9,7 @@ export const ColorPicker: React.FunctionComponent = (): JSX.Element => {
 		setSecondHueDistance,
 		thirdHueDistance,
 		setThirdHueDistance,
-	} = useContext(ColorsContext)
+	} = useContext(HuesContext)
 
 	// (TODO) add a color wheel
 

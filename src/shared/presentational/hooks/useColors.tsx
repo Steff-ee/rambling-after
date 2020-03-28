@@ -1,74 +1,73 @@
-import Color from 'color-js'
-import React, { useState } from 'react'
+import React, { createContext, PropsWithChildren, useContext } from 'react'
+import { SeasonsContext } from '../../../modes/seasons/seasons'
+import { Seasons } from '../../../modes/seasons/seasonsHelpers'
 import { Colors } from '../../helpers/constants'
+import { IColors } from './useColors.types'
 
-interface IColors {
-	primary: string
-	/* All colors other than primary are derived from the primary and the hue distances */
-	secondary: string
-	accent: string
+const classicColors: IColors = {
+	primary: Colors.LightSand,
+	border: 'black',
+	text: 'black',
+	subtitle: Colors.FadedBlack,
 }
 
-export interface IColorsContext extends IColors {
-	secondHueDistance: number
-	thirdHueDistance: number
-	setPrimary: (primary: string) => void
-	setSecondHueDistance: (distance: number) => void
-	setThirdHueDistance: (distance: number) => void
+const winterColors: IColors = {
+	primary: Colors.SeaFoam,
+	border: 'black',
+	text: 'white',
+	subtitle: Colors.DarkGray,
 }
 
-const deriveColors = (
-	primary: string,
-	secondHueDistance: number,
-	thirdHueDistance: number
-): IColors => {
-	const scheme = Color(primary).schemeFromDegrees([secondHueDistance, thirdHueDistance])
-
-	return { primary, secondary: scheme[0].toCSS(), accent: scheme[1].toCSS() }
+const springColors: IColors = {
+	primary: '',
+	border: '',
+	text: '',
+	subtitle: '',
 }
 
-export const defaultColorsContext = {
-	primary: Colors.Black,
-	secondary: Colors.Black,
-	accent: Colors.Black,
-	secondHueDistance: 0,
-	thirdHueDistance: 0,
-	setPrimary: (primary: string): void => {
-		return
-	},
-	setSecondHueDistance: (distance: number): void => {
-		return
-	},
-	setThirdHueDistance: (distance: number): void => {
-		return
-	},
+const summerColors: IColors = {
+	primary: '',
+	border: '',
+	text: '',
+	subtitle: '',
 }
 
-export const ColorsContext = React.createContext<IColorsContext>(defaultColorsContext)
-
-export interface IUseColorProps {
-	defaultPrimary: string
-	defaultSecondHueDistance: number
-	defaultThirdHueDistance: number
+const autumnColors: IColors = {
+	primary: '',
+	border: '',
+	text: '',
+	subtitle: '',
 }
 
-export const useColors = ({
-	defaultPrimary,
-	defaultSecondHueDistance,
-	defaultThirdHueDistance,
-}: IUseColorProps): IColorsContext => {
-	const [primary, setPrimary] = useState<string>(defaultPrimary)
-	const [secondHueDistance, setSecondHueDistance] = useState<number>(defaultSecondHueDistance)
-	const [thirdHueDistance, setThirdHueDistance] = useState<number>(defaultThirdHueDistance)
+export const ColorsContext = createContext<IColors>(classicColors)
 
-	const colors = deriveColors(primary, secondHueDistance, thirdHueDistance)
+export const useColors = (): IColors => {
+	return useContext(ColorsContext)
+}
 
-	return {
-		...colors,
-		setPrimary,
-		secondHueDistance,
-		thirdHueDistance,
-		setSecondHueDistance,
-		setThirdHueDistance,
+export const ColorsProvider: React.FunctionComponent<PropsWithChildren<{}>> = (
+	props: PropsWithChildren<{}>
+): JSX.Element => {
+	const { children } = props
+	const { season } = useContext(SeasonsContext)
+	let colors: IColors
+	switch (season) {
+		case Seasons.Winter:
+			colors = winterColors
+			break
+		case Seasons.Spring:
+			colors = springColors
+			break
+		case Seasons.Summer:
+			colors = summerColors
+			break
+		case Seasons.Autumn:
+			colors = autumnColors
+			break
+		case Seasons.None:
+		default:
+			colors = classicColors
 	}
+
+	return <ColorsContext.Provider value={colors}>{children}</ColorsContext.Provider>
 }

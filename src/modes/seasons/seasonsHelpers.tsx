@@ -3,6 +3,7 @@ export enum Seasons {
 	Spring,
 	Summer,
 	Autumn,
+	None,
 }
 
 const enum Month {

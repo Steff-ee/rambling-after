@@ -4,26 +4,22 @@ import { MediaContext, MediaSize } from '../../components/mediaProvider'
 import { PivotItem } from '../../components/pivots/pivotItem'
 import { Pivots } from '../../components/pivots/pivots'
 import {
+	contentWrapperStyle,
 	entirePageStyle,
+	grandTitleStyle,
+	navBarStyleBigScreen,
+	navBarStyleMobile,
 	parallaxGroupStyle,
 	parallaxRootStyle,
+	pivotItemStyle,
 	smallestDeviceWidth,
 } from '../../shared/helpers/styles'
 import { IScrollPosition, useScroll } from '../../shared/helpers/useScroll'
 import { useDefaultTextStyle } from '../../shared/helpers/useStyles'
+import { useColors } from '../../shared/presentational/hooks/useColors'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
-import { classicColors } from './classicConstants'
 import { ClassicNav } from './classicNav'
-import {
-	backgroundStyle,
-	contentWrapperStyle,
-	grandTitleStyle,
-	navBarStyleBigScreen,
-	navBarStyleMobile,
-	pivotItemStyleBigScreen,
-	pivotItemStyleMobile,
-	pivotUnderlineStyle,
-} from './classicPageTemplate.styles'
+import { backgroundStyle } from './classicPageTemplate.styles'
 import {
 	IClassicPageTemplateProps,
 	IMobilePivotsProps,
@@ -35,6 +31,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
 ): JSX.Element => {
 	const { headerBackgroundImage, mediaSize, skipMorph } = props
+	const { primary, border } = useColors()
 
 	const title = useTextMorphSequence(
 		[
@@ -77,7 +74,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 			>
 				<div
 					style={{
-						backgroundColor: classicColors.secondary,
+						backgroundColor: border,
 						width: '100%',
 						height: `${topBarHeight}px`,
 					}}
@@ -120,6 +117,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 				<div
 					style={{
 						...grandTitleStyle,
+						color: primary,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
 						cursor: 'pointer',
@@ -137,12 +135,13 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	props: IParallaxPivotsProps
 ): JSX.Element => {
 	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
+	const { primary, border } = useColors()
 
 	const pivotRootStyle = {
 		fontFamily: 'Source Code Pro',
 		fontSize: '23px',
 		letterSpacing: '1px',
-		color: arePivotsSticky ? classicColors.primary : classicColors.secondary,
+		color: arePivotsSticky ? primary : border,
 		justifyContent: 'center',
 	}
 
@@ -160,8 +159,13 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 				activeItemKey={selectedPivotTitle}
 				onClick={setPivot}
 				rootStyle={pivotRootStyle}
-				commonItemStyle={pivotItemStyleBigScreen}
-				commonIsActiveStyle={pivotUnderlineStyle}
+				commonItemStyle={{
+					...pivotItemStyle,
+					width: '100px',
+				}}
+				commonIsActiveStyle={{
+					borderBottom: `2px solid ${border}`,
+				}}
 				pivotItems={pivotsItems}
 			/>
 		</div>
@@ -172,12 +176,16 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 	props: IMobilePivotsProps
 ): JSX.Element => {
 	const { setPivot, pivotsItems } = props
+	const { border } = useColors()
 
 	return (
 		<div style={{ margin: '64px 0px' }}>
 			{pivotsItems.map((pivotItem) => (
 				<PivotItem
-					style={pivotItemStyleMobile}
+					style={{
+						...pivotItemStyle,
+						borderBottom: `2px solid ${border}`,
+					}}
 					text={
 						<span>
 							Go to
@@ -197,17 +205,19 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 }
 
 const MobileTitle: React.FunctionComponent = (): JSX.Element => {
+	const { primary, border } = useColors()
+
 	return (
 		<div
 			style={{
 				fontWeight: 500,
 				fontFamily: 'Montserrat',
-				color: classicColors.primary,
+				color: primary,
 				fontSize: '36px',
 				lineHeight: '52px',
 				letterSpacing: '2px',
 				padding: '68px 0px',
-				backgroundColor: classicColors.secondary,
+				backgroundColor: border,
 				position: 'relative',
 				width: '100vw',
 				zIndex: 6,
@@ -239,6 +249,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	const contentPositionRef = useRef(null)
 	const pivotsPositionRef = useRef(null)
 	const scrollRef = useRef(null)
+	const { border } = useColors()
 
 	const skipMorph = mediaSize === MediaSize.Small
 	const allowStickyPivots = mediaSize !== MediaSize.Medium
@@ -291,7 +302,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 
 	const classicNav = (
 		<ClassicNav
-			rootStyle={navBarStyle}
+			rootStyle={{ ...navBarStyle, backgroundColor: border }}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}

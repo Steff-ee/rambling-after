@@ -31,7 +31,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
 ): JSX.Element => {
 	const { headerBackgroundImage, mediaSize, skipMorph } = props
-	const { primary, border } = useColors()
+	const { headerText: headerTextColor, border: borderColor } = useColors()
 
 	const title = useTextMorphSequence(
 		[
@@ -74,7 +74,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 			>
 				<div
 					style={{
-						backgroundColor: border,
+						backgroundColor: borderColor,
 						width: '100%',
 						height: `${topBarHeight}px`,
 					}}
@@ -117,7 +117,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 				<div
 					style={{
 						...grandTitleStyle,
-						color: primary,
+						color: headerTextColor,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
 						cursor: 'pointer',
@@ -135,13 +135,13 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	props: IParallaxPivotsProps
 ): JSX.Element => {
 	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
-	const { primary, border } = useColors()
+	const { headerText: headerTextColor, border: borderColor } = useColors()
 
 	const pivotRootStyle = {
 		fontFamily: 'Source Code Pro',
 		fontSize: '23px',
 		letterSpacing: '1px',
-		color: arePivotsSticky ? primary : border,
+		color: arePivotsSticky ? headerTextColor : borderColor,
 		justifyContent: 'center',
 	}
 
@@ -164,7 +164,7 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 					width: '100px',
 				}}
 				commonIsActiveStyle={{
-					borderBottom: `2px solid ${border}`,
+					borderBottom: `2px solid ${borderColor}`,
 				}}
 				pivotItems={pivotsItems}
 			/>
@@ -205,19 +205,19 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 }
 
 const MobileTitle: React.FunctionComponent = (): JSX.Element => {
-	const { primary, border } = useColors()
+	const { headerText: headerTextColor, border: borderColor } = useColors()
 
 	return (
 		<div
 			style={{
 				fontWeight: 500,
 				fontFamily: 'Montserrat',
-				color: primary,
+				color: headerTextColor,
 				fontSize: '36px',
 				lineHeight: '52px',
 				letterSpacing: '2px',
 				padding: '68px 0px',
-				backgroundColor: border,
+				backgroundColor: borderColor,
 				position: 'relative',
 				width: '100vw',
 				zIndex: 6,

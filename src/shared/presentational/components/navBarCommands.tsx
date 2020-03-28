@@ -51,9 +51,9 @@ export const useNavigationLinks = (): INavItem[] => {
 	const { prevPivots } = useContext(RouteContext)
 	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const { season, setSeason } = useContext(SeasonsContext)
-	const { primary } = useColors()
+	const { headerText: headerTextColor } = useColors()
 	const mediaSize = useContext(MediaContext)
-	const commonProps = { ...commonIconProps, style: { color: primary } }
+	const commonProps = { ...commonIconProps, style: { color: headerTextColor } }
 
 	const homePath = getHomePath(getLastOpenPost, prevPivots)
 	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)

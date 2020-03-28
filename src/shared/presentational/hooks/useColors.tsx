@@ -5,35 +5,40 @@ import { Colors } from '../../helpers/constants'
 import { IColors } from './useColors.types'
 
 const classicColors: IColors = {
-	primary: Colors.LightSand,
+	headerText: Colors.LightSand,
+	background: Colors.LightSand,
 	border: 'black',
 	text: 'black',
 	subtitle: Colors.FadedBlack,
 }
 
 const winterColors: IColors = {
-	primary: Colors.SeaFoam,
+	headerText: 'white',
+	background: Colors.SeaFoam,
 	border: 'black',
 	text: 'white',
 	subtitle: Colors.DarkGray,
 }
 
 const springColors: IColors = {
-	primary: '',
+	headerText: '',
+	background: '',
 	border: '',
 	text: '',
 	subtitle: '',
 }
 
 const summerColors: IColors = {
-	primary: '',
+	headerText: '',
+	background: '',
 	border: '',
 	text: '',
 	subtitle: '',
 }
 
 const autumnColors: IColors = {
-	primary: '',
+	headerText: '',
+	background: '',
 	border: '',
 	text: '',
 	subtitle: '',

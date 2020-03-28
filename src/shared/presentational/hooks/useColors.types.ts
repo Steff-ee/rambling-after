@@ -1,8 +1,13 @@
 export interface IColors {
 	/**
-	 * Color of the website header, navbar commands, background, and pivots while in the navbar
+	 * Color of the website header, navbar commands, and pivots while in the navbar
 	 */
-	primary: string
+	headerText: string
+
+	/**
+	 * Color of the background; not applicable when in Classic mode (Season.None)
+	 */
+	background: string
 
 	/**
 	 * Color of the navbar and the frame around the website header

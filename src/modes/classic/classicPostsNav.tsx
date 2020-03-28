@@ -24,11 +24,11 @@ export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (
 ): JSX.Element => {
 	const { firstClick, backClick, nextClick, latestClick, orientation } = props
 	const location = useLocation()
-	const { primary } = useColors()
-	const backCommand = useBackCommand(primary, backClick)
-	const nextCommand = useNextCommand(primary, nextClick)
-	const firstCommand = useFirstCommand(primary, firstClick)
-	const latestCommand = useLatestCommand(primary, latestClick)
+	const { headerText: headerTextColor } = useColors()
+	const backCommand = useBackCommand(headerTextColor, backClick)
+	const nextCommand = useNextCommand(headerTextColor, nextClick)
+	const firstCommand = useFirstCommand(headerTextColor, firstClick)
+	const latestCommand = useLatestCommand(headerTextColor, latestClick)
 
 	return (
 		<HorizontalIconNav

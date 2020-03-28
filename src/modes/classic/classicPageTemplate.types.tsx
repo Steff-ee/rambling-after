@@ -3,6 +3,7 @@ import { IUsePivotKeyReturns } from '../../shared/presentational/hooks/usePivots
 
 export interface IClassicPageTemplateProps {
 	headerBackgroundImage: string
+	backgroundStyle: React.CSSProperties
 	Content: JSX.Element
 	showPostsNav: boolean
 

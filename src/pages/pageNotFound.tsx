@@ -14,6 +14,7 @@ export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 				</div>
 			}
 			headerBackgroundImage={foggyTown}
+			backgroundStyle={{ backgroundColor: 'lightgrey' }}
 			selectedPivotTitle={''}
 			setPivot={(): void => {
 				return

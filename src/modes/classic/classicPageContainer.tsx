@@ -1,4 +1,5 @@
-import React from 'react'
+import backgroundTextureImg from 'Assets/images/background_texture.png'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import {
 	getConjecturePageTemplateProps,
@@ -24,8 +25,11 @@ import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/route
 import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
+import { useColors } from '../../shared/presentational/hooks/useColors'
 import { usePivots } from '../../shared/presentational/hooks/usePivots'
 import { IUsePivotProps } from '../../shared/presentational/hooks/usePivots.types'
+import { SeasonsContext } from '../seasons/seasons'
+import { Seasons } from '../seasons/seasonsHelpers'
 import { ClassicPageTemplate } from './classicPageTemplate'
 import { IClassicPageTemplateProps } from './classicPageTemplate.types'
 
@@ -67,25 +71,41 @@ const getShowPostsNav = (page: string | undefined, pivot: PivotRoutes | undefine
 const getPageTemplateProps = <T extends {}>(
 	page: string | undefined,
 	pivot: PivotRoutes | undefined,
-	commonTemplateProps: T
+	commonTemplateProps: T,
+	isClassic: boolean,
+	backgroundColor: string
 ) => {
+	let backgroundStyle: React.CSSProperties
+	if (isClassic) {
+		backgroundStyle = {
+			backgroundImage: `url(${backgroundTextureImg})`,
+			backgroundRepeat: 'repeat',
+			backgroundPosition: 'right top',
+		}
+	} else {
+		backgroundStyle = { backgroundColor }
+	}
+
 	switch (page) {
 		case PageRoutes.Stories:
 			return {
 				...commonTemplateProps,
 				...getStoriesPageTemplateProps(pivot),
+				backgroundStyle,
 			}
 
 		case PageRoutes.Games:
 			return {
 				...commonTemplateProps,
 				...getGamePageTemplateProps(pivot),
+				backgroundStyle,
 			}
 
 		case PageRoutes.Conjecture:
 			return {
 				...commonTemplateProps,
 				...getConjecturePageTemplateProps(pivot),
+				backgroundStyle,
 			}
 
 		case PageRoutes.Home:
@@ -93,12 +113,15 @@ const getPageTemplateProps = <T extends {}>(
 			return {
 				...commonTemplateProps,
 				...getHomePageTemplateProps(pivot),
+				backgroundStyle,
 			}
 	}
 }
 
 export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => {
 	const { page } = useParams<IRouteParams>()
+	const { season } = useContext(SeasonsContext)
+	const { background: backgroundColor } = useColors()
 
 	const { selectedPivotTitle, setPivot, pivotsItems, redirectPath: redirectPath1 } = usePivots(
 		getUsePivotProps(page)
@@ -142,7 +165,9 @@ export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => 
 	const pageTemplateProps: IClassicPageTemplateProps = getPageTemplateProps(
 		page,
 		selectedPivotTitle,
-		commonTemplateProps
+		commonTemplateProps,
+		season === Seasons.None,
+		backgroundColor
 	)
 
 	return <ClassicPageTemplate {...pageTemplateProps} />

@@ -19,7 +19,6 @@ import { useDefaultTextStyle } from '../../shared/helpers/useStyles'
 import { useColors } from '../../shared/presentational/hooks/useColors'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { ClassicNav } from './classicNav'
-import { backgroundStyle } from './classicPageTemplate.styles'
 import {
 	IClassicPageTemplateProps,
 	IMobilePivotsProps,
@@ -237,6 +236,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		pivotsItems,
 		Content,
 		headerBackgroundImage,
+		backgroundStyle,
 		firstClick,
 		backClick,
 		nextClick,

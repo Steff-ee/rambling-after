@@ -14,6 +14,7 @@ export enum Colors {
 	SkyBlue = '#bee4fa',
 	Salmon = '#fad4be',
 	Firefly = '#ffe364',
+	LightYellow = '#fff4ce',
 }
 
 export const websiteTitle = 'RAMBLING AFTER'

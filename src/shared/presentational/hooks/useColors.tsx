@@ -21,27 +21,27 @@ const winterColors: IColors = {
 }
 
 const springColors: IColors = {
-	headerText: '',
-	background: '',
+	headerText: 'white',
+	background: Colors.CherryBlossom,
 	border: 'black',
-	text: '',
-	subtitle: '',
+	text: 'black',
+	subtitle: 'black',
 }
 
 const summerColors: IColors = {
-	headerText: '',
-	background: '',
+	headerText: Colors.LightYellow,
+	background: Colors.LightYellow,
 	border: 'black',
-	text: '',
-	subtitle: '',
+	text: 'black',
+	subtitle: Colors.LightYellow,
 }
 
 const autumnColors: IColors = {
-	headerText: '',
-	background: '',
+	headerText: '#f2afa1',
+	background: '#351811',
 	border: 'black',
-	text: '',
-	subtitle: '',
+	text: '#f2afa1',
+	subtitle: '#f2afa1',
 }
 
 export const ColorsContext = createContext<IColors>(classicColors)

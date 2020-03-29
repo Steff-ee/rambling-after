@@ -35,7 +35,9 @@ const getNextSeason = (season: Seasons): Seasons => {
 		case Seasons.None:
 			return Seasons.Winter
 		case Seasons.Winter:
-			return Seasons.Spring
+			return Seasons.None
+		// (TODO) enable other seasons
+		// return Seasons.Spring
 		case Seasons.Spring:
 			return Seasons.Summer
 		case Seasons.Summer:

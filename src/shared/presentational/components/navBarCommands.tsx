@@ -91,7 +91,7 @@ export const useNavigationLinks = (): INavItem[] => {
 		},
 	]
 
-	if (mediaSize === MediaSize.Large) {
+	if (mediaSize !== MediaSize.Small) {
 		navLinks.push({
 			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonIconProps} size={'lg' as const} />,
 			id: undefined,

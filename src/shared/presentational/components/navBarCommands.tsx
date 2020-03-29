@@ -26,18 +26,22 @@ import {
 	getStoriesPath,
 } from '../../helpers/navigation'
 import { PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
+import { useIsTest } from '../../helpers/url'
 import { OpenPostsContext } from '../../posts/openPosts'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
-const getNextSeason = (season: Seasons): Seasons => {
+const getNextSeason = (season: Seasons, isTest: boolean): Seasons => {
 	switch (season) {
 		case Seasons.None:
 			return Seasons.Winter
 		case Seasons.Winter:
+			if (isTest) {
+				// (TODO) enable other seasons
+				return Seasons.Spring
+			}
+
 			return Seasons.None
-		// (TODO) enable other seasons
-		// return Seasons.Spring
 		case Seasons.Spring:
 			return Seasons.Summer
 		case Seasons.Summer:
@@ -53,6 +57,7 @@ export const useNavigationLinks = (): INavItem[] => {
 	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const { season, setSeason } = useContext(SeasonsContext)
 	const mediaSize = useContext(MediaContext)
+	const isTest = useIsTest()
 
 	const homePath = getHomePath(getLastOpenPost, prevPivots)
 	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)
@@ -91,7 +96,7 @@ export const useNavigationLinks = (): INavItem[] => {
 			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonIconProps} size={'lg' as const} />,
 			id: undefined,
 			label: 'Change theme',
-			onClick: (): void => setSeason(getNextSeason(season)),
+			onClick: (): void => setSeason(getNextSeason(season, isTest)),
 		})
 	}
 

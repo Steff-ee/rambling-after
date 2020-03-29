@@ -43,8 +43,6 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 		}
 	}
 
-	const useHoverDelay = !showIconLabels
-
 	return (
 		<div style={{ ...style, ...rootStyle }}>
 			<div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -55,7 +53,7 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 					icon={<FontAwesomeIcon icon={faBars} size={'lg'} />}
 					onClick={onIconsMenuIconClick}
 					isSelected={true}
-					useHoverDelay={useHoverDelay}
+					color={'black'}
 				/>
 				{navItems.map(
 					(item: INavItem): JSX.Element => {
@@ -72,7 +70,7 @@ export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
 								key={item.id}
 								isSelected={item.id === selectedId}
 								labelTextStyle={{ margin: 'auto 0' }}
-								useHoverDelay={useHoverDelay}
+								color={'black'}
 							/>
 						)
 					}

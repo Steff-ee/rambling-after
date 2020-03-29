@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import { Colors } from '../../shared/helpers/constants'
 import { bottomContentMargin, transparentBackground } from '../../shared/helpers/styles'
+import { useColors } from '../../shared/presentational/hooks/useColors'
 import { MediaContext, MediaSize } from '../mediaProvider'
 
 export interface IPullQuoteProps {
@@ -27,10 +27,11 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 ): JSX.Element => {
 	const { lines, by } = props
 	const mediaSize = useContext(MediaContext)
+	const { subtitle: subtitleColor } = useColors()
 	const textStyle =
 		mediaSize === MediaSize.Small ? pullQuoteTextStyleSmall : pullQuoteTextStyleLarge
 	const attributionFontSize = mediaSize === MediaSize.Small ? '17px' : '20px'
-	const border = `2px solid ${Colors.DarkGray}`
+	const border = `2px solid ${subtitleColor}`
 
 	return (
 		<div

@@ -13,17 +13,17 @@ const classicColors: IColors = {
 }
 
 const winterColors: IColors = {
-	headerText: 'white',
-	background: Colors.SeaFoam,
+	headerText: Colors.IceBlue,
+	background: Colors.DarkBlue,
 	border: 'black',
-	text: 'white',
-	subtitle: Colors.DarkGray,
+	text: Colors.IceBlue,
+	subtitle: 'white',
 }
 
 const springColors: IColors = {
 	headerText: '',
 	background: '',
-	border: '',
+	border: 'black',
 	text: '',
 	subtitle: '',
 }
@@ -31,7 +31,7 @@ const springColors: IColors = {
 const summerColors: IColors = {
 	headerText: '',
 	background: '',
-	border: '',
+	border: 'black',
 	text: '',
 	subtitle: '',
 }
@@ -39,7 +39,7 @@ const summerColors: IColors = {
 const autumnColors: IColors = {
 	headerText: '',
 	background: '',
-	border: '',
+	border: 'black',
 	text: '',
 	subtitle: '',
 }

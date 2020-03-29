@@ -7,6 +7,8 @@ export interface IIconButtonProps {
 	onClick?: () => void
 
 	/* Styling */
+	color?: string
+	innerStyle?: React.CSSProperties
 	width?: string
 	height?: string
 	filter?: string
@@ -21,8 +23,8 @@ const growStyleBase: React.CSSProperties = {
 
 const growStyleHover: React.CSSProperties = {
 	...growStyleBase,
-	WebkitTransform: 'scale(1.06)',
-	transform: 'scale(1.06)',
+	WebkitTransform: 'scale(1.08)',
+	transform: 'scale(1.08)',
 }
 
 /**
@@ -35,6 +37,8 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 	const {
 		icon,
 		onClick,
+		color,
+		innerStyle,
 		width = '64px',
 		height = '64px',
 		filter,
@@ -52,6 +56,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 			style={{
 				width,
 				height,
+				color,
 				display: 'flex',
 				justifyContent: 'center',
 				alignItems: 'center',
@@ -65,7 +70,7 @@ export const IconButton: React.FunctionComponent<IIconButtonProps> = (
 				}
 			}}
 		>
-			{icon}
+			<div style={innerStyle}>{icon}</div>
 		</div>
 	)
 }

@@ -249,7 +249,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 	const contentPositionRef = useRef(null)
 	const pivotsPositionRef = useRef(null)
 	const scrollRef = useRef(null)
-	const { border } = useColors()
+	const { border: borderColor, text: textColor } = useColors()
 
 	const skipMorph = mediaSize === MediaSize.Small
 	const allowStickyPivots = mediaSize !== MediaSize.Medium
@@ -302,7 +302,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 
 	const classicNav = (
 		<ClassicNav
-			rootStyle={{ ...navBarStyle, backgroundColor: border }}
+			rootStyle={{ ...navBarStyle, backgroundColor: borderColor }}
 			firstClick={firstClick}
 			backClick={backClick}
 			nextClick={nextClick}
@@ -319,6 +319,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 				...defaultTextStyle,
 				...scrollRefStyle,
 				...backgroundStyle,
+				color: textColor,
 				position: 'absolute',
 				minWidth: smallestDeviceWidth,
 			}}

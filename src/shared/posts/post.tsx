@@ -1,9 +1,9 @@
 import React from 'react'
-import { Colors } from '../helpers/constants'
 import { PageRoutes } from '../helpers/routes'
 import { capitalize } from '../helpers/strings'
 import { dateTimeFormatOptions } from '../helpers/time'
 import { useSubtitleTextStyle, useTitleTextStyle } from '../helpers/useStyles'
+import { useColors } from '../presentational/hooks/useColors'
 import { IPost } from './post.types'
 
 export interface IPostProps {
@@ -13,6 +13,7 @@ export interface IPostProps {
 export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JSX.Element => {
 	const { post } = props
 	const { title, subtitle, content, createdTime, route } = post
+	const { subtitle: subtitleColor } = useColors()
 	const titleTextStyle = useTitleTextStyle()
 	const subtitleTextStyle = useSubtitleTextStyle()
 	const createdDate = new Date(createdTime)
@@ -27,7 +28,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 					style={{
 						...subtitleTextStyle,
 						margin: '10px 0px',
-						color: Colors.FadedBlack,
+						color: subtitleColor,
 					}}
 				>
 					{subtitle}
@@ -38,7 +39,7 @@ export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JS
 					fontFamily: 'Source Code Pro',
 					fontSize: '16px',
 					lineHeight: '22px',
-					color: Colors.FadedBlack,
+					color: subtitleColor,
 					fontWeight: 300,
 				}}
 			>

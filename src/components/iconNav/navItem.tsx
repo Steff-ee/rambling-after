@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import { useChangeDelay } from '../../shared/presentational/hooks/useChangeDelay'
 import { IconButton } from '../iconButton'
 import { LabelPosition } from './iconNav.types'
-import { getFade } from './navHelpers'
 import { NavLabel } from './navLabel'
 
 export interface INavItemProps {
@@ -16,16 +14,18 @@ export interface INavItemProps {
 	/* Styling */
 	width: string
 	height: string
+	color: string
 	labelWidth?: string
 	rootStyle?: React.CSSProperties
 	labelTextStyle?: React.CSSProperties
-	useHoverDelay?: boolean
 
 	/* Callbacks */
 	onClick?: () => void
 	onMouseEnter?: (id: number) => void
 	onMouseLeave?: (id: number) => void
 }
+
+const disabledFadeFilterValue = 'opacity(0.25)'
 
 /**
  * This is a molecular component:
@@ -34,28 +34,33 @@ export interface INavItemProps {
 export const NavItem: React.FunctionComponent<INavItemProps> = (
 	props: INavItemProps
 ): JSX.Element => {
-	let {
+	const {
 		id,
 		icon,
 		onClick,
 		label = '',
 		width,
 		height,
-		isSelected,
+		color,
 		onMouseEnter,
 		onMouseLeave,
 		labelPosition,
 		labelWidth,
 		rootStyle,
 		labelTextStyle,
-		useHoverDelay = true,
+		isSelected = false,
 		disabled = false,
 	} = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
-	isSelected = isSelected || false
-	const hoverDelay = 200
-	const wasHovering = useChangeDelay(isHovering, hoverDelay, !useHoverDelay)
-	const filter = getFade({ isHovering: wasHovering, isSelected, disabled })
+	const filter = disabled ? disabledFadeFilterValue : ''
+	let isSelectedStyle: React.CSSProperties = {}
+
+	if (isSelected) {
+		isSelectedStyle = {
+			borderRadius: '3px',
+			borderBottom: `2px solid ${color}`,
+		}
+	}
 
 	let labelElement = <></>
 	if (labelPosition !== undefined) {
@@ -66,7 +71,6 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 				height={height}
 				rootStyle={{
 					textAlign: 'left',
-					filter,
 				}}
 				textStyle={labelTextStyle}
 			/>
@@ -78,6 +82,8 @@ export const NavItem: React.FunctionComponent<INavItemProps> = (
 			icon={icon}
 			width={width}
 			height={height}
+			color={color}
+			innerStyle={isSelectedStyle}
 			onClick={onClick}
 			filter={filter}
 			applyGrow={isHovering}

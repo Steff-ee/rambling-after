@@ -27,7 +27,6 @@ import {
 } from '../../helpers/navigation'
 import { PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
 import { OpenPostsContext } from '../../posts/openPosts'
-import { useColors } from '../hooks/useColors'
 
 export const commonIconProps = { size: '2x' as const, fixedWidth: true }
 
@@ -51,9 +50,7 @@ export const useNavigationLinks = (): INavItem[] => {
 	const { prevPivots } = useContext(RouteContext)
 	const { getLastOpenPost } = useContext(OpenPostsContext)
 	const { season, setSeason } = useContext(SeasonsContext)
-	const { headerText: headerTextColor } = useColors()
 	const mediaSize = useContext(MediaContext)
-	const commonProps = { ...commonIconProps, style: { color: headerTextColor } }
 
 	const homePath = getHomePath(getLastOpenPost, prevPivots)
 	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)
@@ -62,25 +59,25 @@ export const useNavigationLinks = (): INavItem[] => {
 
 	const navLinks: INavItem[] = [
 		{
-			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faGlobeAmericas} {...commonIconProps} />,
 			id: PageRoutes.Home,
 			label: homeTitle,
 			onClick: (): void => redirectTo(homePath),
 		},
 		{
-			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faFeatherAlt} {...commonIconProps} />,
 			id: PageRoutes.Stories,
 			label: storiesTitle,
 			onClick: (): void => redirectTo(storiesPath),
 		},
 		{
-			icon: <FontAwesomeIcon icon={faChessKnight} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faChessKnight} {...commonIconProps} />,
 			id: PageRoutes.Games,
 			label: gamesTitle,
 			onClick: (): void => redirectTo(gamesPath),
 		},
 		{
-			icon: <FontAwesomeIcon icon={faPoll} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faPoll} {...commonIconProps} />,
 			id: PageRoutes.Conjecture,
 			label: conjectureTitle,
 			onClick: (): void => redirectTo(conjecturePath),
@@ -89,7 +86,7 @@ export const useNavigationLinks = (): INavItem[] => {
 
 	if (mediaSize === MediaSize.Large) {
 		navLinks.push({
-			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonProps} />,
+			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonIconProps} size={'lg' as const} />,
 			id: undefined,
 			label: 'Change theme',
 			onClick: (): void => setSeason(getNextSeason(season)),
@@ -99,9 +96,9 @@ export const useNavigationLinks = (): INavItem[] => {
 	return navLinks
 }
 
-export const useBackCommand = (color: string, onClick?: () => void): INavItem => {
+export const useBackCommand = (onClick?: () => void): INavItem => {
 	return {
-		icon: <FontAwesomeIcon icon={faAngleLeft} {...commonIconProps} style={{ color }} />,
+		icon: <FontAwesomeIcon icon={faAngleLeft} {...commonIconProps} />,
 		id: 'BackCommand',
 		label: 'Back',
 		onClick,
@@ -109,9 +106,9 @@ export const useBackCommand = (color: string, onClick?: () => void): INavItem =>
 	}
 }
 
-export const useNextCommand = (color: string, onClick?: () => void): INavItem => {
+export const useNextCommand = (onClick?: () => void): INavItem => {
 	return {
-		icon: <FontAwesomeIcon icon={faAngleRight} {...commonIconProps} style={{ color }} />,
+		icon: <FontAwesomeIcon icon={faAngleRight} {...commonIconProps} />,
 		id: 'NextCommand',
 		label: 'Next',
 		onClick,
@@ -119,9 +116,9 @@ export const useNextCommand = (color: string, onClick?: () => void): INavItem =>
 	}
 }
 
-export const useFirstCommand = (color: string, onClick?: () => void): INavItem => {
+export const useFirstCommand = (onClick?: () => void): INavItem => {
 	return {
-		icon: <FontAwesomeIcon icon={faAngleDoubleLeft} {...commonIconProps} style={{ color }} />,
+		icon: <FontAwesomeIcon icon={faAngleDoubleLeft} {...commonIconProps} />,
 		id: 'FirstCommand',
 		label: 'First',
 		onClick,
@@ -129,9 +126,9 @@ export const useFirstCommand = (color: string, onClick?: () => void): INavItem =
 	}
 }
 
-export const useLatestCommand = (color: string, onClick?: () => void): INavItem => {
+export const useLatestCommand = (onClick?: () => void): INavItem => {
 	return {
-		icon: <FontAwesomeIcon icon={faAngleDoubleRight} {...commonIconProps} style={{ color }} />,
+		icon: <FontAwesomeIcon icon={faAngleDoubleRight} {...commonIconProps} />,
 		id: 'LatestCommand',
 		label: 'Latest',
 		onClick,

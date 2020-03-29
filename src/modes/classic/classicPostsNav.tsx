@@ -9,7 +9,6 @@ import {
 	useLatestCommand,
 	useNextCommand,
 } from '../../shared/presentational/components/navBarCommands'
-import { useColors } from '../../shared/presentational/hooks/useColors'
 
 export interface IClassicRightNavProps {
 	orientation: NavOrientation
@@ -24,11 +23,10 @@ export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (
 ): JSX.Element => {
 	const { firstClick, backClick, nextClick, latestClick, orientation } = props
 	const location = useLocation()
-	const { headerText: headerTextColor } = useColors()
-	const backCommand = useBackCommand(headerTextColor, backClick)
-	const nextCommand = useNextCommand(headerTextColor, nextClick)
-	const firstCommand = useFirstCommand(headerTextColor, firstClick)
-	const latestCommand = useLatestCommand(headerTextColor, latestClick)
+	const backCommand = useBackCommand(backClick)
+	const nextCommand = useNextCommand(nextClick)
+	const firstCommand = useFirstCommand(firstClick)
+	const latestCommand = useLatestCommand(latestClick)
 
 	return (
 		<HorizontalIconNav

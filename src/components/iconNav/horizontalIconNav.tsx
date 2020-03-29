@@ -57,6 +57,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 							{...item}
 							width={iconWidth}
 							height={iconHeight}
+							color={headerTextColor}
 							key={item.id}
 							id={itemIndex}
 							isSelected={item.id === selectedId}

@@ -3,6 +3,8 @@ export enum Colors {
 	OffBlack = '#202020',
 	FadedBlack = '#383838',
 	DarkGray = '#575757',
+	DarkBlue = '#1C304A',
+	IceBlue = '#e1f8ff',
 	SeaFoam = '#6ec9d4',
 	WarmSand = '#d4ad6e',
 	LightSand = '#fffae8',

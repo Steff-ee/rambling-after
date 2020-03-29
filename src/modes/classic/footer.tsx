@@ -23,7 +23,7 @@ export const Footer: React.FunctionComponent<IFooterProps> = (props: IFooterProp
 			}}
 		>
 			All icons courtesy of Font Awesome. Background art or photo courtesy of{' '}
-			<a href={artistLink} target="_blank">
+			<a style={{ fontWeight: 400 }} href={artistLink} target="_blank">
 				{artistName}
 			</a>
 			.

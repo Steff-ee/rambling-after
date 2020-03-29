@@ -6,6 +6,8 @@ export interface IClassicPageTemplateProps {
 	backgroundStyle: React.CSSProperties
 	Content: JSX.Element
 	showPostsNav: boolean
+	artistName: string
+	artistLink: string
 
 	/* Pivots */
 	selectedPivotTitle: string | undefined

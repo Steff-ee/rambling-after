@@ -21,6 +21,8 @@ export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 			}}
 			pivotsItems={[]}
 			showPostsNav={false}
+			artistName={'an unknown photographer'}
+			artistLink={'https://best-wallpaper.net/'}
 		/>
 	)
 }

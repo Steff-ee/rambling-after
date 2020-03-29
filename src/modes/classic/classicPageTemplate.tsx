@@ -25,6 +25,7 @@ import {
 	IParallaxPivotsProps,
 	IParallaxTitleProps,
 } from './classicPageTemplate.types'
+import { Footer } from './footer'
 
 const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
@@ -242,6 +243,8 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 		nextClick,
 		latestClick,
 		showPostsNav,
+		artistName,
+		artistLink,
 	} = props
 	const mediaSize = useContext(MediaContext)
 	const defaultTextStyle = useDefaultTextStyle()
@@ -345,6 +348,7 @@ export const ClassicPageTemplate: React.FunctionComponent<IClassicPageTemplatePr
 					)}
 				</div>
 			</div>
+			<Footer artistName={artistName} artistLink={artistLink} />
 		</div>
 	)
 }

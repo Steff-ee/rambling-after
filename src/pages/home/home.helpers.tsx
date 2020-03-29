@@ -5,6 +5,7 @@ import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
 	classicBackgrounds,
+	IPicture,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -38,6 +39,8 @@ export const showPostsNavForHome = (pivot: PivotRoutes | undefined): boolean => 
 
 export interface IHomePageTemplateProps {
 	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
+	artistName: IClassicPageTemplateProps['artistName']
+	artistLink: IClassicPageTemplateProps['artistLink']
 	Content?: IClassicPageTemplateProps['Content']
 }
 
@@ -46,28 +49,31 @@ export const getHomePageTemplateProps = (
 ): IHomePageTemplateProps => {
 	const { season } = useContext(SeasonsContext)
 
-	let headerBackgroundImage: string
+	let headerPicture: IPicture
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds.home.src
+			headerPicture = winterBackgrounds.home
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds.home.src
+			headerPicture = springBackgrounds.home
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds.home.src
+			headerPicture = summerBackgrounds.home
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds.home.src
+			headerPicture = autumnBackgrounds.home
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = classicBackgrounds.home.src
+			headerPicture = classicBackgrounds.home
 	}
 
+	const { src: headerBackgroundImage, ...artistProps } = headerPicture
 	const pageContent: IHomePageTemplateProps = {
+		...artistProps,
 		headerBackgroundImage,
 	}
+
 	if (selectedPivotTitle === HomePivots.About) {
 		pageContent.Content = <AboutPage />
 	} else if (selectedPivotTitle === HomePivots.Resume) {

@@ -5,6 +5,7 @@ import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
 	classicBackgrounds,
+	IPicture,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -36,6 +37,8 @@ export const showPostsNavForStories = (pivot: PivotRoutes | undefined): boolean 
 
 export interface IStoriesPageTemplateProps {
 	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
+	artistName: IClassicPageTemplateProps['artistName']
+	artistLink: IClassicPageTemplateProps['artistLink']
 	Content?: IClassicPageTemplateProps['Content']
 }
 
@@ -44,28 +47,31 @@ export const getStoriesPageTemplateProps = (
 ): IStoriesPageTemplateProps => {
 	const { season } = useContext(SeasonsContext)
 
-	let headerBackgroundImage: string
+	let headerPicture: IPicture
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds.stories.src
+			headerPicture = winterBackgrounds.stories
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds.stories.src
+			headerPicture = springBackgrounds.stories
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds.stories.src
+			headerPicture = summerBackgrounds.stories
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds.stories.src
+			headerPicture = autumnBackgrounds.stories
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = classicBackgrounds.stories.src
+			headerPicture = classicBackgrounds.stories
 	}
 
+	const { src: headerBackgroundImage, ...artistProps } = headerPicture
 	const pageContent: IStoriesPageTemplateProps = {
+		...artistProps,
 		headerBackgroundImage,
 	}
+
 	if (selectedPivotTitle === StoryPivots.Links) {
 		pageContent.Content = <StoryLinks />
 	}

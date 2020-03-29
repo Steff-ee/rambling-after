@@ -1,6 +1,6 @@
 export const subscriptStyle: React.CSSProperties = {
 	fontFamily: 'Source Code Pro',
-	fontSize: '14px',
+	fontSize: '16px',
 	lineHeight: '19px',
 	fontWeight: 300,
 }

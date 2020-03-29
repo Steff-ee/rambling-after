@@ -5,6 +5,7 @@ import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
 	classicBackgrounds,
+	IPicture,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -36,6 +37,8 @@ export const showPostsNavForGame = (pivot: PivotRoutes | undefined): boolean => 
 
 export interface IGamePageTemplateProps {
 	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
+	artistName: IClassicPageTemplateProps['artistName']
+	artistLink: IClassicPageTemplateProps['artistLink']
 	Content?: IClassicPageTemplateProps['Content']
 }
 
@@ -44,28 +47,31 @@ export const getGamePageTemplateProps = (
 ): IGamePageTemplateProps => {
 	const { season } = useContext(SeasonsContext)
 
-	let headerBackgroundImage: string
+	let headerPicture: IPicture
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds.games.src
+			headerPicture = winterBackgrounds.games
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds.games.src
+			headerPicture = springBackgrounds.games
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds.games.src
+			headerPicture = summerBackgrounds.games
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds.games.src
+			headerPicture = autumnBackgrounds.games
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = classicBackgrounds.games.src
+			headerPicture = classicBackgrounds.games
 	}
 
+	const { src: headerBackgroundImage, ...artistProps } = headerPicture
 	const pageContent: IGamePageTemplateProps = {
+		...artistProps,
 		headerBackgroundImage,
 	}
+
 	if (selectedPivotTitle === GamePivots.Games) {
 		pageContent.Content = <Penultima />
 	}

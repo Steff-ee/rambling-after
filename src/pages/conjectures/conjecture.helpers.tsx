@@ -5,6 +5,7 @@ import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
 	classicBackgrounds,
+	IPicture,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -36,6 +37,8 @@ export const showPostsNavForConjecture = (pivot: PivotRoutes | undefined): boole
 
 export interface IConjecturePageTemplateProps {
 	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
+	artistName: IClassicPageTemplateProps['artistName']
+	artistLink: IClassicPageTemplateProps['artistLink']
 	Content?: IClassicPageTemplateProps['Content']
 }
 
@@ -44,28 +47,31 @@ export const getConjecturePageTemplateProps = (
 ): IConjecturePageTemplateProps => {
 	const { season } = useContext(SeasonsContext)
 
-	let headerBackgroundImage: string
+	let headerPicture: IPicture
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds.conjecture.src
+			headerPicture = winterBackgrounds.conjecture
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds.conjecture.src
+			headerPicture = springBackgrounds.conjecture
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds.conjecture.src
+			headerPicture = summerBackgrounds.conjecture
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds.conjecture.src
+			headerPicture = autumnBackgrounds.conjecture
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = classicBackgrounds.conjecture.src
+			headerPicture = classicBackgrounds.conjecture
 	}
 
+	const { src: headerBackgroundImage, ...artistProps } = headerPicture
 	const pageContent: IConjecturePageTemplateProps = {
+		...artistProps,
 		headerBackgroundImage,
 	}
+
 	if (selectedPivotTitle === ConjecturePivots.Links) {
 		pageContent.Content = <ConjectureLinks />
 	}

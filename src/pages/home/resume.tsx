@@ -52,7 +52,7 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			>
 				<div>dsteffee@alumni.stanford.edu</div>
 				{dividerStar}
-				<div>Issaquah, WA</div>
+				<div>Bellevue, WA</div>
 				{dividerStar}
 				<div>steff-ee.github.io</div>
 				{dividerStar}

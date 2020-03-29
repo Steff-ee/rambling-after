@@ -2,25 +2,7 @@ import profileImg from 'Assets/images/me.jpg'
 import React, { useContext } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
-import { subscriptStyle } from '../../shared/helpers/styles'
 import { useLightTextStyle, useTitleTextStyle } from '../../shared/helpers/useStyles'
-
-const Attributions: React.FunctionComponent = (): JSX.Element => {
-	return (
-		<div
-			style={{
-				...subscriptStyle,
-				margin: '128px 10% 0px 10%',
-				textAlign: 'center',
-			}}
-		>
-			Cartography photo (Home page) by Dariusz Sankowski. Books photo (Stories page) by Drew
-			Coffman. Light bulbs photo (Games page) by Kari Shea. Bookshelf photo (Conjecture page)
-			by Janko Ferlič. All of these photos courtesy of Unsplash. All icons courtesy of Font
-			Awesome.
-		</div>
-	)
-}
 
 const aboutImageStyleMobile: React.CSSProperties = {
 	width: '300px',
@@ -105,7 +87,6 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 					</div>
 				</div>
 			</div>
-			<Attributions />
 		</div>
 	)
 }

@@ -3,6 +3,7 @@ import { FadeLoadImage } from '../fadeLoadImage'
 
 export interface IContentLoadImageProps {
 	src: string
+	maxHeight?: string
 	caption?: string | JSX.Element
 	style?: React.CSSProperties
 }
@@ -10,7 +11,7 @@ export interface IContentLoadImageProps {
 export const ContentImage: React.FunctionComponent<IContentLoadImageProps> = (
 	props: IContentLoadImageProps
 ): JSX.Element => {
-	const { src, style, caption } = props
+	const { src, style, caption, maxHeight = '80vh' } = props
 
 	return (
 		<div
@@ -21,7 +22,7 @@ export const ContentImage: React.FunctionComponent<IContentLoadImageProps> = (
 				padding: '16px 0',
 			}}
 		>
-			<FadeLoadImage src={src} style={{ maxWidth: '100%', maxHeight: '80vh', ...style }} />
+			<FadeLoadImage src={src} style={{ maxWidth: '100%', maxHeight, ...style }} />
 			<div>{caption}</div>
 		</div>
 	)

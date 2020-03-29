@@ -1,10 +1,10 @@
-import booksImg from 'Assets/images/books.jpg'
 import React, { useContext } from 'react'
 import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
+	classicBackgrounds,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -47,20 +47,20 @@ export const getStoriesPageTemplateProps = (
 	let headerBackgroundImage: string
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds[1].src
+			headerBackgroundImage = winterBackgrounds.stories.src
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds[1].src
+			headerBackgroundImage = springBackgrounds.stories.src
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds[1].src
+			headerBackgroundImage = summerBackgrounds.stories.src
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds[1].src
+			headerBackgroundImage = autumnBackgrounds.stories.src
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = booksImg
+			headerBackgroundImage = classicBackgrounds.stories.src
 	}
 
 	const pageContent: IStoriesPageTemplateProps = {

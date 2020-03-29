@@ -1,10 +1,10 @@
-import cartographyImg from 'Assets/images/cartography.jpg'
 import React, { useContext } from 'react'
 import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
+	classicBackgrounds,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -49,20 +49,20 @@ export const getHomePageTemplateProps = (
 	let headerBackgroundImage: string
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds[0].src
+			headerBackgroundImage = winterBackgrounds.home.src
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds[0].src
+			headerBackgroundImage = springBackgrounds.home.src
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds[0].src
+			headerBackgroundImage = summerBackgrounds.home.src
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds[0].src
+			headerBackgroundImage = autumnBackgrounds.home.src
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = cartographyImg
+			headerBackgroundImage = classicBackgrounds.home.src
 	}
 
 	const pageContent: IHomePageTemplateProps = {

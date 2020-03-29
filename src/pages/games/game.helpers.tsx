@@ -1,10 +1,10 @@
-import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
 import React, { useContext } from 'react'
 import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
+	classicBackgrounds,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -47,20 +47,20 @@ export const getGamePageTemplateProps = (
 	let headerBackgroundImage: string
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds[2].src
+			headerBackgroundImage = winterBackgrounds.games.src
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds[2].src
+			headerBackgroundImage = springBackgrounds.games.src
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds[2].src
+			headerBackgroundImage = summerBackgrounds.games.src
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds[2].src
+			headerBackgroundImage = autumnBackgrounds.games.src
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = lightbulbsImg
+			headerBackgroundImage = classicBackgrounds.games.src
 	}
 
 	const pageContent: IGamePageTemplateProps = {

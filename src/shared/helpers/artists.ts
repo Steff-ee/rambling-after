@@ -1,3 +1,7 @@
+import booksImg from 'Assets/images/books.jpg'
+import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
+import cartographyImg from 'Assets/images/cartography.jpg'
+import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
 import sarrailhAutumnImg1 from 'Assets/images/sarrailh_autumn_1.png'
 
 export interface IPicture {
@@ -37,6 +41,22 @@ export const Schilde = {
 	artistName: 'Maxime Schilde',
 	artistLink: 'https://www.artstation.com/maximeschilde',
 }
+export const Sankowski = {
+	artistName: 'Dariusz Sankowski',
+	artistLink: 'https://unsplash.com/@dariuszsankowski',
+}
+export const Coffman = {
+	artistName: 'Drew Coffman',
+	artistLink: 'https://unsplash.com/@drewcoffman',
+}
+export const Shea = {
+	artistName: 'Kari Shea',
+	artistLink: 'https://unsplash.com/@karishea',
+}
+export const Janko = {
+	artistName: 'Janko Ferlič',
+	artistLink: 'https://unsplash.com/@itfeelslikefilm',
+}
 
 // "Royalty Free"
 export const wallpaperFlare = {
@@ -44,36 +64,46 @@ export const wallpaperFlare = {
 	artistLink: 'https://www.wallpaperflare.com/',
 }
 
+export const classicBackgrounds = {
+	home: { src: cartographyImg, ...Sankowski },
+	stories: { src: booksImg, ...Coffman },
+	games: { src: lightbulbsImg, ...Shea },
+	conjecture: { src: bookshelfImg, ...Janko },
+}
+
 // to find the original link, grab XXXX from "wallhaven-XXXX.jpg" and insert into https://wallhaven.cc/w/XXXX
-export const springBackgrounds: IPicture[] = [
-	{ src: 'https://w.wallhaven.cc/full/qd/wallhaven-qdpx2r.jpg', ...Rapt },
-	{ src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8yr1j.jpg', ...Liu },
-	{ src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8j3g3.jpg', ...JoeyJazz },
-	{ src: 'https://w.wallhaven.cc/full/4o/wallhaven-4opl79.jpg', ...Gercken },
-]
-export const summerBackgrounds: IPicture[] = [
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g817ve.png', ...Sarrailh },
-	{ src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', ...Sarrailh },
-	{ src: 'https://w.wallhaven.cc/full/96/wallhaven-96km7k.png', ...Sarrailh },
-	{
+export const springBackgrounds = {
+	home: { src: 'https://w.wallhaven.cc/full/qd/wallhaven-qdpx2r.jpg', ...Rapt },
+	stories: { src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8yr1j.jpg', ...Liu },
+	games: { src: 'https://w.wallhaven.cc/full/p8/wallhaven-p8j3g3.jpg', ...JoeyJazz },
+	conjecture: { src: 'https://w.wallhaven.cc/full/4o/wallhaven-4opl79.jpg', ...Gercken },
+}
+
+export const summerBackgrounds = {
+	home: { src: 'https://w.wallhaven.cc/full/g8/wallhaven-g817ve.png', ...Sarrailh },
+	stories: { src: 'https://w.wallhaven.cc/full/r2/wallhaven-r2ed5w.png', ...Sarrailh },
+	games: { src: 'https://w.wallhaven.cc/full/96/wallhaven-96km7k.png', ...Sarrailh },
+	conjecture: {
 		src:
 			'https://cdna.artstation.com/p/assets/images/images/018/561/748/large/sylvain-sarrailh-melodiousbreeze02.jpg',
 		...Sarrailh,
 	},
-]
-export const autumnBackgrounds: IPicture[] = [
-	{ src: sarrailhAutumnImg1, ...Sarrailh },
-	{
+}
+
+export const autumnBackgrounds = {
+	home: { src: sarrailhAutumnImg1, ...Sarrailh },
+	stories: {
 		src:
 			'https://cdnb.artstation.com/p/assets/images/images/013/185/961/large/maxime-schilde-autumn-winds-04.jpg',
 		...Schilde,
 	},
-	{ src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg', ...Grivet },
-	{ src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', ...Gercken },
-]
-export const winterBackgrounds: IPicture[] = [
-	{ src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8ml1q.jpg', ...Riebe },
-	{ src: 'https://i.imgur.com/41J50g7.jpg', ...Fadeev },
-	{ src: 'https://w.wallhaven.cc/full/96/wallhaven-96zxjw.jpg', ...Mertun },
-	{ src: 'https://w.wallhaven.cc/full/76/wallhaven-7671ey.png', ...wallpaperFlare },
-]
+	games: { src: 'https://w.wallhaven.cc/full/76/wallhaven-76pv3v.jpg', ...Grivet },
+	conjecture: { src: 'https://w.wallhaven.cc/full/4y/wallhaven-4y8p9l.jpg', ...Gercken },
+}
+
+export const winterBackgrounds = {
+	home: { src: 'https://w.wallhaven.cc/full/g8/wallhaven-g8ml1q.jpg', ...Riebe },
+	stories: { src: 'https://i.imgur.com/41J50g7.jpg', ...Fadeev },
+	games: { src: 'https://w.wallhaven.cc/full/96/wallhaven-96zxjw.jpg', ...Mertun },
+	conjecture: { src: 'https://w.wallhaven.cc/full/76/wallhaven-7671ey.png', ...wallpaperFlare },
+}

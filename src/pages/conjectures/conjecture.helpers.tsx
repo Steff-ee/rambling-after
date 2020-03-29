@@ -1,10 +1,10 @@
-import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import React, { useContext } from 'react'
 import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
 	autumnBackgrounds,
+	classicBackgrounds,
 	springBackgrounds,
 	summerBackgrounds,
 	winterBackgrounds,
@@ -47,20 +47,20 @@ export const getConjecturePageTemplateProps = (
 	let headerBackgroundImage: string
 	switch (season) {
 		case Seasons.Winter:
-			headerBackgroundImage = winterBackgrounds[3].src
+			headerBackgroundImage = winterBackgrounds.conjecture.src
 			break
 		case Seasons.Spring:
-			headerBackgroundImage = springBackgrounds[3].src
+			headerBackgroundImage = springBackgrounds.conjecture.src
 			break
 		case Seasons.Summer:
-			headerBackgroundImage = summerBackgrounds[3].src
+			headerBackgroundImage = summerBackgrounds.conjecture.src
 			break
 		case Seasons.Autumn:
-			headerBackgroundImage = autumnBackgrounds[3].src
+			headerBackgroundImage = autumnBackgrounds.conjecture.src
 			break
 		case Seasons.None:
 		default:
-			headerBackgroundImage = bookshelfImg
+			headerBackgroundImage = classicBackgrounds.conjecture.src
 	}
 
 	const pageContent: IConjecturePageTemplateProps = {

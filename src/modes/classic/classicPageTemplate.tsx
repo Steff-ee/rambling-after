@@ -135,13 +135,14 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	props: IParallaxPivotsProps
 ): JSX.Element => {
 	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
-	const { headerText: headerTextColor, border: borderColor } = useColors()
+	const { headerText: headerTextColor, text: textColor } = useColors()
+	const color = arePivotsSticky ? headerTextColor : textColor
 
 	const pivotRootStyle = {
 		fontFamily: 'Source Code Pro',
 		fontSize: '23px',
 		letterSpacing: '1px',
-		color: arePivotsSticky ? headerTextColor : borderColor,
+		color,
 		justifyContent: 'center',
 	}
 
@@ -164,7 +165,7 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 					width: '100px',
 				}}
 				commonIsActiveStyle={{
-					borderBottom: `2px solid ${borderColor}`,
+					borderBottom: `2px solid ${color}`,
 				}}
 				pivotItems={pivotsItems}
 			/>
@@ -176,7 +177,7 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 	props: IMobilePivotsProps
 ): JSX.Element => {
 	const { setPivot, pivotsItems } = props
-	const { border } = useColors()
+	const { text: textColor } = useColors()
 
 	return (
 		<div style={{ margin: '64px 0px' }}>
@@ -184,7 +185,7 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 				<PivotItem
 					style={{
 						...pivotItemStyle,
-						borderBottom: `2px solid ${border}`,
+						borderBottom: `2px solid ${textColor}`,
 					}}
 					text={
 						<span>

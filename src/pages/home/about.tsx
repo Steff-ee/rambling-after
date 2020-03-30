@@ -47,7 +47,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 							flexWrap: 'wrap',
 						}}
 					>
-						<div style={{ ...titleTextStyle, margin: '32px' }}>Hola!</div>
+						<div style={{ ...titleTextStyle, margin: '0px 32px 32px 0px' }}>Hola!</div>
 						<div
 							style={{
 								...lightTextStyle,
@@ -57,9 +57,8 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 							}}
 						>
 							<div>Daniel Steffee</div>
-							<div>dsteffee@alumni.stanford.edu</div>
-							<div>Full Stack Software Developer</div>
-							<div>At Microsoft in Bellevue, Washington</div>
+							<div>Microsoft SDE</div>
+							<div>Bellevue, Washington</div>
 							<a href={'https://www.linkedin.com/in/daniel-steffee-aba414159/'}>
 								LinkedIn
 							</a>
@@ -71,7 +70,7 @@ export const AboutPage: React.FunctionComponent = (): JSX.Element => {
 						(así será).
 					</p>
 					<p>
-						Wrote this blog using React 16.12. Check out the code{' '}
+						Wrote this blog using React 16. Check out the code{' '}
 						<a href="https://github.com/Steff-ee/Steff-ee.github.io" target="_blank">
 							here
 						</a>

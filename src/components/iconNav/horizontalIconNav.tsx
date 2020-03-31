@@ -22,7 +22,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 		selectedId,
 	} = props
 	const [hoverIndex, setHoverIndex] = useState<number>(-1)
-	const { headerText: headerTextColor, border: borderColor } = useColors()
+	const { navbarText: navbarTextColor, border: borderColor } = useColors()
 	const mediaSize = useContext(MediaContext)
 
 	const onMouseLeave = (index: number): void => {
@@ -57,7 +57,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 							{...item}
 							width={iconWidth}
 							height={iconHeight}
-							color={headerTextColor}
+							color={navbarTextColor}
 							key={item.id}
 							id={itemIndex}
 							isSelected={item.id === selectedId}
@@ -75,7 +75,7 @@ export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps>
 				orientation={orientation}
 				rootStyle={{
 					backgroundColor: borderColor,
-					color: headerTextColor,
+					color: navbarTextColor,
 					marginTop: iconHeight,
 					position: 'absolute',
 					...labelOrientationStyle,

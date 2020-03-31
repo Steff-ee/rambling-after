@@ -9,13 +9,13 @@ export interface IFooterProps {
 
 export const Footer: React.FunctionComponent<IFooterProps> = (props: IFooterProps): JSX.Element => {
 	const { artistName, artistLink } = props
-	const { headerText: headerTextColor, border: borderColor } = useColors()
+	const { navbarText: navbarTextColor, border: borderColor } = useColors()
 
 	return (
 		<div
 			style={{
 				...subscriptStyle,
-				color: headerTextColor,
+				color: navbarTextColor,
 				backgroundColor: borderColor,
 				width: '100%',
 				height: '64px',

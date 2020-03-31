@@ -5,7 +5,8 @@ import { Colors } from '../../helpers/constants'
 import { IColors } from './useColors.types'
 
 const classicColors: IColors = {
-	headerText: Colors.LightSand,
+	headerTitleText: Colors.LightSand,
+	navbarText: Colors.LightSand,
 	background: Colors.LightSand,
 	border: 'black',
 	text: 'black',
@@ -13,7 +14,8 @@ const classicColors: IColors = {
 }
 
 const winterColors: IColors = {
-	headerText: Colors.IceBlue,
+	headerTitleText: Colors.IceBlue,
+	navbarText: Colors.IceBlue,
 	background: Colors.DarkBlue,
 	border: 'black',
 	text: Colors.IceBlue,
@@ -21,15 +23,17 @@ const winterColors: IColors = {
 }
 
 const springColors: IColors = {
-	headerText: 'white',
-	background: Colors.CherryBlossom,
-	border: 'black',
-	text: 'black',
-	subtitle: 'black',
+	headerTitleText: 'white',
+	navbarText: Colors.DarkViolet,
+	background: Colors.SoftPourpre,
+	border: Colors.WallflowerPink,
+	text: Colors.GentleSand,
+	subtitle: Colors.GentleSand,
 }
 
 const summerColors: IColors = {
-	headerText: Colors.LightYellow,
+	headerTitleText: Colors.LightYellow,
+	navbarText: Colors.LightYellow,
 	background: Colors.LightYellow,
 	border: 'black',
 	text: 'black',
@@ -37,7 +41,8 @@ const summerColors: IColors = {
 }
 
 const autumnColors: IColors = {
-	headerText: '#f2afa1',
+	headerTitleText: '#f2afa1',
+	navbarText: '#f2afa1',
 	background: '#351811',
 	border: 'black',
 	text: '#f2afa1',

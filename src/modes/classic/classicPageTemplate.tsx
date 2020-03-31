@@ -31,7 +31,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
 ): JSX.Element => {
 	const { headerBackgroundImage, mediaSize, skipMorph } = props
-	const { headerText: headerTextColor, border: borderColor } = useColors()
+	const { headerTitleText: headerTitleTextColor, border: borderColor } = useColors()
 
 	const title = useTextMorphSequence(
 		[
@@ -117,7 +117,7 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 				<div
 					style={{
 						...grandTitleStyle,
-						color: headerTextColor,
+						color: headerTitleTextColor,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
 						cursor: 'pointer',
@@ -135,8 +135,8 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	props: IParallaxPivotsProps
 ): JSX.Element => {
 	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
-	const { headerText: headerTextColor, text: textColor } = useColors()
-	const color = arePivotsSticky ? headerTextColor : textColor
+	const { navbarText: navbarTextColor, text: textColor } = useColors()
+	const color = arePivotsSticky ? navbarTextColor : textColor
 
 	const pivotRootStyle = {
 		fontFamily: 'Source Code Pro',
@@ -206,14 +206,14 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 }
 
 const MobileTitle: React.FunctionComponent = (): JSX.Element => {
-	const { headerText: headerTextColor, border: borderColor } = useColors()
+	const { headerTitleText: titleColor, border: borderColor } = useColors()
 
 	return (
 		<div
 			style={{
 				fontWeight: 500,
 				fontFamily: 'Montserrat',
-				color: headerTextColor,
+				color: titleColor,
 				fontSize: '36px',
 				lineHeight: '52px',
 				letterSpacing: '2px',

@@ -15,6 +15,10 @@ export enum Colors {
 	Salmon = '#fad4be',
 	Firefly = '#ffe364',
 	LightYellow = '#fff4ce',
+	SoftPourpre = '#843b62',
+	DarkViolet = '#331446',
+	GentleSand = '#fff3d9',
+	WallflowerPink = '#cd999c',
 }
 
 export const websiteTitle = 'RAMBLING AFTER'

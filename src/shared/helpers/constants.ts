@@ -6,6 +6,7 @@ export enum Colors {
 	DarkBlue = '#1C304A',
 	IceBlue = '#e1f8ff',
 	SeaFoam = '#6ec9d4',
+	SeaMist = '#d8f1f2',
 	WarmSand = '#d4ad6e',
 	LightSand = '#fffae8',
 	MaroonMud = '#3c1e14',
@@ -18,7 +19,7 @@ export enum Colors {
 	SoftPourpre = '#843b62',
 	DarkViolet = '#331446',
 	GentleSand = '#fff3d9',
-	WallflowerPink = '#cd999c',
+	WallflowerPink = '#e2b7c1',
 }
 
 export const websiteTitle = 'RAMBLING AFTER'

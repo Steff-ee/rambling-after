@@ -60,9 +60,9 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			</div>
 			<Divider thickness={2} rootStyle={{ width: '96%', padding: '8px 2% 8px 2%' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
-				Adaptable Full Stack Web Developer with 5 years of industry experience maximizing
-				customer impact, balancing features, reliability and performance with technical debt
-				reduction.
+				Adaptable Full Stack Web Developer with 10 years coding and 5 years of industry
+				experience maximizing customer impact by balancing features, reliability and
+				performance with technical debt reduction.
 			</div>
 		</div>
 	)

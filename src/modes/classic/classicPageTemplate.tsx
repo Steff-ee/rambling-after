@@ -66,43 +66,18 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 		<>
 			<div
 				style={{
-					...parallaxGroupStyle,
-					zIndex: -2,
-					transformOrigin: '0 0',
-					transform: 'translateZ(-20px) scale(21)',
+					position: 'sticky',
+					top: 0,
+					zIndex: 0,
+					backgroundColor: borderColor,
+					width: '100vw',
+					height: `${topBarHeight}px`,
 				}}
-			>
-				<div
-					style={{
-						backgroundColor: borderColor,
-						width: '100%',
-						height: `${topBarHeight}px`,
-					}}
-				/>
-			</div>
+			/>
 			<div
 				style={{
 					...parallaxGroupStyle,
-					zIndex: -3,
-					transformOrigin: `0 -${topBarHeight}px`,
-					transform: 'translateZ(-3px) scale(4)',
-					height: `${bannerHeight}px`,
-				}}
-			>
-				<FadeLoadImage
-					src={headerBackgroundImage}
-					style={{
-						height: `100%`,
-						width: '100vw',
-						objectFit: 'cover',
-						objectPosition: 'top',
-					}}
-				/>
-			</div>
-			<div
-				style={{
-					...parallaxGroupStyle,
-					position: 'absolute',
+					position: 'relative',
 					width: '100vw',
 					height: `${bannerHeight}px`,
 					transformOrigin: `0 0`,
@@ -114,14 +89,25 @@ const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					justifyContent: 'center',
 				}}
 			>
+				<FadeLoadImage
+					src={headerBackgroundImage}
+					style={{
+						height: `${bannerHeight}px`,
+						width: '100vw',
+						objectFit: 'cover',
+						objectPosition: 'top',
+					}}
+				/>
 				<div
 					style={{
 						...grandTitleStyle,
+						position: 'absolute',
 						color: headerTitleTextColor,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
 						cursor: 'pointer',
-						margin: '0 16px',
+						width: '92vw',
+						margin: '0 4vw',
 					}}
 				>
 					{title}

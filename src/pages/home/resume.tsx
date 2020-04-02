@@ -8,7 +8,7 @@ const pageHeight = '1000px'
 const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Open Sans',
 	fontSize: '15px',
-	lineHeight: '23px',
+	lineHeight: '21px',
 }
 
 const titleTextStyle: React.CSSProperties = {
@@ -60,9 +60,9 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			</div>
 			<Divider thickness={2} rootStyle={{ width: '96%', padding: '8px 2% 8px 2%' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
-				Adaptable Full Stack Web Developer with 10 years coding and 5 years' experience
-				delivering and prioritizing the highest impact changes for customers without
-				sacrificing code quality and reliability.
+				Adaptable Full Stack Web Developer with 5 years of industry experience maximizing
+				customer impact, balancing features, reliability and performance with technical debt
+				reduction.
 			</div>
 		</div>
 	)
@@ -87,7 +87,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 					...subtitleTextStyle,
 					fontSize: '23px',
 					textAlign: 'center',
-					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 2px 0px',
+					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 4px 0px',
 					letterSpacing: '1px',
 				}}
 			>
@@ -102,7 +102,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 	props: React.PropsWithChildren<{}>
 ): JSX.Element => {
-	return <li style={{ margin: '0px 0px 2px 11px' }}>{props.children}</li>
+	return <li style={{ margin: '0px 0px 4px 11px' }}>{props.children}</li>
 }
 
 const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
@@ -142,7 +142,9 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				<div style={{ margin: '0px 6px' }}>{timeRange}</div>
 			</div>
 			{subtext && <div>{subtext}</div>}
-			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '2px 0px 0px 15px' }}>{body}</div>
+			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '2px 50px 0px 15px' }}>
+				{body}
+			</div>
 		</div>
 	)
 }
@@ -181,26 +183,28 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 								<>
 									<ListHeader>Code Architecture</ListHeader>
 									<ListItem>
-										Drive team to adopt Hooks and replace Redux with more
-										productive patterns
+										Drive team to adopt Hooks and replace Redux and other
+										patterns with more productive ones
 									</ListItem>
 									<ListItem>
-										Elicit feedback and run design discussions to maintain code
-										quality
+										Revamped telemetry framework to distinguish error rates by
+										app type and server vs client (uncovered to be 99.9%)
 									</ListItem>
 									<ListHeader>Reliability</ListHeader>
 									<ListItem>
-										Triage bugs daily and generate service reports weekly and
-										monthly
+										Increase apps page reliability (98.5% to 99.3%) by reducing
+										client errors and preventing failure state with partial
+										loading
 									</ListItem>
 									<ListItem>
-										Improve perceived performance through partial loading and
-										track with revamped telemetry
+										Generate weekly service reports, triage bugs daily, and
+										mitigate high severity issues that arise
 									</ListItem>
 									<ListHeader>Teamwork</ListHeader>
 									<ListItem>
-										Review all of team's pull requests, assist partner teams,
-										guide vendors, and mentor interns
+										Guide partner teams and vendors, mentor interns, and share
+										feedback on code changes (second highest pull request
+										reviewer in monorepo)
 									</ListItem>
 									<ListItem>
 										Responsively dive into at-risk featurework to aid any
@@ -221,23 +225,17 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 									<ListHeader>Primary Back-End Engineer</ListHeader>
 									<ListItem>
 										"Xylem" project: Re-architect the client/server framework in
-										a team of two, like GraphQL but customized: unifying
-										duplicate code, simplifying data access, and increasing
-										expressiveness
+										a team of two: unifying duplicate code, simplifying data
+										access, and increasing expressiveness
 									</ListItem>
 									<ListItem>
 										Supervise all SQL queries: Optimizing for efficiency,
 										producing for new features, and advancing the algorithm for
-										duplicate-finding during roster uploads
-									</ListItem>
-									<ListHeader>Customer Support Queue</ListHeader>
-									<ListItem>
-										Identify causes of reported incidents and address with
-										fixes, scripts, and tests
+										finding duplicate users during roster uploads
 									</ListItem>
 									<ListItem>
-										Balance between elegant, robust solutions and rapid-response
-										repairs
+										Identify, triage, and resolve customer incidents with rapid
+										repairs and automated testing
 									</ListItem>
 								</>
 							}
@@ -263,8 +261,8 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 									Teaching Assistant for “Logic and Automated Reasoning”
 								</ListItem>
 								<ListItem>
-									Resident Assistant for Eucalypto, collaborating to build a safe,
-									supportive community for freshmen
+									Resident Assistant, collaborating to build a safe, supportive
+									community for freshmen
 								</ListItem>
 							</>
 						}
@@ -279,10 +277,10 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 					<div style={{ padding: '6px 0px 0px 15px' }}>
 						<ListItem>
 							Currently Proficient: React, Redux, GraphQL, TypeScript, JavaScript,
-							MySQL
+							Python
 						</ListItem>
 						<ListItem>
-							Prior Proficiencies: Angular, PHP, Java, C, C++, Ruby, Python
+							Prior Proficiencies: MySQL, Angular, AWS, PHP, Java, C, C++, Ruby
 						</ListItem>
 						<ListItem>
 							Eager to learn new languages, tools, and skills; learn from the best;

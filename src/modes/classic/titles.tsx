@@ -16,11 +16,11 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	const { season } = useContext(SeasonsContext)
 
 	let backgroundOpacity = 0.68
-	let showTopBar = true
-	if (season === Seasons.Winter) {
+	let showTopBar = false
+	if (season === Seasons.None) {
+		showTopBar = true
+	} else if (season === Seasons.Winter) {
 		backgroundOpacity = 0.9
-	} else if (season === Seasons.Spring) {
-		showTopBar = false
 	}
 
 	const title = useTextMorphSequence(

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { useColors } from '../../shared/presentational/hooks/useColors'
 
 export interface IDividerProps {
 	thickness?: number
@@ -9,6 +10,7 @@ export const Divider: React.FunctionComponent<IDividerProps> = (
 	props: IDividerProps
 ): JSX.Element => {
 	const { thickness = 1, rootStyle: rootStyleProp } = props
+	const { text: textColor } = useColors()
 
 	let rootStyle: React.CSSProperties = { width: '100%', padding: `40px 5% 48px 5%` }
 	rootStyle = useMemo(() => {
@@ -24,7 +26,7 @@ export const Divider: React.FunctionComponent<IDividerProps> = (
 			<div
 				style={{
 					width: '100%',
-					borderBottom: `${thickness}px solid rgba(80, 80, 80, 0.8)`,
+					borderBottom: `${thickness}px solid ${textColor}`,
 				}}
 			/>
 		</div>

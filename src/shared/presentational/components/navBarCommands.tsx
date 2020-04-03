@@ -36,14 +36,14 @@ const getNextSeason = (season: Seasons, isTest: boolean): Seasons => {
 		case Seasons.None:
 			return Seasons.Winter
 		case Seasons.Winter:
+			return Seasons.Spring
+		case Seasons.Spring:
 			if (isTest) {
 				// (TODO) enable other seasons
-				return Seasons.Spring
+				return Seasons.Summer
 			}
 
 			return Seasons.None
-		case Seasons.Spring:
-			return Seasons.Summer
 		case Seasons.Summer:
 			return Seasons.Autumn
 		case Seasons.Autumn:

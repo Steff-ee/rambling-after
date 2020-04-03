@@ -17,6 +17,7 @@ export enum Colors {
 	Firefly = '#ffe364',
 	LightYellow = '#fff4ce',
 	SoftPourpre = '#843b62',
+	ClaretWine = '#5c1f32',
 	DarkViolet = '#331446',
 	GentleSand = '#fff3d9',
 	WallflowerPink = '#e2b7c1',

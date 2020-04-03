@@ -15,9 +15,12 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	const { headerTitleText: headerTitleTextColor, border: borderColor } = useColors()
 	const { season } = useContext(SeasonsContext)
 
-	let backgroundOpacity = 0.65
+	let backgroundOpacity = 0.68
+	let showTopBar = true
 	if (season === Seasons.Winter) {
 		backgroundOpacity = 0.9
+	} else if (season === Seasons.Spring) {
+		showTopBar = false
 	}
 
 	const title = useTextMorphSequence(
@@ -36,7 +39,7 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 		skipMorph
 	)
 
-	const topBarHeight = 44
+	const topBarHeight = showTopBar ? 44 : 1
 	const bannerHeight = 480
 
 	// large
@@ -51,22 +54,24 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 
 	return (
 		<>
-			<div
-				style={{
-					...parallaxGroupStyle,
-					zIndex: -2,
-					transformOrigin: '0 0',
-					transform: 'translateZ(-20px) scale(21)',
-				}}
-			>
+			{showTopBar && (
 				<div
 					style={{
-						backgroundColor: borderColor,
-						width: '100%',
-						height: `${topBarHeight}px`,
+						...parallaxGroupStyle,
+						zIndex: -2,
+						transformOrigin: '0 0',
+						transform: 'translateZ(-20px) scale(21)',
 					}}
-				/>
-			</div>
+				>
+					<div
+						style={{
+							backgroundColor: borderColor,
+							width: '100%',
+							height: `${topBarHeight}px`,
+						}}
+					/>
+				</div>
+			)}
 			<div
 				style={{
 					...parallaxGroupStyle,
@@ -94,7 +99,7 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					position: 'absolute',
 					width: '100vw',
 					height: `${bannerHeight}px`,
-					transformOrigin: `0 0`,
+					transformOrigin: showTopBar ? `0 0` : '0 32px',
 					transform: 'translateZ(-1px) scale(2)',
 					top: topBarHeight,
 					zIndex: -1,

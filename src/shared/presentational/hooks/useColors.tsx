@@ -23,12 +23,12 @@ const winterColors: IColors = {
 }
 
 const springColors: IColors = {
-	headerTitleText: Colors.SeaMist,
+	headerTitleText: Colors.IceWhite,
 	navbarText: Colors.DarkViolet,
 	background: Colors.SoftPourpre,
 	border: Colors.WallflowerPink,
 	text: Colors.GentleSand,
-	subtitle: Colors.SeaMist,
+	subtitle: Colors.IceWhite,
 }
 
 const summerColors: IColors = {

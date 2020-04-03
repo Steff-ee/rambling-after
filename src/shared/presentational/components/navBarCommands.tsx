@@ -95,7 +95,7 @@ export const useNavigationLinks = (): INavItem[] => {
 		navLinks.push({
 			icon: <FontAwesomeIcon icon={faSyncAlt} {...commonIconProps} size={'lg' as const} />,
 			id: undefined,
-			label: 'Change theme',
+			label: 'change theme',
 			onClick: (): void => setSeason(getNextSeason(season, isTest)),
 		})
 	}

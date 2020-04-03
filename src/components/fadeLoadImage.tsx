@@ -4,19 +4,20 @@ import React, { useState } from 'react'
 
 export interface IFadeLoadImageProps {
 	src: string
+	opacity?: number
 	style?: React.CSSProperties
 }
 
 export const FadeLoadImage: React.FunctionComponent<IFadeLoadImageProps> = (
 	props: IFadeLoadImageProps
 ): JSX.Element => {
-	const { src, style } = props
+	const { src, style, opacity = 1 } = props
 	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
 	return (
 		<img
 			src={src}
-			style={{ ...style, opacity: isLoaded ? 1 : 0 }}
+			style={{ ...style, opacity: isLoaded ? opacity : 0 }}
 			onLoad={(): void => setIsLoaded(true)}
 		/>
 	)

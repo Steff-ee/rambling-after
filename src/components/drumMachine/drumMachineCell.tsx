@@ -9,7 +9,7 @@ const White: IColor = { R: 255, G: 255, B: 255, A: 1 }
  * NOTE: Requires a black background in order for transparency to correctly highlight cells
  */
 export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
-	const { canBeHit, instrument, isOnBeat, isBeingHit } = props
+	const { canBeHit, instrumentColor, isDisabled, isOnBeat, isBeingHit } = props
 	const [isHovering, setIsHovering] = useState(false)
 
 	// (TODO V2) implement onClick, toggle canBeHit
@@ -17,11 +17,11 @@ export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
 	let color: IColor
 	let darkenRatio = 0
 
-	if (canBeHit && isBeingHit) {
+	if (canBeHit && !isDisabled && isBeingHit) {
 		color = White
 	} else {
-		if (canBeHit && !!instrument) {
-			color = instrument.color
+		if (canBeHit && !isDisabled && instrumentColor) {
+			color = instrumentColor
 		} else {
 			color = Grey
 		}
@@ -34,6 +34,9 @@ export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
 		}
 		if (!canBeHit && !isOnBeat) {
 			darkenRatio += 0.15
+		}
+		if (isDisabled) {
+			darkenRatio += 0.5
 		}
 	}
 

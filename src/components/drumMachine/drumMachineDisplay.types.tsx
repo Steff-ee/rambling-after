@@ -1,4 +1,5 @@
-import { BeatUnit, IInstrument, IPercussionSequence } from './music.types'
+import { IColor } from './colors'
+import { BeatUnit, IPercussionSequence } from './music.types'
 
 export interface IDrumMachineDisplayProps {
 	/**
@@ -48,6 +49,11 @@ export interface IDrumMachineCellProps {
 	isBeingHit: boolean
 
 	/**
+	 * True iff the track is invalid and cannot be played in the current DrumMachine.
+	 */
+	isDisabled?: boolean
+
+	/**
 	 * Whether the user has clicked on the row that contains this cell.
 	 */
 	isHighlighted?: boolean
@@ -56,5 +62,5 @@ export interface IDrumMachineCellProps {
 	 * Instrument determines the color that will be used when canBeHit is true.
 	 * The color will be darkened or brightened based on other props.
 	 */
-	instrument?: IInstrument
+	instrumentColor?: IColor
 }

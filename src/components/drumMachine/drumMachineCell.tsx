@@ -5,6 +5,9 @@ import { IDrumMachineCellProps } from './drumMachineDisplay.types'
 const Grey: IColor = { R: 175, G: 175, B: 175, A: 1 }
 const White: IColor = { R: 255, G: 255, B: 255, A: 1 }
 
+export const cellLength = '35px'
+export const cellMargin = '3px'
+
 /**
  * NOTE: Requires a black background in order for transparency to correctly highlight cells
  */
@@ -46,10 +49,10 @@ export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
 		<div
 			style={{
 				backgroundColor: colorString,
-				width: '35px',
-				height: '35px',
+				width: cellLength,
+				height: cellLength,
 				borderRadius: '6px',
-				margin: '3px',
+				margin: cellMargin,
 			}}
 			onMouseEnter={(): void => {
 				setIsHovering(true)

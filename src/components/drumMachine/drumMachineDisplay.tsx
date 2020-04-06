@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { DrumMachineCell } from './drumMachineCell'
+import { cellLength, cellMargin, DrumMachineCell } from './drumMachineCell'
 import { IDrumMachineDisplayProps } from './drumMachineDisplay.types'
 import { getBeatTime } from './helpers'
 import { BeatUnit, DrumMachineCells, IPercussionTrack } from './music.types'
@@ -102,6 +102,29 @@ export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element
 					currentHitBeat={isPlaying ? currentHitBeat : undefined}
 				/>
 			))}
+			<div style={{ display: 'flex' }}>
+				{new Array(length).fill(0).map((unused, index) => {
+					let color = 'lightgrey'
+					if (index % barLength === 0) {
+						color = 'white'
+					}
+
+					return (
+						<div
+							key={`index-${index}`}
+							style={{
+								width: cellLength,
+								height: cellLength,
+								margin: cellMargin,
+								textAlign: 'center',
+								color,
+							}}
+						>
+							{index + 1}
+						</div>
+					)
+				})}
+			</div>
 		</div>
 	)
 }

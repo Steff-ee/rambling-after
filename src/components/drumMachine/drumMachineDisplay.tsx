@@ -26,7 +26,6 @@ export function DrumMachineRow(props: {
 	currentHitBeat: number | undefined
 }): JSX.Element {
 	const { track, rowNumber, length, barLength, isHighlighted, currentHitBeat } = props
-	console.log('currentHitBeat', currentHitBeat)
 	const cells = getLoopedTrack(track.pattern, length)
 
 	// (TODO V2) implement icons
@@ -63,9 +62,12 @@ export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element
 	// (TODO V2) implement add track button
 
 	return (
-		<div style={{ backgroundColor: 'black', color: 'white' }}>
+		<div style={{ backgroundColor: 'black', color: 'white', padding: '16px 20px' }}>
 			<div>
-				<div style={{ cursor: 'pointer' }} onClick={(): void => setIsPlaying(!isPlaying)}>
+				<div
+					style={{ cursor: 'pointer', lineHeight: '36px', padding: '0px 10px' }}
+					onClick={(): void => setIsPlaying(!isPlaying)}
+				>
 					{buttonText}
 				</div>
 			</div>

@@ -17,7 +17,7 @@ export function getRandomInstrumentColor(): IColor {
 	const G = intensities.splice(randomIndex, 1)[0]
 	randomIndex = Math.floor(Math.random() * intensities.length)
 	let B = 255
-	if (R !== 255 || G !== 255) {
+	if (R === 255 || G === 255) {
 		B = intensities.splice(randomIndex, 1)[0]
 	}
 

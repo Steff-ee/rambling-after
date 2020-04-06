@@ -38,11 +38,6 @@ export interface IDrumMachineCellProps {
 	canBeHit: boolean
 
 	/**
-	 * Whether the user has clicked on the row that contains this cell.
-	 */
-	isHighlighted: boolean
-
-	/**
 	 * Whether this cell is at the end of a bar.
 	 */
 	isOnBeat: boolean
@@ -51,6 +46,11 @@ export interface IDrumMachineCellProps {
 	 * During playback, whether this cell is currently being hit.
 	 */
 	isBeingHit: boolean
+
+	/**
+	 * Whether the user has clicked on the row that contains this cell.
+	 */
+	isHighlighted?: boolean
 
 	/**
 	 * Instrument determines the color that will be used when canBeHit is true.

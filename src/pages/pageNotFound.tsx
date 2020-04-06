@@ -1,6 +1,7 @@
 import foggyTown from 'Assets/images/foggy_town.jpg'
 import React from 'react'
 import { ClassicPageTemplate } from '../modes/classic/classicPageTemplate'
+import { classicBackgroundTextureStyle } from '../shared/helpers/styles'
 
 export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 	return (
@@ -14,7 +15,7 @@ export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 				</div>
 			}
 			headerBackgroundImage={foggyTown}
-			backgroundStyle={{ backgroundColor: 'lightgrey' }}
+			backgroundStyle={classicBackgroundTextureStyle}
 			selectedPivotTitle={''}
 			setPivot={(): void => {
 				return

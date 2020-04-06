@@ -38,6 +38,11 @@ export interface IInstrument {
 	 */
 
 	/**
+	 * Color used in tracks.
+	 */
+	color: IColor
+
+	/**
 	 * Icon to represent the instrument
 	 */
 	icon?: JSX.Element
@@ -58,15 +63,6 @@ export interface ITrack {
 	 * Amplitude of the track's audio during playback.
 	 */
 	volume?: number
-
-	/**
-	 * STYLING
-	 */
-
-	/**
-	 * Color for highlighting the audo clip or drum track cells.
-	 */
-	color?: IColor
 }
 
 export interface IPercussionTrack extends ITrack {

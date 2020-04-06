@@ -1,5 +1,4 @@
-import { IColor } from './colors'
-import { BeatUnit, IPercussionSequence } from './music.types'
+import { BeatUnit, IInstrument, IPercussionSequence } from './music.types'
 
 export interface IDrumMachineDisplayProps {
 	/**
@@ -54,8 +53,8 @@ export interface IDrumMachineCellProps {
 	isBeingHit: boolean
 
 	/**
-	 * Color that will be used when canBeHit is true.
+	 * Instrument determines the color that will be used when canBeHit is true.
 	 * The color will be darkened or brightened based on other props.
 	 */
-	instrumentColor: IColor
+	instrument?: IInstrument
 }

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { DrumMachineCell } from './drumMachineCell'
 import { IDrumMachineDisplayProps } from './drumMachineDisplay.types'
+import { getBeatTime } from './helpers'
 import { DrumMachineCells, IPercussionTrack } from './music.types'
+import { useRhythm } from './useRhythm'
 
 export function getLoopedTrack(
 	pattern: IPercussionTrack['pattern'],
@@ -24,12 +26,13 @@ export function DrumMachineRow(props: {
 	currentHitBeat: number | undefined
 }): JSX.Element {
 	const { track, rowNumber, length, barLength, isHighlighted, currentHitBeat } = props
+	console.log('currentHitBeat', currentHitBeat)
 	const cells = getLoopedTrack(track.pattern, length)
 
-	// (TODO) implement icons
+	// (TODO V2) implement icons
 
 	return (
-		<div>
+		<div style={{ display: 'flex' }}>
 			{cells.map((cell, index) => (
 				<DrumMachineCell
 					key={`cell-${rowNumber}-${index}`}
@@ -37,7 +40,7 @@ export function DrumMachineRow(props: {
 					isHighlighted={isHighlighted}
 					isOnBeat={index % barLength === 0}
 					isBeingHit={index === currentHitBeat}
-					instrumentColor={track.color}
+					instrument={track.instrument}
 				/>
 			))}
 		</div>
@@ -45,22 +48,27 @@ export function DrumMachineRow(props: {
 }
 
 export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element {
-	const { sequence, length, barLength } = props
-	// (TODO) implement row selection
+	const { sequence, length, barLength, beatUnit } = props
+	// (TODO V2) implement row selection
 	const [highlightedRow, setHighlightedRow] = useState<number | undefined>()
-	// (TODO) implement hitting
-	const [currentHitBeat, setCurrentHitBeat] = useState<number | undefined>()
-	// (TODO) implement play button
 	const [isPlaying, setIsPlaying] = useState(false)
+	const currentHitBeat = useRhythm(isPlaying, getBeatTime(beatUnit), length)
 
-	// (TODO) implement numbers row
-
-	// (TODO) implement add track button
+	const buttonText = isPlaying ? 'Stop' : 'Play'
 
 	// (TODO) implement pattern selection
 
+	// (TODO V2) implement numbers row
+
+	// (TODO V2) implement add track button
+
 	return (
-		<div>
+		<div style={{ backgroundColor: 'black', color: 'white' }}>
+			<div>
+				<div style={{ cursor: 'pointer' }} onClick={(): void => setIsPlaying(!isPlaying)}>
+					{buttonText}
+				</div>
+			</div>
 			{sequence.tracks.map((track, index) => (
 				<DrumMachineRow
 					key={`track-${index}`}
@@ -69,7 +77,7 @@ export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element
 					length={length}
 					barLength={barLength}
 					isHighlighted={index === highlightedRow}
-					currentHitBeat={currentHitBeat}
+					currentHitBeat={isPlaying ? currentHitBeat : undefined}
 				/>
 			))}
 		</div>

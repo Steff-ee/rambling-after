@@ -1,3 +1,5 @@
+import backgroundTextureImg from 'Assets/images/background_texture.png'
+
 export const subscriptStyle: React.CSSProperties = {
 	fontFamily: 'Source Code Pro',
 	fontSize: '16px',
@@ -72,6 +74,12 @@ export const pivotItemStyle: React.CSSProperties = {
 	alignItems: 'center',
 	justifyContent: 'center',
 	whiteSpace: 'nowrap',
+}
+
+export const classicBackgroundTextureStyle: React.CSSProperties = {
+	backgroundImage: `url(${backgroundTextureImg})`,
+	backgroundRepeat: 'repeat',
+	backgroundPosition: 'right top',
 }
 
 export const smallestDeviceWidth = '320px'

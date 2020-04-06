@@ -1,26 +1,15 @@
+import foggyTown from 'Assets/images/foggy_town.jpg'
 import React from 'react'
+import { ClassicPageTemplate } from '../../modes/classic/classicPageTemplate'
+import { classicBackgroundTextureStyle } from '../../shared/helpers/styles'
 import { DrumMachineDisplay } from './drumMachineDisplay'
-import { IPercussionInstrument, IPercussionSequence } from './music.types'
+import { createPercussionInstrument } from './helpers'
+import { IPercussionSequence } from './music.types'
 
-const Kick: IPercussionInstrument = {
-	name: 'Kick',
-	isPercussion: true,
-}
-
-const Snare: IPercussionInstrument = {
-	name: 'Snare',
-	isPercussion: true,
-}
-
-const OpenHat: IPercussionInstrument = {
-	name: 'OpenHat',
-	isPercussion: true,
-}
-
-const ClosedHat: IPercussionInstrument = {
-	name: 'ClosedHat',
-	isPercussion: true,
-}
+const Kick = createPercussionInstrument('Kick')
+const Snare = createPercussionInstrument('Snare')
+const ClosedHat = createPercussionInstrument('ClosedHat')
+const OpenHat = createPercussionInstrument('OpenHat')
 
 const FourOnTheFloor: IPercussionSequence = {
 	author: 'Splice',
@@ -54,8 +43,27 @@ const FourOnTheFloor: IPercussionSequence = {
 
 export function DrumMachinePage(): JSX.Element {
 	return (
-		<div>
-			<DrumMachineDisplay sequence={FourOnTheFloor} beatUnit={4} length={16} barLength={4} />
-		</div>
+		<ClassicPageTemplate
+			Content={
+				<div>
+					<DrumMachineDisplay
+						sequence={FourOnTheFloor}
+						beatUnit={4}
+						length={16}
+						barLength={4}
+					/>
+				</div>
+			}
+			headerBackgroundImage={foggyTown}
+			backgroundStyle={classicBackgroundTextureStyle}
+			selectedPivotTitle={''}
+			setPivot={(): void => {
+				return
+			}}
+			pivotsItems={[]}
+			showPostsNav={false}
+			artistName={'an unknown photographer'}
+			artistLink={'https://best-wallpaper.net/'}
+		/>
 	)
 }

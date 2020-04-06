@@ -2,49 +2,55 @@ import React, { useState } from 'react'
 import { getColorString, IColor } from './colors'
 import { IDrumMachineCellProps } from './drumMachineDisplay.types'
 
-const OffBlack: IColor = { R: 19, G: 19, B: 19, T: 1 }
+const Grey: IColor = { R: 175, G: 175, B: 175, A: 1 }
 
+/**
+ * NOTE: Requires a black background in order for transparency to correctly highlight cells
+ */
 export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
-	const { canBeHit, instrumentColor, isHighlighted, isOnBeat, isBeingHit } = props
+	const { canBeHit, instrument, isHighlighted, isOnBeat, isBeingHit } = props
 	const [isHovering, setIsHovering] = useState(false)
 
 	// (TODO V2) implement onClick, toggle canBeHit
 
 	let color: IColor
-	if (canBeHit) {
-		color = instrumentColor
+	if (canBeHit && !!instrument) {
+		color = instrument.color
 	} else {
-		color = OffBlack
+		color = Grey
 	}
 
-	let transparency = color.T
-	if (isHighlighted) {
-		transparency *= 0.75
+	let darkenRatio = 0
+	if (!isHighlighted) {
+		darkenRatio += 0.1
 	}
-	if (isHovering) {
-		transparency *= 0.75
+	if (!isHovering) {
+		darkenRatio += 0.1
 	}
-	if (isBeingHit) {
-		transparency *= 0.75
+	if (!isBeingHit) {
+		darkenRatio += 0.2
 	}
-	if (isOnBeat) {
-		transparency *= 0.75
+	if (!isOnBeat) {
+		darkenRatio += 0.1
 	}
 
-	const colorString = getColorString(color)
+	const colorString = getColorString({ ...color, A: color.A - darkenRatio })
 
-	// use extra div with white background so lower transparencies lead to brighter colors
 	return (
-		<div style={{ backgroundColor: 'white' }}>
-			<div
-				style={{ backgroundColor: colorString }}
-				onMouseEnter={(): void => {
-					setIsHovering(true)
-				}}
-				onMouseLeave={(): void => {
-					setIsHovering(false)
-				}}
-			/>
-		</div>
+		<div
+			style={{
+				backgroundColor: colorString,
+				width: '35px',
+				height: '35px',
+				borderRadius: '6px',
+				margin: '3px',
+			}}
+			onMouseEnter={(): void => {
+				setIsHovering(true)
+			}}
+			onMouseLeave={(): void => {
+				setIsHovering(false)
+			}}
+		/>
 	)
 }

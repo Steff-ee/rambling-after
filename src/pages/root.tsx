@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
+import { DrumMachinePage } from '../components/drumMachine/drumMachinePage'
 import { MediaProvider } from '../components/mediaProvider'
 import '../components/semantic.css'
 import { ClassicPageContainer } from '../modes/classic/classicPageContainer'
@@ -33,6 +34,7 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 								<HashRouter>
 									<Switch>
 										<Redirect exact={true} from="/" to={PageRoutes.Home} />
+										<Route path={`/drumkit`} component={DrumMachinePage} />
 										<Route
 											path={`/:page?/:pivot?/:postId?`}
 											component={ClassicPageContainer}

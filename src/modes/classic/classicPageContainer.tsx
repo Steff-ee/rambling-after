@@ -1,4 +1,3 @@
-import backgroundTextureImg from 'Assets/images/background_texture.png'
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import {
@@ -22,6 +21,7 @@ import {
 	showPostsNavForStories,
 } from '../../pages/stories/stories.helpers'
 import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/routes'
+import { classicBackgroundTextureStyle } from '../../shared/helpers/styles'
 import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
@@ -77,11 +77,7 @@ const getPageTemplateProps = <T extends {}>(
 ) => {
 	let backgroundStyle: React.CSSProperties
 	if (isClassic) {
-		backgroundStyle = {
-			backgroundImage: `url(${backgroundTextureImg})`,
-			backgroundRepeat: 'repeat',
-			backgroundPosition: 'right top',
-		}
+		backgroundStyle = classicBackgroundTextureStyle
 	} else {
 		backgroundStyle = { backgroundColor }
 	}

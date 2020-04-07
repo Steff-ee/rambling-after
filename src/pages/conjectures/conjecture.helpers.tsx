@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
+import { IPageTemplateBackgroundsProps } from '../../modes/classic/pageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
@@ -34,17 +34,20 @@ export const getConjectureUsePivotsProps = (): IUsePivotProps => {
 export const showPostsNavForConjecture = (pivot: PivotRoutes | undefined): boolean => {
 	return pivot === ConjecturePivots.Posts
 }
+export const getConjecturePageContent = (
+	selectedPivotTitle: PivotRoutes | undefined
+): JSX.Element | undefined => {
+	if (selectedPivotTitle === ConjecturePivots.Links) {
+		return <ConjectureLinks />
+	}
 
-export interface IConjecturePageTemplateProps {
-	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
-	artistName: IClassicPageTemplateProps['artistName']
-	artistLink: IClassicPageTemplateProps['artistLink']
-	Content?: IClassicPageTemplateProps['Content']
+	return undefined
 }
 
-export const getConjecturePageTemplateProps = (
-	selectedPivotTitle: PivotRoutes | undefined
-): IConjecturePageTemplateProps => {
+export const getConjecturePageBackground = (): Omit<
+	IPageTemplateBackgroundsProps,
+	'backgroundStyle'
+> => {
 	const { season } = useContext(SeasonsContext)
 
 	let headerPicture: IPicture
@@ -67,14 +70,9 @@ export const getConjecturePageTemplateProps = (
 	}
 
 	const { src: headerBackgroundImage, ...artistProps } = headerPicture
-	const pageContent: IConjecturePageTemplateProps = {
+
+	return {
 		...artistProps,
 		headerBackgroundImage,
 	}
-
-	if (selectedPivotTitle === ConjecturePivots.Links) {
-		pageContent.Content = <ConjectureLinks />
-	}
-
-	return pageContent
 }

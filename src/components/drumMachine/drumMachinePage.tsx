@@ -1,10 +1,8 @@
 import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import foggyTown from 'Assets/images/foggy_town.jpg'
 import React, { useEffect, useState } from 'react'
 import { Dropdown } from 'semantic-ui-react'
-import { ClassicPageTemplate } from '../../modes/classic/classicPageTemplate'
-import { classicBackgroundTextureStyle } from '../../shared/helpers/styles'
+import { SeasonalPageTemplate } from '../../modes/classic/seasonalPageTemplate'
 import { DrumMachineDisplay } from './drumMachineDisplay'
 import { createPercussionInstrument } from './helpers'
 import { BeatUnit, IPercussionSequence } from './music.types'
@@ -128,7 +126,7 @@ export function DrumMachinePage(): JSX.Element {
 	const playIcon = isPlaying ? faStopCircle : faPlayCircle
 
 	return (
-		<ClassicPageTemplate
+		<SeasonalPageTemplate
 			Content={
 				<div style={{ backgroundColor: 'black', color: 'white', padding: '16px 20px' }}>
 					<div
@@ -166,16 +164,12 @@ export function DrumMachinePage(): JSX.Element {
 					)}
 				</div>
 			}
-			headerBackgroundImage={foggyTown}
-			backgroundStyle={classicBackgroundTextureStyle}
 			selectedPivotTitle={''}
 			setPivot={(): void => {
 				return
 			}}
 			pivotsItems={[]}
 			showPostsNav={false}
-			artistName={'an unknown photographer'}
-			artistLink={'https://best-wallpaper.net/'}
 		/>
 	)
 }

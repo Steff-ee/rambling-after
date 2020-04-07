@@ -6,7 +6,7 @@ import { useColors } from '../../shared/presentational/hooks/useColors'
 import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
 import { SeasonsContext } from '../seasons/seasons'
 import { Seasons } from '../seasons/seasonsHelpers'
-import { IParallaxTitleProps } from './classicPageTemplate.types'
+import { IParallaxTitleProps } from './pageTemplate.types'
 
 export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps

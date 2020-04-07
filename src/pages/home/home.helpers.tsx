@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { IClassicPageTemplateProps } from '../../modes/classic/classicPageTemplate.types'
+import { IPageTemplateBackgroundsProps } from '../../modes/classic/pageTemplate.types'
 import { SeasonsContext } from '../../modes/seasons/seasons'
 import { Seasons } from '../../modes/seasons/seasonsHelpers'
 import {
@@ -37,16 +37,19 @@ export const showPostsNavForHome = (pivot: PivotRoutes | undefined): boolean => 
 	return pivot === HomePivots.Posts
 }
 
-export interface IHomePageTemplateProps {
-	headerBackgroundImage: IClassicPageTemplateProps['headerBackgroundImage']
-	artistName: IClassicPageTemplateProps['artistName']
-	artistLink: IClassicPageTemplateProps['artistLink']
-	Content?: IClassicPageTemplateProps['Content']
+export const getHomePageContent = (
+	selectedPivotTitle: PivotRoutes | undefined
+): JSX.Element | undefined => {
+	if (selectedPivotTitle === HomePivots.About) {
+		return <AboutPage />
+	} else if (selectedPivotTitle === HomePivots.Resume) {
+		return <Resume />
+	}
+
+	return undefined
 }
 
-export const getHomePageTemplateProps = (
-	selectedPivotTitle: PivotRoutes | undefined
-): IHomePageTemplateProps => {
+export const getHomePageBackground = (): Omit<IPageTemplateBackgroundsProps, 'backgroundStyle'> => {
 	const { season } = useContext(SeasonsContext)
 
 	let headerPicture: IPicture
@@ -69,16 +72,9 @@ export const getHomePageTemplateProps = (
 	}
 
 	const { src: headerBackgroundImage, ...artistProps } = headerPicture
-	const pageContent: IHomePageTemplateProps = {
+
+	return {
 		...artistProps,
 		headerBackgroundImage,
 	}
-
-	if (selectedPivotTitle === HomePivots.About) {
-		pageContent.Content = <AboutPage />
-	} else if (selectedPivotTitle === HomePivots.Resume) {
-		pageContent.Content = <Resume />
-	}
-
-	return pageContent
 }

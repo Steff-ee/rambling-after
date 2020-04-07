@@ -1,37 +1,32 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import {
-	getConjecturePageTemplateProps,
+	getConjecturePageContent,
 	getConjectureUsePivotsProps,
 	showPostsNavForConjecture,
 } from '../../pages/conjectures/conjecture.helpers'
 import {
-	getGamePageTemplateProps,
+	getGamePageContent,
 	getGameUsePivotsProps,
 	showPostsNavForGame,
 } from '../../pages/games/game.helpers'
 import {
-	getHomePageTemplateProps,
+	getHomePageContent,
 	getHomeUsePivotsProps,
 	showPostsNavForHome,
 } from '../../pages/home/home.helpers'
 import {
-	getStoriesPageTemplateProps,
+	getStoriesPageContent,
 	getStoriesUsePivotsProps,
 	showPostsNavForStories,
 } from '../../pages/stories/stories.helpers'
 import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/routes'
-import { classicBackgroundTextureStyle } from '../../shared/helpers/styles'
 import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
-import { useColors } from '../../shared/presentational/hooks/useColors'
 import { usePivots } from '../../shared/presentational/hooks/usePivots'
 import { IUsePivotProps } from '../../shared/presentational/hooks/usePivots.types'
-import { SeasonsContext } from '../seasons/seasons'
-import { Seasons } from '../seasons/seasonsHelpers'
-import { ClassicPageTemplate } from './classicPageTemplate'
-import { IClassicPageTemplateProps } from './classicPageTemplate.types'
+import { SeasonalPageTemplate } from './seasonalPageTemplate'
 
 const getUsePivotProps = (page: string | undefined): IUsePivotProps => {
 	switch (page) {
@@ -67,57 +62,28 @@ const getShowPostsNav = (page: string | undefined, pivot: PivotRoutes | undefine
 	}
 }
 
-// tslint:disable:typedef
-const getPageTemplateProps = <T extends {}>(
+const getPageContent = (
 	page: string | undefined,
-	pivot: PivotRoutes | undefined,
-	commonTemplateProps: T,
-	isClassic: boolean,
-	backgroundColor: string
-) => {
-	let backgroundStyle: React.CSSProperties
-	if (isClassic) {
-		backgroundStyle = classicBackgroundTextureStyle
-	} else {
-		backgroundStyle = { backgroundColor }
-	}
-
+	pivot: PivotRoutes | undefined
+): JSX.Element | undefined => {
 	switch (page) {
 		case PageRoutes.Stories:
-			return {
-				...commonTemplateProps,
-				...getStoriesPageTemplateProps(pivot),
-				backgroundStyle,
-			}
+			return getStoriesPageContent(pivot)
 
 		case PageRoutes.Games:
-			return {
-				...commonTemplateProps,
-				...getGamePageTemplateProps(pivot),
-				backgroundStyle,
-			}
+			return getGamePageContent(pivot)
 
 		case PageRoutes.Conjecture:
-			return {
-				...commonTemplateProps,
-				...getConjecturePageTemplateProps(pivot),
-				backgroundStyle,
-			}
+			return getConjecturePageContent(pivot)
 
 		case PageRoutes.Home:
 		default:
-			return {
-				...commonTemplateProps,
-				...getHomePageTemplateProps(pivot),
-				backgroundStyle,
-			}
+			return getHomePageContent(pivot)
 	}
 }
 
 export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => {
 	const { page } = useParams<IRouteParams>()
-	const { season } = useContext(SeasonsContext)
-	const { background: backgroundColor } = useColors()
 
 	const { selectedPivotTitle, setPivot, pivotsItems, redirectPath: redirectPath1 } = usePivots(
 		getUsePivotProps(page)
@@ -144,9 +110,11 @@ export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => 
 	let Content = <></>
 	if (showPostsNav) {
 		Content = <Post post={currentPost} />
+	} else {
+		Content = getPageContent(page, selectedPivotTitle) as JSX.Element
 	}
 
-	const commonTemplateProps = {
+	const templateProps = {
 		firstClick,
 		backClick,
 		nextClick,
@@ -158,13 +126,5 @@ export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => 
 		pivotsItems,
 	}
 
-	const pageTemplateProps: IClassicPageTemplateProps = getPageTemplateProps(
-		page,
-		selectedPivotTitle,
-		commonTemplateProps,
-		season === Seasons.None,
-		backgroundColor
-	)
-
-	return <ClassicPageTemplate {...pageTemplateProps} />
+	return <SeasonalPageTemplate {...templateProps} />
 }

@@ -1,11 +1,11 @@
 import foggyTown from 'Assets/images/foggy_town.jpg'
 import React from 'react'
-import { ClassicPageTemplate } from '../modes/classic/classicPageTemplate'
+import { SeasonalPageTemplate } from '../modes/classic/seasonalPageTemplate'
 import { classicBackgroundTextureStyle } from '../shared/helpers/styles'
 
 export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 	return (
-		<ClassicPageTemplate
+		<SeasonalPageTemplate
 			Content={
 				<div style={{ margin: 'auto', width: '384px' }}>
 					<p>Though your page could not be found</p>

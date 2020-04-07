@@ -5,6 +5,8 @@ import { getBeatTime } from './helpers'
 import { BeatUnit, DrumMachineCells, IPercussionTrack } from './music.types'
 import { useRhythm } from './useRhythm'
 
+const InstrumentNameWidth = '100px'
+
 export function getLoopedTrack(
 	track: IPercussionTrack,
 	beatUnit: BeatUnit,
@@ -47,11 +49,13 @@ export function DrumMachineRow(props: {
 	const { track, rowNumber, beatUnit, length, barLength, isHighlighted, currentHitBeat } = props
 	const cells = useMemo(() => getLoopedTrack(track, beatUnit, length), [track, beatUnit, length])
 	const isDisabled = !track.instrument || beatUnit < track.smallestBeatUnit
+	const instrumentName = track.instrument?.name ?? ''
 
 	// (TODO V2) implement icons
 
 	return (
 		<div style={{ display: 'flex' }}>
+			<div style={{ width: InstrumentNameWidth }}>{instrumentName}</div>
 			{cells.map((cell, index) => (
 				<DrumMachineCell
 					key={`cell-${rowNumber}-${index}`}
@@ -68,28 +72,17 @@ export function DrumMachineRow(props: {
 }
 
 export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element {
-	const { sequence, length, barLength, beatUnit } = props
+	const { sequence, length, barLength, beatUnit, isPlaying } = props
 	// (TODO V2) implement row selection
 	const [highlightedRow, setHighlightedRow] = useState<number | undefined>()
-	const [isPlaying, setIsPlaying] = useState(false)
 	const currentHitBeat = useRhythm(isPlaying, getBeatTime(beatUnit), length)
-
-	const buttonText = isPlaying ? 'Stop' : 'Play'
 
 	// (TODO V2) implement numbers row
 
 	// (TODO V2) implement add track button
 
 	return (
-		<div style={{ backgroundColor: 'black', color: 'white', padding: '16px 20px' }}>
-			<div>
-				<div
-					style={{ cursor: 'pointer', lineHeight: '36px', padding: '0px 10px' }}
-					onClick={(): void => setIsPlaying(!isPlaying)}
-				>
-					{buttonText}
-				</div>
-			</div>
+		<div>
 			{sequence.tracks.map((track, index) => (
 				<DrumMachineRow
 					key={`track-${index}`}
@@ -102,7 +95,7 @@ export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element
 					currentHitBeat={isPlaying ? currentHitBeat : undefined}
 				/>
 			))}
-			<div style={{ display: 'flex' }}>
+			<div style={{ display: 'flex', paddingLeft: InstrumentNameWidth }}>
 				{new Array(length).fill(0).map((unused, index) => {
 					let color = 'lightgrey'
 					if (index % barLength === 0) {

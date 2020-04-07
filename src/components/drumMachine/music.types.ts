@@ -105,6 +105,11 @@ export type IPercussionSequence = {
 	author: string
 
 	/**
+	 * Name of the sequence
+	 */
+	name: string
+
+	/**
 	 * List of tracks
 	 */
 	tracks: IPercussionTrack[]

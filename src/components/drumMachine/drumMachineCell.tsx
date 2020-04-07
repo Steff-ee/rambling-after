@@ -30,16 +30,16 @@ export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
 		}
 
 		if (isHovering) {
-			darkenRatio += 0.15
+			darkenRatio += 0.22
 		}
 		if (!isBeingHit) {
-			darkenRatio += 0.2
+			darkenRatio += 0.22
 		}
 		if (!canBeHit && !isOnBeat) {
-			darkenRatio += 0.15
+			darkenRatio += 0.22
 		}
 		if (isDisabled) {
-			darkenRatio += 0.5
+			darkenRatio += 0.22
 		}
 	}
 

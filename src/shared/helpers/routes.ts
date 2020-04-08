@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouteMatch } from 'react-router-dom'
 import { PivotRoutes } from '../posts/post.types'
 
 export enum PageRoutes {
@@ -22,6 +23,16 @@ export const getPrimaryRoute = (pathName: string): string => {
 	}
 
 	return subroutes[1]
+}
+
+export const usePageParams = (): IRouteParams => {
+	const match = useRouteMatch<IRouteParams>(`/:page/:pivot?/:postId?`)
+
+	if (match) {
+		return match.params
+	}
+
+	return { page: PageRoutes.Home }
 }
 
 export interface IRouteContext {

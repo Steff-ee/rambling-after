@@ -34,12 +34,15 @@ export const Root: React.FunctionComponent = (): JSX.Element => {
 								<HashRouter>
 									<Switch>
 										<Redirect exact={true} from="/" to={PageRoutes.Home} />
-										<Route path={`/drumkit`} component={DrumMachinePage} />
+										<Route path={`/home`} component={ClassicPageContainer} />
+										<Route path={`/stories`} component={ClassicPageContainer} />
+										<Route path={`/games`} component={ClassicPageContainer} />
 										<Route
-											path={`/:page?/:pivot?/:postId?`}
+											path={`/conjecture`}
 											component={ClassicPageContainer}
 										/>
-										<Route path={'*'} component={PageNotFound} />
+										<Route path={`/drumkit`} component={DrumMachinePage} />
+										<Route component={PageNotFound} />
 									</Switch>
 								</HashRouter>
 							</MediaProvider>

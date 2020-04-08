@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { getPath, IRouteParams, PageRoutes, redirectTo } from '../helpers/routes'
+import { useLocation } from 'react-router-dom'
+import { getPath, PageRoutes, redirectTo, usePageParams } from '../helpers/routes'
 import { OpenPostsContext } from './openPosts'
 import { IPost, PivotRoutes } from './post.types'
 import { getFirstPost, getLatestPost, getNextPost, getPostFromId, getPrevPost } from './posts'
@@ -36,7 +36,7 @@ export const usePostsNav = (
 	pivot: PivotRoutes | undefined,
 	skip = false
 ): IUsePostsNavReturns => {
-	const { postId: postIdFromRoute } = useParams<IRouteParams>()
+	const { postId: postIdFromRoute } = usePageParams()
 	const location = useLocation()
 	const { getLastOpenPost, setLastOpenPost } = useContext(OpenPostsContext)
 	const firstPost = getFirstPost(page, pivot)

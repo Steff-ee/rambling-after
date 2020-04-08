@@ -55,7 +55,9 @@ export function DrumMachineRow(props: {
 
 	return (
 		<div style={{ display: 'flex' }}>
-			<div style={{ width: InstrumentNameWidth }}>{instrumentName}</div>
+			<div style={{ width: InstrumentNameWidth, overflow: 'hidden', whiteSpace: 'nowrap' }}>
+				{instrumentName}
+			</div>
 			{cells.map((cell, index) => (
 				<DrumMachineCell
 					key={`cell-${rowNumber}-${index}`}

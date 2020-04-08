@@ -1,5 +1,4 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import {
 	getConjecturePageContent,
 	getConjectureUsePivotsProps,
@@ -20,7 +19,7 @@ import {
 	getStoriesUsePivotsProps,
 	showPostsNavForStories,
 } from '../../pages/stories/stories.helpers'
-import { IRouteParams, PageRoutes, redirectTo } from '../../shared/helpers/routes'
+import { PageRoutes, redirectTo, usePageParams } from '../../shared/helpers/routes'
 import { Post } from '../../shared/posts/post'
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { usePostsNav } from '../../shared/posts/usePostsNav'
@@ -83,7 +82,7 @@ const getPageContent = (
 }
 
 export const ClassicPageContainer: React.FunctionComponent = (): JSX.Element => {
-	const { page } = useParams<IRouteParams>()
+	const { page } = usePageParams()
 
 	const { selectedPivotTitle, setPivot, pivotsItems, redirectPath: redirectPath1 } = usePivots(
 		getUsePivotProps(page)

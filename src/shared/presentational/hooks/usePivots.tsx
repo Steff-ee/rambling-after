@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { MediaContext, MediaSize } from '../../../components/mediaProvider'
 import { IPivotItem, IPivotsProps } from '../../../components/pivots/pivots.types'
 import { getAnyPagePath } from '../../helpers/navigation'
 import {
 	getPath,
 	getPrimaryRoute,
-	IRouteParams,
 	redirectTo,
 	RouteContext,
+	usePageParams,
 } from '../../helpers/routes'
 import { OpenPostsContext } from '../../posts/openPosts'
 import { PivotRoutes } from '../../posts/post.types'
@@ -20,8 +20,8 @@ import { useTextMorph } from './useTextMorph'
 
 export const usePivots = (props: IUsePivotProps): IUsePivotKeyReturns => {
 	const { titlePhrases, titleMap, defaultTitle, skip } = props
-	const params = useParams<IRouteParams>()
-	let selectedPivotTitle = params.pivot as PivotRoutes | undefined
+	const params = usePageParams()
+	let selectedPivotTitle = params.pivot
 	const location = useLocation()
 	const pageRoute = getPrimaryRoute(location.pathname)
 	const [hoverPivotTitle, setHoverPivotTitle] = useState<string | undefined>(undefined)

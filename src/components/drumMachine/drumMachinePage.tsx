@@ -1,4 +1,9 @@
-import { faPlayCircle, faStopCircle } from '@fortawesome/free-solid-svg-icons'
+import {
+	faMinusCircle,
+	faPlayCircle,
+	faPlusCircle,
+	faStopCircle,
+} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Dropdown } from 'semantic-ui-react'
@@ -99,10 +104,13 @@ const DropdownOptions = DefaultSequenceOptions.map((sequence, index) => ({
 	text: sequence.name,
 	value: index,
 }))
+const minLength = 16
+const maxLength = 32
 
 export function DrumMachinePage(): JSX.Element {
 	const [smallestBeatUnit, setSmallestBeatUnit] = useState<BeatUnit | undefined>()
 	const [isPlaying, setIsPlaying] = useState(false)
+	const [length, setLength] = useState(minLength)
 	// (TODO) implement pattern selection
 	const [sequenceIndex, setSequenceIndex] = useState<number | undefined>()
 	const sequence = sequenceIndex === undefined ? undefined : DefaultSequenceOptions[sequenceIndex]
@@ -140,7 +148,11 @@ export function DrumMachinePage(): JSX.Element {
 					>
 						<div
 							style={{ cursor: 'pointer', marginRight: '40px' }}
-							onClick={(): void => setIsPlaying(!isPlaying)}
+							onClick={(): void => {
+								if (sequence) {
+									setIsPlaying(!isPlaying)
+								}
+							}}
 						>
 							<FontAwesomeIcon icon={playIcon} size={'lg'} />
 						</div>
@@ -152,12 +164,41 @@ export function DrumMachinePage(): JSX.Element {
 							placeholder={'Choose sequence'}
 							onChange={(e, { value }): void => setSequenceIndex(value as number)}
 						/>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'space-between',
+								width: '60px',
+								marginLeft: '40px',
+							}}
+						>
+							<div
+								style={{ cursor: 'pointer' }}
+								onClick={(): void => {
+									if (sequence && length > minLength) {
+										setLength(length - 1)
+									}
+								}}
+							>
+								<FontAwesomeIcon icon={faMinusCircle} size={'lg'} />
+							</div>
+							<div
+								style={{ cursor: 'pointer' }}
+								onClick={(): void => {
+									if (sequence && length < maxLength) {
+										setLength(length + 1)
+									}
+								}}
+							>
+								<FontAwesomeIcon icon={faPlusCircle} size={'lg'} />
+							</div>
+						</div>
 					</div>
 					{smallestBeatUnit && sequence && (
 						<DrumMachineDisplay
 							sequence={sequence}
 							beatUnit={smallestBeatUnit}
-							length={16}
+							length={length}
 							barLength={4}
 							isPlaying={isPlaying}
 						/>

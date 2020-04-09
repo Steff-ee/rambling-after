@@ -6,7 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { createPercussionInstrument } from './helpers'
+import { createPercussionInstrument, maxBPM, minBPM } from './helpers'
 import { IPercussionSequence } from './music.types'
 
 export const Kick = createPercussionInstrument('Kick')
@@ -114,7 +114,7 @@ export function PlayButton(props: {
 
 	return (
 		<div
-			style={{ cursor: 'pointer', marginRight: '40px' }}
+			style={{ cursor: 'pointer' }}
 			onClick={(): void => {
 				if (isEnabled) {
 					setIsPlaying(!isPlaying)
@@ -139,7 +139,6 @@ export function LengthButtons(props: {
 				display: 'flex',
 				justifyContent: 'space-between',
 				width: '60px',
-				marginLeft: '40px',
 			}}
 		>
 			<div
@@ -162,6 +161,25 @@ export function LengthButtons(props: {
 			>
 				<FontAwesomeIcon icon={faPlusCircle} size={'lg'} />
 			</div>
+		</div>
+	)
+}
+
+export function BPMInput(props: { BPM: number; setBPM: (value: number) => void }): JSX.Element {
+	const { BPM, setBPM } = props
+
+	return (
+		<div style={{ display: 'flex', width: '120px' }}>
+			<div>BPM:</div>
+			<div style={{ margin: '0 10px', minWidth: '35px' }}>{BPM}</div>
+			<input
+				type="range"
+				style={{ width: '60px' }}
+				min={minBPM}
+				max={maxBPM}
+				value={BPM}
+				onChange={(event): void => setBPM(parseInt(event.target.value, 10))}
+			/>
 		</div>
 	)
 }

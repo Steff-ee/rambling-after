@@ -15,7 +15,7 @@ export function DrumMachineCell(props: IDrumMachineCellProps): JSX.Element {
 	const { canBeHit, instrumentColor, isDisabled, isOnBeat, isBeingHit } = props
 	const [isHovering, setIsHovering] = useState(false)
 
-	// (TODO V2) implement onClick, toggle canBeHit
+	// (TODO) implement onClick, toggle canBeHit
 
 	let color: IColor
 	let darkenRatio = 0

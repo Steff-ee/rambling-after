@@ -5,7 +5,7 @@ import { getBeatTime } from './helpers'
 import { BeatUnit, DrumMachineCells, IPercussionTrack } from './music.types'
 import { useRhythm } from './useRhythm'
 
-const InstrumentNameWidth = '100px'
+const InstrumentNameWidth = '125px'
 
 export function getLoopedTrack(
 	track: IPercussionTrack,
@@ -51,7 +51,7 @@ export function DrumMachineRow(props: {
 	const isDisabled = !track.instrument || beatUnit < track.smallestBeatUnit
 	const instrumentName = track.instrument?.name ?? ''
 
-	// (TODO V2) implement icons
+	// (TODO) implement icons
 
 	return (
 		<div style={{ display: 'flex' }}>
@@ -74,14 +74,10 @@ export function DrumMachineRow(props: {
 }
 
 export function DrumMachineDisplay(props: IDrumMachineDisplayProps): JSX.Element {
-	const { sequence, length, barLength, beatUnit, isPlaying } = props
-	// (TODO V2) implement row selection
+	const { sequence, length, barLength, beatUnit, isPlaying, BPM } = props
+	// (TODO) implement row selection
 	const [highlightedRow, setHighlightedRow] = useState<number | undefined>()
-	const currentHitBeat = useRhythm(isPlaying, getBeatTime(beatUnit), length)
-
-	// (TODO V2) implement numbers row
-
-	// (TODO V2) implement add track button
+	const currentHitBeat = useRhythm(isPlaying, getBeatTime(beatUnit, BPM), length)
 
 	return (
 		<div>

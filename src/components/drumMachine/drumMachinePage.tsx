@@ -3,24 +3,27 @@ import { Dropdown } from 'semantic-ui-react'
 import { SeasonalPageTemplate } from '../../modes/classic/seasonalPageTemplate'
 import { DrumMachineDisplay } from './drumMachineDisplay'
 import {
+	BPMInput,
 	DefaultSequenceOptions,
 	DropdownOptions,
 	LengthButtons,
 	minLength,
 	PlayButton,
 } from './drumMachinePage.helpers'
+import { defaultBPM } from './helpers'
 import { BeatUnit } from './music.types'
 
 export function DrumMachinePage(): JSX.Element {
 	const [smallestBeatUnit, setSmallestBeatUnit] = useState<BeatUnit | undefined>()
 	const [isPlaying, setIsPlaying] = useState(false)
 	const [length, setLength] = useState(minLength)
-	// (TODO) implement pattern selection
+	const [BPM, setBPM] = useState(defaultBPM)
 	const [sequenceIndex, setSequenceIndex] = useState<number | undefined>()
 	const sequence = sequenceIndex === undefined ? undefined : DefaultSequenceOptions[sequenceIndex]
 
 	// automatically choose smallest beat unit of any track in the sequence
 	// (TODO) use least common multiple to determine barLength
+	const barLength = 4
 	useEffect(() => {
 		if (sequence) {
 			let newSmallestBeatUnit: BeatUnit = 1
@@ -35,6 +38,8 @@ export function DrumMachinePage(): JSX.Element {
 		}
 	}, [sequence])
 
+	const isSequenceSelected = !!sequence
+
 	return (
 		<SeasonalPageTemplate
 			Content={
@@ -43,16 +48,19 @@ export function DrumMachinePage(): JSX.Element {
 						style={{
 							display: 'flex',
 							justifyContent: 'space-between',
-							paddingBottom: '5px',
+							paddingBottom: '10px',
 							height: '40px',
 							lineHeight: '40px',
 						}}
 					>
-						<PlayButton
-							isEnabled={!!sequence}
-							isPlaying={isPlaying}
-							setIsPlaying={setIsPlaying}
-						/>
+						{isSequenceSelected && (
+							<PlayButton
+								isEnabled={true}
+								isPlaying={isPlaying}
+								setIsPlaying={setIsPlaying}
+							/>
+						)}
+						{isSequenceSelected && <BPMInput BPM={BPM} setBPM={setBPM} />}
 						<Dropdown
 							width={'210px'}
 							selection={true}
@@ -61,19 +69,18 @@ export function DrumMachinePage(): JSX.Element {
 							placeholder={'Choose sequence'}
 							onChange={(e, { value }): void => setSequenceIndex(value as number)}
 						/>
-						<LengthButtons
-							isEnabled={!!sequence}
-							length={length}
-							setLength={setLength}
-						/>
+						{isSequenceSelected && (
+							<LengthButtons isEnabled={true} length={length} setLength={setLength} />
+						)}
 					</div>
 					{smallestBeatUnit && sequence && (
 						<DrumMachineDisplay
 							sequence={sequence}
 							beatUnit={smallestBeatUnit}
 							length={length}
-							barLength={4}
+							barLength={barLength}
 							isPlaying={isPlaying}
+							BPM={BPM}
 						/>
 					)}
 				</div>

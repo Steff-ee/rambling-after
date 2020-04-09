@@ -12,11 +12,15 @@ export function createPercussionInstrument(name: string): IPercussionInstrument 
 	}
 }
 
+export const defaultBPM = 60
+export const minBPM = 1
+export const maxBPM = 300
+
 /**
  * Gets number of milliseconds per note
  *
  * Assumes 60BPM, where a beat has a beat unit of one note
  */
-export function getBeatTime(beatUnit: number): number {
-	return Math.round(1000 / beatUnit)
+export function getBeatTime(beatUnit: number, BPM: number = defaultBPM): number {
+	return Math.round((1000 * defaultBPM) / BPM / beatUnit)
 }

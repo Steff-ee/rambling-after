@@ -22,10 +22,15 @@ export interface IDrumMachineDisplayProps {
 	sequence: IPercussionSequence
 
 	/**
-	 * If true, the DrumMachine will loop through the cells at 60 BPM.
+	 * If true, the DrumMachine will loop through the cells at the rate of the BPM.
 	 * If false, the DrumMachine will not be active.
 	 */
 	isPlaying: boolean
+
+	/**
+	 * Beats per minute: the speed to play at.
+	 */
+	BPM: number
 
 	/**
 	 * STYLING

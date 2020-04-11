@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9e126e187ef000e19e12";
+/******/ 	var hotCurrentHash = "07d73bcde0a4f9e68431";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -94482,7 +94482,7 @@ const PostContent = () => {
         react_1.default.createElement("p", null, "If you are going to day trade, only trade what you can afford to lose. Take care.")));
 };
 exports.POST_00122 = {
-    id: 114,
+    id: 122,
     title: 'Reflections - 03/29/2020',
     subtitle: `Blog upgrades and stock market tribulations.`,
     createdTime: 1585510902000,

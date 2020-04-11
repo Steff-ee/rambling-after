@@ -36,7 +36,6 @@
 		"no-empty": true,
 		"no-eval": true,
 		"no-floating-promises": true,
-		"no-for-in": true,
 		"no-import-side-effect": true,
 		"no-inferred-empty-object-type": true,
 		"no-inferrable-types": [true, "ignore-params", "ignore-properties"],

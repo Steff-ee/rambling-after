@@ -1,8 +1,7 @@
 import React from 'react'
-import { Table } from 'semantic-ui-react'
 import { ContentImage } from '../../../components/content/contentImage'
 import { Divider } from '../../../components/content/divider'
-import { StyledTable } from '../../../components/content/styledTable'
+import { Table } from '../../../components/table'
 import { HomePivots } from '../../../pages/home/home.types'
 import { PageRoutes } from '../../helpers/routes'
 import { useLightTextStyle, useListStyle } from '../../helpers/useStyles'
@@ -47,24 +46,12 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				I reserved five star ratings for the best of the best, and distributed my ratings
 				somewhat like this:
 			</p>
-			<StyledTable unstackable={true}>
-				<Table.Body>
-					<Table.Row>
-						<Table.Cell>1</Table.Cell>
-						<Table.Cell>2</Table.Cell>
-						<Table.Cell>3</Table.Cell>
-						<Table.Cell>4</Table.Cell>
-						<Table.Cell>5</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>5%</Table.Cell>
-						<Table.Cell>20%</Table.Cell>
-						<Table.Cell>35%</Table.Cell>
-						<Table.Cell>35%</Table.Cell>
-						<Table.Cell>5%</Table.Cell>
-					</Table.Row>
-				</Table.Body>
-			</StyledTable>
+			<Table
+				data={[
+					[1, 2, 3, 4, 5],
+					['5%', '20%', '35%', '35%', '5%'],
+				]}
+			/>
 			<p>
 				The more I did it, the more annoying the process became, and yet the harder to stop.
 				I didn't want to wage internal debates about the difference between three stars and
@@ -89,24 +76,12 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				upgraded a bunch of my other ratings as well. Now my distribution looks more like
 				this:
 			</p>
-			<StyledTable unstackable={true}>
-				<Table.Body>
-					<Table.Row>
-						<Table.Cell>1</Table.Cell>
-						<Table.Cell>2</Table.Cell>
-						<Table.Cell>3</Table.Cell>
-						<Table.Cell>4</Table.Cell>
-						<Table.Cell>5</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>2.5%</Table.Cell>
-						<Table.Cell>5%</Table.Cell>
-						<Table.Cell>15%</Table.Cell>
-						<Table.Cell>25%</Table.Cell>
-						<Table.Cell>30%</Table.Cell>
-					</Table.Row>
-				</Table.Body>
-			</StyledTable>
+			<Table
+				data={[
+					[1, 2, 3, 4, 5],
+					['2.5%', '5%', '15%', '25%', '30%'],
+				]}
+			/>
 			<p>
 				Notice it doesn't add up to 100%: Not having to rate every book means not having to
 				worry so much about all this.

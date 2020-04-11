@@ -5,6 +5,7 @@ import {
 	faStopCircle,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import MenuItem from '@material-ui/core/MenuItem'
 import React from 'react'
 import { createPercussionInstrument, maxBPM, minBPM } from './helpers'
 import { IPercussionSequence } from './music.types'
@@ -96,11 +97,11 @@ export const SimpleTwoTrack: IPercussionSequence = {
 }
 
 export const DefaultSequenceOptions = [FourOnTheFloor, DifferentBeatUnits, SimpleTwoTrack]
-export const DropdownOptions = DefaultSequenceOptions.map((sequence, index) => ({
-	key: `sequence-${index}`,
-	text: sequence.name,
-	value: index,
-}))
+export const DropdownMenuItems = DefaultSequenceOptions.map((sequence, index) => (
+	<MenuItem value={index} key={`sequence-${index}`}>
+		{sequence.name}
+	</MenuItem>
+))
 export const minLength = 16
 export const maxLength = 32
 

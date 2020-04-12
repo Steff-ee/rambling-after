@@ -1,7 +1,7 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
 import { Divider } from '../../../components/content/divider'
-import { Table } from '../../../components/table'
+import { DisplayTable } from '../../../components/table'
 import { HomePivots } from '../../../pages/home/home.types'
 import { PageRoutes } from '../../helpers/routes'
 import { useLightTextStyle, useListStyle } from '../../helpers/useStyles'
@@ -46,11 +46,10 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				I reserved five star ratings for the best of the best, and distributed my ratings
 				somewhat like this:
 			</p>
-			<Table
-				data={[
-					[1, 2, 3, 4, 5],
-					['5%', '20%', '35%', '35%', '5%'],
-				]}
+			<DisplayTable
+				disableListMode={true}
+				headers={[1, 2, 3, 4, 5]}
+				data={[['5%', '20%', '35%', '35%', '5%']]}
 			/>
 			<p>
 				The more I did it, the more annoying the process became, and yet the harder to stop.
@@ -76,11 +75,10 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				upgraded a bunch of my other ratings as well. Now my distribution looks more like
 				this:
 			</p>
-			<Table
-				data={[
-					[1, 2, 3, 4, 5],
-					['2.5%', '5%', '15%', '25%', '30%'],
-				]}
+			<DisplayTable
+				disableListMode={true}
+				headers={[1, 2, 3, 4, 5]}
+				data={[['2.5%', '5%', '15%', '25%', '30%']]}
 			/>
 			<p>
 				Notice it doesn't add up to 100%: Not having to rate every book means not having to

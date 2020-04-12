@@ -6,6 +6,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
+import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
 import { createPercussionInstrument, maxBPM, minBPM } from './helpers'
 import { IPercussionSequence } from './music.types'
@@ -182,5 +184,41 @@ export function BPMInput(props: { BPM: number; setBPM: (value: number) => void }
 				onChange={(event): void => setBPM(parseInt(event.target.value, 10))}
 			/>
 		</div>
+	)
+}
+
+const useSelectStyles = makeStyles((theme) => ({
+	select: {
+		minWidth: '180px',
+		backgroundColor: 'white',
+		padding: '0px 10px',
+		borderRadius: '3px',
+	},
+}))
+
+export function SequenceSelect(props: {
+	sequenceIndex: number | undefined
+	setSequenceIndex: (value: number | undefined) => void
+}): JSX.Element {
+	const { sequenceIndex, setSequenceIndex } = props
+	const classes = useSelectStyles()
+
+	return (
+		<Select
+			id={'sequence-select'}
+			className={classes.select}
+			value={sequenceIndex ?? -1}
+			onChange={(event): void => {
+				const value = parseInt(event.target.value as string, 10)
+				if (!Number.isNaN(value)) {
+					setSequenceIndex(value)
+				}
+			}}
+		>
+			<MenuItem value={-1} key={'sequence-label'}>
+				Select Sequence
+			</MenuItem>
+			{DropdownMenuItems}
+		</Select>
 	)
 }

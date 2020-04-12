@@ -1,15 +1,13 @@
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
 import React, { useEffect, useState } from 'react'
 import { SeasonalPageTemplate } from '../../modes/classic/seasonalPageTemplate'
 import { DrumMachineDisplay } from './drumMachineDisplay'
 import {
 	BPMInput,
 	DefaultSequenceOptions,
-	DropdownMenuItems,
 	LengthButtons,
 	minLength,
 	PlayButton,
+	SequenceSelect,
 } from './drumMachinePage.helpers'
 import { defaultBPM } from './helpers'
 import { BeatUnit } from './music.types'
@@ -62,19 +60,10 @@ export function DrumMachinePage(): JSX.Element {
 							/>
 						)}
 						{isSequenceSelected && <BPMInput BPM={BPM} setBPM={setBPM} />}
-						<div style={{ width: '210px' }}>
-							<Select
-								onChange={(event): void => {
-									const value = event.target.value as string
-									if (value) {
-										setSequenceIndex(parseInt(value, 10))
-									}
-								}}
-							>
-								<MenuItem value={''}>Choose sequence</MenuItem>
-								{DropdownMenuItems}
-							</Select>
-						</div>
+						<SequenceSelect
+							sequenceIndex={sequenceIndex}
+							setSequenceIndex={setSequenceIndex}
+						/>
 						{isSequenceSelected && (
 							<LengthButtons isEnabled={true} length={length} setLength={setLength} />
 						)}

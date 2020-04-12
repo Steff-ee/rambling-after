@@ -1,3 +1,3 @@
-export * from './dataList'
-export * from './table'
-export * from './table.types'
+export * from './displayList'
+export * from './displayTable'
+export * from './displayTable.types'

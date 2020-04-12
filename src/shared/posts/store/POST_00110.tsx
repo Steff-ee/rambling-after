@@ -1,6 +1,6 @@
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
-import { Table } from '../../../components/table'
+import { DisplayTable } from '../../../components/table'
 import { ConjecturePivots } from '../../../pages/conjectures/conjectures.types'
 import { PageRoutes } from '../../helpers/routes'
 import { IPost } from '../post.types'
@@ -125,7 +125,7 @@ export const POST_00110: IPost = {
 				superhero-centric example coming up to explain it. And two—the bigger problem—most
 				people lie.
 			</p>
-			<Table
+			<DisplayTable
 				headers={['% of voters', 'True candidate preferences']}
 				data={[
 					['55%', 'Captain America (10/10) > Spiderman (7/10) > Iron Man (1/10)'],
@@ -177,7 +177,7 @@ export const POST_00110: IPost = {
 				rank them? Many voting schemes are built off of ordered rankings, and I’ll cover two
 				of the most commonly discussed ones: Condorcet, and Instant-Runoff Voting (IRV).
 			</p>
-			<Table
+			<DisplayTable
 				headers={['% of voters', 'True candidate preferences']}
 				data={[
 					['46%', 'Black Widow > Hawkeye > Nick Fury'],
@@ -200,7 +200,7 @@ export const POST_00110: IPost = {
 				Hawkeye to Nick Fury, so he gets one win there, and 54% of voters prefer Hawkeye to
 				Black Widow, so he gets a second win:
 			</p>
-			<Table
+			<DisplayTable
 				data={[
 					['Hawkeye > Nick Fury'],
 					['Hawkeye > Black Widow'],
@@ -251,7 +251,7 @@ export const POST_00110: IPost = {
 				</a>{' '}
 				that leads to two candidate dominance.
 			</p>
-			<Table
+			<DisplayTable
 				headers={['% of voters', 'True candidate preferences']}
 				data={[
 					['34', 'Hulk > Star-Lord > Thor'],

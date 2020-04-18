@@ -4,13 +4,13 @@ import { DrumMachinePage } from '../components/drumMachine/drumMachinePage'
 import { MediaProvider } from '../components/mediaProvider'
 import { ClassicPageContainer } from '../modes/classic/classicPageContainer'
 import { SeasonsProvider } from '../modes/seasons/seasons'
+import '../scss/root.scss'
 import { PageRoutes, RouteContext } from '../shared/helpers/routes'
 import { OpenPostsProvider } from '../shared/posts/openPosts'
 import { PivotRoutes } from '../shared/posts/post.types'
 import { IsNavBarOpenContext } from '../shared/presentational/components/navBarHelpers'
 import { ColorsProvider } from '../shared/presentational/hooks/useColors'
 import { PageNotFound } from './pageNotFound'
-import './root.css'
 
 export const Root: React.FunctionComponent = (): JSX.Element => {
 	const [isNavBarOpen, setIsNavBarOpen] = useState<boolean>(false)

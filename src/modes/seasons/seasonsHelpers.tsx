@@ -6,7 +6,7 @@ export enum Seasons {
 	None,
 }
 
-const enum Month {
+export enum Month {
 	January,
 	February,
 	March,

@@ -1,0 +1,22 @@
+{
+	"devServer": {
+		"host": "localhost",
+		"port": "3000"
+	},
+	"html": {
+		"favicon": "/assets/images/lantern.jpg",
+		"filename": "index.html",
+		"meta": {
+			"description": "Daniel Steffee's blog on stories, culture and conjectures"
+		},
+		"template": "src/html/index.ejs",
+		"title": "Rambling After"
+	},
+	"input": {
+		"entry": "/src/index.tsx"
+	},
+	"output": {
+		"directory": "dist",
+		"file": "index.js"
+	}
+}

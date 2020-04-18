@@ -66,3 +66,19 @@ public/page-data
 
 # assets
 dist/assets
+
+## Documentation cache and generated files:
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/

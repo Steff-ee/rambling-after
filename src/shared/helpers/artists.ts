@@ -2,7 +2,6 @@ import booksImg from 'Assets/images/books.jpg'
 import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
 import cartographyImg from 'Assets/images/cartography.jpg'
 import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
-import sarrailhAutumnImg1 from 'Assets/images/sarrailh_autumn_1.png'
 
 export interface IPicture {
 	src: string
@@ -91,7 +90,11 @@ export const summerBackgrounds = {
 }
 
 export const autumnBackgrounds = {
-	home: { src: sarrailhAutumnImg1, ...Sarrailh },
+	home: {
+		src:
+			'https://cdna.artstation.com/p/assets/images/images/007/838/882/large/sylvain-sarrailh-wandering.jpg',
+		...Sarrailh,
+	},
 	stories: {
 		src:
 			'https://cdnb.artstation.com/p/assets/images/images/013/185/961/large/maxime-schilde-autumn-winds-04.jpg',

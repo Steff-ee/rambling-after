@@ -64,9 +64,6 @@ typings/
 .cache
 public/page-data
 
-# assets
-dist/assets
-
 ## Documentation cache and generated files:
 /.yardoc/
 /_yardoc/

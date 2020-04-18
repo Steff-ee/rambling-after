@@ -16,7 +16,7 @@
 		"entry": "/src/index.tsx"
 	},
 	"output": {
-		"directory": "dist",
+		"directory": "docs",
 		"file": "index.js"
 	}
 }

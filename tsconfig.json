@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"outDir": "./docs",
+		"outDir": "./dist",
 		"rootDir": "./src",
 		"sourceMap": true,
 		"module": "commonjs",
@@ -16,9 +16,9 @@
 		"typeRoots": ["./node_modules/@types/"],
 		"types": ["react", "react-dom", "react-router-dom"],
 		"sourceRoot": "./src/ts",
-		"mapRoot": "./docs",
-		"baseUrl": "./docs"
+		"mapRoot": "./dist",
+		"baseUrl": "./dist"
 	},
-	"exclude": ["docs", "node_modules"],
+	"exclude": ["dist", "node_modules"],
 	"include": ["src/**/*.ts", "src/**/*.tsx"]
 }

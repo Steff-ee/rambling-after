@@ -1,6 +1,6 @@
-import foggyTown from 'Assets/images/foggy_town.jpg'
 import React from 'react'
 import { SeasonalPageTemplate } from '../modes/classic/seasonalPageTemplate'
+import { foggyTownImg } from '../shared/helpers/assets'
 import { classicBackgroundTextureStyle } from '../shared/helpers/styles'
 
 export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
@@ -14,7 +14,7 @@ export const PageNotFound: React.FunctionComponent = (): JSX.Element => {
 					<p>for some other URL</p>
 				</div>
 			}
-			headerBackgroundImage={foggyTown}
+			headerBackgroundImage={foggyTownImg}
 			backgroundStyle={classicBackgroundTextureStyle}
 			selectedPivotTitle={''}
 			setPivot={(): void => {

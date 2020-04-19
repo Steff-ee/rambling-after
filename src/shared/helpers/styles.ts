@@ -1,4 +1,4 @@
-import backgroundTextureImg from 'Assets/images/background_texture.png'
+import { backgroundTextureImg } from './assets'
 
 export const subscriptStyle: React.CSSProperties = {
 	fontFamily: 'Source Code Pro',

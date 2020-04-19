@@ -1,3 +1,6 @@
+# External
+/external
+
 # Logs
 logs
 *.log

@@ -1,8 +1,8 @@
-import sellNewsImg from 'Assets/images/sell_news.jpg'
 import React from 'react'
 import { ContentImage } from '../../../components/content/contentImage'
 import { Divider } from '../../../components/content/divider'
 import { HomePivots } from '../../../pages/home/home.types'
+import { sellNewsFlowChartImg } from '../../helpers/assets'
 import { PageRoutes } from '../../helpers/routes'
 import { useListStyle } from '../../helpers/useStyles'
 import { IPost } from '../post.types'
@@ -58,7 +58,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				market or your own fallible psychology.
 			</p>
 
-			<ContentImage src={sellNewsImg} maxHeight={''} />
+			<ContentImage src={sellNewsFlowChartImg} maxHeight={''} />
 
 			<p>If you are going to day trade, only trade what you can afford to lose. Take care.</p>
 		</>

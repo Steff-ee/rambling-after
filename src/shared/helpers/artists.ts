@@ -1,7 +1,4 @@
-import booksImg from 'Assets/images/books.jpg'
-import bookshelfImg from 'Assets/images/bookshelf_lightbulbs.jpg'
-import cartographyImg from 'Assets/images/cartography.jpg'
-import lightbulbsImg from 'Assets/images/lightbulbs.jpg'
+import { bookshelfImg, booksImg, cartographyImg, lightbulbsImg } from './assets'
 
 export interface IPicture {
 	src: string

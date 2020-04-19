@@ -1,7 +1,7 @@
-import profileImg from 'Assets/images/me.jpg'
 import React, { useContext } from 'react'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
+import { profileImg } from '../../shared/helpers/assets'
 import { useLightTextStyle, useTitleTextStyle } from '../../shared/helpers/useStyles'
 
 const aboutImageStyleMobile: React.CSSProperties = {

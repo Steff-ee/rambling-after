@@ -53,6 +53,10 @@ export const Janko = {
 	artistName: 'Janko Ferlič',
 	artistLink: 'https://unsplash.com/@itfeelslikefilm',
 }
+export const Maskman626 = {
+	artistName: 'maskman626',
+	artistLink: 'https://www.deviantart.com/maskman626',
+}
 
 // "Royalty Free"
 export const wallpaperFlare = {

@@ -60,9 +60,9 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
 			</div>
 			<Divider thickness={2} rootStyle={{ width: '96%', padding: '8px 2% 8px 2%' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
-				Adaptable Full Stack Web Developer with 10 years coding and 5 years of industry
-				experience maximizing customer impact by balancing features, reliability and
-				performance with technical debt reduction.
+				Adaptable Full Stack Web Developer with 10 years of coding and 5 years in the
+				industry. Eager to maximize customer impact through a balance of rapid feature
+				deployment and robust, performant code design.
 			</div>
 		</div>
 	)
@@ -176,39 +176,38 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							title={'Microsoft'}
 							timeRange={'2018 - present'}
 							subtext={
-								'Enterprise application, managing life cycle of low-code apps, project solutions, and sharing experiences'
+								'PowerApps Portal: Front-end web team managing the app life cycle for a low-code platform'
 							}
 							isMobile={isMobile}
 							body={
 								<>
-									<ListHeader>Code Architecture</ListHeader>
+									<ListHeader>Teamwork</ListHeader>
 									<ListItem>
-										Drive team to adopt Hooks and replace Redux and other
-										patterns with more productive ones
+										Assist partner teams, guide vendors, mentor interns, and
+										share feedback on code changes (second highest pull request
+										reviewer in monorepo)
+									</ListItem>
+									<ListItem>
+										Responsively dive into at-risk featurework to aid any team
+										members in need
+									</ListItem>
+									<ListItem>
+										Drive team to adopt Hooks and Function Components in place
+										of Redux containers
+									</ListItem>
+									<ListHeader>Reliability</ListHeader>
+									<ListItem>
+										Generate weekly service reports, triage customer incidents,
+										and assist with bug triage
 									</ListItem>
 									<ListItem>
 										Revamped telemetry framework to distinguish error rates by
-										app type and server vs client (uncovered to be 99.9%)
+										app type and server vs client
 									</ListItem>
-									<ListHeader>Reliability</ListHeader>
 									<ListItem>
 										Increase apps page reliability (98.5% to 99.3%) by reducing
 										client errors and preventing failure state with partial
 										loading
-									</ListItem>
-									<ListItem>
-										Generate weekly service reports, triage bugs daily, and
-										mitigate high severity issues that arise
-									</ListItem>
-									<ListHeader>Teamwork</ListHeader>
-									<ListItem>
-										Guide partner teams and vendors, mentor interns, and share
-										feedback on code changes (second highest pull request
-										reviewer in monorepo)
-									</ListItem>
-									<ListItem>
-										Responsively dive into at-risk featurework to aid any
-										feature crew in need
 									</ListItem>
 								</>
 							}
@@ -217,7 +216,7 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 							title={'TreeRing'}
 							timeRange={'2015 - 2018'}
 							subtext={
-								'Consumer Yearbook Editor web application with high quality, robust print rendering'
+								'Yearbook web designer with customized pages per student and high quality print rendering'
 							}
 							isMobile={isMobile}
 							body={
@@ -229,9 +228,9 @@ export const Resume: React.FunctionComponent = (): JSX.Element => {
 										access, and increasing expressiveness
 									</ListItem>
 									<ListItem>
-										Supervise all SQL queries: Optimizing for efficiency,
+										Supervise all SQL queries: optimizing for efficiency,
 										producing for new features, and advancing the algorithm for
-										finding duplicate users during roster uploads
+										duplicate user detection during roster uploads
 									</ListItem>
 									<ListItem>
 										Identify, triage, and resolve customer incidents with rapid

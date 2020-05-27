@@ -150,10 +150,9 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				</a>
 				{'). '}
 				NVidia launched the similarly named GeForce Now in 2015. Microsoft's xCloud, which
-				has the advantage of Xbox exclusives, has been streaming since May of last year.
-				Above all, however, I would favor Amazon, since they have the potential to utilize
-				Twitch; they announced their cloud gaming service, Project Tempo, in April of this
-				year.
+				has the advantage of Xbox exclusives, is currently in beta. Above all, however, I
+				would favor Amazon, since they have the potential to utilize Twitch; they announced
+				their cloud gaming service, Project Tempo, in April of this year.
 			</p>
 		</>
 	)

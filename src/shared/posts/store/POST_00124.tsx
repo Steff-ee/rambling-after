@@ -137,6 +137,24 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				jumps on a grenade to save their leader. The possibilities are endless—but only
 				possible with Stadia.
 			</p>
+			<p>May 26 Update:</p>
+			<p>
+				It was a mistake for me to write "only possible with Stadia". Sony has had cloud
+				gaming since 2012, when they purchased Gaikai and rebranded to PlayStation Now
+				(though they may have{' '}
+				<a
+					href="https://www.theverge.com/2019/12/5/20993828/sony-playstation-now-cloud-gaming-gaikai-onlive-google-stadia-25th-anniversary"
+					target="_blank"
+				>
+					squandered their headstart
+				</a>
+				{'). '}
+				NVidia launched the similarly named GeForce Now in 2015. Microsoft's xCloud, which
+				has the advantage of Xbox exclusives, has been streaming since May of last year.
+				Above all, however, I would favor Amazon, since they have the potential to utilize
+				Twitch; they announced their cloud gaming service, Project Tempo, in April of this
+				year.
+			</p>
 		</>
 	)
 }

@@ -3,7 +3,7 @@ import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaSize } from '../../components/mediaProvider'
 import { grandTitleStyle, parallaxGroupStyle } from '../../shared/helpers/styles'
 import { useColors } from '../../shared/presentational/hooks/useColors'
-import { useTextMorphSequence } from '../../shared/presentational/hooks/useTextMorphSequence'
+import { useTextMorphClickSequence } from '../../shared/presentational/hooks/useTextMorphClickSequence'
 import { SeasonsContext } from '../seasons/seasons'
 import { Seasons } from '../seasons/seasonsHelpers'
 import { IParallaxTitleProps } from './pageTemplate.types'
@@ -23,18 +23,18 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 		backgroundOpacity = 0.9
 	}
 
-	const title = useTextMorphSequence(
+	const title = useTextMorphClickSequence(
 		[
-			{ texts: ['RAMBLING', 'AFTER'], wait: 6000 },
-			{ texts: ['RAMBLING', 'THOUGHTS'], wait: 2000 },
-			{ texts: ['PULSE', ''], wait: 750 },
-			{ texts: ['LIKE', ''], wait: 750 },
-			{ texts: ['LANTERNS', ''], wait: 2000 },
-			{ texts: ['AMBLING', ''], wait: 750 },
-			{ texts: ['AFTER', ''], wait: 750 },
-			{ texts: ['THE', ''], wait: 750 },
-			{ texts: ['YET', ''], wait: 2000 },
-			{ texts: ['UNANSWERED', ''], wait: 8000 },
+			{ texts: ['RAMBLING', 'AFTER'] },
+			{ texts: ['RAMBLING', 'THOUGHTS'] },
+			{ texts: ['PULSE', ''] },
+			{ texts: ['LIKE', ''] },
+			{ texts: ['LANTERNS', ''] },
+			{ texts: ['AMBLING', ''] },
+			{ texts: ['AFTER', ''] },
+			{ texts: ['THE', ''] },
+			{ texts: ['YET', ''] },
+			{ texts: ['UNANSWERED', ''] },
 		],
 		skipMorph
 	)

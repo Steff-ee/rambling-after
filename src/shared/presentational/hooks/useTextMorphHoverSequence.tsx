@@ -15,7 +15,10 @@ export type ITextSequence = Array<{
  *
  * @skip if true, this hook will do nothing except return the first texts in the sequence
  */
-export const useTextMorphSequence = (textSequence: ITextSequence, skip = false): JSX.Element => {
+export const useTextMorphHoverSequence = (
+	textSequence: ITextSequence,
+	skip = false
+): JSX.Element => {
 	const isMounted = useRef<boolean>(true)
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 	const [wasHovering, _setWasHovering] = useState<boolean>(false)

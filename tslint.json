@@ -124,14 +124,7 @@
 		"strict-type-predicates": true,
 		"switch-final-break": true,
 		"triple-equals": true,
-		"typedef": [
-			true,
-			"call-signature",
-			"parameter",
-			"property-declaration",
-			"arrow-call-signature",
-			"arrow-paramater"
-		],
+		"typedef": [true, "call-signature", "parameter", "property-declaration", "arrow-paramater"],
 		"typeof-compare": true,
 		"unified-signatures": true,
 		"unnecessary-bind": true,

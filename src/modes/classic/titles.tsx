@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { animated, useSpring } from 'react-spring'
 import { FadeLoadImage } from '../../components/fadeLoadImage'
 import { MediaSize } from '../../components/mediaProvider'
 import { grandTitleStyle, parallaxGroupStyle } from '../../shared/helpers/styles'
@@ -8,12 +9,21 @@ import { SeasonsContext } from '../seasons/seasons'
 import { Seasons } from '../seasons/seasonsHelpers'
 import { IParallaxTitleProps } from './pageTemplate.types'
 
+const zoomSpringDuration = 30000
+
 export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
 ): JSX.Element => {
 	const { headerBackgroundImage, mediaSize, skipMorph } = props
 	const { headerTitleText: headerTitleTextColor, border: borderColor } = useColors()
 	const { season } = useContext(SeasonsContext)
+
+	const [zoomSpringProps, setZoomSpring, stopZoomSpring] = useSpring(() => ({
+		from: { scale: 1 },
+		config: {
+			duration: zoomSpringDuration,
+		},
+	}))
 
 	let backgroundOpacity = 0.68
 	let showTopBar = false
@@ -23,7 +33,7 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 		backgroundOpacity = 0.9
 	}
 
-	const title = useTextMorphClickSequence(
+	const { morphedText: title, doNextMorph } = useTextMorphClickSequence(
 		[
 			{ texts: ['RAMBLING', 'AFTER'] },
 			{ texts: ['RAMBLING', 'THOUGHTS'] },
@@ -82,18 +92,26 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					backgroundColor: 'black',
 				}}
 			>
-				<FadeLoadImage
-					src={headerBackgroundImage}
-					style={{
-						height: `100%`,
-						width: '100vw',
-						objectFit: 'cover',
-						objectPosition: 'top',
-					}}
-					opacity={backgroundOpacity}
-				/>
+				<animated.div
+					// @ts-ignore
+					style={{ ...zoomSpringProps, height: '100%', width: '100vw' }}
+				>
+					<FadeLoadImage
+						src={headerBackgroundImage}
+						style={{
+							objectFit: 'cover',
+							objectPosition: 'top',
+							height: '100%',
+							width: '100vw',
+						}}
+						opacity={backgroundOpacity}
+					/>
+				</animated.div>
 			</div>
 			<div
+				onClick={doNextMorph}
+				onMouseEnter={() => setZoomSpring({ scale: 1.2 })}
+				onMouseLeave={(event) => stopZoomSpring()}
 				style={{
 					...parallaxGroupStyle,
 					position: 'absolute',
@@ -106,6 +124,7 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
+					cursor: 'pointer',
 				}}
 			>
 				<div
@@ -114,7 +133,6 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 						color: headerTitleTextColor,
 						fontSize: titleFontSize,
 						lineHeight: titleLineHeight,
-						cursor: 'pointer',
 						margin: '0 16px',
 					}}
 				>

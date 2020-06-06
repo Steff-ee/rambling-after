@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTextMorph } from './useTextMorph'
 
 export type ITextSequence = Array<{
 	texts: string[]
 }>
+
+export interface IUseTextMorphClickSequence {
+	doNextMorph: () => void
+	morphedText: string
+}
 
 /**
  * Will morph when the callback is called, but only if not already undergoing a morph
@@ -11,7 +16,7 @@ export type ITextSequence = Array<{
 export const useTextMorphClickSequence = (
 	textSequence: ITextSequence,
 	skip = false
-): JSX.Element => {
+): IUseTextMorphClickSequence => {
 	const [isMorphing, setIsMorphing] = useState(false)
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const nextText = isMorphing
@@ -37,5 +42,5 @@ export const useTextMorphClickSequence = (
 		}
 	}
 
-	return <div onClick={doNextMorph}>{morphedTexts.join(' ')}</div>
+	return { morphedText: morphedTexts.join(' '), doNextMorph }
 }

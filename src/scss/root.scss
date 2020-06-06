@@ -7,23 +7,47 @@ li {
 }
 
 a:link {
+	display: inline-block;
 	color: rgb(42, 158, 193);
 }
 
+a:link:after {
+	display: block;
+	content: '';
+	border-bottom: 1.75px solid rgb(68, 162, 190);
+	transform: scaleX(0);
+	transition: transform 250ms ease-in-out;
+}
+
 a:visited {
+	display: inline-block;
 	color: rgb(158, 40, 90);
+}
+
+a:visited:after {
+	display: block;
+	content: '';
+	border-bottom: 1.75px solid rgb(160, 59, 101);
+	transform: scaleX(0);
+	transition: transform 250ms ease-in-out;
 }
 
 a:link:hover,
 .linkHover a:link {
 	color: rgb(68, 162, 190);
-	padding-bottom: 2px;
-	border-bottom: 1.5px solid rgb(68, 162, 190);
+}
+
+a:link:hover:after,
+.linkHover a:link:after {
+	transform: scaleX(1);
 }
 
 a:visited:hover,
 .linkHover a:visited {
 	color: rgb(160, 59, 101);
-	padding-bottom: 2px;
-	border-bottom: 1.5px solid rgb(160, 59, 101);
+}
+
+a:visited:hover,
+.linkHover a:visited:after {
+	transform: scaleX(1);
 }

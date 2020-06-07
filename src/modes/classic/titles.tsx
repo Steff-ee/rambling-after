@@ -9,7 +9,8 @@ import { SeasonsContext } from '../seasons/seasons'
 import { Seasons } from '../seasons/seasonsHelpers'
 import { IParallaxTitleProps } from './pageTemplate.types'
 
-const zoomSpringDuration = 30000
+const zoomSpringDuration = 27000
+const zoomScale = 1.35
 
 export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 	props: IParallaxTitleProps
@@ -110,7 +111,7 @@ export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
 			</div>
 			<div
 				onClick={doNextMorph}
-				onMouseEnter={() => setZoomSpring({ scale: 1.2 })}
+				onMouseEnter={() => setZoomSpring({ scale: zoomScale })}
 				onMouseLeave={(event) => stopZoomSpring()}
 				style={{
 					...parallaxGroupStyle,

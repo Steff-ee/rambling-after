@@ -18,7 +18,13 @@ export const useSeasonalBackgroundProps = (page: string | undefined) => {
 	if (season === Seasons.None) {
 		backgroundStyle = classicBackgroundTextureStyle
 	} else {
-		backgroundStyle = { backgroundColor }
+		backgroundStyle = {
+			backgroundColor,
+			// this prevents the nav bar bouncing on scroll. Unknown why.
+			backgroundImage: `url()`,
+			backgroundRepeat: 'repeat',
+			backgroundPosition: 'right top',
+		}
 	}
 
 	switch (page) {

@@ -22,9 +22,9 @@ export const ConjectureLinks: React.FunctionComponent = (): JSX.Element => {
 				rightShadow={true}
 			/>
 			<LinkFrame
-				title={'Marginal Revolution'}
-				link={'https://marginalrevolution.com/'}
-				description={`Tyler Cowen & Alexander Tabarrok on economics with great link roundups`}
+				title={'BIG'}
+				link={'https://mattstoller.substack.com/'}
+				description={`Matt Stoller's blog about the politics of monopoly`}
 				rightShadow={true}
 			/>
 			<LinkFrame

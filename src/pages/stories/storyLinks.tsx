@@ -30,6 +30,11 @@ export const StoryLinks: React.FunctionComponent = (): JSX.Element => {
 				description={'YouTube essays about pop culture'}
 				rightShadow={true}
 			/>
+			<LinkFrame
+				title={'Daniel Greene'}
+				description={<>A fantasy book reviewer</>}
+				link={'https://www.youtube.com/c/DanielGreeneReviews/videos'}
+			/>
 		</div>
 	)
 }

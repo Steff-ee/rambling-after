@@ -13,6 +13,7 @@ import {
 import { PivotRoutes } from '../../shared/posts/post.types'
 import { makeTitleMap } from '../../shared/presentational/hooks/usePivots.helpers'
 import { IUsePivotProps } from '../../shared/presentational/hooks/usePivots.types'
+import { GameLinks } from './gameLinks'
 import { GamePivots, gamePivotTitlePhrases } from './games.types'
 import { Penultima } from './penultima'
 
@@ -40,6 +41,10 @@ export const getGamePageContent = (
 ): JSX.Element | undefined => {
 	if (selectedPivotTitle === GamePivots.Games) {
 		return <Penultima />
+	}
+
+	if (selectedPivotTitle === GamePivots.Links) {
+		return <GameLinks />
 	}
 
 	return undefined

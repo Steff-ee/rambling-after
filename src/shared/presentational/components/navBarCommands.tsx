@@ -25,7 +25,7 @@ import {
 	getHomePath,
 	getStoriesPath,
 } from '../../helpers/navigation'
-import { PageRoutes, redirectTo, RouteContext } from '../../helpers/routes'
+import { PageRoutes, redirectTo, RouteContext, usePageParams } from '../../helpers/routes'
 import { useIsTest } from '../../helpers/url'
 import { OpenPostsContext } from '../../posts/openPosts'
 
@@ -58,11 +58,12 @@ export const useNavigationLinks = (): INavItem[] => {
 	const { season, setSeason } = useContext(SeasonsContext)
 	const mediaSize = useContext(MediaContext)
 	const isTest = useIsTest()
+	const { pivot: currentPivot } = usePageParams()
 
-	const homePath = getHomePath(getLastOpenPost, prevPivots)
-	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots)
-	const gamesPath = getGamesPath(getLastOpenPost, prevPivots)
-	const conjecturePath = getConjecturePath(getLastOpenPost, prevPivots)
+	const homePath = getHomePath(getLastOpenPost, prevPivots, currentPivot)
+	const storiesPath = getStoriesPath(getLastOpenPost, prevPivots, currentPivot)
+	const gamesPath = getGamesPath(getLastOpenPost, prevPivots, currentPivot)
+	const conjecturePath = getConjecturePath(getLastOpenPost, prevPivots, currentPivot)
 
 	const navLinks: INavItem[] = [
 		{

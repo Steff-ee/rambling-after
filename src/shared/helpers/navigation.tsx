@@ -9,6 +9,7 @@ import { StoryPivots } from '../../pages/stories/stories.types'
 import { IOpenPostsContext } from '../posts/openPosts'
 import { PivotRoutes } from '../posts/post.types'
 import { getLatestPost } from '../posts/posts'
+import { doesItemExistInIterable } from './genericHelpers'
 import { IRouteContext, PageRoutes } from './routes'
 
 export const getHomePath = (
@@ -16,6 +17,10 @@ export const getHomePath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
+	if (!doesItemExistInIterable(pivot, HomePivots)) {
+		pivot = undefined
+	}
+
 	// (TODO) handle default pivots and posts elsewhere in a common area
 	const homePivot = pivot || (prevPivots && (prevPivots[PageRoutes.Home] as HomePivots))
 
@@ -34,6 +39,10 @@ export const getStoriesPath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
+	if (!doesItemExistInIterable(pivot, StoryPivots)) {
+		pivot = undefined
+	}
+
 	const storiesPivot = pivot || (prevPivots && (prevPivots[PageRoutes.Stories] as StoryPivots))
 
 	if (!showPostsNavForStories(storiesPivot)) {
@@ -52,6 +61,10 @@ export const getGamesPath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
+	if (!doesItemExistInIterable(pivot, GamePivots)) {
+		pivot = undefined
+	}
+
 	const gamesPivot = pivot || (prevPivots && (prevPivots[PageRoutes.Games] as GamePivots))
 
 	if (!showPostsNavForGame(gamesPivot)) {
@@ -69,6 +82,10 @@ export const getConjecturePath = (
 	prevPivots?: IRouteContext['prevPivots'],
 	pivot?: PivotRoutes
 ): string => {
+	if (!doesItemExistInIterable(pivot, ConjecturePivots)) {
+		pivot = undefined
+	}
+
 	const conjecturePivot =
 		pivot || (prevPivots && (prevPivots[PageRoutes.Conjecture] as ConjecturePivots))
 

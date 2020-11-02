@@ -4,8 +4,8 @@ import { useColors } from '../../shared/presentational/hooks/useColors'
 import { MediaContext, MediaSize } from '../mediaProvider'
 
 export interface IPullQuoteProps {
-	by: string | JSX.Element
 	lines: Array<string | JSX.Element>
+	by?: string | JSX.Element
 }
 
 const pullQuoteTextStyleLarge: React.CSSProperties = {
@@ -28,10 +28,16 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 	const { lines, by } = props
 	const mediaSize = useContext(MediaContext)
 	const { subtitle: subtitleColor } = useColors()
-	const textStyle =
+	let textStyle =
 		mediaSize === MediaSize.Small ? pullQuoteTextStyleSmall : pullQuoteTextStyleLarge
 	const attributionFontSize = mediaSize === MediaSize.Small ? '17px' : '20px'
 	const border = `2px solid ${subtitleColor}`
+
+	// decrease font size when there are many lines
+	if (lines.length > 3) {
+		const { fontSize, lineHeight, ...remainingStyle } = textStyle
+		textStyle = remainingStyle
+	}
 
 	return (
 		<div
@@ -54,7 +60,9 @@ export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
 						return <div key={`line-${index}`}>{line}</div>
 					}
 				)}
-				<div style={{ paddingTop: '12px', fontSize: attributionFontSize }}>—{by}</div>
+				{by && (
+					<div style={{ paddingTop: '12px', fontSize: attributionFontSize }}>—{by}</div>
+				)}
 			</div>
 		</div>
 	)

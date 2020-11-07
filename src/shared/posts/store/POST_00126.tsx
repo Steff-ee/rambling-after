@@ -188,7 +188,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				thing standing in their way.
 			</p>
 
-			<div style={titleTextStyle}>Make voting mandatory</div>
+			<div style={titleTextStyle}>Incentivize Voting</div>
 
 			<p>
 				<i>“I feel like my voice doesn't matter.”</i>
@@ -205,8 +205,13 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 			</p>
 
 			<p>
-				This paradox is easily eliminated by making every vote mandatory, and that should
-				not be a problem once barriers to voting have been abolished.
+				This paradox is easily eliminated by making voting mandatory, which would be
+				technically feasible once all barriers to voting have been abolished. However, many
+				Americans are likely to resist the proposition of <i>anything</i> becoming
+				mandatory, so instead I suggest to heavily incentivize voting: Give $500 or more to
+				every person who votes. Give more to parents, so they'll have an even greater
+				incentive to impart this civic duty upon their children. Give, because the
+				investment in democracy is worth it.
 			</p>
 		</>
 	)

@@ -98,7 +98,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				All of them are vital:
 			</p>
 
-			<div style={titleTextStyle}>Abolish barriers to voting</div>
+			<div style={titleTextStyle}>Abolish Voting Barriers</div>
 
 			<p>
 				<i>“Honestly, Florida has never had free and fair elections.”</i>
@@ -115,7 +115,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				those who need it; all forms of voter suppression must be eliminated with prejudice.
 			</p>
 
-			<div style={titleTextStyle}>Replace plurality voting</div>
+			<div style={titleTextStyle}>Replace Plurality Voting</div>
 
 			<p>
 				<i>
@@ -170,7 +170,7 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 				and return to having one representative per thirty-thousand citizens.
 			</p>
 
-			<div style={titleTextStyle}>Abolish the electoral college</div>
+			<div style={titleTextStyle}>Abolish the Electoral College</div>
 
 			<p>
 				<i>“[With] each [election] I am increasingly more jaded.”</i>

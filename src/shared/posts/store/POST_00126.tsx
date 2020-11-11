@@ -184,8 +184,58 @@ const PostContent: React.FunctionComponent = (): JSX.Element => {
 
 			<p>
 				How many Americans don’t bother to vote because they’re conservative and living in a
-				blue state? Or liberal and living in a red state? The electoral college is the only
-				thing standing in their way.
+				blue state? Or liberal and living in a red state?
+			</p>
+
+			<p>
+				The argument in favor of the electoral college focuses on states' rights. Two
+				hundred years ago, when the country was still a literal union of states with
+				distinct cultures and politics, this argument made sense. Now, however, we have
+				phones and airplanes and the internet, and we see ourselves as{' '}
+				<a
+					href="https://www.vox.com/polyarchy/2018/5/31/17406590/local-national-political-institutions-polarization-federalism"
+					target="_blank"
+				>
+					Americans first
+				</a>
+				. The electoral college granted equality to states; now it subjects Americans to a
+				grand inequality.
+			</p>
+
+			<p>
+				An Alaskan has a vote worth{' '}
+				<a
+					href="https://wallethub.com/edu/how-much-is-your-vote-worth/7932"
+					target="_blank"
+				>
+					one hundred times
+				</a>{' '}
+				more than an Oklahoman's vote.
+			</p>
+
+			<p>
+				There's another important reason to abolish the electoral college. Consider{' '}
+				<a
+					href="https://thetriad.thebulwark.com/p/a-crisis-is-unfolding-right-now"
+					target="_blank"
+				>
+					this hypothetical
+				</a>
+				: An incumbent president wins the popular vote while their challenger wins the
+				electoral college by a slim margin. Democracy demands a peaceful transition of
+				power, but this incumbent president lies, claiming that the challenger's slim
+				victory in each swing state was entirely due to fraudulent ballots. The country
+				could slide dangerously close to autocracy. Depending only on the popular vote
+				increases the margins of victory and decreases a corrupt incumbent's chances of
+				undermining democracy.
+			</p>
+
+			<p>Ultimately, though, I think it boils down to this:</p>
+
+			<p>
+				All humans are created equal, endowed with certain unalienable Rights, among these
+				Life, Liberty and the pursuit of Happiness. Should their right to Vote not also be
+				equal and unalienable?
 			</p>
 
 			<div style={titleTextStyle}>Incentivize Voting</div>

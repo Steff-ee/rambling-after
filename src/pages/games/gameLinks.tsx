@@ -18,7 +18,13 @@ export const GameLinks: React.FunctionComponent = (): JSX.Element => {
 			<LinkFrame
 				title={'Errant Signal'}
 				link={'https://www.youtube.com/c/ErrantSignal/videos'}
-				description={`My favorite videogame reviewer who isn't Yahtzee`}
+				description={`My favorite videogame reviewer who isn't Noah Caldwell-Gervais`}
+			/>
+			<LinkFrame
+				title={'Noah Caldwell-Gervais'}
+				link={'https://www.youtube.com/user/broadcaststsatic/videos'}
+				description={`My favorite videogame reviewer who isn't Errant Signal`}
+				rightShadow={true}
 			/>
 			<LinkFrame
 				title={'Top of the Table'}
@@ -28,7 +34,6 @@ export const GameLinks: React.FunctionComponent = (): JSX.Element => {
 						Matt Miller of GameInformer informs on the <i>other</i> kind of game
 					</>
 				}
-				rightShadow={true}
 			/>
 		</div>
 	)

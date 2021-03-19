@@ -4,34 +4,35 @@ import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
 const pageWidth = '750px' // with padding of 50, makes 8.5 x 11 ratio
 const pageHeight = '1000px'
+const commonVerticalMargin = '40px'
 
 const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Open Sans',
 	fontSize: '15px',
-	lineHeight: '21px',
+	lineHeight: '22px',
 }
 
 const h1Style: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontWeight: 600,
 	fontSize: '34px',
-	lineHeight: '39px',
+	lineHeight: '48px',
 	paddingBottom: '2px',
 	letterSpacing: '4px',
 }
 
 const h2Style: React.CSSProperties = {
 	fontFamily: 'Montserrat',
-	fontSize: '21px',
-	letterSpacing: '1px',
+	fontSize: '24px',
 	fontWeight: 600,
+	lineHeight: '34px',
 }
 
 const h3Style: React.CSSProperties = {
 	fontFamily: 'Montserrat',
 	fontSize: '18px',
-	letterSpacing: '1px',
 	fontWeight: 600,
+	lineHeight: '25px',
 }
 
 const dividerStar = <div>✧</div>
@@ -85,13 +86,13 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (props) => {
 	const { title, body, isMobile, rootStyle } = props
 
 	return (
-		<div style={{ ...rootStyle, marginTop: '21px' }}>
+		<div style={{ ...rootStyle, marginTop: commonVerticalMargin }}>
 			<div
 				style={{
 					...h2Style,
-					fontSize: '23px',
+					fontSize: '24px',
 					textAlign: 'center',
-					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 12px 0px',
+					margin: isMobile ? '25px 0px 25px 0px' : '0px 0px 15px 0px',
 					letterSpacing: '1px',
 				}}
 			>
@@ -128,7 +129,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 	const { title, subtitle, timeRange, body, subtext, isMobile } = props
 
 	return (
-		<div style={{ marginBottom: '20px' }}>
+		<div style={{ marginBottom: commonVerticalMargin }}>
 			<div
 				style={{
 					display: 'flex',
@@ -141,8 +142,8 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				<div style={{ margin: '0px 6px' }}>{timeRange}</div>
 			</div>
 			{subtitle && <div style={h3Style}>{subtitle}</div>}
-			{subtext && <div>{subtext}</div>}
-			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '2px 50px 0px 15px' }}>
+			{subtext && <div style={{ marginTop: 4 }}>{subtext}</div>}
+			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '4px 50px 0px 15px' }}>
 				{body}
 			</div>
 		</div>
@@ -161,10 +162,10 @@ export const ResumePage: React.FunctionComponent = (props) => {
 				maxWidth: pageWidth,
 				height: mediaSize === MediaSize.Large ? pageHeight : '',
 				backgroundColor: 'white',
-				padding: isMobile ? '10px' : '50px',
+				padding: isMobile ? '10px' : '70px 50px 50px 50px',
 				border: '1px black solid',
 				boxShadow: '3px 3px 1px darkgray',
-				marginBottom: '20px',
+				marginBottom: commonVerticalMargin,
 			}}
 		>
 			{props.children}
@@ -250,39 +251,38 @@ export const Resume: React.FunctionComponent = () => {
 									</>
 								}
 							/>
-							<ExperienceSubSection
-								title={'TreeRing'}
-								timeRange={'2015 - 2018'}
-								subtext={
-									'TreeRing provides flexible software for designing yearbooks, customizing them per student, and benefits the environment by planting a tree for every book printed.'
-								}
-								isMobile={isMobile}
-								body={
-									<>
-										<ListHeader>Lead Back-End Engineer</ListHeader>
-										<ListItem>
-											"Xylem" project: Re-architect the client/server
-											framework in a team of two: unifying duplicate code,
-											simplifying data access, and increasing expressiveness.
-										</ListItem>
-										<ListItem>
-											Supervise all SQL queries and APIs: optimizing for
-											efficiency, producing for new features, and advancing
-											the algorithm for duplicate user detection during roster
-											uploads.
-										</ListItem>
-										<ListItem>
-											Identify, triage, and resolve customer incidents with
-											rapid repairs and automated testing.
-										</ListItem>
-									</>
-								}
-							/>
 						</>
 					}
 				/>
 			</ResumePage>
 			<ResumePage>
+				<ExperienceSubSection
+					title={'TreeRing'}
+					timeRange={'2015 - 2018'}
+					subtext={
+						'TreeRing provides flexible software for designing yearbooks, customizing them per student, and benefits the environment by planting a tree for every book printed.'
+					}
+					isMobile={isMobile}
+					body={
+						<>
+							<ListHeader>Lead Back-End Engineer</ListHeader>
+							<ListItem>
+								"Xylem" project: Re-architect the client/server framework in a team
+								of two: unifying duplicate code, simplifying data access, and
+								increasing expressiveness.
+							</ListItem>
+							<ListItem>
+								Supervise all SQL queries and APIs: optimizing for efficiency,
+								producing for new features, and advancing the algorithm for
+								duplicate user detection during roster uploads.
+							</ListItem>
+							<ListItem>
+								Identify, triage, and resolve customer incidents with rapid repairs
+								and automated testing.
+							</ListItem>
+						</>
+					}
+				/>
 				<ResumeSection
 					title={'EDUCATION'}
 					isMobile={isMobile}

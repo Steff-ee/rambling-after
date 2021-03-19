@@ -10,7 +10,7 @@ export interface IPostProps {
 	post: IPost
 }
 
-export const Post: React.FunctionComponent<IPostProps> = (props: IPostProps): JSX.Element => {
+export const Post: React.FunctionComponent<IPostProps> = (props) => {
 	const { post } = props
 	const { title, subtitle, content, createdTime, route } = post
 	const { subtitle: subtitleColor } = useColors()

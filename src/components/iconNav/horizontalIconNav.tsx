@@ -9,9 +9,7 @@ import { NavListLabel } from './navListLabel'
  * This is a macromolecular component:
  * I haven't decided what that means yet.
  */
-export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps> = (
-	props: IHorizontalIconNavProps
-): JSX.Element => {
+export const HorizontalIconNav: React.FunctionComponent<IHorizontalIconNavProps> = (props) => {
 	const {
 		navItems,
 		rootStyle,

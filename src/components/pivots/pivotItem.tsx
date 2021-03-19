@@ -1,9 +1,7 @@
 import React from 'react'
 import { IPivotItemProps } from './pivots.types'
 
-export const PivotItem: React.FunctionComponent<IPivotItemProps> = (
-	props: IPivotItemProps
-): JSX.Element => {
+export const PivotItem: React.FunctionComponent<IPivotItemProps> = (props) => {
 	const {
 		style: inputStyle,
 		text,

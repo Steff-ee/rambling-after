@@ -18,9 +18,7 @@ export interface IClassicRightNavProps {
 	latestClick?: () => void
 }
 
-export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (
-	props: IClassicRightNavProps
-): JSX.Element => {
+export const ClassicPostsNav: React.FunctionComponent<IClassicRightNavProps> = (props) => {
 	const { firstClick, backClick, nextClick, latestClick, orientation } = props
 	const location = useLocation()
 	const backCommand = useBackCommand(backClick)

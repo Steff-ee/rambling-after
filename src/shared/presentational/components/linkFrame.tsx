@@ -10,9 +10,7 @@ export interface ILinkFrameProps {
 }
 
 // (TODO) Styling
-export const LinkFrame: React.FunctionComponent<ILinkFrameProps> = (
-	props: ILinkFrameProps
-): JSX.Element => {
+export const LinkFrame: React.FunctionComponent<ILinkFrameProps> = (props) => {
 	const { title, description, link, rightShadow } = props
 	const [isHovering, setIsHovering] = useState<boolean>(false)
 	const lightTextStyle = useLightTextStyle()

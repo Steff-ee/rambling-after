@@ -6,9 +6,7 @@ export interface IDividerProps {
 	rootStyle?: React.CSSProperties
 }
 
-export const Divider: React.FunctionComponent<IDividerProps> = (
-	props: IDividerProps
-): JSX.Element => {
+export const Divider: React.FunctionComponent<IDividerProps> = (props) => {
 	const { thickness = 1, rootStyle: rootStyleProp } = props
 	const { text: textColor } = useColors()
 

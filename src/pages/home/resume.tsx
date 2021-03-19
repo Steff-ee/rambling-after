@@ -40,9 +40,7 @@ interface IResumeHeaderProps {
 	isMobile: boolean
 }
 
-const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (
-	props: IResumeHeaderProps
-): JSX.Element => {
+const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (props) => {
 	const { isMobile } = props
 
 	return (
@@ -83,9 +81,7 @@ interface IResumeSectionProps {
 	rootStyle?: React.CSSProperties
 }
 
-const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
-	props: IResumeSectionProps
-): JSX.Element => {
+const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (props) => {
 	const { title, body, isMobile, rootStyle } = props
 
 	return (
@@ -107,15 +103,11 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (
 }
 
 // replaces use of <li> to get around the univeral li styling in root.css
-const ListItem: React.FunctionComponent<React.PropsWithChildren<{}>> = (
-	props: React.PropsWithChildren<{}>
-): JSX.Element => {
+const ListItem: React.FunctionComponent = (props) => {
 	return <li style={{ margin: '0px 0px 4px 11px' }}>{props.children}</li>
 }
 
-const ListHeader: React.FunctionComponent<React.PropsWithChildren<{}>> = (
-	props: React.PropsWithChildren<{}>
-): JSX.Element => {
+const ListHeader: React.FunctionComponent = (props) => {
 	return (
 		<div style={{ marginTop: '8px', fontWeight: 600, lineHeight: '25px' }}>
 			{props.children}
@@ -132,9 +124,7 @@ interface IExperienceSubSectionProps {
 	isMobile: boolean
 }
 
-const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> = (
-	props: IExperienceSubSectionProps
-): JSX.Element => {
+const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> = (props) => {
 	const { title, subtitle, timeRange, body, subtext, isMobile } = props
 
 	return (
@@ -182,7 +172,7 @@ export const ResumePage: React.FunctionComponent = (props) => {
 	)
 }
 
-export const Resume: React.FunctionComponent = (): JSX.Element => {
+export const Resume: React.FunctionComponent = () => {
 	const mediaSize = useContext(MediaContext)
 	const isMobile = mediaSize === MediaSize.Small
 

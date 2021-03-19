@@ -15,9 +15,7 @@ export const mediaSizes = {
 
 export const MediaContext = React.createContext<MediaSize>(MediaSize.Small)
 
-export const MediaProvider: React.FunctionComponent<React.PropsWithChildren<{}>> = (
-	props: React.PropsWithChildren<{}>
-): JSX.Element => {
+export const MediaProvider: React.FunctionComponent = (props) => {
 	return (
 		<Media queries={mediaSizes}>
 			{(matches): JSX.Element => (

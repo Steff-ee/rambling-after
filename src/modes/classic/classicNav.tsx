@@ -17,9 +17,7 @@ export interface IClassicNavProps {
 	latestClick?: () => void
 }
 
-export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (
-	props: IClassicNavProps
-): JSX.Element => {
+export const ClassicNav: React.FunctionComponent<IClassicNavProps> = (props) => {
 	const {
 		showPosts: showPostsProp,
 		scrollRef,

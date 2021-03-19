@@ -7,7 +7,7 @@ export interface IFooterProps {
 	artistLink: string
 }
 
-export const Footer: React.FunctionComponent<IFooterProps> = (props: IFooterProps): JSX.Element => {
+export const Footer: React.FunctionComponent<IFooterProps> = (props) => {
 	const { artistName, artistLink } = props
 	const { navbarText: navbarTextColor, border: borderColor } = useColors()
 

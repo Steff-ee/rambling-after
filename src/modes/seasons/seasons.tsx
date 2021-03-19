@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState } from 'react'
+import React, { useState } from 'react'
 import { Seasons } from './seasonsHelpers'
 
 interface ISeasonsContext {
@@ -13,9 +13,7 @@ export const SeasonsContext = React.createContext<ISeasonsContext>({
 	},
 })
 
-export const SeasonsProvider: React.FunctionComponent<PropsWithChildren<{}>> = (
-	props: PropsWithChildren<{}>
-): JSX.Element => {
+export const SeasonsProvider: React.FunctionComponent = (props) => {
 	const { children } = props
 	const [season, setSeason] = useState<Seasons>(Seasons.None)
 

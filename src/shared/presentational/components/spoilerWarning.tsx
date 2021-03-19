@@ -5,9 +5,7 @@ export interface ISpoilerWarningProps {
 	title: string
 }
 
-export const SpoilerWarning: React.FunctionComponent<ISpoilerWarningProps> = (
-	props: ISpoilerWarningProps
-): JSX.Element => {
+export const SpoilerWarning: React.FunctionComponent<ISpoilerWarningProps> = (props) => {
 	const { title } = props
 
 	return (

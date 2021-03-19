@@ -31,9 +31,7 @@ const growStyleHover: React.CSSProperties = {
  * This is an atomic component:
  * It should avoid using Context and avoid behavior-specific props.
  */
-export const IconButton: React.FunctionComponent<IIconButtonProps> = (
-	props: IIconButtonProps
-): JSX.Element => {
+export const IconButton: React.FunctionComponent<IIconButtonProps> = (props) => {
 	const {
 		icon,
 		onClick,

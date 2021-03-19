@@ -8,7 +8,7 @@ const rootStyle: React.CSSProperties = {
 	justifyContent: 'space-around',
 }
 
-export const Pivots: React.FunctionComponent<IPivotsProps> = (props: IPivotsProps): JSX.Element => {
+export const Pivots: React.FunctionComponent<IPivotsProps> = (props) => {
 	const {
 		pivotItems,
 		activeItemKey,

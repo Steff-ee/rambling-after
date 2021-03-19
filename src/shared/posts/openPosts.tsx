@@ -14,9 +14,7 @@ export const OpenPostsContext = React.createContext<IOpenPostsContext>({
 	},
 })
 
-export const OpenPostsProvider: React.FunctionComponent<React.PropsWithChildren<{}>> = (
-	props: React.PropsWithChildren<{}>
-): JSX.Element => {
+export const OpenPostsProvider: React.FunctionComponent = (props) => {
 	const [dictionary, setDictionary] = useState<{
 		[pageRoute: string]: { [pivotRoute: string]: IPost }
 	}>({

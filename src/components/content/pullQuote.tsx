@@ -22,9 +22,7 @@ const pullQuoteTextStyleSmall: React.CSSProperties = {
 	lineHeight: '30px',
 }
 
-export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (
-	props: IPullQuoteProps
-): JSX.Element => {
+export const PullQuote: React.FunctionComponent<IPullQuoteProps> = (props) => {
 	const { lines, by } = props
 	const mediaSize = useContext(MediaContext)
 	const { subtitle: subtitleColor } = useColors()

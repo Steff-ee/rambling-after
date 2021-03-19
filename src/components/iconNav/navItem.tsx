@@ -31,9 +31,7 @@ const disabledFadeFilterValue = 'opacity(0.25)'
  * This is a molecular component:
  * It should avoid using Context but it can have behavior-specific props.
  */
-export const NavItem: React.FunctionComponent<INavItemProps> = (
-	props: INavItemProps
-): JSX.Element => {
+export const NavItem: React.FunctionComponent<INavItemProps> = (props) => {
 	const {
 		id,
 		icon,

@@ -18,9 +18,7 @@ interface IHighlightProps {
 	interactionEnabled: boolean
 }
 
-export const Fireflies: React.FunctionComponent<IFirefliesProps> = (
-	props: IFirefliesProps
-): JSX.Element => {
+export const Fireflies: React.FunctionComponent<IFirefliesProps> = (props) => {
 	const { style, width, height } = props
 	const { isNavBarOpen } = useContext(IsNavBarOpenContext)
 	const mood = getCircadianMood()

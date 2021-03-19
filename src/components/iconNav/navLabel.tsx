@@ -17,9 +17,7 @@ export interface INavLabelProps {
  * This is an atomic component:
  * It should avoid using Context and avoid behavior-specific props.
  */
-export const NavLabel: React.FunctionComponent<INavLabelProps> = (
-	props: INavLabelProps
-): JSX.Element => {
+export const NavLabel: React.FunctionComponent<INavLabelProps> = (props) => {
 	const { label, width, height, rootStyle, textStyle, onClick } = props
 
 	return (

@@ -9,9 +9,7 @@ export interface IClassicPageNavProps {
 	orientation: NavOrientation
 }
 
-export const ClassicPageNav: React.FunctionComponent<IClassicPageNavProps> = (
-	props: IClassicPageNavProps
-): JSX.Element => {
+export const ClassicPageNav: React.FunctionComponent<IClassicPageNavProps> = (props) => {
 	const { orientation } = props
 	const location = useLocation()
 	const links = useNavigationLinks()

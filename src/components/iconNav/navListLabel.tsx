@@ -23,9 +23,7 @@ export interface INavListLabelProps {
  *
  * (Even though it is not made of other atoms, we still consider this molecular because it is opinionated on styling (for animation))
  */
-export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (
-	props: INavListLabelProps
-): JSX.Element => {
+export const NavListLabel: React.FunctionComponent<INavListLabelProps> = (props) => {
 	const {
 		labels,
 		currentLabelIndex,

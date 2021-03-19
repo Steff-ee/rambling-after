@@ -8,9 +8,7 @@ export interface IContentLoadImageProps {
 	style?: React.CSSProperties
 }
 
-export const ContentImage: React.FunctionComponent<IContentLoadImageProps> = (
-	props: IContentLoadImageProps
-): JSX.Element => {
+export const ContentImage: React.FunctionComponent<IContentLoadImageProps> = (props) => {
 	const { src, style, caption, maxHeight = '80vh' } = props
 
 	return (

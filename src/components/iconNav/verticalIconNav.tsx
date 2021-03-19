@@ -12,9 +12,7 @@ import { NavItem } from './navItem'
  * This is a macromolecular component:
  * I haven't decided what that means yet.
  */
-export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (
-	props: IVerticalIconNavProps
-): JSX.Element => {
+export const VerticalIconNav: React.FunctionComponent<IVerticalIconNavProps> = (props) => {
 	const {
 		navItems,
 		showIconLabels,

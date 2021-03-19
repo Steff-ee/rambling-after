@@ -19,9 +19,7 @@ import { Footer } from './footer'
 import { IMobilePivotsProps, IPageTemplateProps, IParallaxPivotsProps } from './pageTemplate.types'
 import { MobileTitle, ParallaxTitle } from './titles'
 
-const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
-	props: IParallaxPivotsProps
-): JSX.Element => {
+const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (props) => {
 	const { arePivotsSticky, selectedPivotTitle, setPivot, pivotsItems, pivotsPositionRef } = props
 	const { navbarText: navbarTextColor, text: textColor } = useColors()
 	const color = arePivotsSticky ? navbarTextColor : textColor
@@ -61,9 +59,7 @@ const ParallaxPivots: React.FunctionComponent<IParallaxPivotsProps> = (
 	)
 }
 
-const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
-	props: IMobilePivotsProps
-): JSX.Element => {
+const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (props) => {
 	const { setPivot, pivotsItems } = props
 	const { text: textColor } = useColors()
 
@@ -93,9 +89,7 @@ const MobilePivots: React.FunctionComponent<IMobilePivotsProps> = (
 	)
 }
 
-export const PageTemplate: React.FunctionComponent<IPageTemplateProps> = (
-	props: IPageTemplateProps
-): JSX.Element => {
+export const PageTemplate: React.FunctionComponent<IPageTemplateProps> = (props) => {
 	const {
 		selectedPivotTitle,
 		setPivot,

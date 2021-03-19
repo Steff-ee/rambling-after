@@ -8,9 +8,7 @@ export interface IFadeLoadImageProps {
 	style?: React.CSSProperties
 }
 
-export const FadeLoadImage: React.FunctionComponent<IFadeLoadImageProps> = (
-	props: IFadeLoadImageProps
-): JSX.Element => {
+export const FadeLoadImage: React.FunctionComponent<IFadeLoadImageProps> = (props) => {
 	const { src, style, opacity = 1 } = props
 	const [isLoaded, setIsLoaded] = useState<boolean>(false)
 

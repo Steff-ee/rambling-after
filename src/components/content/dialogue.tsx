@@ -11,9 +11,7 @@ export interface IDialogueProps {
 	lines: IDialogueLine[]
 }
 
-export const Dialogue: React.FunctionComponent<IDialogueProps> = (
-	props: IDialogueProps
-): JSX.Element => {
+export const Dialogue: React.FunctionComponent<IDialogueProps> = (props) => {
 	const { lines } = props
 	const lightTextStyle = useLightTextStyle()
 

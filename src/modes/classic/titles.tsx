@@ -12,9 +12,7 @@ import { IParallaxTitleProps } from './pageTemplate.types'
 const zoomSpringDuration = 27000
 const zoomScale = 1.35
 
-export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (
-	props: IParallaxTitleProps
-): JSX.Element => {
+export const ParallaxTitle: React.FunctionComponent<IParallaxTitleProps> = (props) => {
 	const { headerBackgroundImage, mediaSize, skipMorph } = props
 	const { headerTitleText: headerTitleTextColor, border: borderColor } = useColors()
 	const { season } = useContext(SeasonsContext)

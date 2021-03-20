@@ -2,14 +2,14 @@ import React, { useContext } from 'react'
 import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
-const pageWidth = '750px' // with padding of 50, makes 8.5 x 11 ratio
-const pageHeight = '1000px'
-const commonVerticalMargin = '40px'
+const pageWidth = '690px' // with padding of 80, makes 8.5 x 11 ratio
+const pageHeight = '940px'
+const commonVerticalMargin = '30px'
 
 const lightTextStyle: React.CSSProperties = {
 	fontFamily: 'Open Sans',
 	fontSize: '15px',
-	lineHeight: '22px',
+	lineHeight: '21px',
 }
 
 const h1Style: React.CSSProperties = {
@@ -18,7 +18,7 @@ const h1Style: React.CSSProperties = {
 	fontSize: '34px',
 	lineHeight: '48px',
 	paddingBottom: '2px',
-	letterSpacing: '4px',
+	letterSpacing: '1px',
 }
 
 const h2Style: React.CSSProperties = {
@@ -105,7 +105,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = (props) => {
 
 // replaces use of <li> to get around the univeral li styling in root.css
 const ListItem: React.FunctionComponent = (props) => {
-	return <li style={{ margin: '0px 0px 4px 11px' }}>{props.children}</li>
+	return <li style={{ margin: '0px 0px 2px 11px' }}>{props.children}</li>
 }
 
 const ListHeader: React.FunctionComponent = (props) => {
@@ -142,7 +142,7 @@ const ExperienceSubSection: React.FunctionComponent<IExperienceSubSectionProps> 
 				<div style={{ margin: '0px 6px' }}>{timeRange}</div>
 			</div>
 			{subtitle && <div style={h3Style}>{subtitle}</div>}
-			{subtext && <div style={{ marginTop: 4 }}>{subtext}</div>}
+			{subtext && <div style={{ marginTop: 2 }}>{subtext}</div>}
 			<div style={{ margin: isMobile ? '10px 0px 0px 5px' : '4px 50px 0px 15px' }}>
 				{body}
 			</div>
@@ -162,7 +162,7 @@ export const ResumePage: React.FunctionComponent = (props) => {
 				maxWidth: pageWidth,
 				height: mediaSize === MediaSize.Large ? pageHeight : '',
 				backgroundColor: 'white',
-				padding: isMobile ? '10px' : '70px 50px 50px 50px',
+				padding: isMobile ? '10px' : '80px',
 				border: '1px black solid',
 				boxShadow: '3px 3px 1px darkgray',
 				marginBottom: commonVerticalMargin,
@@ -237,11 +237,11 @@ export const Resume: React.FunctionComponent = () => {
 										<ListHeader>Reliability</ListHeader>
 										<ListItem>
 											Generate weekly service reports, triage customer
-											incidents, and assist with bug triage.
+											incidents, and assist bug triage.
 										</ListItem>
 										<ListItem>
-											Revamped telemetry framework to distinguish error rates
-											by app type and server vs client.
+											Revamped telemetry framework to better distinguish error
+											rates.
 										</ListItem>
 										<ListItem>
 											Increase apps page reliability (98.5% to 99.3%) by

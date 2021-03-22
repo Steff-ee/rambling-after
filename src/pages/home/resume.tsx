@@ -2,8 +2,10 @@ import React, { useContext } from 'react'
 import { Divider } from '../../components/content/divider'
 import { MediaContext, MediaSize } from '../../components/mediaProvider'
 
-const pageWidth = '690px' // with padding of 80, makes 8.5 x 11 ratio
-const pageHeight = '940px'
+const pagePadding = 88
+// this creates an 8.5 x 11 ratio
+const pageWidth = 850 - 2 * pagePadding
+const pageHeight = 1100 - 2 * pagePadding
 const commonVerticalMargin = '30px'
 
 const lightTextStyle: React.CSSProperties = {
@@ -23,9 +25,9 @@ const h1Style: React.CSSProperties = {
 
 const h2Style: React.CSSProperties = {
 	fontFamily: 'Montserrat',
-	fontSize: '24px',
+	fontSize: '23px',
 	fontWeight: 600,
-	lineHeight: '34px',
+	lineHeight: '33px',
 }
 
 const h3Style: React.CSSProperties = {
@@ -66,10 +68,10 @@ const ResumeHeader: React.FunctionComponent<IResumeHeaderProps> = (props) => {
 			</div>
 			<Divider thickness={2} rootStyle={{ width: '96%', padding: '8px 2% 8px 2%' }} />
 			<div style={{ ...lightTextStyle, lineHeight: '21px' }}>
-				Adaptable Full Stack Web Developer with 11 years of coding and 6 years in the
-				industry. Experienced in maximize customer impact through a balance of rapid feature
-				deployment and robust, performant code design. Eager to optimize, redesign, or
-				altogether revamp out-of-date code, patterns, and architecture.
+				Resourceful and collaborative Full Stack Software Engineer with 11 years of coding
+				experience. Adept at maximizing customer impact through a balance of rapid feature
+				deployment and robust, performant code design. Motivated to optimize, redesign, or
+				altogether revamp outdated code, patterns, and architecture.
 			</div>
 		</div>
 	)
@@ -162,7 +164,7 @@ export const ResumePage: React.FunctionComponent = (props) => {
 				maxWidth: pageWidth,
 				height: mediaSize === MediaSize.Large ? pageHeight : '',
 				backgroundColor: 'white',
-				padding: isMobile ? '10px' : '80px',
+				padding: isMobile ? '10px' : pagePadding,
 				border: '1px black solid',
 				boxShadow: '3px 3px 1px darkgray',
 				marginBottom: commonVerticalMargin,
@@ -189,8 +191,8 @@ export const Resume: React.FunctionComponent = () => {
 							<ExperienceSubSection
 								title={'Microsoft'}
 								subtitle={'PowerApps Lifecycle Management'}
-								timeRange={'2020 - present'}
-								subtext={`PowerApps empowers organizations to build apps easily with project solutions that incorporate Microsoft's Common Data Service. The App Lifecycle Management team supports the back end for solution layering and full-stack experiences for managing the app lifeycle and app settings.`}
+								timeRange={'Sept 2020 - Present'}
+								subtext={`PowerApps empowers organizations to build apps easily with project solutions that incorporate Microsoft's Common Data Service. App Lifecycle Management supports the back end for solution layering and full-stack experiences for managing the app lifeycle and app settings.`}
 								isMobile={isMobile}
 								body={
 									<>
@@ -198,14 +200,13 @@ export const Resume: React.FunctionComponent = () => {
 										<ListItem>
 											Build back-end APIs and front-end components,
 											collaborate with project managers and designers, and
-											manage junior engineers to drive the creation of new
-											SiteMap Settings features.
+											manage junior engineers to drive the creation of SiteMap
+											Settings.
 										</ListItem>
 										<ListItem>
 											Refashion the intricate layering logic for solution app
-											components to address three related inconsistencies and
-											driving down our customer reported incident load by
-											approximately 25%.
+											components to eliminate inconsistencies and drive down
+											our customer reported incident load by ~25%.
 										</ListItem>
 									</>
 								}
@@ -213,26 +214,29 @@ export const Resume: React.FunctionComponent = () => {
 							<ExperienceSubSection
 								title={'Microsoft'}
 								subtitle={'PowerApps Portal'}
-								timeRange={'2018 - 2020'}
+								timeRange={'July 2018 - Sept 2020'}
 								subtext={
-									'The Portal team develops the front-end Home page, Apps list page, and Solutions list page for PowerApps.'
+									'Portal develops the front-end Home page, Apps list page, and Solutions list page for PowerApps.'
 								}
 								isMobile={isMobile}
 								body={
 									<>
 										<ListHeader>Teamwork</ListHeader>
 										<ListItem>
-											Assist partner teams, guide vendors, mentor interns, and
-											share feedback on code changes (second highest pull
-											request reviewer in monorepo).
+											Assist partner teams, mentor interns, and guide vendors
+											with code changes.
+										</ListItem>
+										<ListItem>
+											2nd highest pull request reviewer in monorepo and top 10
+											contributor.
 										</ListItem>
 										<ListItem>
 											Responsively dive into at-risk featurework to aid any
 											team members in need.
 										</ListItem>
 										<ListItem>
-											Drive team to adopt Hooks and Function Components in
-											place of Redux containers.
+											Drive team to adopt React Hooks and Function Components
+											in lieu of Redux.
 										</ListItem>
 										<ListHeader>Reliability</ListHeader>
 										<ListItem>
@@ -258,7 +262,7 @@ export const Resume: React.FunctionComponent = () => {
 			<ResumePage>
 				<ExperienceSubSection
 					title={'TreeRing'}
-					timeRange={'2015 - 2018'}
+					timeRange={'Feb 2015 - July 2018'}
 					subtext={
 						'TreeRing provides flexible software for designing yearbooks, customizing them per student, and benefits the environment by planting a tree for every book printed.'
 					}
@@ -273,12 +277,12 @@ export const Resume: React.FunctionComponent = () => {
 							</ListItem>
 							<ListItem>
 								Supervise all SQL queries and APIs: optimizing for efficiency,
-								producing for new features, and advancing the algorithm for
-								duplicate user detection during roster uploads.
+								producing for new features, and advancing the duplicate user
+								detection algorithm.
 							</ListItem>
 							<ListItem>
-								Identify, triage, and resolve customer incidents with rapid repairs
-								and automated testing.
+								Identify, triage, and resolve customer issues with rapid repairs,
+								then preventing regressions with automated testing.
 							</ListItem>
 						</>
 					}
@@ -289,7 +293,7 @@ export const Resume: React.FunctionComponent = () => {
 					body={
 						<ExperienceSubSection
 							title={'Stanford University'}
-							timeRange={'2010 - 2015'}
+							timeRange={'Sept 2010 - June 2015'}
 							isMobile={isMobile}
 							body={
 								<>
@@ -301,8 +305,8 @@ export const Resume: React.FunctionComponent = () => {
 										Teaching Assistant for “Logic and Automated Reasoning”.
 									</ListItem>
 									<ListItem>
-										Resident Assistant, collaborating to build a safe,
-										supportive community for freshmen.
+										Resident Assistant collaborating to build a safe, supportive
+										community.
 									</ListItem>
 								</>
 							}
@@ -314,17 +318,17 @@ export const Resume: React.FunctionComponent = () => {
 					isMobile={isMobile}
 					rootStyle={{ marginTop: '14px' }}
 					body={
-						<div style={{ padding: '6px 0px 0px 15px' }}>
+						<div style={{ padding: '6px 50px 0px 15px' }}>
 							<ListItem>
-								Currently Proficient: C#, React, Redux, GraphQL, TypeScript,
-								JavaScript, Python, Moq, Jest.
+								TypeScript, JavaScript, Python, C#, React, Redux, GraphQL, Moq,
+								Jest.
 							</ListItem>
 							<ListItem>
 								Prior Proficiencies: MySQL, Angular, AWS, PHP, Java, C, C++, Ruby.
 							</ListItem>
 							<ListItem>
-								Eager to learn new languages, tools, and skills; learn from the
-								best; and share what I learn.
+								Eager to learn new skills, learn from the best, and share what I
+								learn.
 							</ListItem>
 							<ListItem>
 								Interested in computer science theory, algorithms, cryptography, and

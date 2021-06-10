@@ -17,7 +17,7 @@ export const ContentImage: React.FunctionComponent<IContentLoadImageProps> = (pr
 				fontStyle: 'italic',
 				fontSize: '16px',
 				textAlign: 'center',
-				padding: '16px 0',
+				padding: '16px 0px 20px 0px',
 			}}
 		>
 			<FadeLoadImage src={src} style={{ maxWidth: '100%', maxHeight, ...style }} />
